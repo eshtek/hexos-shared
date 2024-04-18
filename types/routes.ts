@@ -1,3 +1,8 @@
+export interface AuthRequest {
+    email: string;
+    password: string;
+}
+
 export interface ServerStepDataStoragePool {
     icon: string;
     label: string;
