@@ -1,3 +1,8 @@
+export interface GenericResponse<T> {
+    success: boolean;
+    data?: T;
+    error?: string;
+}
 export interface AuthRequest {
     email: string;
     password: string;
