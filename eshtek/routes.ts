@@ -7,7 +7,12 @@ export interface AuthRequest {
     email: string;
     password: string;
 }
-
+export interface NewAccountRequest {
+    name: string;
+    email: string;
+    password: string;
+    clientip?: string;
+}
 export interface ServerStepDataStoragePool {
     icon: string;
     label: string;
