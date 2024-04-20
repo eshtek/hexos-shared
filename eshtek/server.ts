@@ -14,6 +14,7 @@ export interface Servers {
 
 export interface ServerRecord {
     hostid: string;
+    lanip?: string;
     nodehost?: string;
     connected?: 'N' | 'Y';
     servername?: string;
