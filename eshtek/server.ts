@@ -95,7 +95,6 @@ export interface ServerSystemDataSystem extends ServerStatusBasics {
     data: {
         processor?: string;
         memory?: string;
-        active?: boolean;
     };
 }
 export interface ServerSystemDataStorage extends ServerStatusBasics {
