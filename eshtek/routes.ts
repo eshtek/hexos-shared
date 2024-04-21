@@ -22,6 +22,11 @@ export interface RequestNewAccount {
     clientip?: string;
 }
 
+export interface RequestClaimServer {
+    password: string;
+    hostId: string;
+}
+
 // TODO : Eric: These will be reworked/moved in the next push qhen I rework those routes to be consistent with the new Request/Response typing but leaving them here for now to avoid breaking the build
 export interface ServerStepDataStoragePool {
     icon: string;

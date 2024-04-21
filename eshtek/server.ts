@@ -10,6 +10,7 @@ export interface Server {
 export interface Servers {
     claimed: ServerRecord[];
     pending: ServerRecord[];
+    configured: ServerRecord[];
 }
 
 export interface ServerRecord {
@@ -19,6 +20,7 @@ export interface ServerRecord {
     connected?: 'N' | 'Y';
     servername?: string;
     wizardcompleted?: Date | string;
+    lastconnected?: Date | string;
 }
 
 export interface ServerFolder {
