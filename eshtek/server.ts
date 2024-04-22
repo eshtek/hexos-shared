@@ -37,7 +37,7 @@ export interface ServerPool {
     label: string;
     description?: string;
     status: string;
-    usable_storage?: string;
+    useable_storage?: string;
     drives: ServerDrive[];
 }
 export interface ServerStorage {
