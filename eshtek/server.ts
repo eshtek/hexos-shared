@@ -8,6 +8,15 @@ export const cleanCPUModel = (model: string): string => {
         .replace('(R)', '®');
 };
 
+export enum ServerStorageIcon {
+    NVME_GROUP = 'storage/nvme-group',
+    SSD_GROUP = 'storage/ssd-group',
+    HDD_GROUP = 'storage/hdd-group',
+    NVME = 'storage/nvme',
+    SSD = 'storage/ssd',
+    HDD = 'storage/hdd',
+    USB_KEY = 'storage/usb-key',
+}
 export enum ServerStatusSupported {
     SUPPORTED = 'Supported',
     UNSUPPORTED = 'Unsupported',
@@ -17,15 +26,19 @@ export enum ServerStatusIcons {
     WARNING = 'status/warning',
 }
 
-export interface Server {
-    icon: string;
+export interface ServerPool {
+    icon: ServerStorageIcon;
     label: string;
     description?: string;
     status: string;
-    active?: boolean;
     usable_storage?: string;
     drives: ServerDrive[];
 }
+export interface ServerStorage {
+    pools: ServerPool[];
+    unassigned: ServerPool;
+}
+
 export interface Servers {
     claimed: ServerRecord[];
     pending: ServerRecord[];
@@ -56,23 +69,17 @@ export enum ServerDriveLabel {
     USB_DRIVE = 'USB drive',
 }
 
-export enum ServerDriveIcon {
-    NVME = 'storage/nvme',
-    SSD = 'storage/ssd',
-    HDD = 'storage/hdd',
-    USB_KEY = 'storage/usb-key',
-}
-
 export interface ServerDrive {
     details: string;
     label: ServerDriveLabel;
     type: DiskType;
-    size: number;
+    size: string;
+    realsize: number;
     devname: string;
-    icon: ServerDriveIcon;
+    icon: ServerStorageIcon;
     statusIcon?: string; // status/warning
     status?: string;
-    temeprature?: number;
+    temperature?: number;
 }
 
 export enum ServerStatusType {
