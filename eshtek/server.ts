@@ -77,7 +77,7 @@ export interface ServerDrive {
     realsize: number;
     devname: string;
     icon: ServerStorageIcon;
-    statusIcon?: string; // status/warning
+    statusIcon?: ServerStatusIcons;
     status?: string;
     temperature?: number;
 }
