@@ -25,7 +25,13 @@ export enum ServerStatusIcons {
     CHECK = 'status/check',
     WARNING = 'status/warning',
 }
-
+export enum ServerFolderIcons {
+    HIDDEN = 'files/folder-hidden',
+    IMPORT = 'files/folder-import',
+    PROTECTED = 'files/folder-protected',
+    PUBLIC = 'files/folder-public',
+    SYSTEM = 'files/folder-system',
+}
 export interface ServerPool {
     icon: ServerStorageIcon;
     label: string;
@@ -58,9 +64,12 @@ export interface ServerRecord {
 export interface ServerFolder {
     icon: string;
     label: string;
-    pool: string;
+    pool?: ServerPool;
     public?: boolean;
-    active?: boolean;
+}
+export interface ServerFolders {
+    user: ServerFolder[];
+    system: ServerFolder[];
 }
 
 export enum ServerDriveLabel {
