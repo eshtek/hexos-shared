@@ -1,4 +1,4 @@
-import type { ServerFolder, ServerPool } from './server';
+import type { ServerFolder, ServerPool, ServerUser, ServerUserType } from './server';
 
 export type ResponseSuccess<T> = {
     success: true;
@@ -29,13 +29,15 @@ export interface RequestClaimServer {
     hostId: string;
 }
 
-export interface ServerLocalUser {
-    user: string;
+export interface RequestUser extends ServerUser {
     password: string;
+    type: ServerUserType;
 }
 
 export interface RequestFinishServer {
+    hostId?: string;
     pools: ServerPool[];
     user_folders: ServerFolder[];
-    local_users: ServerLocalUser[];
+    users: RequestUser[];
+    name: string;
 }

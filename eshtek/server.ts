@@ -1,4 +1,5 @@
 import type { DiskType } from '@shared/enums/disk-type.enum';
+import { Server } from 'mysql2/typings/mysql/lib/Server';
 export const cleanCPUModel = (model: string): string => {
     return model
         .replace('Processor', '')
@@ -7,6 +8,16 @@ export const cleanCPUModel = (model: string): string => {
         .replace('(C)', '©')
         .replace('(R)', '®');
 };
+
+export enum ServerUserType {
+    ADMIN = 'admin',
+    LOCAL = 'local',
+}
+
+export interface ServerUser {
+    username: string;
+    type?: ServerUserType;
+}
 
 export enum ServerStorageIcon {
     NVME_GROUP = 'storage/nvme-group',
