@@ -1,4 +1,5 @@
 import type { DiskType } from '@shared/enums/disk-type.enum';
+import type { JobState } from '@shared/enums/job-state.enum';
 import { Server } from 'mysql2/typings/mysql/lib/Server';
 export const cleanCPUModel = (model: string): string => {
     return model
@@ -142,4 +143,11 @@ export type ServerSystemData =
 export interface ServerSystem extends ServerStatusBasics {
     type: ServerStatusType.SYSTEM_OVERVIEW;
     data?: ServerSystemData[];
+}
+
+export interface ServerFinishStatus {
+    job: string;
+    status: JobState;
+    details?: string;
+    percent: number;
 }
