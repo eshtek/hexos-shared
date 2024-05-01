@@ -1,6 +1,7 @@
 import type { DiskType } from '@shared/enums/disk-type.enum';
 import type { JobState } from '@shared/enums/job-state.enum';
 import { Server } from 'mysql2/typings/mysql/lib/Server';
+import { Wizard } from './ddp';
 export const cleanCPUModel = (model: string): string => {
     return model
         .replace('Processor', '')
@@ -59,13 +60,16 @@ export interface ServerStorage {
 
 export interface Servers {
     claimed: ServerRecord[];
-    pending: ServerRecord[];
     configured: ServerRecord[];
 }
 
 export interface ServerRecord {
     hostid: string;
+    email?: string;
+    ipsid?: string;
+    apikey?: string;
     lanip?: string;
+    wanip?: string;
     nodehost?: string;
     connected?: 'N' | 'Y';
     servername?: string;
@@ -143,11 +147,4 @@ export type ServerSystemData =
 export interface ServerSystem extends ServerStatusBasics {
     type: ServerStatusType.SYSTEM_OVERVIEW;
     data?: ServerSystemData[];
-}
-
-export interface ServerFinishStatus {
-    job: string;
-    status: JobState;
-    details?: string;
-    percent: number;
 }

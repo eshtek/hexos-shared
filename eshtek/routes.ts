@@ -41,3 +41,7 @@ export interface RequestFinishServer {
     users: RequestUser[];
     name: string;
 }
+
+export interface RequestAppGeneric {
+    appId: string;
+}

@@ -14,3 +14,7 @@ export const servernameFormat = (hostname: string): boolean => {
     const regex = /^[a-z.-0-9]*[a-z0-9]$/i;
     return !/\s/.test(hostname) && regex.test(hostname);
 };
+
+export const capitalize = (s: string) => {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+};
