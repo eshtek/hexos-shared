@@ -5,7 +5,7 @@ export interface Job {
     name: string;
     status: JobState;
     progress: number;
-    message: string;
+    message?: string;
     referenceId?: string | number;
 }
 export interface JobExtended extends Job {
