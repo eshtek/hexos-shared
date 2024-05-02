@@ -1,7 +1,6 @@
 import type { DiskType } from '@shared/enums/disk-type.enum';
 import type { JobState } from '@shared/enums/job-state.enum';
-import { Server } from 'mysql2/typings/mysql/lib/Server';
-import { Wizard } from './ddp';
+
 export const cleanCPUModel = (model: string): string => {
     return model
         .replace('Processor', '')
@@ -82,7 +81,9 @@ export interface ServerFolder {
     label: string;
     pool?: ServerPool;
     public?: boolean;
+    users?: ServerUser[];
 }
+
 export interface ServerFolders {
     user: ServerFolder[];
     system: ServerFolder[];
