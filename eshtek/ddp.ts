@@ -1,20 +1,20 @@
 import type { JobState } from '@shared/enums/job-state.enum';
+import type { AppJobAction } from './apps';
 
-export interface Job {
+export interface EshtekJob {
     id?: number;
+    action: AppJobAction;
     name: string;
     status: JobState;
     progress: number;
     message?: string;
     referenceId?: string | number;
 }
-export interface JobExtended extends Job {
-    url: string;
-}
+
 export interface Wizard {
     status: JobState;
     jobIds: number[];
-    current: Job;
+    current: EshtekJob;
 }
 
 export interface Data {
@@ -29,6 +29,6 @@ export interface DDPClientMeta {
     lanIp: string;
     wanIp: string;
     wizard: Wizard;
-    jobs: Job[];
+    jobs: EshtekJob[];
     method_data: Data[];
 }
