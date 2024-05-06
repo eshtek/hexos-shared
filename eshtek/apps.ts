@@ -3,6 +3,7 @@ export enum AppJobAction {
     RESTART = 'restart',
     UNINSTALL = 'uninstall',
     DELETE = 'delete',
+    PROVISIONING = 'provisioning',
 }
 
 export interface AppListing {
