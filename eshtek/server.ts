@@ -101,39 +101,6 @@ export interface ServerFolders {
     user: ServerFolder[];
     system: ServerFolder[];
 }
-export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
-    if (folder.label.toLowerCase() === 'applications') {
-        return ServerFolderIcons.APPLICATIONS;
-    } else if (folder.label.toLowerCase() === 'virtualization') {
-        return ServerFolderIcons.VIRTUALIZATION;
-    } else if (folder.access === ServerAccess.PRIVATE) {
-        return ServerFolderIcons.HIDDEN;
-    } else if (folder.access === ServerAccess.PROTECTED) {
-        return ServerFolderIcons.PROTECTED;
-    } else if (folder.access === ServerAccess.PUBLIC) {
-        return ServerFolderIcons.PUBLIC;
-    } else {
-        return ServerFolderIcons.FOLDER;
-    }
-};
-export const getServerFolderIconLabel = (folder: ServerFolder): string => {
-    if (folder.label.toLowerCase() === 'applications' && folder.access === ServerAccess.PRIVATE) {
-        return 'System';
-    } else if (
-        folder.label.toLowerCase() === 'virtualization' &&
-        folder.access === ServerAccess.PRIVATE
-    ) {
-        return 'System';
-    } else if (folder.access === ServerAccess.PRIVATE) {
-        return 'Hidden';
-    } else if (folder.access === ServerAccess.PROTECTED) {
-        return 'Protected';
-    } else if (folder.access === ServerAccess.PUBLIC) {
-        return 'Public';
-    } else {
-        return 'Folder';
-    }
-};
 
 export enum ServerDriveLabel {
     SOLID_STATE_DRIVE = 'Solid state drive',
