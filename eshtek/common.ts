@@ -108,3 +108,34 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
         return 'Folder';
     }
 };
+
+/**
+ * Checks if a given folder name follows a specific format.
+ * @param {string} folderName - The folder name to check.
+ * @returns {boolean} - Returns true if the folder name follows the format, otherwise false.
+ * Length between 1 and 255 characters.
+ * Allowed characters: letters (both uppercase and lowercase), numbers, underscores, and hyphens.
+ * Cannot start or end with an underscore or hyphen.
+ * No consecutive underscores or hyphens.
+ */
+export const foldernameFormat = (folderName: string): boolean => {
+    const regex = /^[a-zA-Z0-9_-](?!.*?[ _-]{2})[a-zA-Z0-9 _-]{0,253}[a-zA-Z0-9_-]$/;
+    return regex.test(folderName);
+};
+
+/**
+ * Converts a username into a folder name format.
+ * @param {string} username - The username to convert.
+ * @returns {string} - Returns the folder name generated from the username.
+ */
+export const getFolderNameFromUsername = (username: string | undefined): string | undefined => {
+    if (!username) return undefined;
+    // Replace spaces and special characters with underscores
+    const sanitizedUsername = username.replace(/[^\w]/g, '_');
+    // Ensure folder name is not empty
+    if (sanitizedUsername.length === 0) {
+        return undefined;
+    }
+
+    return capitalize(sanitizedUsername);
+};
