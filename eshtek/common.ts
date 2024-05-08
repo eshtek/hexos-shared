@@ -1,4 +1,4 @@
-import { ServerAccess, ServerFolder, ServerFolderIcons } from './server';
+import { ServerAccess, ServerFolder, ServerFolderIcons, ServerFolderVisibility } from './server';
 
 export type ID = `${number}` | number;
 
@@ -74,8 +74,10 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
         return ServerFolderIcons.APPLICATIONS;
     } else if (folder.label.toLowerCase() === 'virtualization') {
         return ServerFolderIcons.VIRTUALIZATION;
-    } else if (folder.access === ServerAccess.PRIVATE) {
+    } else if (folder.visibility === ServerFolderVisibility.HIDDEN) {
         return ServerFolderIcons.HIDDEN;
+    } else if (folder.access === ServerAccess.PRIVATE) {
+        return ServerFolderIcons.PROTECTED;
     } else if (folder.access === ServerAccess.PROTECTED) {
         return ServerFolderIcons.PROTECTED;
     } else if (folder.access === ServerAccess.PUBLIC) {
@@ -98,8 +100,10 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
         folder.access === ServerAccess.PRIVATE
     ) {
         return 'System';
-    } else if (folder.access === ServerAccess.PRIVATE) {
+    } else if (folder.visibility === ServerFolderVisibility.HIDDEN) {
         return 'Hidden';
+    } else if (folder.access === ServerAccess.PRIVATE) {
+        return 'Protected';
     } else if (folder.access === ServerAccess.PROTECTED) {
         return 'Protected';
     } else if (folder.access === ServerAccess.PUBLIC) {
