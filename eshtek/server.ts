@@ -41,8 +41,16 @@ export enum ServerFolderIcons {
     HIDDEN = 'files/folder-hidden',
     IMPORT = 'files/folder-import',
     PROTECTED = 'files/folder-protected',
-    PUBLIC = 'files/folder-public',
+    FOLDER = 'files/folder',
+    PUBLIC = 'files/folder',
     SYSTEM = 'files/folder-system',
+    APPLICATIONS = 'files/folder-applications',
+    VIRTUALIZATION = 'files/folder-virtualization',
+}
+export enum ServerAccess {
+    PRIVATE = 'private',
+    PUBLIC = 'public',
+    PROTECTED = 'protected',
 }
 export interface ServerPool {
     icon: ServerStorageIcon;
@@ -76,11 +84,16 @@ export interface ServerRecord {
     lastconnected?: Date | string;
 }
 
+export enum ServerFolderVisibility {
+    HIDDEN = 'hidden',
+    VISIBLE = 'visible',
+}
+
 export interface ServerFolder {
-    icon: string;
     label: string;
+    access: ServerAccess;
+    visibility: ServerFolderVisibility;
     pool?: ServerPool;
-    public?: boolean;
     users?: ServerUser[];
 }
 
@@ -88,6 +101,39 @@ export interface ServerFolders {
     user: ServerFolder[];
     system: ServerFolder[];
 }
+export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
+    if (folder.label.toLowerCase() === 'applications') {
+        return ServerFolderIcons.APPLICATIONS;
+    } else if (folder.label.toLowerCase() === 'virtualization') {
+        return ServerFolderIcons.VIRTUALIZATION;
+    } else if (folder.access === ServerAccess.PRIVATE) {
+        return ServerFolderIcons.HIDDEN;
+    } else if (folder.access === ServerAccess.PROTECTED) {
+        return ServerFolderIcons.PROTECTED;
+    } else if (folder.access === ServerAccess.PUBLIC) {
+        return ServerFolderIcons.PUBLIC;
+    } else {
+        return ServerFolderIcons.FOLDER;
+    }
+};
+export const getServerFolderIconLabel = (folder: ServerFolder): string => {
+    if (folder.label.toLowerCase() === 'applications' && folder.access === ServerAccess.PRIVATE) {
+        return 'System';
+    } else if (
+        folder.label.toLowerCase() === 'virtualization' &&
+        folder.access === ServerAccess.PRIVATE
+    ) {
+        return 'System';
+    } else if (folder.access === ServerAccess.PRIVATE) {
+        return 'Hidden';
+    } else if (folder.access === ServerAccess.PROTECTED) {
+        return 'Protected';
+    } else if (folder.access === ServerAccess.PUBLIC) {
+        return 'Public';
+    } else {
+        return 'Folder';
+    }
+};
 
 export enum ServerDriveLabel {
     SOLID_STATE_DRIVE = 'Solid state drive',
