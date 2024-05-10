@@ -123,7 +123,7 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
  * No consecutive underscores or hyphens.
  */
 export const foldernameFormat = (folderName: string): boolean => {
-    const regex = /^[a-zA-Z0-9_-](?!.*?[ _-]{2})[a-zA-Z0-9 _-]{0,253}[a-zA-Z0-9_-]$/;
+    const regex = /^(?![_-])(?!.*?[_-]$)(?!.*?[-_]{2})[a-zA-Z0-9_-]+$/;
     return regex.test(folderName);
 };
 

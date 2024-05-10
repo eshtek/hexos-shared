@@ -47,11 +47,7 @@ export enum ServerFolderIcons {
     APPLICATIONS = 'files/folder-applications',
     VIRTUALIZATION = 'files/folder-virtualization',
 }
-export enum ServerAccess {
-    PRIVATE = 'private',
-    PUBLIC = 'public',
-    PROTECTED = 'protected',
-}
+
 export interface ServerPool {
     icon: ServerStorageIcon;
     label: string;
@@ -84,6 +80,11 @@ export interface ServerRecord {
     lastconnected?: Date | string;
 }
 
+export enum ServerAccess {
+    PRIVATE = 'private',
+    PUBLIC = 'public',
+    PROTECTED = 'protected',
+}
 export enum ServerFolderVisibility {
     HIDDEN = 'hidden',
     VISIBLE = 'visible',
