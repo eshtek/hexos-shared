@@ -1,5 +1,4 @@
-import type { DiskType } from '@shared/enums/disk-type.enum';
-import type { JobState } from '@shared/enums/job-state.enum';
+import type { DiskType } from '@/shared/enums/disk-type.enum';
 
 export const cleanCPUModel = (model: string): string => {
     return model
@@ -83,19 +82,24 @@ export interface ServerRecord {
 export enum ServerAccess {
     PRIVATE = 'private',
     PUBLIC = 'public',
-    PROTECTED = 'protected',
 }
-export enum ServerFolderVisibility {
-    HIDDEN = 'hidden',
-    VISIBLE = 'visible',
+
+export enum FileAccess {
+    READ = 'read',
+    WRITE = 'write',
+    EXECUTE = 'execute',
+}
+
+export interface ServerFolderUser {
+    access: FileAccess[];
+    user: ServerUser;
 }
 
 export interface ServerFolder {
     label: string;
     access: ServerAccess;
-    visibility: ServerFolderVisibility;
     pool?: ServerPool;
-    users?: ServerUser[];
+    users?: ServerFolderUser[];
 }
 
 export interface ServerFolders {

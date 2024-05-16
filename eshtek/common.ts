@@ -1,4 +1,4 @@
-import { ServerAccess, ServerFolder, ServerFolderIcons, ServerFolderVisibility } from './server';
+import { ServerAccess, ServerFolder, ServerFolderIcons } from './server';
 
 export type ID = `${number}` | number;
 
@@ -74,11 +74,7 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
         return ServerFolderIcons.APPLICATIONS;
     } else if (folder.label.toLowerCase() === 'virtualization') {
         return ServerFolderIcons.VIRTUALIZATION;
-    } else if (folder.visibility === ServerFolderVisibility.HIDDEN) {
-        return ServerFolderIcons.HIDDEN;
     } else if (folder.access === ServerAccess.PRIVATE) {
-        return ServerFolderIcons.PROTECTED;
-    } else if (folder.access === ServerAccess.PROTECTED) {
         return ServerFolderIcons.PROTECTED;
     } else if (folder.access === ServerAccess.PUBLIC) {
         return ServerFolderIcons.PUBLIC;
@@ -100,8 +96,6 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
         folder.access === ServerAccess.PRIVATE
     ) {
         return 'System';
-    } else if (folder.visibility === ServerFolderVisibility.HIDDEN) {
-        return 'Hidden';
     } else if (folder.access === ServerAccess.PRIVATE) {
         return 'Protected';
     } else if (folder.access === ServerAccess.PROTECTED) {
@@ -118,12 +112,12 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
  * @param {string} folderName - The folder name to check.
  * @returns {boolean} - Returns true if the folder name follows the format, otherwise false.
  * Length between 1 and 255 characters.
- * Allowed characters: letters (both uppercase and lowercase), numbers, underscores, and hyphens.
- * Cannot start or end with an underscore or hyphen.
- * No consecutive underscores or hyphens.
+ * Allowed characters: letters (both uppercase and lowercase), numbers, spaces, underscores, and hyphens.
+ * Cannot start or end with an underscore, hyphen, or space.
+ * No consecutive underscores, hyphens, or spaces.
  */
 export const foldernameFormat = (folderName: string): boolean => {
-    const regex = /^(?![_-])(?!.*?[_-]$)(?!.*?[-_]{2})[a-zA-Z0-9_-]+$/;
+    const regex = /^(?![_\-\s])(?!.*[_\-\s]$)(?!.*[_\-\s]{2})[a-zA-Z0-9_\-\s]{1,255}$/;
     return regex.test(folderName);
 };
 
@@ -140,6 +134,64 @@ export const getFolderNameFromUsername = (username: string | undefined): string 
     if (sanitizedUsername.length === 0) {
         return undefined;
     }
-
     return capitalize(sanitizedUsername);
 };
+
+// Utility function to serialize an object to a JSON string
+export const serialize = (obj: any): string | undefined => {
+    if (!obj) return undefined;
+    try {
+        return JSON.stringify(obj);
+    } catch (error) {
+        // If serialization fails, return an empty JSON object as default
+        console.error('Serialization error:', error);
+        return '{}';
+    }
+};
+
+// Utility function to deserialize a JSON string to an object
+export const deserialize = (val: string | object | undefined): any => {
+    if (!val) return undefined;
+    if (isObject(val)) {
+        return val;
+    }
+    try {
+        return JSON.parse(val);
+    } catch (error) {
+        // If deserialization fails, return the original string as fallback
+        console.error('Deserialization error:', error);
+        return val;
+    }
+};
+
+import { z, ZodString, ZodTypeAny, ZodUnion } from 'zod';
+
+/**
+ * Utility function to create a serialized union schema
+ * @param {ZodTypeAny} schema - The schema to be used for validation and parsing
+ * @returns {ZodUnion<[ZodString, ZodTypeAny]>} - A union schema that accepts both the original schema and its serialized (JSON string) form
+ */
+export const createSerializedUnionSchema = (
+    schema: ZodTypeAny,
+): ZodUnion<[ZodString, ZodTypeAny]> => {
+    // Schema to handle the serialized (JSON string) form of the data
+    const serializedSchema = z.preprocess((str) => {
+        // Attempt to parse the JSON string
+        if (typeof str === 'string') {
+            try {
+                return JSON.parse(str);
+            } catch {
+                // If parsing fails, return the original string to trigger validation error
+                return str;
+            }
+        }
+        // If not a string, return as is to trigger validation error
+        return str;
+    }, schema);
+
+    // Return a union schema that accepts either the original schema or the serialized schema
+    return z.union([z.string(), serializedSchema]);
+};
+
+// Utility function to check if value is an object
+export const isObject = (value: any) => typeof value === 'object' && value !== null;
