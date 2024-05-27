@@ -45,3 +45,8 @@ export interface RequestFinishServer {
 export interface RequestAppGeneric {
     appId: string;
 }
+
+export interface RequestFeedback {
+    email: string;
+    feedback: string;
+}
