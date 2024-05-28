@@ -1,6 +1,51 @@
-import { ServerAccess, ServerFolder, ServerFolderIcons } from './server';
+import type { ServerFolder } from './server';
+import { ServerAccess, ServerFolderIcons } from './server';
 
 export type ID = `${number}` | number;
+
+/**
+ * Generates a unique ID.
+ * @returns {string} - Returns a unique ID.
+ */
+
+export function generateUniqueId(): string {
+    // If running in a Node.js environment, use the 'crypto' module.
+    const crypto = typeof window === 'undefined' ? require('crypto') : window.crypto;
+
+    // Generate a random array of 16 bytes.
+    const array = new Uint8Array(16);
+    crypto.getRandomValues(array);
+
+    // Convert the array to a UUID-like string.
+    const id = array.reduce((acc, byte, i) => {
+        // Add a hyphen after the 4th, 6th, 8th, and 10th bytes.
+        if (i === 4 || i === 6 || i === 8 || i === 10) {
+            acc += '-';
+        }
+        // Add the byte as a two-digit hexadecimal string.
+        acc += byte.toString(16).padStart(2, '0');
+        return acc;
+    }, '');
+
+    return id;
+}
+
+/**
+ * Checks if a given IP address is a private IP.
+ * @param {string} ip - The IP address to check.
+ * @returns {boolean} - Returns true if the IP address is private, otherwise false.
+ */
+
+export function isPrivateIP(ip: string) {
+    console.log('isPrivateIP', ip);
+    if (!ip) return false;
+    const parts = ip.split('.');
+    return (
+        parts[0] === '10' ||
+        (parts[0] === '172' && parseInt(parts[1], 10) >= 16 && parseInt(parts[1], 10) <= 31) ||
+        (parts[0] === '192' && parts[1] === '168')
+    );
+}
 
 /**
  * Checks if a given data has items.
@@ -164,7 +209,8 @@ export const deserialize = (val: string | object | undefined): any => {
     }
 };
 
-import { z, ZodString, ZodTypeAny, ZodUnion } from 'zod';
+import type { ZodString, ZodTypeAny, ZodUnion } from 'zod';
+import { z } from 'zod';
 
 /**
  * Utility function to create a serialized union schema
