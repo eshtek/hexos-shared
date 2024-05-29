@@ -48,5 +48,5 @@ export interface RequestAppGeneric {
 
 export interface RequestFeedback {
     email: string;
-    feedback: string;
+    message: string;
 }
