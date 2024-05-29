@@ -37,14 +37,15 @@ export function generateUniqueId(): string {
  */
 
 export function isPrivateIP(ip: string) {
-    console.log('isPrivateIP', ip);
+    //console.log('isPrivateIP', ip);
     if (!ip) return false;
     const parts = ip.split('.');
-    return (
+    const result =
         parts[0] === '10' ||
         (parts[0] === '172' && parseInt(parts[1], 10) >= 16 && parseInt(parts[1], 10) <= 31) ||
-        (parts[0] === '192' && parts[1] === '168')
-    );
+        (parts[0] === '192' && parts[1] === '168');
+    console.log('isPrivateIP', { ip, result });
+    return result;
 }
 
 /**
