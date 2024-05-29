@@ -1,4 +1,5 @@
 export enum AppJobAction {
+    NONE = 'none',
     INSTALL = 'install',
     RESTART = 'restart',
     UNINSTALL = 'uninstall',

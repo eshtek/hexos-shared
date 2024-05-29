@@ -1,11 +1,8 @@
-import { EventEmitter } from 'events';
+import EventEmitter from 'eventemitter3';
 import type TypedEmitter from 'typed-emitter';
 import extendedJson from 'ejson';
 import { WebSocketStatus } from './websocket';
-import {
-    IncomingApiMessageType,
-    OutgoingApiMessageType,
-} from '@shared/enums/api-message-type.enum';
+import { IncomingApiMessageType, OutgoingApiMessageType } from '../enums/api-message-type.enum';
 import type { DDPClientMeta, Data, EshtekJob } from './ddp';
 import { generateUniqueId } from './common';
 import type WebSocket from 'isomorphic-ws';
@@ -71,26 +68,24 @@ export class DDPClient extends (EventEmitter as new () => TypedEmitter<Events>) 
     }
 
     connect(connected: (error?: Error) => void) {
+        console.log('--> connect: ');
         if (connected) {
             this.on(WebSocketStatus.CONNECTED, () => {
+                console.log('--> connected: ');
                 connected(undefined);
             });
 
             this.on(WebSocketStatus.FAILED, (error) => {
+                console.log('--> failed: ');
                 connected(error);
             });
         }
-
+        console.log('--> prepare handlers: ');
         this._prepareHandlers();
-
-        this._send({
-            msg: OutgoingApiMessageType.Connect,
-            version: this.ddpVersion,
-            support: this.supportedDdpVersions,
-        });
     }
 
     async connectPromise(): Promise<void> {
+        console.log('--> connectPromise: ');
         return new Promise((resolve, reject) => {
             this.connect((error) => {
                 if (error) return reject(error);
@@ -194,14 +189,48 @@ export class DDPClient extends (EventEmitter as new () => TypedEmitter<Events>) 
     }
 
     _prepareHandlers() {
-        this.socket.on('close', (event) => {
-            console.log('--> onclose: ', event);
-            this._endPendingMethodCalls();
-        });
+        if (typeof this.socket.addEventListener === 'function') {
+            console.log('--> addEventListeners: (1) ');
+            this.socket.addEventListener('open', () => {
+                console.log('--> onopen: (1) ');
 
-        this.socket.on('message', (message: string) => {
-            this._message(message);
-        });
+                this._send({
+                    msg: OutgoingApiMessageType.Connect,
+                    version: this.ddpVersion,
+                    support: this.supportedDdpVersions,
+                });
+            });
+            this.socket.addEventListener('close', (event) => {
+                console.log('--> onclose (1): ', event);
+                this._endPendingMethodCalls();
+            });
+
+            this.socket.addEventListener('message', (event) => {
+                console.log('--> onmessage: (1) ', event.data);
+                this._message(event.data);
+            });
+        } else {
+            console.log('--> addEventListeners: (2)');
+
+            this.socket.on('open', () => {
+                console.log('--> onopen: (2) ');
+            });
+            this.socket.on('close', (event) => {
+                console.log('--> onclose (2): ', event);
+                this._endPendingMethodCalls();
+            });
+
+            this.socket.on('message', (message: string) => {
+                console.log('--> onmessage: (2) ', message);
+                this._message(message);
+            });
+
+            this._send({
+                msg: OutgoingApiMessageType.Connect,
+                version: this.ddpVersion,
+                support: this.supportedDdpVersions,
+            });
+        }
     }
 
     _send(data: Record<string, unknown>) {
@@ -225,12 +254,13 @@ export class DDPClient extends (EventEmitter as new () => TypedEmitter<Events>) 
         }
     }
 
-    _message(message: string) {
+    _message(message: string | WebSocket.Data) {
         if (this.clients === 0) {
             //console.dir({ action: '--> server: ', ...JSON.parse(message) });
         }
 
-        const data = extendedJson.parse(message) as {
+        message;
+        const data = (typeof message !== 'string' ? message : extendedJson.parse(message)) as {
             msg: IncomingApiMessageType;
             session: unknown;
             id: string;

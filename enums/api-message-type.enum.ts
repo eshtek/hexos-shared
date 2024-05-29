@@ -13,6 +13,7 @@ export enum IncomingApiMessageType {
     Discard = 'discard',
 
     // Added by eshtek
+    Failed = 'failed',
     Updated = 'updated',
 }
 
