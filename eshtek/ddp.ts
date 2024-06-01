@@ -28,7 +28,7 @@ export interface DDPClientMeta {
     hostId: string;
     lanIp: string;
     wanIp: string;
-    wizard: Wizard;
+    wizard?: Wizard;
     jobs: EshtekJob[];
     method_data: Data[];
 }
