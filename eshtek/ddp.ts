@@ -1,4 +1,4 @@
-import type { JobState } from '@shared/enums/job-state.enum';
+import type { JobState } from '@shared/truenas/webui/enums/job-state.enum';
 import type { AppJobAction } from './apps';
 
 export interface EshtekJob {

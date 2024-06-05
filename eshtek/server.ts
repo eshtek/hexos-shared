@@ -1,4 +1,4 @@
-import type { DiskType } from '@/shared/enums/disk-type.enum';
+import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
 
 export const cleanCPUModel = (model: string): string => {
     return model

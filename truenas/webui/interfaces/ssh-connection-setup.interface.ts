@@ -1,0 +1,41 @@
+import type { SshConnectionsSetupMethod } from '@shared/truenas/webui/enums/ssh-connections-setup-method.enum';
+import type { SshCredentials } from '@shared/truenas/webui/interfaces/ssh-credentials.interface';
+
+export interface SshConnectionSetup {
+    setup_type: SshConnectionsSetupMethod;
+    connection_name: string;
+    private_key: {
+        generate_key: boolean;
+        name?: string;
+        existing_key_id?: number;
+    };
+    manual_setup?: SshCredentials;
+    semi_automatic_setup?: {
+        url: string;
+        admin_username: string;
+        password: string;
+        username: string;
+        connect_timeout: number;
+        token?: string;
+        otp_token?: string;
+        sudo?: boolean;
+        verify_ssl?: boolean;
+    };
+}
+
+export interface RemoteSshScanParams {
+    connect_timeout?: number;
+    host: string;
+    port: number;
+}
+
+export interface SshSemiAutomaticSetup {
+    name: string;
+    url: string;
+    token?: string;
+    password?: string;
+    username?: string;
+    otp_token?: string;
+    private_key: number;
+    connect_timeout?: number;
+}
