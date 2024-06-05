@@ -1,5 +1,5 @@
-import { Gb, kb, Mb, Tb } from '@shared/truenas/webui/constants/bits.constant';
-import { GiB, KiB, MiB, TiB } from '@shared/truenas/webui/constants/bytes.constant';
+import { Gb, kb, Mb, Tb } from '../constants/bits.constant';
+import { GiB, KiB, MiB, TiB } from '../constants/bytes.constant';
 
 export function normalizeFileSize(
     value: number,

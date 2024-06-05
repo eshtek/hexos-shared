@@ -243,3 +243,20 @@ export const createSerializedUnionSchema = (
 
 // Utility function to check if value is an object
 export const isObject = (value: any) => typeof value === 'object' && value !== null;
+
+/**
+ * Converts a number or string to a floating point number with a specified precision.
+ * @param input - The number or string to be converted.
+ * @param precision - The maximum number of decimal places for the output. Defaults to 2.
+ * @returns The converted floating point number with the specified precision or 0 if conversion fails.
+ */
+export function toFixed(input: number | string | undefined, precision: number = 2): string {
+    // Check if input is undefined or cannot be converted to a number
+    if (input === undefined || isNaN(Number(input))) {
+        return (0).toFixed(precision);
+    }
+
+    // Convert input to a number and then to a floating point number with specified precision
+    const number = Number(input);
+    return number.toFixed(precision);
+}
