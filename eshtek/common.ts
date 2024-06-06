@@ -1,6 +1,5 @@
-import { AppStatus } from '../truenas/webui/enums/app-status';
+import { AppStatus, translateAppStatus } from '../truenas/webui/enums/app-status';
 import { ChartReleaseStatus } from '../truenas/webui/enums/chart-release-status.enum';
-import { JobState } from '../truenas/webui/enums/job-state.enum';
 import { ApiEventTyped } from '../truenas/webui/interfaces/api-message.interface';
 import { ChartRelease } from '../truenas/webui/interfaces/chart-release.interface';
 import type { ServerFolder } from './server';
@@ -271,10 +270,15 @@ export function toFixed(input: number | string | undefined, precision: number = 
  * @param {ChartRelease | undefined} appStatus - The status of the chart release.
  * @param {ApiEventTyped<"core.get_jobs"> | undefined} jobEvent - The API event related to job status.
  * @returns {AppStatus | undefined} - The determined application status, or undefined if the app status is not provided.
- */ export function getAppStatus(
-    appStatus: ChartRelease | undefined,
-    jobEvent: ApiEventTyped<'core.get_jobs'> | undefined,
-): AppStatus | undefined {
+ */ export function getAppStatus({
+    appStatus,
+    jobEvent,
+    translated = true,
+}: {
+    appStatus?: ChartRelease;
+    jobEvent?: ApiEventTyped<'core.get_jobs'>;
+    translated?: boolean;
+}): AppStatus | string | undefined {
     const app: ChartRelease | undefined = appStatus;
     const job = jobEvent?.fields;
 
@@ -323,5 +327,9 @@ export function toFixed(input: number | string | undefined, precision: number = 
             status = AppStatus.Stopped;
         }*/
     }
-    return status;
+    if (translated) {
+        return translateAppStatus(status);
+    } else {
+        return status;
+    }
 }
