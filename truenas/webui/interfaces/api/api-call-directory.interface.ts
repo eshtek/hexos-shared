@@ -1297,7 +1297,7 @@ export interface ApiCallDirectory {
     'zfs.snapshot.release': { params: [string]; response: void };
     'zfs.snapshot.rollback': { params: ZfsRollbackParams; response: void };
 
-    // Eshtek added because not yet implemented in TrueNas as of 6/2/2024 should replace with official when it becomes available
+    // Eshtek added because not yet implemented in TrueNAS as of 6/2/2024 should replace with official when it becomes available
     'system.health': { params: { delay?: number }; response: SystemHealth };
 }
 
