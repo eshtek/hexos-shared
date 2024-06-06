@@ -1,4 +1,4 @@
-//import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+//const T = (str: string) => str;
 const T = (str: string) => str;
 
 export enum AclType {

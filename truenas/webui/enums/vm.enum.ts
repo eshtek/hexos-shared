@@ -1,98 +1,98 @@
-import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+const T = (str: string) => str;
 
 export enum VmTime {
-  Local = 'LOCAL',
-  Utc = 'UTC',
+    Local = 'LOCAL',
+    Utc = 'UTC',
 }
 
 export const vmTimeNames = new Map<VmTime, string>([
-  [VmTime.Local, T('Local')],
-  [VmTime.Utc, T('UTC')],
+    [VmTime.Local, T('Local')],
+    [VmTime.Utc, T('UTC')],
 ]);
 
 export enum VmBootloader {
-  Uefi = 'UEFI',
-  UefiCsm = 'UEFI_CSM',
+    Uefi = 'UEFI',
+    UefiCsm = 'UEFI_CSM',
 
-  /**
-   * @deprecated
-   */
-  Grub = 'GRUB',
+    /**
+     * @deprecated
+     */
+    Grub = 'GRUB',
 }
 
 export enum VmDeviceType {
-  Nic = 'NIC',
-  Disk = 'DISK',
-  Cdrom = 'CDROM',
-  Pci = 'PCI',
-  Display = 'DISPLAY',
-  Raw = 'RAW',
-  Usb = 'USB',
+    Nic = 'NIC',
+    Disk = 'DISK',
+    Cdrom = 'CDROM',
+    Pci = 'PCI',
+    Display = 'DISPLAY',
+    Raw = 'RAW',
+    Usb = 'USB',
 }
 
 export const vmDeviceTypeLabels = new Map<VmDeviceType, string>([
-  [VmDeviceType.Nic, T('NIC')],
-  [VmDeviceType.Disk, T('Disk')],
-  [VmDeviceType.Cdrom, T('CD-ROM')],
-  [VmDeviceType.Pci, T('PCI Passthrough Device')],
-  [VmDeviceType.Display, T('Display')],
-  [VmDeviceType.Raw, T('Raw File')],
-  [VmDeviceType.Usb, T('USB Passthrough Device')],
+    [VmDeviceType.Nic, T('NIC')],
+    [VmDeviceType.Disk, T('Disk')],
+    [VmDeviceType.Cdrom, T('CD-ROM')],
+    [VmDeviceType.Pci, T('PCI Passthrough Device')],
+    [VmDeviceType.Display, T('Display')],
+    [VmDeviceType.Raw, T('Raw File')],
+    [VmDeviceType.Usb, T('USB Passthrough Device')],
 ]);
 
 export enum VmCpuMode {
-  Custom = 'CUSTOM',
-  HostModel = 'HOST-MODEL',
-  HostPassthrough = 'HOST-PASSTHROUGH',
+    Custom = 'CUSTOM',
+    HostModel = 'HOST-MODEL',
+    HostPassthrough = 'HOST-PASSTHROUGH',
 }
 
 export const vmCpuModeLabels = new Map<VmCpuMode, string>([
-  [VmCpuMode.Custom, T('Custom')],
-  [VmCpuMode.HostModel, T('Host Model')],
-  [VmCpuMode.HostPassthrough, T('Host Passthrough')],
+    [VmCpuMode.Custom, T('Custom')],
+    [VmCpuMode.HostModel, T('Host Model')],
+    [VmCpuMode.HostPassthrough, T('Host Passthrough')],
 ]);
 
 export enum VmDiskMode {
-  Ahci = 'AHCI',
-  Virtio = 'VIRTIO',
+    Ahci = 'AHCI',
+    Virtio = 'VIRTIO',
 }
 
 export const vmDiskModeLabels = new Map<VmDiskMode, string>([
-  [VmDiskMode.Ahci, 'AHCI'],
-  [VmDiskMode.Virtio, 'VirtIO'],
+    [VmDiskMode.Ahci, 'AHCI'],
+    [VmDiskMode.Virtio, 'VirtIO'],
 ]);
 
 export enum VmDisplayType {
-  Spice = 'SPICE',
+    Spice = 'SPICE',
 }
 
 export enum VmNicType {
-  E1000 = 'E1000',
-  Virtio = 'VIRTIO',
+    E1000 = 'E1000',
+    Virtio = 'VIRTIO',
 }
 
 export const vmNicTypeLabels = new Map<VmNicType, string>([
-  [VmNicType.E1000, 'Intel e82585 (e1000)'],
-  [VmNicType.Virtio, 'VirtIO'],
+    [VmNicType.E1000, 'Intel e82585 (e1000)'],
+    [VmNicType.Virtio, 'VirtIO'],
 ]);
 
 // eslint-disable-next-line @shopify/typescript/prefer-singular-enums
 export enum VmOs {
-  Windows = 'Windows',
-  Linux = 'Linux',
-  FreeBsd = 'FreeBSD',
+    Windows = 'Windows',
+    Linux = 'Linux',
+    FreeBsd = 'FreeBSD',
 }
 
 export const vmOsLabels = new Map<VmOs, string>([
-  [VmOs.Windows, T('Windows')],
-  [VmOs.Linux, T('Linux')],
-  [VmOs.FreeBsd, T('FreeBSD')],
+    [VmOs.Windows, T('Windows')],
+    [VmOs.Linux, T('Linux')],
+    [VmOs.FreeBsd, T('FreeBSD')],
 ]);
 
 export enum VmState {
-  Running = 'RUNNING',
-  Stopped = 'STOPPED',
-  // Below statuses been seen in ApiEvent<VirtualMachine>. Perhaps we could handle them.
-  Shutoff = 'SHUTOFF',
-  UpdatingConfiguration = 'UPDATING CONFIGURATION',
+    Running = 'RUNNING',
+    Stopped = 'STOPPED',
+    // Below statuses been seen in ApiEvent<VirtualMachine>. Perhaps we could handle them.
+    Shutoff = 'SHUTOFF',
+    UpdatingConfiguration = 'UPDATING CONFIGURATION',
 }

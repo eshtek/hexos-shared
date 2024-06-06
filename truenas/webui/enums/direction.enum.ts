@@ -1,11 +1,11 @@
-import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+const T = (str: string) => str;
 
 export enum Direction {
-  Push = 'PUSH',
-  Pull = 'PULL',
+    Push = 'PUSH',
+    Pull = 'PULL',
 }
 
 export const directionNames = new Map<Direction, string>([
-  [Direction.Push, T('PUSH')],
-  [Direction.Pull, T('PULL')],
+    [Direction.Push, T('PUSH')],
+    [Direction.Pull, T('PULL')],
 ]);

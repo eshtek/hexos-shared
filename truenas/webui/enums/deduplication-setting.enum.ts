@@ -1,13 +1,13 @@
-import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+const T = (str: string) => str;
 
 export enum DeduplicationSetting {
-  On = 'ON',
-  Off = 'OFF',
-  Verify = 'VERIFY',
+    On = 'ON',
+    Off = 'OFF',
+    Verify = 'VERIFY',
 }
 
 export const deduplicationSettingLabels = new Map<DeduplicationSetting, string>([
-  [DeduplicationSetting.On, T('On')],
-  [DeduplicationSetting.Off, T('Off')],
-  [DeduplicationSetting.Verify, T('Verify')],
+    [DeduplicationSetting.On, T('On')],
+    [DeduplicationSetting.Off, T('Off')],
+    [DeduplicationSetting.Verify, T('Verify')],
 ]);

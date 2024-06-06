@@ -1,11 +1,11 @@
-import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+const T = (str: string) => str;
 
 export enum InitShutdownScriptType {
-  Command = 'COMMAND',
-  Script = 'SCRIPT',
+    Command = 'COMMAND',
+    Script = 'SCRIPT',
 }
 
 export const initShutdownScriptTypeLabels = new Map<InitShutdownScriptType, string>([
-  [InitShutdownScriptType.Command, T('Command')],
-  [InitShutdownScriptType.Script, T('Script')],
+    [InitShutdownScriptType.Command, T('Command')],
+    [InitShutdownScriptType.Script, T('Script')],
 ]);

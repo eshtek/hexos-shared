@@ -1,13 +1,13 @@
-import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+const T = (str: string) => str;
 
 export enum RetentionPolicy {
-  Source = 'SOURCE',
-  Custom = 'CUSTOM',
-  None = 'NONE',
+    Source = 'SOURCE',
+    Custom = 'CUSTOM',
+    None = 'NONE',
 }
 
 export const retentionPolicyNames = new Map<RetentionPolicy, string>([
-  [RetentionPolicy.Source, T('Same as Source')],
-  [RetentionPolicy.Custom, T('Custom')],
-  [RetentionPolicy.None, T('None')],
+    [RetentionPolicy.Source, T('Same as Source')],
+    [RetentionPolicy.Custom, T('Custom')],
+    [RetentionPolicy.None, T('None')],
 ]);

@@ -1,11 +1,11 @@
-import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
+const T = (str: string) => str;
 
 export enum NetcatMode {
-  Local = 'LOCAL',
-  Remote = 'REMOTE',
+    Local = 'LOCAL',
+    Remote = 'REMOTE',
 }
 
 export const netcatModeNames = new Map<NetcatMode, string>([
-  [NetcatMode.Local, T('LOCAL')],
-  [NetcatMode.Remote, T('REMOTE')],
+    [NetcatMode.Local, T('LOCAL')],
+    [NetcatMode.Remote, T('REMOTE')],
 ]);
