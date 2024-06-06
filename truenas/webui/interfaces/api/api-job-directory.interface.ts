@@ -94,11 +94,6 @@ import {
     TunableUpdate,
 } from '@shared/truenas/webui/interfaces/tunable.interface';
 import { VmStopParams } from '@shared/truenas/webui/interfaces/virtual-machine.interface';
-import {
-    AttachTicketParams,
-    CreateNewTicket,
-    NewTicketResponse,
-} from '@shared/modules/feedback/interfaces/file-ticket.interface';
 
 export interface ApiJobDirectory {
     // Active Directory
@@ -238,10 +233,6 @@ export interface ApiJobDirectory {
 
     // Rsync
     'rsynctask.run': { params: [id: number]; response: null };
-
-    // Support
-    'support.attach_ticket': { params: AttachTicketParams; response: Job };
-    'support.new_ticket': { params: [CreateNewTicket]; response: NewTicketResponse };
 
     // System
     'system.reboot': { params: { delay?: number }; response: void };
