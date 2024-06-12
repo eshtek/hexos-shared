@@ -29,6 +29,10 @@ export interface RequestClaimServer {
     hostId: string;
 }
 
+export interface RequestResetServer {
+    hostId: string;
+}
+
 export interface RequestUser extends ServerUser {
     password: string;
     type: ServerUserType;
