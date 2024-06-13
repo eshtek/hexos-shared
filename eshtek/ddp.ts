@@ -23,7 +23,6 @@ export interface Data {
 }
 export interface DDPClientMeta {
     subscriptions: Record<string, string>;
-    ipsid?: string;
     apikey?: string;
     hostId: string;
     lanIp: string;

@@ -68,7 +68,6 @@ export interface Servers {
 export interface ServerRecord {
     hostid: string;
     email?: string;
-    ipsid?: string;
     apikey?: string;
     lanip?: string;
     wanip?: string;
