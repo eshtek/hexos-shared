@@ -333,3 +333,30 @@ export function toFixed(input: number | string | undefined, precision: number = 
         return status;
     }
 }
+
+/**
+ * Debounce function to limit the rate at which a function can fire.
+ * @param {Function} func - Function to be debounced.
+ * @param {number} wait - Time in milliseconds to wait before invoking the function.
+ * @returns {Function} - Debounced function.
+ */
+export function debounce(func: () => void, wait: number) {
+    let timeout: ReturnType<typeof setTimeout> | null;
+
+    const debounced = () => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            func();
+        }, wait);
+    };
+
+    debounced.cancel = () => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+    };
+
+    return debounced;
+}
