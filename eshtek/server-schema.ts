@@ -32,7 +32,6 @@ export const serverFolderIconsSchema = z.nativeEnum(ServerFolderIcons);
 export const serverRecordSchema = z.object({
   hostid: z.string(),
   email: z.string().optional(),
-  ipsid: z.string().optional(),
   apikey: z.string().optional(),
   lanip: z.string().optional(),
   wanip: z.string().optional(),
