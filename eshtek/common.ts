@@ -49,7 +49,7 @@ export function isPrivateIP(ip: string) {
         parts[0] === '127' ||
         (parts[0] === '172' && parseInt(parts[1], 10) >= 16 && parseInt(parts[1], 10) <= 31) ||
         (parts[0] === '192' && parts[1] === '168');
-    console.log('isPrivateIP', { ip, result });
+    //console.log('isPrivateIP', { ip, result });
     return result;
 }
 
