@@ -10,6 +10,6 @@ export enum AppJobAction {
 export interface AppListing {
     name: string;
     description: string;
-    appId: string;
+    id: string;
     suggested?: boolean;
 }
