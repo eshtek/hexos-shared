@@ -1299,6 +1299,10 @@ export interface ApiCallDirectory {
 
     // Eshtek added because not yet implemented in TrueNAS as of 6/2/2024 should replace with official when it becomes available
     'system.health': { params: { delay?: number }; response: SystemHealth };
+    'disk.get_instance': {
+        params: [id: string];
+        response: Disk;
+    };
 }
 
 /**

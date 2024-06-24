@@ -110,6 +110,7 @@ export enum ServerDriveLabel {
     SOLID_STATE_DRIVE = 'Solid state drive',
     HARD_DISK_DRIVE = 'Hard disk drive',
     USB_DRIVE = 'USB drive',
+    NVME_DRIVE = 'NVMe drive',
 }
 
 export interface ServerDrive {
