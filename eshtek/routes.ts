@@ -54,3 +54,7 @@ export interface RequestFeedback {
     email: string;
     message: string;
 }
+
+export interface RequestId {
+    id: string;
+}
