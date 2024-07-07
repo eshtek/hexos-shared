@@ -58,3 +58,8 @@ export interface RequestFeedback {
 export interface RequestId {
     id: string;
 }
+
+export interface RequestDeleteFolder {
+    pool: string;
+    dataset: string;
+}
