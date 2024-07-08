@@ -16,6 +16,7 @@ export enum ServerUserType {
 
 export interface ServerUser {
     username: string;
+    password?: string;
     type?: ServerUserType;
 }
 
