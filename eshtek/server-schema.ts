@@ -18,6 +18,7 @@ export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
 
 export const serverUserSchema = z.object({
   username: z.string(),
+  password: z.string().optional(),
   type: serverUserTypeSchema.optional(),
 });
 
