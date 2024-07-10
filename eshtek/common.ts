@@ -135,21 +135,33 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
 };
 
 /**
+ * Determines if it is a system folder or not.
+ * @param {ServerFolder} folder - The server folder.
+ * @returns {boolean}
+ */
+export const isSystemFolder = (folder: ServerFolder): boolean => {
+    if (folder.label.toLowerCase() === 'applications' && folder.access === ServerAccess.PRIVATE) {
+        return true;
+    } else if (
+        (folder.label.toLowerCase() === 'virtualization' ||
+            folder.label.toLowerCase() === 'ix-virtualization') &&
+        folder.access === ServerAccess.PRIVATE
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+/**
  * Gets the label for the icon of a server folder.
  * @param {ServerFolder} folder - The server folder.
  * @returns {string} - Returns the label for the icon.
  */
 export const getServerFolderIconLabel = (folder: ServerFolder): string => {
-    if (folder.label.toLowerCase() === 'applications' && folder.access === ServerAccess.PRIVATE) {
-        return 'System';
-    } else if (
-        folder.label.toLowerCase() === 'virtualization' &&
-        folder.access === ServerAccess.PRIVATE
-    ) {
+    if (isSystemFolder(folder)) {
         return 'System';
     } else if (folder.access === ServerAccess.PRIVATE) {
-        return 'Protected';
-    } else if (folder.access === ServerAccess.PROTECTED) {
         return 'Protected';
     } else if (folder.access === ServerAccess.PUBLIC) {
         return 'Public';
