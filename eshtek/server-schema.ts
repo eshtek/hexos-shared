@@ -90,6 +90,8 @@ export const serverDriveSchema = z.object({
   statusIcon: serverStatusIconsSchema.optional(),
   status: z.string().optional(),
   temperature: z.number().optional(),
+  healthy: z.boolean().optional(),
+  healthDetails: z.string().optional(),
 });
 
 export const serversSchema = z.object({
@@ -121,6 +123,10 @@ export const serverPoolSchema = z.object({
   description: z.string().optional(),
   status: z.string(),
   useable_storage: z.string().optional(),
+  healthy: z.boolean().optional(),
+  healthDetails: z.string().optional(),
+  used_storage: z.string().optional(),
+  used_percentage: z.number().optional(),
   drives: z.array(serverDriveSchema),
 });
 

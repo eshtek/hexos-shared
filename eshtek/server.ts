@@ -120,6 +120,7 @@ export enum ServerDriveLabel {
 
 export interface ServerDrive {
     details: string;
+    model: string;
     label: ServerDriveLabel;
     type: DiskType;
     size: string;
