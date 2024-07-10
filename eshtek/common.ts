@@ -262,7 +262,15 @@ export function toFixed(input: number | string | undefined, precision: number = 
 
     // Convert input to a number and then to a floating point number with specified precision
     const number = Number(input);
-    return number.toFixed(precision);
+
+    // Ensure the result has the correct number of decimal places
+    const result = number.toFixed(precision);
+
+    // Check if the result has fewer decimals than required and pad if necessary
+    const [integerPart, decimalPart] = result.split('.');
+    const paddedDecimalPart = (decimalPart || '').padEnd(precision, '0');
+
+    return `${integerPart}.${paddedDecimalPart}`;
 }
 
 /**
