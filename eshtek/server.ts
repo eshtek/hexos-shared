@@ -41,6 +41,7 @@ export enum ServerFolderIcons {
     IMPORT = 'files/folder-import',
     PROTECTED = 'files/folder-protected',
     FOLDER = 'files/folder',
+    // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
     PUBLIC = 'files/folder',
     SYSTEM = 'files/folder-system',
     APPLICATIONS = 'files/folder-applications',
