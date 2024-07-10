@@ -56,6 +56,8 @@ export interface ServerPool {
     useable_storage?: string;
     healthy?: boolean;
     healthDetails?: string;
+    used_storage?: number;
+    used_percentage?: number;
     drives: ServerDrive[];
 }
 export interface ServerStorage {
