@@ -53,6 +53,8 @@ export interface ServerPool {
     description?: string;
     status: string;
     useable_storage?: string;
+    healthy?: boolean;
+    healthDetails?: string;
     drives: ServerDrive[];
 }
 export interface ServerStorage {
@@ -124,6 +126,8 @@ export interface ServerDrive {
     statusIcon?: ServerStatusIcons;
     status?: string;
     temperature?: number;
+    healthy?: boolean;
+    healthDetails?: string;
 }
 
 export enum ServerStatusType {
