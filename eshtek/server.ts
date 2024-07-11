@@ -176,3 +176,12 @@ export interface ServerSystem extends ServerStatusBasics {
     type: ServerStatusType.SYSTEM_OVERVIEW;
     data?: ServerSystemData[];
 }
+
+export interface ServerProcessorInfo {
+    base_clock: string;
+    current_clock: string;
+    temperature: string;
+    uptime: string;
+    usage_percent: string;
+    data: number[][];
+}
