@@ -81,6 +81,7 @@ const diskTypeSchema = z.any();
 
 export const serverDriveSchema = z.object({
   details: z.string(),
+  model: z.string(),
   label: serverDriveLabelSchema,
   type: diskTypeSchema,
   size: z.string(),
