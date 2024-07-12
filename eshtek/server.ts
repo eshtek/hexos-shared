@@ -185,3 +185,37 @@ export interface ServerProcessorInfo {
     usage_percent: string;
     data: number[][];
 }
+
+export interface ServerHealth {
+    overview: string;
+    system_temperatures: {
+        processor: string;
+        drives: {
+            label: string;
+            temperature: string;
+        }[];
+    };
+    smart_status: {
+        overview: string;
+    }[];
+    resources: {
+        label: string;
+        usage: string;
+    }[];
+    storage_utilization: {
+        label: string;
+        usage: string;
+    }[];
+    ups_utilization: {
+        label: string;
+        usage: string;
+    }[];
+    apps: {
+        label: string;
+        details: string;
+    }[];
+    vms: {
+        label: string;
+        details: string;
+    }[];
+}

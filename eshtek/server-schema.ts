@@ -77,11 +77,69 @@ export const serverSystemDataEmptySchema = serverStatusBasicsSchema.extend({
   ]),
 });
 
+export const serverProcessorInfoSchema = z.object({
+  base_clock: z.string(),
+  current_clock: z.string(),
+  temperature: z.string(),
+  uptime: z.string(),
+  usage_percent: z.string(),
+  data: z.array(z.array(z.number())),
+});
+
+export const serverHealthSchema = z.object({
+  overview: z.string(),
+  system_temperatures: z.object({
+    processor: z.string(),
+    drives: z.array(
+      z.object({
+        label: z.string(),
+        temperature: z.string(),
+      }),
+    ),
+  }),
+  smart_status: z.array(
+    z.object({
+      overview: z.string(),
+    }),
+  ),
+  resources: z.array(
+    z.object({
+      label: z.string(),
+      usage: z.string(),
+    }),
+  ),
+  storage_utilization: z.array(
+    z.object({
+      label: z.string(),
+      usage: z.string(),
+    }),
+  ),
+  ups_utilization: z.array(
+    z.object({
+      label: z.string(),
+      usage: z.string(),
+    }),
+  ),
+  apps: z.array(
+    z.object({
+      label: z.string(),
+      details: z.string(),
+    }),
+  ),
+  vms: z.array(
+    z.object({
+      label: z.string(),
+      details: z.string(),
+    }),
+  ),
+});
+
 const diskTypeSchema = z.any();
 
 export const serverDriveSchema = z.object({
   details: z.string(),
   model: z.string(),
+  serial: z.string(),
   label: serverDriveLabelSchema,
   type: diskTypeSchema,
   size: z.string(),
