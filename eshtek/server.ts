@@ -187,6 +187,9 @@ export interface ServerProcessorInfo {
 }
 
 export interface ServerHealth {
+    healthy: boolean;
+    /*
+    TODO : Q3 objective
     overview: string;
     system_temperatures: {
         processor: string;
@@ -217,5 +220,5 @@ export interface ServerHealth {
     vms: {
         label: string;
         details: string;
-    }[];
+    }[];*/
 }
