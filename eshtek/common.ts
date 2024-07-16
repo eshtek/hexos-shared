@@ -380,3 +380,35 @@ export function debounce(func: () => void, wait: number) {
 
     return debounced;
 }
+
+/**
+ * Converts a temperature from Celsius to Fahrenheit.
+ *
+ * @param {number|string} celsius - The temperature in Celsius.
+ * @returns {number} The temperature converted to Fahrenheit.
+ */
+export function celsiusToFahrenheit(celsius: number | string): number {
+    const celsiusNum = typeof celsius === 'string' ? parseFloat(celsius) : celsius;
+    if (isNaN(celsiusNum)) {
+        throw new Error(
+            'Invalid input: Temperature must be a number or a string representing a number',
+        );
+    }
+    return (celsiusNum * 9) / 5 + 32;
+}
+
+/**
+ * Converts a temperature from Fahrenheit to Celsius.
+ *
+ * @param {number|string} fahrenheit - The temperature in Fahrenheit.
+ * @returns {number} The temperature converted to Celsius.
+ */
+export function fahrenheitToCelsius(fahrenheit: number | string): number {
+    const fahrenheitNum = typeof fahrenheit === 'string' ? parseFloat(fahrenheit) : fahrenheit;
+    if (isNaN(fahrenheitNum)) {
+        throw new Error(
+            'Invalid input: Temperature must be a number or a string representing a number',
+        );
+    }
+    return ((fahrenheitNum - 32) * 5) / 9;
+}

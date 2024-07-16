@@ -5,6 +5,7 @@ export interface User {
     email: string;
     name: string;
     image?: string;
+    preferences?: Preferences;
 }
 
 export interface NewUserRequest {
@@ -12,4 +13,18 @@ export interface NewUserRequest {
     email: string;
     password: string;
     clientip?: string;
+}
+
+export enum UserPreferenceTheme {
+    LIGHT = 'light',
+    DARK = 'dark',
+}
+export enum UserPreferenceTemperature {
+    FARENHEIT = 'farenheit',
+    CELSIUS = 'celsius',
+}
+
+export interface Preferences {
+    theme: UserPreferenceTheme;
+    temperature: UserPreferenceTemperature;
 }
