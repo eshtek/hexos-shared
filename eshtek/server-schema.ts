@@ -77,6 +77,13 @@ export const serverSystemDataEmptySchema = serverStatusBasicsSchema.extend({
   ]),
 });
 
+export const serverMemoryInfoSchema = z.object({
+  total: z.number(),
+  in_use: z.number(),
+  cached: z.number(),
+  data: z.array(z.array(z.number())),
+});
+
 export const serverProcessorInfoSchema = z.object({
   base_clock: z.string(),
   current_clock: z.string(),
