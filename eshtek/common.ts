@@ -4,6 +4,7 @@ import { ApiEventTyped } from '../truenas/webui/interfaces/api-message.interface
 import { ChartRelease } from '../truenas/webui/interfaces/chart-release.interface';
 import type { ServerFolder } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
+import { Gb, Mb, Pb, Tb, kb } from '../truenas/webui/constants/bits.constant';
 
 export type ID = `${number}` | number;
 
@@ -411,4 +412,44 @@ export function fahrenheitToCelsius(fahrenheit: number | string): number {
         );
     }
     return ((fahrenheitNum - 32) * 5) / 9;
+}
+
+type DataUnit = 'bps' | 'kbps' | 'Mbps' | 'Gbps' | 'Tbps';
+
+/**
+ * Converts a given data rate in bytes per second to a more human-readable format.
+ * The function determines the most logical unit to use (bps, kbps, Mbps, etc.)
+ * based on the magnitude of the input data rate.
+ *
+ * @param {number} bytesPerSecond - The data rate in bytes per second.
+ * @returns {{ speed: number, unit: DataUnit }} - An object containing the converted speed and its unit.
+ */
+export function getSpeed(bytesPerSecond: number): { speed: number; unit: DataUnit } {
+    const bitsPerSecond = bytesPerSecond * 8;
+
+    // Determine the most appropriate unit based on the magnitude of bits per second
+    if (bitsPerSecond < kb) {
+        return { speed: bitsPerSecond, unit: 'bps' };
+    } else if (bitsPerSecond < Mb) {
+        return { speed: bitsPerSecond / kb, unit: 'kbps' };
+    } else if (bitsPerSecond < Gb) {
+        return { speed: bitsPerSecond / Mb, unit: 'Mbps' };
+    } else if (bitsPerSecond < Tb) {
+        return { speed: bitsPerSecond / Gb, unit: 'Gbps' };
+    } else {
+        return { speed: bitsPerSecond / Tb, unit: 'Tbps' };
+    }
+}
+
+/**
+ * Converts a given data rate in bytes per second to a string representation
+ * with the most logical unit.
+ *
+ * @param {number} bytesPerSecond - The data rate in bytes per second.
+ * @returns {string} - The data rate as a string with the appropriate unit.
+ */
+export function getSpeedFormatted(bytesPerSecond: number | undefined): string {
+    if (!bytesPerSecond) return '0 bps';
+    const { speed, unit } = getSpeed(bytesPerSecond);
+    return `${speed.toFixed(2)} ${unit}`;
 }
