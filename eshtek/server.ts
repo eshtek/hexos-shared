@@ -177,6 +177,13 @@ export interface ServerSystem extends ServerStatusBasics {
     data?: ServerSystemData[];
 }
 
+export interface ServerMemoryInfo {
+    total: number;
+    in_use: number;
+    cached: number;
+    data: number[][];
+}
+
 export interface ServerProcessorInfo {
     base_clock: string;
     current_clock: string;
