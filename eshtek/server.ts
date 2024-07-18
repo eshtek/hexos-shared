@@ -184,6 +184,15 @@ export interface ServerMemoryInfo {
     data: number[][];
 }
 
+export interface ServerNetworkInterface {
+    name: string;
+    in: number;
+    out: number;
+}
+export interface ServerNetworkInterfaceDetailed extends ServerNetworkInterface {
+    data: number[][];
+}
+
 export interface ServerProcessorInfo {
     base_clock: string;
     current_clock: string;
