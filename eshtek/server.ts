@@ -185,11 +185,14 @@ export interface ServerMemoryInfo {
 }
 
 export interface ServerNetworkInterface {
+    id: string;
+    icon: string;
     name: string;
     in: number;
     out: number;
 }
 export interface ServerNetworkInterfaceDetailed extends ServerNetworkInterface {
+    icon?: string;
     data: number[][];
 }
 

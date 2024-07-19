@@ -1,7 +1,7 @@
 import { AppStatus, translateAppStatus } from '../truenas/webui/enums/app-status';
 import { ChartReleaseStatus } from '../truenas/webui/enums/chart-release-status.enum';
-import { ApiEventTyped } from '../truenas/webui/interfaces/api-message.interface';
-import { ChartRelease } from '../truenas/webui/interfaces/chart-release.interface';
+import type { ApiEventTyped } from '../truenas/webui/interfaces/api-message.interface';
+import type { ChartRelease } from '../truenas/webui/interfaces/chart-release.interface';
 import type { ServerFolder } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
 import { Gb, Mb, Tb, kb } from '../truenas/webui/constants/bits.constant';
@@ -134,6 +134,36 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
     } else {
         return ServerFolderIcons.FOLDER;
     }
+};
+
+/**
+ * Maps media types to their corresponding icons.
+ */
+const mediaTypeToIconMap: Record<string, string> = {
+    '10baseT/Half': 'networking/ethernet-10',
+    '10baseT/Full': 'networking/ethernet-10',
+    '100baseT/Half': 'networking/ethernet-100',
+    '100baseT/Full': 'networking/ethernet-100',
+    '1000baseT/Full': 'networking/ethernet-1g',
+    '2500baseT/Full': 'networking/ethernet-2.5g',
+    '5000baseT/Full': 'networking/ethernet-5g',
+    '10000baseT/Full': 'networking/ethernet-10g',
+    '20000baseT/Full': 'networking/ethernet-20g',
+    '25000baseT/Full': 'networking/ethernet-25g',
+    '40000baseT/Full': 'networking/ethernet-40g',
+    '50000baseT/Full': 'networking/ethernet-50g',
+    '100000baseT/Full': 'networking/ethernet-100g',
+};
+
+/**
+ * Gets the icon for the maximum supported media speed.
+ * @param {string[]} supportedMedia - An array of supported media types.
+ * @returns {string} - Returns the icon for the maximum supported media speed.
+ */
+export const getMaxSpeedIcon = (supportedMedia: string[]): string => {
+    const last = supportedMedia[supportedMedia.length - 1];
+    const unknown = 'networking/ethernet';
+    return last ? mediaTypeToIconMap[last] ?? unknown : unknown;
 };
 
 /**
@@ -443,16 +473,19 @@ export function getSpeed(bytesPerSecond: number): { speed: number; unit: DataUni
 }
 
 /**
- * Converts a given data rate in bytes per second to a string representation
- * with the most logical unit.
+ * Function to format a given speed in bytes per second to a human-readable string with a specified precision.
  *
- * @param {number} bytesPerSecond - The data rate in bytes per second.
- * @returns {string} - The data rate as a string with the appropriate unit.
+ * @param bytesPerSecond - The speed in bytes per second to be formatted.
+ * @param precision - The number of decimal places to include in the formatted output. Defaults to 0.
+ * @returns A string representing the formatted speed with the appropriate unit.
  */
-export function getSpeedFormatted(bytesPerSecond: number | undefined): string {
+export function getSpeedFormatted(
+    bytesPerSecond: number | undefined,
+    precision: number = 0, // Set default precision to 0
+): string {
     if (!bytesPerSecond) return '0 bps';
     const { speed, unit } = getSpeed(bytesPerSecond);
-    return `${speed.toFixed(2)} ${unit}`;
+    return `${speed.toFixed(precision)} ${unit}`;
 }
 
 /**
@@ -489,4 +522,29 @@ export function formatUptime(uptime: string): string {
 
     // Return the human-readable formatted uptime
     return readableFormat;
+}
+
+/**
+ * Function to determine the highest value in a 2D array, excluding the timestamp (first element of each row).
+ *
+ * @param data - A 2D array where each sub-array contains a timestamp as the first element followed by numerical values.
+ * @returns The highest numerical value found in the array, excluding the timestamps.
+ */
+export function getHighestValue(data: number[][]): number {
+    // Initialize the highest value to negative infinity to ensure any number will be higher
+    let highestValue = -Infinity;
+
+    // Iterate over each row in the data array
+    for (const row of data) {
+        // Start iterating from the second element (index 1) to exclude the timestamp
+        for (let i = 1; i < row.length; i++) {
+            // Update highestValue if the current element is greater
+            if (row[i] > highestValue) {
+                highestValue = row[i];
+            }
+        }
+    }
+
+    // Return the highest value found
+    return highestValue;
 }
