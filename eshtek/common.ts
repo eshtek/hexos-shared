@@ -459,9 +459,7 @@ export function getSpeed(bytesPerSecond: number): { speed: number; unit: DataUni
     const bitsPerSecond = bytesPerSecond * 8;
 
     // Determine the most appropriate unit based on the magnitude of bits per second
-    if (bitsPerSecond < kb) {
-        return { speed: bitsPerSecond, unit: 'bps' };
-    } else if (bitsPerSecond < Mb) {
+    if (bitsPerSecond < Mb) {
         return { speed: bitsPerSecond / kb, unit: 'kbps' };
     } else if (bitsPerSecond < Gb) {
         return { speed: bitsPerSecond / Mb, unit: 'Mbps' };
