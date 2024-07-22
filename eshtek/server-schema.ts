@@ -84,6 +84,20 @@ export const serverMemoryInfoSchema = z.object({
   data: z.array(z.array(z.number())),
 });
 
+export const serverNetworkInterfaceSchema = z.object({
+  id: z.string(),
+  icon: z.string(),
+  name: z.string(),
+  in: z.number(),
+  out: z.number(),
+});
+
+export const serverNetworkInterfaceDetailedSchema =
+  serverNetworkInterfaceSchema.extend({
+    icon: z.string().optional(),
+    data: z.array(z.array(z.number())),
+  });
+
 export const serverProcessorInfoSchema = z.object({
   base_clock: z.string(),
   current_clock: z.string(),
