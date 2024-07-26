@@ -445,7 +445,7 @@ export function fahrenheitToCelsius(fahrenheit: number | string): number {
     return ((fahrenheitNum - 32) * 5) / 9;
 }
 
-type DataUnit = 'bps' | 'kbps' | 'Mbps' | 'Gbps' | 'Tbps';
+type DataUnit = 'Kbps' | 'Mbps' | 'Gbps' | 'Tbps';
 
 /**
  * Converts a given data rate in bytes per second to a more human-readable format.
@@ -460,7 +460,7 @@ export function getSpeed(bytesPerSecond: number): { speed: number; unit: DataUni
 
     // Determine the most appropriate unit based on the magnitude of bits per second
     if (bitsPerSecond < Mb) {
-        return { speed: bitsPerSecond / kb, unit: 'kbps' };
+        return { speed: bitsPerSecond / kb, unit: 'Kbps' };
     } else if (bitsPerSecond < Gb) {
         return { speed: bitsPerSecond / Mb, unit: 'Mbps' };
     } else if (bitsPerSecond < Tb) {
@@ -481,7 +481,7 @@ export function getSpeedFormatted(
     bytesPerSecond: number | undefined,
     precision: number = 0, // Set default precision to 0
 ): string {
-    if (!bytesPerSecond) return '0 bps';
+    if (!bytesPerSecond) return '0 Kbps';
     const { speed, unit } = getSpeed(bytesPerSecond);
     return `${speed.toFixed(precision)} ${unit}`;
 }
