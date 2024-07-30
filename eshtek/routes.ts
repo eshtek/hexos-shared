@@ -1,4 +1,6 @@
+import type { VmOs } from '@shared/truenas/webui/enums/vm.enum';
 import type { ServerFolder, ServerPool, ServerUser, ServerUserType } from './server';
+import type { VMBasics, VMSettings } from './vms';
 
 export type ResponseSuccess<T> = {
     success: true;
@@ -59,3 +61,5 @@ export interface RequestDeleteFolder {
     pool: string;
     dataset: string;
 }
+
+export interface RequestVMCreate extends VMBasics {}
