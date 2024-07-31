@@ -1,3 +1,4 @@
+import type { AvailableApp } from '@shared/truenas/webui/interfaces/available-app.interface';
 import type { AppStatus } from '../truenas/webui/enums/app-status';
 
 export enum AppJobAction {
@@ -17,8 +18,8 @@ export interface AppBasics {
     icon: string;
 }
 
-export interface AppListing extends AppBasics {
-    suggested?: boolean;
+export interface AppListing extends AvailableApp {
+    recommended_during_setup?: boolean;
 }
 
 export interface AppInfo extends AppBasics {

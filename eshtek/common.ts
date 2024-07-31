@@ -114,6 +114,7 @@ export const passwordFormat = (password: string): boolean => {
  * @returns {string} - Returns the string with the first letter capitalized.
  */
 export const capitalize = (s: string) => {
+    if (!s || s.length === 0) return s;
     return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
