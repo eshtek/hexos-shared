@@ -5,67 +5,79 @@ export function normalizeFileSize(
     value: number,
     baseUnit: 'b' | 'B' = 'B',
     base: 10 | 2 = 2,
-): [formatted: number, unit: string] {
+    increment?: number,
+): [formatted: number, unit: string, increment: number] {
     return base === 10
-        ? normalizeFileSizeBase10(value, baseUnit)
-        : normalizeFileSizeBase2(value, baseUnit);
+        ? normalizeFileSizeBase10(value, baseUnit, increment)
+        : normalizeFileSizeBase2(value, baseUnit, increment);
 }
 
 export function buildNormalizedFileSize(
     value: number,
     baseUnit: 'b' | 'B' = 'B',
     base: 10 | 2 = 2,
+    providedIncrement?: number,
 ): string {
-    const [formatted, unit] = normalizeFileSize(value, baseUnit, base);
+    const [formatted, unit] = normalizeFileSize(value, baseUnit, base, providedIncrement);
     return `${formatted} ${unit}`;
 }
 
 function normalizeFileSizeBase2(
     value: number,
     baseUnit: 'b' | 'B',
-): [formatted: number, unit: string] {
+    providedIncrement?: number,
+): [formatted: number, unit: string, increment: number] {
     let formatted = value;
-    let increment = 1;
-    while (formatted >= 1024) {
-        increment *= 1024;
+    let increment = providedIncrement ?? 1;
+    if (providedIncrement) {
         formatted = value / increment;
+    } else {
+        while (formatted >= 1024) {
+            increment *= 1024;
+            formatted = value / increment;
+        }
     }
     formatted = Math.round((formatted + Number.EPSILON) * 100) / 100;
     switch (increment) {
         case KiB:
-            return [formatted, 'Ki' + baseUnit];
+            return [formatted, 'Ki' + baseUnit, increment];
         case MiB:
-            return [formatted, 'Mi' + baseUnit];
+            return [formatted, 'Mi' + baseUnit, increment];
         case GiB:
-            return [formatted, 'Gi' + baseUnit];
+            return [formatted, 'Gi' + baseUnit, increment];
         case TiB:
-            return [formatted, 'Ti' + baseUnit];
+            return [formatted, 'Ti' + baseUnit, increment];
         default:
-            return [formatted, baseUnit];
+            return [formatted, baseUnit, increment];
     }
 }
 
 function normalizeFileSizeBase10(
     value: number,
     baseUnit: 'b' | 'B',
-): [formatted: number, unit: string] {
+    providedIncrement?: number,
+): [formatted: number, unit: string, increment: number] {
     let formatted = value;
-    let increment = 1;
-    while (formatted >= 1000) {
-        increment *= 1000;
+    let increment = providedIncrement ?? 1;
+    if (providedIncrement) {
         formatted = value / increment;
+    } else {
+        while (formatted >= 1000) {
+            increment *= 1000;
+            formatted = value / increment;
+        }
     }
     formatted = Math.round((formatted + Number.EPSILON) * 100) / 100;
     switch (increment) {
         case kb:
-            return [formatted, 'k' + baseUnit];
+            return [formatted, 'k' + baseUnit, increment];
         case Mb:
-            return [formatted, 'M' + baseUnit];
+            return [formatted, 'M' + baseUnit, increment];
         case Gb:
-            return [formatted, 'G' + baseUnit];
+            return [formatted, 'G' + baseUnit, increment];
         case Tb:
-            return [formatted, 'T' + baseUnit];
+            return [formatted, 'T' + baseUnit, increment];
         default:
-            return [formatted, baseUnit];
+            return [formatted, baseUnit, increment];
     }
 }
