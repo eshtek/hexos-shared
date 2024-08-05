@@ -1,3 +1,11 @@
+import { Server } from 'mysql2/typings/mysql/lib/Server';
+import type {
+    ServerSystemAudio,
+    ServerSystemGPU,
+    ServerSystemPCI,
+    ServerSystemUSB,
+} from './server';
+
 export enum VMType {
     Windows = 'WINDOWS',
     Ubuntu = 'UBUNTU',
@@ -61,6 +69,13 @@ export interface VMSettings {
     connect_directly: boolean;
     autostart: boolean;
     snapshot_settings: VMSnapshotSettings;
+    processors?: number;
+    memory?: number;
+    storage?: number;
+    gpu?: ServerSystemGPU;
+    audio?: ServerSystemAudio;
+    pci?: ServerSystemPCI[];
+    usb?: ServerSystemUSB[];
 }
 
 export interface VMBasics {

@@ -172,6 +172,23 @@ export type ServerSystemData =
     | ServerSystemDataStorage
     | ServerSystemDataEmpty; // TODO: Add more here if necessary not sure if that will be or this can be consolidated in some way yet
 
+export interface ServerSystemDevice {
+    name: string;
+    guid: string;
+}
+
+export interface ServerSystemGPU extends ServerSystemDevice {}
+export interface ServerSystemAudio extends ServerSystemDevice {}
+export interface ServerSystemUSB extends ServerSystemDevice {}
+export interface ServerSystemPCI extends ServerSystemDevice {}
+
+export interface ServerSystemDevices {
+    gpu?: ServerSystemGPU[];
+    audio?: ServerSystemAudio[];
+    usb?: ServerSystemUSB[];
+    pci?: ServerSystemPCI[];
+}
+
 export interface ServerSystem extends ServerStatusBasics {
     type: ServerStatusType.SYSTEM_OVERVIEW;
     data?: ServerSystemData[];
