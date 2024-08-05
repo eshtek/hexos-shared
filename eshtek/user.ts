@@ -1,8 +1,8 @@
 import type { ID } from './common';
 
 export enum UserPurchaseType {
-    BETA = 'beta',
-    TURBO = 'turbo',
+    Beta = 'beta',
+    Pro = 'pro',
 }
 
 export interface UserPurchase {

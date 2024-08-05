@@ -1,5 +1,12 @@
 import type { VmOs } from '@shared/truenas/webui/enums/vm.enum';
 
+export enum VMType {
+    Windows = 'WINDOWS',
+    Ubuntu = 'UBUNTU',
+    Chrome = 'CHROME',
+    Custom = 'CUSTOM',
+}
+
 export enum VMStatus {
     Started = 'STARTED',
     Starting = 'STARTING',
@@ -51,7 +58,7 @@ export type VMSnapshotSettings =
     | VMSnapshotEventSettings;
 
 export interface VMSettings {
-    os: VmOs;
+    os: VmType;
     performance: VMPerformanceModes;
     connect_directly: boolean;
     autostart: boolean;
@@ -62,7 +69,6 @@ export interface VMBasics {
     id?: string;
     name: string;
     description: string;
-    os: VmOs;
     settings: VMSettings;
     // TODO : other settings as necessary
 }
