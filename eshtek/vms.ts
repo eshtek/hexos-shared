@@ -76,6 +76,7 @@ export interface VMSettings {
     audio?: ServerSystemAudio;
     pci?: ServerSystemPCI[];
     usb?: ServerSystemUSB[];
+    installation_media?: string;
 }
 
 export interface VMBasics {
@@ -83,7 +84,6 @@ export interface VMBasics {
     name: string;
     description: string;
     settings: VMSettings;
-    // TODO : other settings as necessary
 }
 
 export interface VMListing extends VMBasics {
