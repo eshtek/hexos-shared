@@ -1,5 +1,3 @@
-import type { VmOs } from '@shared/truenas/webui/enums/vm.enum';
-
 export enum VMType {
     Windows = 'WINDOWS',
     Ubuntu = 'UBUNTU',
@@ -58,7 +56,7 @@ export type VMSnapshotSettings =
     | VMSnapshotEventSettings;
 
 export interface VMSettings {
-    os: VmType;
+    os: VMType;
     performance: VMPerformanceModes;
     connect_directly: boolean;
     autostart: boolean;
