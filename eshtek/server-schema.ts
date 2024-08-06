@@ -77,6 +77,26 @@ export const serverSystemDataEmptySchema = serverStatusBasicsSchema.extend({
   ]),
 });
 
+export const serverSystemDeviceSchema = z.object({
+  name: z.string(),
+  guid: z.string(),
+});
+
+export const serverSystemGPUSchema = serverSystemDeviceSchema;
+
+export const serverSystemAudioSchema = serverSystemDeviceSchema;
+
+export const serverSystemUSBSchema = serverSystemDeviceSchema;
+
+export const serverSystemPCISchema = serverSystemDeviceSchema;
+
+export const serverSystemDevicesSchema = z.object({
+  gpu: z.array(serverSystemGPUSchema).optional(),
+  audio: z.array(serverSystemAudioSchema).optional(),
+  usb: z.array(serverSystemUSBSchema).optional(),
+  pci: z.array(serverSystemPCISchema).optional(),
+});
+
 export const serverMemoryInfoSchema = z.object({
   total: z.number(),
   in_use: z.number(),
