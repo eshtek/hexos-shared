@@ -80,7 +80,7 @@ export interface VMSettings {
 }
 
 export interface VMBasics {
-    id?: string;
+    id?: number;
     name: string;
     description: string;
     settings: VMSettings;
