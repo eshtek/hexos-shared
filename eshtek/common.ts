@@ -5,6 +5,7 @@ import type { ChartRelease } from '../truenas/webui/interfaces/chart-release.int
 import type { ServerFolder } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
 import { Gb, Mb, Tb, kb } from '../truenas/webui/constants/bits.constant';
+import { KiB } from '@/shared/truenas/webui/constants/bytes.constant';
 import { sub, formatDistance } from 'date-fns';
 
 export type ID = `${number}` | number;
@@ -483,7 +484,7 @@ export function getSpeedFormatted(
     precision: number = 0, // Set default precision to 0
 ): string {
     if (!bytesPerSecond) return '0 Kbps';
-    const { speed, unit } = getSpeed(bytesPerSecond);
+    const { speed, unit } = getSpeed(bytesPerSecond * KiB);
     return `${speed.toFixed(precision)} ${unit}`;
 }
 
