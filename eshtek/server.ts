@@ -48,6 +48,16 @@ export enum ServerFolderIcons {
     VIRTUALIZATION = 'files/folder-virtualization',
 }
 
+export interface ServerSetting {
+    id: string;
+    name: string;
+    hostid: string;
+    created: string;
+    updated: string;
+    value: string;
+    json: boolean;
+}
+
 export interface ServerPool {
     icon: ServerStorageIcon;
     label: string;

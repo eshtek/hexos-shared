@@ -63,3 +63,8 @@ export interface RequestDeleteFolder {
 }
 
 export interface RequestVMCreate extends VMBasics {}
+
+export interface RequestSetting {
+    value: string;
+    json?: boolean;
+}
