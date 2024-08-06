@@ -3,7 +3,7 @@ import type { AppJobAction } from './apps';
 
 export interface EshtekJob {
     id?: number;
-    action: AppJobAction;
+    action?: AppJobAction;
     name: string;
     status: JobState;
     progress: number;
