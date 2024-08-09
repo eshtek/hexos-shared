@@ -9,6 +9,27 @@ export const cleanCPUModel = (model: string): string => {
         .replace('(R)', '®');
 };
 
+export const cleanVendor = (vendor: string): string => {
+    return vendor
+        .replace('Advanced Micro Devices', 'AMD')
+        .replace('Samsung Electronics Co.', 'Samsung')
+        .replace(' Corporation', '')
+        .replace(' Semiconductor ', '')
+        .replace(' Technology Group Ltd.', '')
+        .replace(' System, Inc.', '')
+        .replace(' Systems, Inc.', '')
+        .replace(' Co., Ltd.', '')
+        .replace(', Ltd.', '')
+        .replace(', Ltd', '')
+        .replace(', Inc.', '');
+};
+
+export const cleanProduct = (product: string): string => {
+    return product
+        .replace(' PCI Express', ' PCIe')
+        .replace(' High Definition ', ' HD ');
+};
+
 export enum ServerUserType {
     ADMIN = 'admin',
     LOCAL = 'local',
