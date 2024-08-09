@@ -29,6 +29,16 @@ export const serverStatusIconsSchema = z.nativeEnum(ServerStatusIcons);
 
 export const serverFolderIconsSchema = z.nativeEnum(ServerFolderIcons);
 
+export const serverSettingSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  hostid: z.string(),
+  created: z.string(),
+  updated: z.string(),
+  value: z.string(),
+  json: z.boolean(),
+});
+
 export const serverRecordSchema = z.object({
   hostid: z.string(),
   email: z.string().optional(),
