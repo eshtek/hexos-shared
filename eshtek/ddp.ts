@@ -3,7 +3,6 @@ import type { AppJobAction } from './apps';
 
 export interface EshtekJob {
     id?: number;
-    action?: AppJobAction;
     name: string;
     status: JobState;
     progress: number;
@@ -11,10 +10,23 @@ export interface EshtekJob {
     referenceId?: string | number;
 }
 
+export interface WizardJob extends EshtekJob {
+    name: WizardJobs;
+}
 export interface Wizard {
-    status: JobState;
-    jobIds: number[];
-    current: EshtekJob;
+    jobs: WizardJob[];
+}
+
+export enum WizardJobs {
+    Initializing = 'Initializing',
+    CreatingPools = 'Creating Pools',
+    CreatingUsers = 'Creating Users',
+    CreatingFolders = 'Creating User Folders',
+    CreatingSystemFolders = 'Creating System Folders',
+    UpdatingNetworkInterface = 'Updating Network Interface',
+    AssigningServerName = 'Assigning server name',
+    UpdatingServices = 'Updating Services',
+    Complete = 'Complete',
 }
 
 export interface Data {

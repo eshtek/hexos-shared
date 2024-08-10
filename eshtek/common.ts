@@ -263,6 +263,7 @@ export const deserialize = (val: string | object | undefined): any => {
 
 import type { ZodString, ZodTypeAny, ZodUnion } from 'zod';
 import { z } from 'zod';
+import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
 
 /**
  * Utility function to create a serialized union schema
@@ -447,45 +448,20 @@ export function fahrenheitToCelsius(fahrenheit: number | string): number {
     return ((fahrenheitNum - 32) * 5) / 9;
 }
 
-type DataUnit = 'Kbps' | 'Mbps' | 'Gbps' | 'Tbps';
-
-/**
- * Converts a given data rate in bytes per second to a more human-readable format.
- * The function determines the most logical unit to use (bps, kbps, Mbps, etc.)
- * based on the magnitude of the input data rate.
- *
- * @param {number} bytesPerSecond - The data rate in bytes per second.
- * @returns {{ speed: number, unit: DataUnit }} - An object containing the converted speed and its unit.
- */
-export function getSpeed(bytesPerSecond: number): { speed: number; unit: DataUnit } {
-    const bitsPerSecond = bytesPerSecond * 8;
-
-    // Determine the most appropriate unit based on the magnitude of bits per second
-    if (bitsPerSecond < Mb) {
-        return { speed: bitsPerSecond / kb, unit: 'Kbps' };
-    } else if (bitsPerSecond < Gb) {
-        return { speed: bitsPerSecond / Mb, unit: 'Mbps' };
-    } else if (bitsPerSecond < Tb) {
-        return { speed: bitsPerSecond / Gb, unit: 'Gbps' };
-    } else {
-        return { speed: bitsPerSecond / Tb, unit: 'Tbps' };
-    }
-}
-
 /**
  * Function to format a given speed in bytes per second to a human-readable string with a specified precision.
  *
- * @param bytesPerSecond - The speed in bytes per second to be formatted.
+ * @param value - The speed returned from the api
  * @param precision - The number of decimal places to include in the formatted output. Defaults to 0.
  * @returns A string representing the formatted speed with the appropriate unit.
  */
 export function getSpeedFormatted(
-    bytesPerSecond: number | undefined,
+    value: number | undefined,
     precision: number = 0, // Set default precision to 0
 ): string {
-    if (!bytesPerSecond) return '0 Kbps';
-    const { speed, unit } = getSpeed(bytesPerSecond * KiB);
-    return `${speed.toFixed(precision)} ${unit}`;
+    if (!value) return '0 Kb/s';
+    const result = buildNormalizedFileSize(value, 'b', 10);
+    return `${result}/s`;
 }
 
 /**
