@@ -458,13 +458,11 @@ export function fahrenheitToCelsius(fahrenheit: number | string): number {
  * @param precision - The number of decimal places to include in the formatted output. Defaults to 0.
  * @returns A string representing the formatted speed with the appropriate unit.
  */
-export function getSpeedFormatted(
-    value: number | undefined,
-    precision: number = 0, // Set default precision to 0
-): string {
-    if (!value) return '0 Kb/s';
-    const result = buildNormalizedFileSize(value, 'b', 10);
-    return `${result}/s`;
+export function getSpeedFormatted(value: number | undefined, precision: number = 1): string {
+    if (!value) return '0.0 kB/s';
+    const result = buildNormalizedFileSize(value * 1024, 'B', 10);
+    const parts = result.split(' ');
+    return `${toFixed(parts[0], precision)} ${parts[1]}/s`;
 }
 
 /**
