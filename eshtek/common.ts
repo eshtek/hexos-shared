@@ -316,8 +316,11 @@ export function toFixed(input: number | string | undefined, precision: number = 
     // Check if the result has fewer decimals than required and pad if necessary
     const [integerPart, decimalPart] = result.split('.');
     const paddedDecimalPart = (decimalPart || '').padEnd(precision, '0');
-
-    return `${integerPart}.${paddedDecimalPart}`;
+    if (precision === 0) {
+        return `${integerPart}`;
+    } else {
+        return `${integerPart}.${paddedDecimalPart}`;
+    }
 }
 
 /**
