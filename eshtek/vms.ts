@@ -102,19 +102,20 @@ export interface VMBasics {
     id?: number;
     name: string;
     description: string;
-    settings: VMSettings;
+    settings?: VMSettings;
 }
 
 export interface VMListing extends VMBasics {
     suggested?: boolean;
     type: VMType;
-    settings?: VMSettings;
 }
 
 export interface VMInfo extends VMBasics {
+    id: number;
     status: VMStatus;
     url_webui: string;
 }
 export interface VMInfoDetailed extends VMInfo {
+    id: number;
     data: number[][];
 }
