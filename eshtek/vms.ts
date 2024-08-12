@@ -21,6 +21,25 @@ export enum VMStatus {
     Stopping = 'STOPPING',
 }
 
+export const translateVMStatus = (status: VMStatus) => {
+    const { t } = useI18n();
+
+    switch (status) {
+        case VMStatus.Started:
+            return t('Running');
+        case VMStatus.Starting:
+            return t('Starting');
+        case VMStatus.Deploying:
+            return t('Deploying');
+        case VMStatus.Stopped:
+            return t('Stopped');
+        case VMStatus.Stopping:
+            return t('Stopping');
+        default:
+            return status;
+    }
+};
+
 export enum VMPerformanceModes {
     Basic = 'BASIC',
     Enhanced = 'ENHANCED',
@@ -88,6 +107,8 @@ export interface VMBasics {
 
 export interface VMListing extends VMBasics {
     suggested?: boolean;
+    type: VMType;
+    settings?: VMSettings;
 }
 
 export interface VMInfo extends VMBasics {
