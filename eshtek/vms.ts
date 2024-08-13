@@ -1,4 +1,8 @@
 import type {
+    VmDevice,
+    VmDisplayDevice,
+} from '@shared/truenas/webui/interfaces/vm-device.interface';
+import type {
     ServerSystemAudio,
     ServerSystemGPU,
     ServerSystemPCI,
@@ -126,4 +130,5 @@ export interface VMInfo extends VMBasics {
 export interface VMInfoDetailed extends VMInfo {
     id: string;
     data: number[][];
+    display_devices?: VmDisplayDevice[];
 }
