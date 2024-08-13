@@ -125,7 +125,6 @@ export interface VMListing extends VMBasics {
 export interface VMInfo extends VMBasics {
     id: string;
     status: VMStatus;
-    url_webui: string;
 }
 export interface VMInfoDetailed extends VMInfo {
     id: string;
