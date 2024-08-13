@@ -1,4 +1,3 @@
-import { Server } from 'mysql2/typings/mysql/lib/Server';
 import type {
     ServerSystemAudio,
     ServerSystemGPU,
@@ -9,8 +8,17 @@ import type {
 export enum VMType {
     Windows = 'WINDOWS',
     Ubuntu = 'UBUNTU',
+    FreeBSD = 'FREEBSD',
     Chrome = 'CHROME',
     Custom = 'CUSTOM',
+}
+
+export enum VMIcons {
+    Windows = 'vms/windows',
+    Ubuntu = 'vms/ubuntu',
+    FreeBSD = 'vms/freebsd',
+    Chrome = 'vms/chrome',
+    Custom = 'vms/custom',
 }
 
 export enum VMStatus {
