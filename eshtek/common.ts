@@ -139,6 +139,39 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
 };
 
 /**
+ * Returns the correct VMIcons based on the VM type.
+ * @param vm - The virtual machine object, which can be of type VMInfo, VMInfoDetailed, or VMListing.
+ * @returns The corresponding VMIcons based on the VM type.
+ */
+export function getVMIcon(vm: VMInfo | VMInfoDetailed | VMListing): VMIcons {
+    let vmType: VMType;
+
+    if ('type' in vm) {
+        // vm is of type VMListing
+        vmType = vm.type;
+    } else if (vm.settings?.os) {
+        // vm is of type VMInfo or VMInfoDetailed and has settings with an os property
+        vmType = vm.settings.os;
+    } else {
+        throw new Error('Unable to determine VM type');
+    }
+
+    switch (vmType) {
+        case VMType.Windows:
+            return VMIcons.Windows;
+        case VMType.Ubuntu:
+            return VMIcons.Ubuntu;
+        case VMType.Chrome:
+            return VMIcons.Chrome;
+        case VMType.Custom:
+            return VMIcons.Custom;
+        default:
+            // Fallback icon or error handling can be added here if needed
+            throw new Error(`Unsupported VM type: ${vmType}`);
+    }
+}
+
+/**
  * Maps media types to their corresponding icons.
  */
 const mediaTypeToIconMap: Record<string, string> = {
@@ -264,6 +297,7 @@ export const deserialize = (val: string | object | undefined): any => {
 import type { ZodString, ZodTypeAny, ZodUnion } from 'zod';
 import { z } from 'zod';
 import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
+import { VMIcons, VMInfo, VMInfoDetailed, VMListing, VMType } from './vms';
 
 /**
  * Utility function to create a serialized union schema
