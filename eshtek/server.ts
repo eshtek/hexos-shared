@@ -112,6 +112,7 @@ export interface ServerRecord {
     servername?: string;
     wizardcompleted?: Date | string;
     lastconnected?: Date | string;
+    truenas_version?: string;
 }
 
 export enum ServerAccess {
