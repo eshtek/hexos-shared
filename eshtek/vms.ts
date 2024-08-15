@@ -107,24 +107,26 @@ export interface VMSettings {
     audio?: ServerSystemAudio;
     pci?: ServerSystemPCI[];
     usb?: ServerSystemUSB[];
+    mouse?: ServerSystemPCI;
+    keyboard?: ServerSystemPCI;
     installation_media?: string;
 }
 
 export interface VMSettingsSuggested extends VMSettings {
-    cpuMin: number;
-    cpuMax: number;
-    cpuSuggested: number;
-    memoryMin: number;
-    memoryMax: number;
-    memorySuggested: number;
-    storageMin: number;
-    storageMax: number;
-    storageSuggested: number;
-    mouseGuid: string;
-    keyboardGuid: string;
-    soundGuid: string;
-    gpuGuid: string;
-    networkGuidInterface: string;
+    suggested: {
+        processors: number;
+        memory: number;
+        storage: number;
+        memoryAvailable: number;
+        storageAvailable: number;
+        processorsAvailable: number;
+        gpu?: ServerSystemGPU;
+        audio?: ServerSystemAudio;
+        pci?: ServerSystemPCI[];
+        usb?: ServerSystemUSB[];
+        mouse?: ServerSystemPCI;
+        keyboard?: ServerSystemPCI;
+    };
 }
 
 export interface VMBasics {
