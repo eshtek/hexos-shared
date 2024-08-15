@@ -110,6 +110,13 @@ export interface VMSettings {
     installation_media?: string;
 }
 
+export interface VMSettingsSuggested extends VMSettings {
+    minMemory: number;
+    maxMemory: number;
+    minStorage: number;
+    maxStorage: number;
+}
+
 export interface VMBasics {
     id?: string;
     name: string;
