@@ -1,4 +1,5 @@
 import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
+import { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
 
 export const cleanCPUModel = (model: string): string => {
     return model
@@ -207,6 +208,7 @@ export type ServerSystemData =
 export interface ServerSystemDevice {
     name: string;
     guid: string;
+    data: VmPassthroughDeviceChoice | VmUsbPassthroughDeviceChoice;
 }
 
 export interface ServerSystemGPU extends ServerSystemDevice {}

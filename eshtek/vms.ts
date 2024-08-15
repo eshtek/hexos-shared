@@ -111,10 +111,20 @@ export interface VMSettings {
 }
 
 export interface VMSettingsSuggested extends VMSettings {
-    minMemory: number;
-    maxMemory: number;
-    minStorage: number;
-    maxStorage: number;
+    cpuMin: number;
+    cpuMax: number;
+    cpuSuggested: number;
+    memoryMin: number;
+    memoryMax: number;
+    memorySuggested: number;
+    storageMin: number;
+    storageMax: number;
+    storageSuggested: number;
+    mouseGuid: string;
+    keyboardGuid: string;
+    soundGuid: string;
+    gpuGuid: string;
+    networkGuidInterface: string;
 }
 
 export interface VMBasics {
