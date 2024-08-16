@@ -50,6 +50,7 @@ export const serverRecordSchema = z.object({
   servername: z.string().optional(),
   wizardcompleted: z.union([z.date(), z.string()]).optional(),
   lastconnected: z.union([z.date(), z.string()]).optional(),
+  truenas_version: z.string().optional(),
 });
 
 export const serverAccessSchema = z.nativeEnum(ServerAccess);
@@ -85,26 +86,6 @@ export const serverSystemDataEmptySchema = serverStatusBasicsSchema.extend({
     z.literal(ServerStatusType.VIRTUALIZATION),
     z.literal(ServerStatusType.APPLICATIONS),
   ]),
-});
-
-export const serverSystemDeviceSchema = z.object({
-  name: z.string(),
-  guid: z.string(),
-});
-
-export const serverSystemGPUSchema = serverSystemDeviceSchema;
-
-export const serverSystemAudioSchema = serverSystemDeviceSchema;
-
-export const serverSystemUSBSchema = serverSystemDeviceSchema;
-
-export const serverSystemPCISchema = serverSystemDeviceSchema;
-
-export const serverSystemDevicesSchema = z.object({
-  gpu: z.array(serverSystemGPUSchema).optional(),
-  audio: z.array(serverSystemAudioSchema).optional(),
-  usb: z.array(serverSystemUSBSchema).optional(),
-  pci: z.array(serverSystemPCISchema).optional(),
 });
 
 export const serverMemoryInfoSchema = z.object({
@@ -143,6 +124,10 @@ export const serverHealthSchema = z.object({
 
 const diskTypeSchema = z.any();
 
+const vmPassthroughDeviceChoiceSchema = z.any();
+
+const vmUsbPassthroughDeviceChoiceSchema = z.any();
+
 export const serverDriveSchema = z.object({
   details: z.string(),
   model: z.string(),
@@ -177,6 +162,30 @@ export const serverSystemDataSchema = z.union([
   serverSystemDataStorageSchema,
   serverSystemDataEmptySchema,
 ]);
+
+export const serverSystemDeviceSchema = z.object({
+  name: z.string(),
+  guid: z.string(),
+  data: z.union([
+    vmPassthroughDeviceChoiceSchema,
+    vmUsbPassthroughDeviceChoiceSchema,
+  ]),
+});
+
+export const serverSystemGPUSchema = serverSystemDeviceSchema;
+
+export const serverSystemAudioSchema = serverSystemDeviceSchema;
+
+export const serverSystemUSBSchema = serverSystemDeviceSchema;
+
+export const serverSystemPCISchema = serverSystemDeviceSchema;
+
+export const serverSystemDevicesSchema = z.object({
+  gpu: z.array(serverSystemGPUSchema).optional(),
+  audio: z.array(serverSystemAudioSchema).optional(),
+  usb: z.array(serverSystemUSBSchema).optional(),
+  pci: z.array(serverSystemPCISchema).optional(),
+});
 
 export const serverSystemSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
