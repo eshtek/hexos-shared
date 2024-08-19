@@ -9,6 +9,12 @@ import type {
     ServerSystemUSB,
 } from './server';
 
+export enum VMCreateType {
+    VirtualPC = 'virtual-pc',
+    VirtualServer = 'virtual-server',
+    ExistingVM = 'existing-vm',
+}
+
 export enum VMType {
     Windows = 'WINDOWS',
     Ubuntu = 'UBUNTU',
