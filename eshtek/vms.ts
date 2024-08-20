@@ -10,9 +10,9 @@ import type {
 } from './server';
 
 export enum VMCreateType {
-    VirtualPC = 'virtual-pc',
-    VirtualServer = 'virtual-server',
-    ExistingVM = 'existing-vm',
+    VirtualPC = 'virtual_pc',
+    VirtualServer = 'virtual_server',
+    ExistingVM = 'existing_vm',
 }
 
 export enum VMType {
@@ -121,11 +121,14 @@ export interface VMSettings {
 export interface VMSettingsSuggested extends VMSettings {
     suggested: {
         processors: number;
-        memory: number;
-        storage: number;
-        memoryAvailable: number;
-        storageAvailable: number;
+        processorsMinimum: number;
         processorsAvailable: number;
+        memory: number;
+        memoryMinimum: number;
+        memoryAvailable: number;
+        storage: number;
+        storageMinimum: number;
+        storageAvailable: number;
         gpu?: ServerSystemGPU;
         audio?: ServerSystemAudio;
         pci?: ServerSystemPCI[];
