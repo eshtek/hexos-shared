@@ -143,10 +143,14 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
  * @param vm - The virtual machine object, which can be of type VMInfo, VMInfoDetailed, or VMListing.
  * @returns The corresponding VMIcons based on the VM type.
  */
-export function getVMIcon(vm: VMInfo | VMInfoDetailed | VMListing): VMIcons {
+export function getVMIcon(vm: VMType | VMInfo | VMInfoDetailed | VMListing | undefined): VMIcons {
     let vmType: VMType;
+    if (!vm) return VMIcons.Custom;
 
-    if ('type' in vm) {
+    if (typeof vm === 'string') {
+        // vm is of type VMType
+        vmType = vm;
+    } else if ('type' in vm) {
         // vm is of type VMListing
         vmType = vm.type;
     } else if (vm.settings?.os) {

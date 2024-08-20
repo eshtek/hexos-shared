@@ -16,11 +16,11 @@ export enum VMCreateType {
 }
 
 export enum VMType {
-    Windows = 'WINDOWS',
-    Ubuntu = 'UBUNTU',
-    FreeBSD = 'FREEBSD',
-    Chrome = 'CHROME',
-    Custom = 'CUSTOM',
+    Windows = 'windows',
+    Ubuntu = 'ubuntu',
+    FreeBSD = 'freebsd',
+    Chrome = 'chrome',
+    Custom = 'custom',
 }
 
 export enum VMIcons {
@@ -32,11 +32,11 @@ export enum VMIcons {
 }
 
 export enum VMStatus {
-    Started = 'STARTED',
-    Starting = 'STARTING',
-    Deploying = 'DEPLOYING',
-    Stopped = 'STOPPED',
-    Stopping = 'STOPPING',
+    Started = 'started',
+    Starting = 'starting',
+    Deploying = 'deploying',
+    Stopped = 'stopped',
+    Stopping = 'stopping',
 }
 
 export const translateVMStatus = (status: VMStatus) => {
@@ -59,26 +59,26 @@ export const translateVMStatus = (status: VMStatus) => {
 };
 
 export enum VMPerformanceModes {
-    Basic = 'BASIC',
-    Enhanced = 'ENHANCED',
+    Basic = 'basic',
+    Enhanced = 'enhanced',
 }
 
 export enum VMSnapshotTypes {
-    MANUAL = 'MANUAL',
-    SCHEDULED = 'SCHEDULED',
-    EVENT = 'EVENT',
+    MANUAL = 'manual',
+    SCHEDULED = 'scheduled',
+    EVENT = 'event',
 }
 
 export enum VMScheduleFrequency {
-    HOURLY = 'HOURLY',
-    DAILY = 'DAILY',
-    WEEKLY = 'WEEKLY',
-    MONTHLY = 'MONTHLY',
+    HOURLY = 'hourly',
+    DAILY = 'daily',
+    WEEKLY = 'weekly',
+    MONTHLY = 'monthly',
 }
 
 export enum VMEventTypes {
-    SHUTDOWN = 'SHUTDOWN',
-    REBOOT = 'REBOOT',
+    SHUTDOWN = 'shutdown',
+    REBOOT = 'reboot',
 }
 
 export interface VMSnapshotManualSettings {
