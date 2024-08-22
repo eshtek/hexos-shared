@@ -563,3 +563,23 @@ export function getHighestValue(data: number[][]): number {
     // Return the highest value found
     return highestValue;
 }
+
+/**
+ * Calculates the appropriate step size for a slider based on the desired number of steps and a range of values.
+ * The function ensures that the step size is a multiple of one of the acceptable step sizes provided.
+ *
+ * @param range - The difference between the maximum and minimum values of the slider.
+ * @param steps - The desired number of steps on the slider. This determines how many increments the slider will have.
+ * @param acceptableSteps - An optional array of acceptable step sizes. Defaults to [1, 5, 10, 20, 25, 50, 100, 1000].
+ * @returns The step size that is closest to the calculated raw step size and is a multiple of one of the acceptable step sizes.
+ */
+export function getStepSize(
+    range: number,
+    steps: number = 10,
+    acceptableSteps: number[] = [1, 5, 10, 20, 25],
+): number {
+    const rawStep = range / steps;
+    return acceptableSteps.reduce((prev, curr) => {
+        return Math.abs(curr - rawStep) < Math.abs(prev - rawStep) ? curr : prev;
+    });
+}
