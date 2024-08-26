@@ -100,6 +100,12 @@ export type VMSnapshotSettings =
     | VMSnapshotScheduledSettings
     | VMSnapshotEventSettings;
 
+export interface VMInstallationMedia {
+    path: string;
+    name: string;
+    type: VMType;
+}
+
 export interface VMSettings {
     os: VMType;
     performance: VMPerformanceModes;
@@ -115,26 +121,27 @@ export interface VMSettings {
     usb?: ServerSystemUSB[];
     mouse?: ServerSystemPCI;
     keyboard?: ServerSystemPCI;
-    installation_media?: string;
+    installation_media?: VMInstallationMedia;
 }
 
 export interface VMSettingsSuggested extends VMSettings {
     suggested: {
         processors: number;
-        processorsMinimum: number;
-        processorsAvailable: number;
+        processors_minimum: number;
+        processors_available: number;
         memory: number;
-        memoryMinimum: number;
-        memoryAvailable: number;
+        memory_minimum: number;
+        memory_available: number;
         storage: number;
-        storageMinimum: number;
-        storageAvailable: number;
+        storage_minimum: number;
+        storage_available: number;
         gpu?: ServerSystemGPU;
         audio?: ServerSystemAudio;
         pci?: ServerSystemPCI[];
         usb?: ServerSystemUSB[];
         mouse?: ServerSystemPCI;
         keyboard?: ServerSystemPCI;
+        installation_media_available: VMInstallationMedia[];
     };
 }
 
