@@ -165,6 +165,8 @@ export function getVMIcon(vm: VMType | VMInfo | VMInfoDetailed | VMListing | und
             return VMIcons.Windows;
         case VMType.Ubuntu:
             return VMIcons.Ubuntu;
+        case VMType.FreeBSD:
+            return VMIcons.FreeBSD;
         case VMType.Chrome:
             return VMIcons.Chrome;
         case VMType.Custom:
