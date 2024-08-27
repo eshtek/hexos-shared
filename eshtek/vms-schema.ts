@@ -49,6 +49,12 @@ export const vMSnapshotSettingsSchema = z.union([
   vMSnapshotEventSettingsSchema,
 ]);
 
+export const vMInstallationMediaSchema = z.object({
+  path: z.string(),
+  name: z.string(),
+  type: vMTypeSchema,
+});
+
 const serverSystemGPUSchema = z.any();
 
 const serverSystemAudioSchema = z.any();
@@ -74,26 +80,27 @@ export const vMSettingsSchema = z.object({
   usb: z.array(serverSystemUSBSchema).optional(),
   mouse: serverSystemPCISchema.optional(),
   keyboard: serverSystemPCISchema.optional(),
-  installation_media: z.string().optional(),
+  installation_media: vMInstallationMediaSchema.optional(),
 });
 
 export const vMSettingsSuggestedSchema = vMSettingsSchema.extend({
   suggested: z.object({
     processors: z.number(),
-    processorsMinimum: z.number(),
-    processorsAvailable: z.number(),
+    processors_minimum: z.number(),
+    processors_available: z.number(),
     memory: z.number(),
-    memoryMinimum: z.number(),
-    memoryAvailable: z.number(),
+    memory_minimum: z.number(),
+    memory_available: z.number(),
     storage: z.number(),
-    storageMinimum: z.number(),
-    storageAvailable: z.number(),
+    storage_minimum: z.number(),
+    storage_available: z.number(),
     gpu: serverSystemGPUSchema.optional(),
     audio: serverSystemAudioSchema.optional(),
     pci: z.array(serverSystemPCISchema).optional(),
     usb: z.array(serverSystemUSBSchema).optional(),
     mouse: serverSystemPCISchema.optional(),
     keyboard: serverSystemPCISchema.optional(),
+    installation_media_available: z.array(vMInstallationMediaSchema),
   }),
 });
 
