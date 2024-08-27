@@ -103,7 +103,6 @@ export type VMSnapshotSettings =
 export interface VMInstallationMedia {
     path: string;
     name: string;
-    type: VMType;
 }
 
 export interface VMSettings {
@@ -122,6 +121,7 @@ export interface VMSettings {
     mouse?: ServerSystemPCI;
     keyboard?: ServerSystemPCI;
     installation_media?: VMInstallationMedia;
+    installation_media_virtio?: VMInstallationMedia;
 }
 
 export interface VMSettingsSuggested extends VMSettings {
@@ -142,6 +142,7 @@ export interface VMSettingsSuggested extends VMSettings {
         mouse?: ServerSystemPCI;
         keyboard?: ServerSystemPCI;
         installation_media_available: VMInstallationMedia[];
+        installation_media_virtio_available: VMInstallationMedia[];
     };
 }
 
