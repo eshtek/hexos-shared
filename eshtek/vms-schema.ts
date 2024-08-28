@@ -52,7 +52,6 @@ export const vMSnapshotSettingsSchema = z.union([
 export const vMInstallationMediaSchema = z.object({
   path: z.string(),
   name: z.string(),
-  type: vMTypeSchema,
 });
 
 const serverSystemGPUSchema = z.any();
@@ -81,6 +80,7 @@ export const vMSettingsSchema = z.object({
   mouse: serverSystemPCISchema.optional(),
   keyboard: serverSystemPCISchema.optional(),
   installation_media: vMInstallationMediaSchema.optional(),
+  installation_media_virtio: vMInstallationMediaSchema.optional(),
 });
 
 export const vMSettingsSuggestedSchema = vMSettingsSchema.extend({
@@ -101,6 +101,7 @@ export const vMSettingsSuggestedSchema = vMSettingsSchema.extend({
     mouse: serverSystemPCISchema.optional(),
     keyboard: serverSystemPCISchema.optional(),
     installation_media_available: z.array(vMInstallationMediaSchema),
+    installation_media_virtio_available: z.array(vMInstallationMediaSchema),
   }),
 });
 
