@@ -42,4 +42,5 @@ export interface DDPClientMeta {
     wizard?: Wizard;
     jobs: EshtekJob[];
     method_data: Data[];
+    misc_data: Data[];
 }

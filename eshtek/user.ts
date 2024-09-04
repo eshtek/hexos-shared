@@ -1,4 +1,5 @@
 import type { ID } from './common';
+import type { Preferences } from './preferences';
 
 export enum UserPurchaseType {
     Beta = 'beta',
@@ -28,16 +29,3 @@ export interface NewUserRequest {
     clientip?: string;
 }
 
-export enum UserPreferenceTheme {
-    LIGHT = 'light',
-    DARK = 'dark',
-}
-export enum UserPreferenceTemperature {
-    FARENHEIT = 'farenheit',
-    CELSIUS = 'celsius',
-}
-
-export interface Preferences {
-    theme: UserPreferenceTheme;
-    temperature: UserPreferenceTemperature;
-}
