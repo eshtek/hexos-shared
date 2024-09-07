@@ -14,6 +14,7 @@ export enum PreferenceLocationId {
   MUSIC = 'Music',
   MOVIES = 'Movies',
   SHOWS = 'Shows',
+  VIDEOS = 'Videos',
   VIRTUALIZATION = 'Virtualization',
   INSTALL_MEDIA = 'InstallMedia',
   VIRTUAL_DISKS = 'VirtualDisks',
