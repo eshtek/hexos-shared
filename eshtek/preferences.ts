@@ -1,6 +1,4 @@
 export interface Preferences {
-  theme: PreferencesTheme;
-  temperature: PreferencesTemperature;
   locations: Record<PreferenceLocationId, PreferenceLocation>;
 }
 
@@ -23,22 +21,14 @@ export enum PreferenceLocationId {
 export interface PreferenceLocation {
   id: PreferenceLocationId;
   name: string; 
-  path: string; 
+  path: string;
+  parentId?: PreferenceLocationId;
 }
-
-// Define interface for user preferences
-export enum PreferencesTheme {
-  LIGHT = 'light',
-  DARK = 'dark',
+export interface PreferenceLocationTree extends PreferenceLocation {
+  children?: PreferenceLocationTree[];
 }
 
 export enum PreferenceLocationDependencyType {
   APP = 'app',
   VM = 'vm',
 }
-
-export enum PreferencesTemperature {
-  FARENHEIT = 'farenheit',
-  CELSIUS = 'celsius',
-}
-

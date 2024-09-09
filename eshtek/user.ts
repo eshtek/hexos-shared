@@ -1,5 +1,28 @@
 import type { ID } from './common';
-import type { Preferences } from './preferences';
+
+export interface User {
+    id: ID;
+    email: string;
+    name: string;
+    image?: string;
+    preferences?: UserPreferences;
+    purchases?: UserPurchase[];
+}
+
+export interface UserPreferences {
+    theme: UserPreferenceTheme;
+    temperature: UserPreferenceTemperature;
+}
+
+export enum UserPreferenceTheme {
+    LIGHT = 'light',
+    DARK = 'dark',
+}
+
+export enum UserPreferenceTemperature {
+    FARENHEIT = 'farenheit',
+    CELSIUS = 'celsius',
+}
 
 export enum UserPurchaseType {
     Beta = 'beta',
@@ -13,19 +36,9 @@ export interface UserPurchase {
     expiraration?: Date;
 }
 
-export interface User {
-    id: ID;
-    email: string;
-    name: string;
-    image?: string;
-    preferences?: Preferences;
-    purchases?: UserPurchase[];
-}
-
 export interface NewUserRequest {
     name: string;
     email: string;
     password: string;
     clientip?: string;
 }
-
