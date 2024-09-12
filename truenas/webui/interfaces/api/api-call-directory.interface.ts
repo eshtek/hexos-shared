@@ -683,6 +683,8 @@ export interface ApiCallDirectory {
     'filesystem.listdir': { params: ListdirQueryParams; response: FileRecord[] };
     'filesystem.stat': { params: [path: string]; response: FileSystemStat };
     'filesystem.statfs': { params: [path: string]; response: Statfs };
+    'filesystem.get': { params: [path: string]; response: File };
+    'filesystem.mkdir': { params: [path: string]; response: void };
 
     // FTP
     'ftp.config': { params: void; response: FtpConfig };
