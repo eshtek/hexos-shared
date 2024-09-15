@@ -94,6 +94,15 @@ import {
     TunableUpdate,
 } from '@shared/truenas/webui/interfaces/tunable.interface';
 import { VmStopParams } from '@shared/truenas/webui/interfaces/virtual-machine.interface';
+import {
+    App,
+    AppCreate,
+    AppDeleteParams,
+    AppRollbackParams,
+    AppStartQueryParams,
+    AppUpdate,
+    AppUpgradeParams,
+} from '../app.interface';
 
 export interface ApiJobDirectory {
     // Active Directory
@@ -124,25 +133,14 @@ export interface ApiJobDirectory {
         response: Certificate;
     };
 
-    // Chart Release
-    'chart.release.create': { params: [ChartReleaseCreate]; response: ChartRelease };
-    'chart.release.delete': {
-        params: [string, { delete_unused_images: boolean }];
-        response: boolean;
-    };
-    'chart.release.rollback': {
-        params: [name: string, params: ChartRollbackParams];
-        response: ChartRelease;
-    };
-    'chart.release.scale': { params: ChartScaleQueryParams; response: ChartScaleResult };
-    'chart.release.update': {
-        params: [name: string, update: ChartReleaseUpdate];
-        response: ChartRelease;
-    };
-    'chart.release.upgrade': {
-        params: [name: string, upgrade: ChartReleaseUpgrade];
-        response: ChartRelease;
-    };
+    // App
+    'app.create': { params: [AppCreate]; response: App };
+    'app.update': { params: [string, AppUpdate]; response: App };
+    'app.start': { params: AppStartQueryParams; response: void };
+    'app.stop': { params: AppStartQueryParams; response: void };
+    'app.delete': { params: AppDeleteParams; response: boolean };
+    'app.upgrade': { params: AppUpgradeParams; response: App };
+    'app.rollback': { params: AppRollbackParams; response: App };
 
     // CloudBackup
     'cloud_backup.sync': { params: [id: number, params?: { dry_run: boolean }]; response: void };

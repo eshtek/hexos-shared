@@ -1,11 +1,9 @@
-import { AppStatus, translateAppStatus } from '../truenas/webui/enums/app-status';
+import { AppStatus } from '../truenas/webui/enums/app-status';
 import { ChartReleaseStatus } from '../truenas/webui/enums/chart-release-status.enum';
 import type { ApiEventTyped } from '../truenas/webui/interfaces/api-message.interface';
 import type { ChartRelease } from '../truenas/webui/interfaces/chart-release.interface';
 import type { ServerFolder } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
-import { Gb, Mb, Tb, kb } from '../truenas/webui/constants/bits.constant';
-import { KiB } from '@/shared/truenas/webui/constants/bytes.constant';
 import { sub, formatDistance } from 'date-fns';
 
 export type ID = `${number}` | number;
@@ -364,76 +362,6 @@ export function toFixed(input: number | string | undefined, precision: number = 
         return `${integerPart}.${paddedDecimalPart}`;
     }
 }
-
-/**
- * Determines the application status based on the provided app status and job event.
- * @param {ChartRelease | undefined} appStatus - The status of the chart release.
- * @param {ApiEventTyped<"core.get_jobs"> | undefined} jobEvent - The API event related to job status.
- * @returns {AppStatus | undefined} - The determined application status, or undefined if the app status is not provided.
- */ export function getAppStatus({
-    appStatus,
-    jobEvent,
-    translated = true,
-}: {
-    appStatus?: ChartRelease;
-    jobEvent?: ApiEventTyped<'core.get_jobs'>;
-    translated?: boolean;
-}): AppStatus | string | undefined {
-    const app: ChartRelease | undefined = appStatus;
-    const job = jobEvent?.fields;
-
-    let status: AppStatus;
-
-    if (!app) {
-        return undefined;
-    }
-    switch (app.status) {
-        case ChartReleaseStatus.Active:
-            status = AppStatus.Started;
-            break;
-        case ChartReleaseStatus.Deploying:
-            status = AppStatus.Deploying;
-            break;
-        case ChartReleaseStatus.Stopped:
-            status = AppStatus.Stopped;
-            break;
-    }
-
-    if (job) {
-        const params = (job.arguments as any)?.params;
-        console.log('params', params);
-        /*
-        if ([JobState.Waiting, JobState.Running].includes(job.state) && params.replica_count >= 1) {
-            status = AppStatus.Starting;
-        }
-        if (
-            [JobState.Waiting, JobState.Running].includes(job.state) &&
-            params.replica_count === 0
-        ) {
-            status = AppStatus.Stopping;
-        }
-        if (
-            job.state === JobState.Success &&
-            params.replica_count >= 1 &&
-            app.status !== ChartReleaseStatus.Deploying
-        ) {
-            status = AppStatus.Started;
-        }
-        if (
-            job.state === JobState.Success &&
-            params.replica_count === 0 &&
-            app.status !== ChartReleaseStatus.Deploying
-        ) {
-            status = AppStatus.Stopped;
-        }*/
-    }
-    if (translated) {
-        return translateAppStatus(status);
-    } else {
-        return status;
-    }
-}
-
 /**
  * Debounce function to limit the rate at which a function can fire.
  * @param {Function} func - Function to be debounced.
