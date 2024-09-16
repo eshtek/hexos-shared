@@ -35,7 +35,7 @@ export enum AppSpec {
 
 
 export interface AppRequirements {
-    spcifications: AppSpec[]
+    specifications: AppSpec[]
     locations: PreferenceLocationId[]
 }
 
