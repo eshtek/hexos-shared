@@ -29,9 +29,9 @@ export enum WizardJobs {
     Complete = 'Complete',
 }
 
-export interface Data {
+export interface Data<T = unknown> {
     name: string;
-    data: unknown;
+    data?: T;
 }
 export interface DDPClientMeta {
     subscriptions: Record<string, string>;
@@ -42,4 +42,5 @@ export interface DDPClientMeta {
     wizard?: Wizard;
     jobs: EshtekJob[];
     method_data: Data[];
+    misc_data: Data[];
 }

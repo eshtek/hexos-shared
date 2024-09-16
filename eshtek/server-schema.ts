@@ -8,6 +8,7 @@ import {
   ServerStatusSupported,
   ServerStatusIcons,
   ServerFolderIcons,
+  ServerPoolType,
   ServerAccess,
   FileAccess,
   ServerDriveLabel,
@@ -38,6 +39,8 @@ export const serverSettingSchema = z.object({
   value: z.string(),
   json: z.boolean(),
 });
+
+export const serverPoolTypeSchema = z.nativeEnum(ServerPoolType);
 
 export const serverRecordSchema = z.object({
   hostid: z.string(),
@@ -194,6 +197,7 @@ export const serverSystemSchema = serverStatusBasicsSchema.extend({
 
 export const serverPoolSchema = z.object({
   icon: serverStorageIconSchema,
+  type: serverPoolTypeSchema,
   label: z.string(),
   description: z.string().optional(),
   status: z.string(),
