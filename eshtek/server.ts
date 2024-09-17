@@ -73,7 +73,7 @@ export enum ServerFolderIcons {
 export interface ServerSetting {
     id: string;
     name: string;
-    hostid: string;
+    hostid: string | null;
     created: string;
     updated: string;
     value: string;
