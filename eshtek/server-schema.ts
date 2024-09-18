@@ -33,7 +33,7 @@ export const serverFolderIconsSchema = z.nativeEnum(ServerFolderIcons);
 export const serverSettingSchema = z.object({
   id: z.string(),
   name: z.string(),
-  hostid: z.string(),
+  hostid: z.string().nullable(),
   created: z.string(),
   updated: z.string(),
   value: z.string(),
