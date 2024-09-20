@@ -1,4 +1,5 @@
 import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
+import { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
 
 export const cleanCPUModel = (model: string): string => {
@@ -158,6 +159,11 @@ export enum ServerDriveLabel {
     NVME_DRIVE = 'NVMe drive',
 }
 
+export enum ServerDriveError {
+    SMR = 'SMR',
+    SMART = 'SMART',
+}
+
 export interface ServerDrive {
     details: string;
     model: string;
@@ -169,10 +175,11 @@ export interface ServerDrive {
     devname: string;
     icon: ServerStorageIcon;
     statusIcon?: ServerStatusIcons;
-    status?: string;
+    status?: TopologyItemStatus;
+    errors?: ServerDriveError[];
+    existingData?: boolean;
     temperature?: number;
-    healthy?: boolean;
-    healthDetails?: string;
+    healthDetails?: TopologyItemStatus;
 }
 
 export enum ServerStatusType {
