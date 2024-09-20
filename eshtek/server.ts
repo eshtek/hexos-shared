@@ -1,5 +1,5 @@
 import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
-import { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
+import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
 
 export const cleanCPUModel = (model: string): string => {
@@ -82,9 +82,9 @@ export interface ServerSetting {
 }
 
 export enum ServerPoolType {
-    SPEED= 'speed',
-    STORAGE= 'storage',
-    UNKNOWN= 'unknown',
+    SPEED = 'speed',
+    STORAGE = 'storage',
+    UNKNOWN = 'unknown',
 }
 
 export interface ServerPool {
