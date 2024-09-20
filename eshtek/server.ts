@@ -87,12 +87,17 @@ export enum ServerPoolType {
     UNKNOWN = 'unknown',
 }
 
+export enum ServerPoolError {
+    POOL_OFFLINE = 'POOL_OFFLINE',
+}
+
 export interface ServerPool {
     icon: ServerStorageIcon;
     type: ServerPoolType,
     label: string;
     description?: string;
     status: string;
+    errors?: ServerPoolError[];
     useable_storage?: string;
     healthy?: boolean;
     healthDetails?: string;
@@ -270,8 +275,20 @@ export interface ServerProcessorInfo {
     data: number[][];
 }
 
+export enum ServerHealthError {
+    SYSTEM_TEMPERATURES = 'SYSTEM_TEMPERATURES',
+}
+
+export enum ServerActions {
+    POOL_EXPAND = 'POOL_EXPAND', 
+    DRIVE_REPLACE = 'DRIVE_REPLACE', 
+    SYSTEM_UPDATE = 'SYSTEM_UPDATE',
+}
+
 export interface ServerHealth {
     healthy: boolean;
+    errors: ServerHealthError[];
+    actionsAvailable: ServerActions[];
     /*
     TODO : Q3 objective
     overview: string;
