@@ -3,8 +3,6 @@ export interface Preferences {
 }
 
 export enum PreferenceLocationId {
-  SYSTEM = 'System',
-  APPS = 'Apps',
   DOWNLOADS = 'Downloads',
   DOCUMENTS = 'Documents',
   MEDIA = 'Media',
