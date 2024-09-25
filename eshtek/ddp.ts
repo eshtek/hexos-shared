@@ -1,17 +1,14 @@
 import type { JobState } from '@shared/truenas/webui/enums/job-state.enum';
 import type { AppJobAction } from './apps';
 
-export interface EshtekJob {
+
+export interface WizardJob {
+    name: WizardJobs;
     id?: number;
-    name: string;
     status: JobState;
     progress: number;
     message?: string;
     referenceId?: string | number;
-}
-
-export interface WizardJob extends EshtekJob {
-    name: WizardJobs;
 }
 export interface Wizard {
     jobs: WizardJob[];
@@ -40,7 +37,6 @@ export interface DDPClientMeta {
     lanIp: string;
     wanIp: string;
     wizard?: Wizard;
-    jobs: EshtekJob[];
     method_data: Data[];
     misc_data: Data[];
 }
