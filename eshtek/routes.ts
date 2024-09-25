@@ -1,4 +1,3 @@
-import type { VmOs } from '@shared/truenas/webui/enums/vm.enum';
 import type { ServerFolder, ServerPool, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
 
@@ -28,10 +27,6 @@ export interface RequestNewAccount {
 
 export interface RequestClaimServer {
     password: string;
-    hostId: string;
-}
-
-export interface RequestResetServer {
     hostId: string;
 }
 

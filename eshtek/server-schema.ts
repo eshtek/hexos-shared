@@ -9,10 +9,14 @@ import {
   ServerStatusIcons,
   ServerFolderIcons,
   ServerPoolType,
+  ServerPoolError,
   ServerAccess,
   FileAccess,
   ServerDriveLabel,
+  ServerDriveError,
   ServerStatusType,
+  ServerHealthError,
+  ServerActions,
 } from "./server";
 
 export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
@@ -42,6 +46,8 @@ export const serverSettingSchema = z.object({
 
 export const serverPoolTypeSchema = z.nativeEnum(ServerPoolType);
 
+export const serverPoolErrorSchema = z.nativeEnum(ServerPoolError);
+
 export const serverRecordSchema = z.object({
   hostid: z.string(),
   email: z.string().optional(),
@@ -66,6 +72,8 @@ export const serverFolderUserSchema = z.object({
 });
 
 export const serverDriveLabelSchema = z.nativeEnum(ServerDriveLabel);
+
+export const serverDriveErrorSchema = z.nativeEnum(ServerDriveError);
 
 export const serverStatusTypeSchema = z.nativeEnum(ServerStatusType);
 
@@ -121,11 +129,19 @@ export const serverProcessorInfoSchema = z.object({
   data: z.array(z.array(z.number())),
 });
 
+export const serverHealthErrorSchema = z.nativeEnum(ServerHealthError);
+
+export const serverActionsSchema = z.nativeEnum(ServerActions);
+
 export const serverHealthSchema = z.object({
   healthy: z.boolean(),
+  errors: z.array(serverHealthErrorSchema),
+  actionsAvailable: z.array(serverActionsSchema),
 });
 
 const diskTypeSchema = z.any();
+
+const topologyItemStatusSchema = z.any();
 
 const vmPassthroughDeviceChoiceSchema = z.any();
 
@@ -142,10 +158,11 @@ export const serverDriveSchema = z.object({
   devname: z.string(),
   icon: serverStorageIconSchema,
   statusIcon: serverStatusIconsSchema.optional(),
-  status: z.string().optional(),
+  status: topologyItemStatusSchema.optional(),
+  errors: z.array(serverDriveErrorSchema).optional(),
+  existingData: z.boolean().optional(),
   temperature: z.number().optional(),
-  healthy: z.boolean().optional(),
-  healthDetails: z.string().optional(),
+  healthDetails: topologyItemStatusSchema.optional(),
 });
 
 export const serversSchema = z.object({
@@ -201,6 +218,7 @@ export const serverPoolSchema = z.object({
   label: z.string(),
   description: z.string().optional(),
   status: z.string(),
+  errors: z.array(serverPoolErrorSchema).optional(),
   useable_storage: z.string().optional(),
   healthy: z.boolean().optional(),
   healthDetails: z.string().optional(),
