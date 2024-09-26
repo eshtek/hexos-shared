@@ -1,5 +1,4 @@
 import type { AvailableApp } from '@shared/truenas/webui/interfaces/available-app.interface';
-import type { AppStatus } from '@shared/truenas/webui/enums/app-status';
 import type { AppState } from '@shared/truenas/webui/enums/app-state.enum';
 import type { PreferenceLocationId } from './preferences';
 
@@ -33,8 +32,13 @@ export enum AppSpec {
     HARDWARE_GPU = 'GPU',
 }
 
+export enum AppPermission {
+    READ_WRITE_LOCATIONS = 'READ_WRITE_LOCATIONS',
+}
+
 
 export interface AppRequirements {
+    permissions: AppPermission[]
     specifications: AppSpec[]
     locations: PreferenceLocationId[]
 }
