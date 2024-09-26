@@ -2,7 +2,9 @@ export interface Preferences {
   locations: Record<PreferenceLocationId, PreferenceLocation>;
 }
 
-export enum PreferenceLocationId {
+export enum PreferenceLocationId { 
+  APPLICATIONS_PERFORMANCE = 'ApplicationsPerformance',
+  APPLICATIONS_CAPACITY = 'ApplicationsCapacity',
   DOWNLOADS = 'Downloads',
   DOCUMENTS = 'Documents',
   MEDIA = 'Media',
@@ -11,7 +13,8 @@ export enum PreferenceLocationId {
   MOVIES = 'Movies',
   SHOWS = 'Shows',
   VIDEOS = 'Videos',
-  VIRTUALIZATION = 'Virtualization',
+  VIRTUALIZATION_PERFORMANCE = 'VirtualizationPerformance',
+  VIRTUALIZATION_CAPACITY = 'VirtualizationCapacity',
   INSTALL_MEDIA = 'InstallMedia',
   VIRTUAL_DISKS = 'VirtualDisks',
 }

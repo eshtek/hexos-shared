@@ -82,8 +82,8 @@ export interface ServerSetting {
 }
 
 export enum ServerPoolType {
-    SPEED = 'speed',
-    STORAGE = 'storage',
+    PERFORMANCE = 'performance',
+    CAPACITY = 'capacity',
     UNKNOWN = 'unknown',
 }
 
