@@ -32,6 +32,8 @@ export enum AppSpec {
     HARDWARE_GPU = 'GPU',
 }
 
+
+
 export enum AppPermission {
     READ_WRITE_LOCATIONS = 'READ_WRITE_LOCATIONS',
 }
@@ -42,6 +44,21 @@ export interface AppRequirements {
     specifications: AppSpec[]
     locations: PreferenceLocationId[]
 }
+export interface AppRequirementsCheck {
+    permissions: {
+        met:AppPermission[],
+        unmet:AppPermission[],
+    },
+    specifications: {
+        met: AppSpec[],
+        unmet: AppSpec[],
+    },
+    locations: {
+        met: PreferenceLocationId[],
+        unmet: PreferenceLocationId[],
+    }
+}
+
 
 export interface AppListing extends AvailableApp {
     hexos: boolean;
