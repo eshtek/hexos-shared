@@ -17,11 +17,10 @@ export interface Wizard {
 export enum WizardJobs {
     Initializing = 'Initializing',
     CreatingPools = 'Creating Pools',
-    CreatingUsers = 'Creating Users',
-    CreatingFolders = 'Creating User Folders',
-    CreatingSystemFolders = 'Creating System Folders',
+    EnablingDocker = 'Enabling Docker',
     UpdatingNetworkInterface = 'Updating Network Interface',
-    AssigningServerName = 'Assigning server name',
+    DefaultLocations = 'Creating Default Locations',
+    AssigningServerName = 'Assigning Server Name',
     UpdatingServices = 'Updating Services',
     Complete = 'Complete',
 }

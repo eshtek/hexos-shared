@@ -38,8 +38,6 @@ export interface RequestUser extends ServerUser {
 export interface RequestFinishServer {
     hostId: string;
     pools: ServerPool[];
-    user_folders: ServerFolder[];
-    users: RequestUser[];
     name: string;
 }
 

@@ -1,12 +1,13 @@
-import { SetAcl } from '@shared/truenas/webui/interfaces/acl.interface';
-import {
+import type { DockerConfig, DockerConfigUpdate } from '@shared/truenas/webui/enums/docker-config.interface';
+import type { SetAcl } from '@shared/truenas/webui/interfaces/acl.interface';
+import type {
     ActiveDirectoryConfig,
     LeaveActiveDirectory,
 } from '@shared/truenas/webui/interfaces/active-directory-config.interface';
-import { ActiveDirectoryUpdate } from '@shared/truenas/webui/interfaces/active-directory.interface';
-import { AuditEntry } from '@shared/truenas/webui/interfaces/audit/audit.interface';
-import { Catalog, CatalogCreate } from '@shared/truenas/webui/interfaces/catalog.interface';
-import {
+import type { ActiveDirectoryUpdate } from '@shared/truenas/webui/interfaces/active-directory.interface';
+import type { AuditEntry } from '@shared/truenas/webui/interfaces/audit/audit.interface';
+import type { Catalog, CatalogCreate } from '@shared/truenas/webui/interfaces/catalog.interface';
+import type {
     Certificate,
     CertificateCreate,
     CertificateUpdate,
@@ -22,35 +23,35 @@ import {
     ChartReleaseUpdate,
     ChartReleaseUpgrade,
 } from '@shared/truenas/webui/interfaces/chart-release.interface';
-import { CloudSyncTaskUpdate } from '@shared/truenas/webui/interfaces/cloud-sync-task.interface';
-import { ConfigResetParams } from '@shared/truenas/webui/interfaces/config-reset-params.interface';
-import {
+import type { CloudSyncTaskUpdate } from '@shared/truenas/webui/interfaces/cloud-sync-task.interface';
+import type { ConfigResetParams } from '@shared/truenas/webui/interfaces/config-reset-params.interface';
+import type {
     PullContainerImageParams,
     PullContainerImageResponse,
 } from '@shared/truenas/webui/interfaces/container-image.interface';
-import {
+import type {
     CoreBulkQuery,
     CoreBulkResponse,
 } from '@shared/truenas/webui/interfaces/core-bulk.interface';
-import { DatasetChangeKeyParams } from '@shared/truenas/webui/interfaces/dataset-change-key.interface';
-import {
+import type { DatasetChangeKeyParams } from '@shared/truenas/webui/interfaces/dataset-change-key.interface';
+import type {
     DatasetEncryptionSummary,
     DatasetEncryptionSummaryQueryParams,
 } from '@shared/truenas/webui/interfaces/dataset-encryption-summary.interface';
-import {
+import type {
     DatasetLockParams,
     DatasetUnlockParams,
     DatasetUnlockResult,
 } from '@shared/truenas/webui/interfaces/dataset-lock.interface';
-import { ExportParams } from '@shared/truenas/webui/interfaces/export-params.interface';
-import { FailoverUpgradeParams } from '@shared/truenas/webui/interfaces/failover.interface';
-import {
+import type { ExportParams } from '@shared/truenas/webui/interfaces/export-params.interface';
+import type { FailoverUpgradeParams } from '@shared/truenas/webui/interfaces/failover.interface';
+import type {
     FilesystemPutParams,
     FilesystemSetPermParams,
 } from '@shared/truenas/webui/interfaces/filesystem-stat.interface';
-import { IpmiEvent } from '@shared/truenas/webui/interfaces/ipmi.interface';
+import type { IpmiEvent } from '@shared/truenas/webui/interfaces/ipmi.interface';
 import { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import {
+import type {
     KmipConfig,
     KmipConfigUpdate,
 } from '@shared/truenas/webui/interfaces/kmip-config.interface';
@@ -58,22 +59,22 @@ import {
     KubernetesConfig,
     KubernetesConfigUpdate,
 } from '@shared/truenas/webui/interfaces/kubernetes-config.interface';
-import {
+import type {
     LdapConfig,
     LdapConfigUpdate,
 } from '@shared/truenas/webui/interfaces/ldap-config.interface';
-import {
+import type {
     MailConfigUpdate,
     SendMailParams,
 } from '@shared/truenas/webui/interfaces/mail-config.interface';
-import { PoolExportParams } from '@shared/truenas/webui/interfaces/pool-export.interface';
-import {
+import type { PoolExportParams } from '@shared/truenas/webui/interfaces/pool-export.interface';
+import type {
     PoolFindResult,
     PoolImportParams,
 } from '@shared/truenas/webui/interfaces/pool-import.interface';
-import { PoolRemoveParams } from '@shared/truenas/webui/interfaces/pool-remove.interface';
-import { PoolScrubTaskParams } from '@shared/truenas/webui/interfaces/pool-scrub.interface';
-import {
+import type { PoolRemoveParams } from '@shared/truenas/webui/interfaces/pool-remove.interface';
+import type { PoolScrubTaskParams } from '@shared/truenas/webui/interfaces/pool-scrub.interface';
+import type {
     CreatePool,
     Pool,
     PoolAttachParams,
@@ -81,20 +82,20 @@ import {
     PoolReplaceParams,
     UpdatePool,
 } from '@shared/truenas/webui/interfaces/pool.interface';
-import { DiskWipeParams } from '@shared/truenas/webui/interfaces/storage.interface';
-import {
+import type { DiskWipeParams } from '@shared/truenas/webui/interfaces/storage.interface';
+import type {
     SystemDatasetConfig,
     SystemDatasetUpdate,
 } from '@shared/truenas/webui/interfaces/system-dataset-config.interface';
-import { SystemSecurityConfig } from '@shared/truenas/webui/interfaces/system-security-config.interface';
-import { UpdateParams } from '@shared/truenas/webui/interfaces/system-update.interface';
-import {
+import type { SystemSecurityConfig } from '@shared/truenas/webui/interfaces/system-security-config.interface';
+import type { UpdateParams } from '@shared/truenas/webui/interfaces/system-update.interface';
+import type {
     Tunable,
     TunableCreate,
     TunableUpdate,
 } from '@shared/truenas/webui/interfaces/tunable.interface';
-import { VmStopParams } from '@shared/truenas/webui/interfaces/virtual-machine.interface';
-import {
+import type { VmStopParams } from '@shared/truenas/webui/interfaces/virtual-machine.interface';
+import type {
     App,
     AppCreate,
     AppDeleteParams,
@@ -191,8 +192,8 @@ export interface ApiJobDirectory {
     // KMIP
     'kmip.update': { params: [KmipConfigUpdate]; response: KmipConfig };
 
-    // Kubernetes
-    'kubernetes.update': { params: [Partial<KubernetesConfigUpdate>]; response: KubernetesConfig };
+     // Docker
+    'docker.update': { params: [DockerConfigUpdate]; response: DockerConfig };
 
     // LDAP
     'ldap.update': { params: [LdapConfigUpdate]; response: LdapConfig };
