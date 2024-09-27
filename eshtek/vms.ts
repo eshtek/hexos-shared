@@ -153,10 +153,6 @@ export interface VMBasics {
     settings?: VMSettings;
 }
 
-export interface VMListing extends VMBasics {
-    suggested?: boolean;
-    type: VMType;
-}
 
 export interface VMInfo extends VMBasics {
     id: string;
