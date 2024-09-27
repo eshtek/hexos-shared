@@ -112,11 +112,6 @@ export const vMBasicsSchema = z.object({
   settings: vMSettingsSchema.optional(),
 });
 
-export const vMListingSchema = vMBasicsSchema.extend({
-  suggested: z.boolean().optional(),
-  type: vMTypeSchema,
-});
-
 export const vMInfoSchema = vMBasicsSchema.extend({
   id: z.string(),
   status: vMStatusSchema,
