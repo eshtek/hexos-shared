@@ -38,4 +38,5 @@ export interface DDPClientMeta {
     wizard?: Wizard;
     method_data: Data[];
     misc_data: Data[];
+    userId?: string;
 }
