@@ -1,8 +1,4 @@
-import { AppStatus } from '../truenas/webui/enums/app-status';
-import { ChartReleaseStatus } from '../truenas/webui/enums/chart-release-status.enum';
-import type { ApiEventTyped } from '../truenas/webui/interfaces/api-message.interface';
-import type { ChartRelease } from '../truenas/webui/interfaces/chart-release.interface';
-import type { ServerFolder } from './server';
+import { ServerFolder, ServerPool, ServerStorageIcon } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
 import { sub, formatDistance } from 'date-fns';
 
@@ -137,6 +133,24 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
 };
 
 /**
+ * Gets the icon for a pool
+ * @param {ServerPool} pool - The server pool.
+ * @returns {ServerFolderIcons} - Returns the icon for the pool.
+ */
+export const getPoolIcon = (pool: ServerPool): ServerStorageIcon => {
+    switch (pool.disks_type) {
+        case DiskType.Hdd:
+            return ServerStorageIcon.HDD;
+        case DiskType.Ssd:
+            return ServerStorageIcon.SSD;
+        case DiskType.Nvme:
+            return ServerStorageIcon.NVME;
+        default:
+            return ServerStorageIcon.HDD;
+    }
+};
+
+/**
  * Returns the correct VMIcons based on the VM type.
  * @param vm - The virtual machine object, which can be of type VMInfo, VMInfoDetailed, or VMListing.
  * @returns The corresponding VMIcons based on the VM type.
@@ -147,7 +161,7 @@ export function getVMIcon(vm: VMType | VMInfo | VMInfoDetailed | VMListing | und
 
     if (typeof vm === 'string') {
         // vm is of type VMType
-        vmType = vm;
+        vmType = vm as VMType;
     } else if ('type' in vm) {
         // vm is of type VMListing
         vmType = vm.type;
@@ -301,9 +315,14 @@ export const deserialize = (val: string | object | undefined): any => {
 import type { ZodString, ZodTypeAny, ZodUnion } from 'zod';
 import { z } from 'zod';
 import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
-import type { VMInfo, VMInfoDetailed, VMListing} from './vms';
+import type { VMInfo, VMInfoDetailed, VMListing } from './vms';
 import { VMIcons, VMType } from './vms';
-import type { PreferenceLocation, PreferenceLocationId, PreferenceLocationTree } from './preferences';
+import type {
+    PreferenceLocation,
+    PreferenceLocationId,
+    PreferenceLocationTree,
+} from './preferences';
+import { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 /**
  * Utility function to create a serialized union schema
@@ -516,14 +535,13 @@ export function getStepSize(
     });
 }
 
-
 /**
  * Converts flat preferences locations into a hierarchical structure.
  * @param locations Record<PreferenceLocationId, PreferenceLocation>
  * @returns Tree structure of locations for easier rendering
  */
 export const buildLocationHierarchy = (
-    locations: Record<PreferenceLocationId, PreferenceLocation>
+    locations: Record<PreferenceLocationId, PreferenceLocation>,
 ): PreferenceLocationTree[] => {
     // Map of parentId (string or 'root' for undefined) to its children
     const groupedByParent: Record<string, PreferenceLocationTree[]> = {};
