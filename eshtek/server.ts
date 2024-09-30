@@ -91,12 +91,15 @@ export enum ServerPoolError {
     POOL_OFFLINE = 'POOL_OFFLINE',
 }
 
-export interface ServerPool {
-    icon: ServerStorageIcon;
+export interface ServerPoolBasics {
     type: ServerPoolType,
-    label: string;
-    description?: string;
-    status: string;
+    disks_type: DiskType;
+    name: string;
+}
+
+
+export interface ServerPool extends ServerPoolBasics {
+    path: string;
     errors?: ServerPoolError[];
     useable_storage?: string;
     healthy?: boolean;
@@ -105,9 +108,11 @@ export interface ServerPool {
     used_percentage?: number;
     drives: ServerDrive[];
 }
+
+
 export interface ServerStorage {
     pools: ServerPool[];
-    unassigned: ServerPool;
+    unassigned: ServerDrive[];
 }
 
 export interface Servers {
