@@ -147,6 +147,12 @@ const vmPassthroughDeviceChoiceSchema = z.any();
 
 const vmUsbPassthroughDeviceChoiceSchema = z.any();
 
+export const serverPoolBasicsSchema = z.object({
+  type: serverPoolTypeSchema,
+  disks_type: diskTypeSchema,
+  name: z.string(),
+});
+
 export const serverDriveSchema = z.object({
   details: z.string(),
   model: z.string(),
@@ -212,12 +218,8 @@ export const serverSystemSchema = serverStatusBasicsSchema.extend({
   data: z.array(serverSystemDataSchema).optional(),
 });
 
-export const serverPoolSchema = z.object({
-  icon: serverStorageIconSchema,
-  type: serverPoolTypeSchema,
-  label: z.string(),
-  description: z.string().optional(),
-  status: z.string(),
+export const serverPoolSchema = serverPoolBasicsSchema.extend({
+  path: z.string(),
   errors: z.array(serverPoolErrorSchema).optional(),
   useable_storage: z.string().optional(),
   healthy: z.boolean().optional(),
@@ -229,7 +231,7 @@ export const serverPoolSchema = z.object({
 
 export const serverStorageSchema = z.object({
   pools: z.array(serverPoolSchema),
-  unassigned: serverPoolSchema,
+  unassigned: z.array(serverDriveSchema),
 });
 
 export const serverFolderSchema = z.object({
