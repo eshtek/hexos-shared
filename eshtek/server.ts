@@ -169,8 +169,10 @@ export enum ServerDriveLabel {
     NVME_DRIVE = 'NVMe drive',
 }
 
-export enum ServerDriveError {
+export enum ServerDriveWarning {
     SMR = 'SMR',
+}
+export enum ServerDriveError {
     SMART = 'SMART',
 }
 
@@ -186,6 +188,7 @@ export interface ServerDrive {
     icon: ServerStorageIcon;
     statusIcon?: ServerStatusIcons;
     status?: TopologyItemStatus;
+    warnings?: ServerDriveWarning[];
     errors?: ServerDriveError[];
     existingData?: boolean;
     temperature?: number;
