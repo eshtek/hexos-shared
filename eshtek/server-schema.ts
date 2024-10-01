@@ -108,7 +108,6 @@ export const serverMemoryInfoSchema = z.object({
 
 export const serverNetworkInterfaceSchema = z.object({
   id: z.string(),
-  icon: z.string(),
   name: z.string(),
   in: z.number(),
   out: z.number(),
@@ -116,7 +115,6 @@ export const serverNetworkInterfaceSchema = z.object({
 
 export const serverNetworkInterfaceDetailedSchema =
   serverNetworkInterfaceSchema.extend({
-    icon: z.string().optional(),
     data: z.array(z.array(z.number())),
   });
 

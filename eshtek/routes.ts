@@ -1,4 +1,4 @@
-import type { ServerFolder, ServerPool, ServerUser, ServerUserType } from './server';
+import type { ServerPool, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
 
 export type ResponseSuccess<T> = {
@@ -12,6 +12,25 @@ export type ResponseError<T> = {
     data?: T;
 };
 export type Response<T> = ResponseSuccess<T> | ResponseError<T>;
+
+export interface PaginationMeta {
+    total_items: number;
+    total_pages: number;
+    current_page: number;
+    page_size: number;
+}
+
+export interface PaginationResult<T> {
+    total: number;
+    data: T[];
+}
+
+export interface ResponsePaginatedSuccess<T> {
+    success: true;
+    data: T[];
+    meta: PaginationMeta;
+}
+export type ResponsePaginated<T> = ResponsePaginatedSuccess<T> | ResponseError<T>;
 
 export interface RequestAuth {
     email: string;

@@ -4,20 +4,31 @@ import type { ApiTimestamp } from '@shared/truenas/webui/interfaces/api-date.int
 import type { ApiJobMethod } from '@shared/truenas/webui/interfaces/api/api-job-directory.interface';
 import type { JobProgress } from '@shared/truenas/webui/interfaces/job.interface';
 
-
-export interface NotificationAlert {
-  datetime: ApiTimestamp;
-  dismissed: boolean;
-  formatted: string;
-  id: string;
-  last_occurrence: ApiTimestamp;
-  level: AlertLevel;
-  source: string;
-  text: string;
-  uuid: string;
+export enum NotificationType {
+    Alert = 'alert',
+    Job = 'job',
 }
 
-export interface NoticationJob {
+export interface Notification {
+    id: string | number;
+    datetime: ApiTimestamp;
+    type: NotificationType;
+    data: NotificationAlert | NotificationJob;
+  }
+
+export interface NotificationAlert {
+    datetime: ApiTimestamp;
+    dismissed: boolean;
+    formatted: string;
+    id: string;
+    last_occurrence: ApiTimestamp;
+    level: AlertLevel;
+    source: string;
+    text: string;
+    uuid: string;
+}
+
+export interface NotificationJob {
     abortable: boolean;
     description: string;
     error: string;
