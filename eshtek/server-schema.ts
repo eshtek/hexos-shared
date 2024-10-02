@@ -13,6 +13,7 @@ import {
   ServerAccess,
   FileAccess,
   ServerDriveLabel,
+  ServerDriveWarning,
   ServerDriveError,
   ServerStatusType,
   ServerHealthError,
@@ -72,6 +73,8 @@ export const serverFolderUserSchema = z.object({
 });
 
 export const serverDriveLabelSchema = z.nativeEnum(ServerDriveLabel);
+
+export const serverDriveWarningSchema = z.nativeEnum(ServerDriveWarning);
 
 export const serverDriveErrorSchema = z.nativeEnum(ServerDriveError);
 
@@ -163,6 +166,7 @@ export const serverDriveSchema = z.object({
   icon: serverStorageIconSchema,
   statusIcon: serverStatusIconsSchema.optional(),
   status: topologyItemStatusSchema.optional(),
+  warnings: z.array(serverDriveWarningSchema).optional(),
   errors: z.array(serverDriveErrorSchema).optional(),
   existingData: z.boolean().optional(),
   temperature: z.number().optional(),
