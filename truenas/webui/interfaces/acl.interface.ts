@@ -1,5 +1,5 @@
-import { AclType } from '@shared/truenas/webui/enums/acl-type.enum';
-import {
+import type { AclType } from '@shared/truenas/webui/enums/acl-type.enum';
+import type {
     NfsAclTag,
     NfsAclType,
     NfsAdvancedFlag,
@@ -7,8 +7,8 @@ import {
     NfsBasicFlag,
     NfsBasicPermission,
 } from '@shared/truenas/webui/enums/nfs-acl.enum';
-import { PosixAclTag, PosixPermission } from '@shared/truenas/webui/enums/posix-acl.enum';
-import { QueryFilter, QueryOptions } from '@shared/truenas/webui/interfaces/query-api.interface';
+import type { PosixAclTag, PosixPermission } from '@shared/truenas/webui/enums/posix-acl.enum';
+import type { QueryFilter, QueryOptions } from '@shared/truenas/webui/interfaces/query-api.interface';
 
 export type Acl = NfsAcl | PosixAcl;
 
@@ -106,6 +106,7 @@ export interface SetAclOptions {
     recursive?: boolean;
     traverse?: boolean;
     canonicalize?: boolean;
+    validate_effective_acl?: boolean;
 }
 
 export interface SetAcl {
