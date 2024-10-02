@@ -9,19 +9,22 @@ export enum NotificationType {
     Job = 'job',
 }
 
-export interface Notification {
+export interface NotificationBasics<K extends NotificationType, T> {
     id: string | number;
     datetime: ApiTimestamp;
-    type: NotificationType;
-    data: NotificationAlert | NotificationJob;
-  }
+    type: K;
+    data: T;
+}
+export type Notification =
+    | NotificationBasics<NotificationType.Alert, NotificationAlert>
+    | NotificationBasics<NotificationType.Job, NotificationJob>;
 
 export interface NotificationAlert {
-    datetime: ApiTimestamp;
+    datetime: number;
     dismissed: boolean;
     formatted: string;
     id: string;
-    last_occurrence: ApiTimestamp;
+    last_occurrence: number;
     level: AlertLevel;
     source: string;
     text: string;
@@ -38,6 +41,6 @@ export interface NotificationJob {
     method: ApiJobMethod;
     progress: JobProgress;
     state: JobState;
-    time_finished: ApiTimestamp | null;
-    time_started: ApiTimestamp;
+    time_finished: number | null;
+    time_started: number;
 }
