@@ -264,9 +264,18 @@ export interface ServerMemoryInfo {
     data: number[][];
 }
 
+export enum ServerNetworkInterfaceMode {
+    DHCP = 'DHCP', 
+    MANUAL = 'MANUAL',
+}
+
 export interface ServerNetworkInterface {
     id: string;
     name: string;
+    description?: string;
+    ipv4?: string;
+    ipv6?: string;
+    configuration?: ServerNetworkInterfaceMode;
     in: number;
     out: number;
 }
