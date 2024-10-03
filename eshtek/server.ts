@@ -53,11 +53,13 @@ export enum ServerStorageIcon {
 }
 export enum ServerStatusSupported {
     SUPPORTED = 'Supported',
-    UNSUPPORTED = 'Unsupported',
+    WARNING = 'Warning',
+    ERROR = 'Error',
 }
 export enum ServerStatusIcons {
     CHECK = 'status/check',
     WARNING = 'status/warning',
+    ERROR = 'status/error',
 }
 export enum ServerFolderIcons {
     HIDDEN = 'files/folder-hidden',
