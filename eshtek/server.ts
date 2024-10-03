@@ -272,15 +272,20 @@ export enum ServerNetworkInterfaceMode {
 export interface ServerNetworkInterface {
     id: string;
     name: string;
-    description?: string;
-    ipv4?: string;
-    ipv6?: string;
-    configuration?: ServerNetworkInterfaceMode;
     in: number;
     out: number;
 }
 export interface ServerNetworkInterfaceDetailed extends ServerNetworkInterface {
     data: number[][];
+}
+export interface ServerNetworkInterfaceConfiguration {
+    ipv4: string;
+    ipv6: string;
+    description: string;
+    mode: ServerNetworkInterfaceMode
+}
+export interface ServerNetworkInterfaceWithConfiguration extends ServerNetworkInterface {
+    configuration: ServerNetworkInterfaceConfiguration
 }
 
 export interface ServerProcessorInfo {
