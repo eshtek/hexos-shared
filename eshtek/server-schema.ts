@@ -16,6 +16,7 @@ import {
   ServerDriveWarning,
   ServerDriveError,
   ServerStatusType,
+  ServerNetworkInterfaceMode,
   ServerHealthError,
   ServerActions,
 } from "./server";
@@ -109,6 +110,10 @@ export const serverMemoryInfoSchema = z.object({
   data: z.array(z.array(z.number())),
 });
 
+export const serverNetworkInterfaceModeSchema = z.nativeEnum(
+  ServerNetworkInterfaceMode,
+);
+
 export const serverNetworkInterfaceSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -119,6 +124,18 @@ export const serverNetworkInterfaceSchema = z.object({
 export const serverNetworkInterfaceDetailedSchema =
   serverNetworkInterfaceSchema.extend({
     data: z.array(z.array(z.number())),
+  });
+
+export const serverNetworkInterfaceConfigurationSchema = z.object({
+  ipv4: z.string(),
+  ipv6: z.string(),
+  description: z.string(),
+  mode: serverNetworkInterfaceModeSchema,
+});
+
+export const serverNetworkInterfaceWithConfigurationSchema =
+  serverNetworkInterfaceSchema.extend({
+    configuration: serverNetworkInterfaceConfigurationSchema,
   });
 
 export const serverProcessorInfoSchema = z.object({
