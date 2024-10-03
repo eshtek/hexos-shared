@@ -20,6 +20,11 @@ export interface PaginationMeta {
     page_size: number;
 }
 
+export interface PaginationRequest {
+    page: number;
+    page_size: number;
+}
+
 export interface PaginationResult<T> {
     total: number;
     data: T[];

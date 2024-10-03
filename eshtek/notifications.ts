@@ -11,7 +11,7 @@ export enum NotificationType {
 
 export interface NotificationBasics<K extends NotificationType, T> {
     id: string | number;
-    datetime: ApiTimestamp;
+    datetime: number;
     type: K;
     data: T;
 }
