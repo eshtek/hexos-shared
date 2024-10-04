@@ -1,4 +1,5 @@
 import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
+import type { PoolStatus } from '@shared/truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
 
@@ -105,7 +106,8 @@ export interface ServerPool extends ServerPoolBasics {
     errors?: ServerPoolError[];
     useable_storage?: string;
     healthy?: boolean;
-    healthDetails?: string;
+    status: PoolStatus;
+    status_detail: string;
     used_storage?: string;
     used_percentage?: number;
     drives: ServerDrive[];
@@ -299,6 +301,7 @@ export interface ServerProcessorInfo {
 
 export enum ServerHealthError {
     SYSTEM_TEMPERATURES = 'SYSTEM_TEMPERATURES',
+    DRIVE_ERRORS_PRESENT = 'DRIVE_ERRORS_PRESENT',
 }
 
 export enum ServerActions {
@@ -310,7 +313,7 @@ export enum ServerActions {
 export interface ServerHealth {
     healthy: boolean;
     errors: ServerHealthError[];
-    actionsAvailable: ServerActions[];
+    actions_available: ServerActions[];
     /*
     TODO : Q3 objective
     overview: string;
