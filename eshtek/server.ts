@@ -92,6 +92,7 @@ export enum ServerPoolType {
 
 export enum ServerPoolError {
     POOL_OFFLINE = 'POOL_OFFLINE',
+    UNKNOWN = 'UNKNOWN',
 }
 
 export interface ServerPoolBasics {
