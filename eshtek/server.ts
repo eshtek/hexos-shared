@@ -302,6 +302,7 @@ export interface ServerProcessorInfo {
 export enum ServerHealthError {
     SYSTEM_TEMPERATURES = 'SYSTEM_TEMPERATURES',
     DRIVE_ERRORS_PRESENT = 'DRIVE_ERRORS_PRESENT',
+    POOL_ERRORS_PRESENT = 'POOL_ERRORS_PRESENT',
 }
 
 export enum ServerActions {
