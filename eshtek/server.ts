@@ -201,6 +201,11 @@ export interface ServerDrive {
     healthDetails?: TopologyItemStatus;
 }
 
+export interface ServerDrivesGroupedBySize {
+    [key: string]: ServerDrive[];
+}
+
+
 export enum ServerStatusType {
     SYSTEM_OVERVIEW = 'System Overview',
     SYSTEM = 'System',
