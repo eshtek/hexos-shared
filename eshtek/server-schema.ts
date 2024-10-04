@@ -154,10 +154,12 @@ export const serverActionsSchema = z.nativeEnum(ServerActions);
 export const serverHealthSchema = z.object({
   healthy: z.boolean(),
   errors: z.array(serverHealthErrorSchema),
-  actionsAvailable: z.array(serverActionsSchema),
+  actions_available: z.array(serverActionsSchema),
 });
 
 const diskTypeSchema = z.any();
+
+const poolStatusSchema = z.any();
 
 const topologyItemStatusSchema = z.any();
 
@@ -242,7 +244,8 @@ export const serverPoolSchema = serverPoolBasicsSchema.extend({
   errors: z.array(serverPoolErrorSchema).optional(),
   useable_storage: z.string().optional(),
   healthy: z.boolean().optional(),
-  healthDetails: z.string().optional(),
+  status: poolStatusSchema,
+  status_detail: z.string(),
   used_storage: z.string().optional(),
   used_percentage: z.number().optional(),
   drives: z.array(serverDriveSchema),
