@@ -121,11 +121,6 @@ export const serverNetworkInterfaceSchema = z.object({
   out: z.number(),
 });
 
-export const serverNetworkInterfaceDetailedSchema =
-  serverNetworkInterfaceSchema.extend({
-    data: z.array(z.array(z.number())),
-  });
-
 export const serverNetworkInterfaceConfigurationSchema = z.object({
   ipv4: z.string(),
   ipv6: z.string(),
@@ -197,6 +192,10 @@ export const serversSchema = z.object({
   configured: z.array(serverRecordSchema),
 });
 
+export const serverDrivesGroupedBySizeSchema = z.record(
+  z.array(serverDriveSchema),
+);
+
 export const serverSystemDataStorageSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.STORAGE),
   data: z.object({
@@ -238,6 +237,12 @@ export const serverSystemSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
   data: z.array(serverSystemDataSchema).optional(),
 });
+
+export const serverNetworkInterfaceDetailedSchema =
+  serverNetworkInterfaceSchema.extend({
+    configuration: serverNetworkInterfaceConfigurationSchema,
+    data: z.array(z.array(z.number())),
+  });
 
 export const serverPoolSchema = serverPoolBasicsSchema.extend({
   path: z.string(),

@@ -285,6 +285,7 @@ export interface ServerNetworkInterface {
     out: number;
 }
 export interface ServerNetworkInterfaceDetailed extends ServerNetworkInterface {
+    configuration: ServerNetworkInterfaceConfiguration;
     data: number[][];
 }
 export interface ServerNetworkInterfaceConfiguration {
