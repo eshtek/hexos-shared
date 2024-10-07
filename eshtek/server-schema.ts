@@ -131,6 +131,12 @@ export const serverNetworkInterfaceConfigurationSchema = z.object({
 export const serverNetworkInterfaceWithConfigurationSchema =
   serverNetworkInterfaceSchema.extend({
     configuration: serverNetworkInterfaceConfigurationSchema,
+    supported_media: z.array(z.unknown()),
+  });
+
+export const serverNetworkInterfaceDetailedSchema =
+  serverNetworkInterfaceWithConfigurationSchema.extend({
+    data: z.array(z.array(z.number())),
   });
 
 export const serverProcessorInfoSchema = z.object({
@@ -237,12 +243,6 @@ export const serverSystemSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
   data: z.array(serverSystemDataSchema).optional(),
 });
-
-export const serverNetworkInterfaceDetailedSchema =
-  serverNetworkInterfaceSchema.extend({
-    configuration: serverNetworkInterfaceConfigurationSchema,
-    data: z.array(z.array(z.number())),
-  });
 
 export const serverPoolSchema = serverPoolBasicsSchema.extend({
   path: z.string(),

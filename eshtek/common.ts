@@ -213,8 +213,8 @@ const mediaTypeToIconMap: Record<string, string> = {
  * @param {string[]} supportedMedia - An array of supported media types.
  * @returns {string} - Returns the icon for the maximum supported media speed.
  */
-export const getMaxSpeedIcon = (supportedMedia: string[]): string => {
-    const last = supportedMedia[supportedMedia.length - 1];
+export const getMaxSpeedIcon = (supportedMedia?: string[]): string => {
+    const last = supportedMedia?.length ? supportedMedia[supportedMedia.length - 1] : undefined;
     const unknown = 'networking/ethernet';
     return last ? mediaTypeToIconMap[last] ?? unknown : unknown;
 };

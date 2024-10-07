@@ -284,10 +284,6 @@ export interface ServerNetworkInterface {
     in: number;
     out: number;
 }
-export interface ServerNetworkInterfaceDetailed extends ServerNetworkInterface {
-    configuration: ServerNetworkInterfaceConfiguration;
-    data: number[][];
-}
 export interface ServerNetworkInterfaceConfiguration {
     ipv4: string;
     ipv6: string;
@@ -295,7 +291,11 @@ export interface ServerNetworkInterfaceConfiguration {
     mode: ServerNetworkInterfaceMode
 }
 export interface ServerNetworkInterfaceWithConfiguration extends ServerNetworkInterface {
-    configuration: ServerNetworkInterfaceConfiguration
+    configuration: ServerNetworkInterfaceConfiguration;
+    supported_media: unknown[];
+}
+export interface ServerNetworkInterfaceDetailed extends ServerNetworkInterfaceWithConfiguration {
+    data: number[][];
 }
 
 export interface ServerProcessorInfo {
