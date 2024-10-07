@@ -4,12 +4,7 @@ import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
 
 export const cleanCPUModel = (model: string): string => {
-    return model
-        .replace('Processor', '')
-        .replace('CPU', '')
-        .replace('(TM)', '™')
-        .replace('(C)', '©')
-        .replace('(R)', '®');
+    return model.replace('Processor', '').replace('CPU', '').replace('(TM)', '™').replace('(C)', '©').replace('(R)', '®');
 };
 
 export const cleanVendor = (vendor: string): string => {
@@ -28,9 +23,7 @@ export const cleanVendor = (vendor: string): string => {
 };
 
 export const cleanProduct = (product: string): string => {
-    return product
-        .replace(' PCI Express', ' PCIe')
-        .replace(' High Definition ', ' HD ');
+    return product.replace(' PCI Express', ' PCIe').replace(' High Definition ', ' HD ');
 };
 
 export enum ServerUserType {
@@ -51,6 +44,7 @@ export enum ServerStorageIcon {
     SSD = 'storage/ssd',
     HDD = 'storage/hdd',
     USB_KEY = 'storage/usb-key',
+    REMOVED = 'storage/missing',
 }
 export enum ServerStatusSupported {
     SUPPORTED = 'Supported',
@@ -96,11 +90,10 @@ export enum ServerPoolError {
 }
 
 export interface ServerPoolBasics {
-    type: ServerPoolType,
+    type: ServerPoolType;
     disks_type: DiskType;
     name: string;
 }
-
 
 export interface ServerPool extends ServerPoolBasics {
     path: string;
@@ -113,7 +106,6 @@ export interface ServerPool extends ServerPoolBasics {
     used_percentage?: number;
     drives: ServerDrive[];
 }
-
 
 export interface ServerStorage {
     pools: ServerPool[];
@@ -205,7 +197,6 @@ export interface ServerDrivesGroupedBySize {
     [key: string]: ServerDrive[];
 }
 
-
 export enum ServerStatusType {
     SYSTEM_OVERVIEW = 'System Overview',
     SYSTEM = 'System',
@@ -238,10 +229,7 @@ export interface ServerSystemDataEmpty extends ServerStatusBasics {
     type: ServerStatusType.VIRTUALIZATION | ServerStatusType.APPLICATIONS;
 }
 
-export type ServerSystemData =
-    | ServerSystemDataSystem
-    | ServerSystemDataStorage
-    | ServerSystemDataEmpty; // TODO: Add more here if necessary not sure if that will be or this can be consolidated in some way yet
+export type ServerSystemData = ServerSystemDataSystem | ServerSystemDataStorage | ServerSystemDataEmpty; // TODO: Add more here if necessary not sure if that will be or this can be consolidated in some way yet
 
 export interface ServerSystemDevice {
     name: string;
@@ -274,7 +262,7 @@ export interface ServerMemoryInfo {
 }
 
 export enum ServerNetworkInterfaceMode {
-    DHCP = 'DHCP', 
+    DHCP = 'DHCP',
     MANUAL = 'MANUAL',
 }
 
@@ -288,7 +276,7 @@ export interface ServerNetworkInterfaceConfiguration {
     ipv4: string;
     ipv6: string;
     description: string;
-    mode: ServerNetworkInterfaceMode
+    mode: ServerNetworkInterfaceMode;
 }
 export interface ServerNetworkInterfaceWithConfiguration extends ServerNetworkInterface {
     configuration: ServerNetworkInterfaceConfiguration;
@@ -314,8 +302,8 @@ export enum ServerHealthError {
 }
 
 export enum ServerActions {
-    POOL_EXPAND = 'POOL_EXPAND', 
-    DRIVE_REPLACE = 'DRIVE_REPLACE', 
+    POOL_EXPAND = 'POOL_EXPAND',
+    DRIVE_REPLACE = 'DRIVE_REPLACE',
     SYSTEM_UPDATE = 'SYSTEM_UPDATE',
 }
 
