@@ -96,6 +96,8 @@ export interface ServerPoolBasics {
 }
 
 export interface ServerPool extends ServerPoolBasics {
+    id: number;
+    guid: string;
     path: string;
     errors?: ServerPoolError[];
     useable_storage?: string;
@@ -175,6 +177,7 @@ export enum ServerDriveError {
 }
 
 export interface ServerDrive {
+    guid: string;
     details: string;
     model: string;
     serial: string;

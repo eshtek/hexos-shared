@@ -1,4 +1,5 @@
-import { ServerFolder, ServerPool, ServerStorageIcon } from './server';
+import type { ServerFolder, ServerPool} from './server';
+import { ServerStorageIcon } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
 import { sub, formatDistance } from 'date-fns';
 
@@ -155,7 +156,7 @@ export const getPoolIcon = (pool: ServerPool): ServerStorageIcon => {
  * @param vm - The virtual machine object, which can be of type VMInfo, VMInfoDetailed, or VMListing.
  * @returns The corresponding VMIcons based on the VM type.
  */
-export function getVMIcon(vm: VMType | VMInfo | VMInfoDetailed | VMListing | undefined): VMIcons {
+export function getVMIcon(vm: VMType | VMInfo | VMInfoDetailed | undefined): VMIcons {
     let vmType: VMType;
     if (!vm) return VMIcons.Custom;
 
