@@ -1,4 +1,5 @@
 import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
+import { NetworkInterfaceType } from '@shared/truenas/webui/enums/network-interface.enum';
 import type { PoolStatus } from '@shared/truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
@@ -272,6 +273,7 @@ export enum ServerNetworkInterfaceMode {
 export interface ServerNetworkInterface {
     id: string;
     name: string;
+    type: NetworkInterfaceType;
     in: number;
     out: number;
 }
