@@ -114,30 +114,12 @@ export const serverNetworkInterfaceModeSchema = z.nativeEnum(
   ServerNetworkInterfaceMode,
 );
 
-export const serverNetworkInterfaceSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  in: z.number(),
-  out: z.number(),
-});
-
 export const serverNetworkInterfaceConfigurationSchema = z.object({
   ipv4: z.string(),
   ipv6: z.string(),
   description: z.string(),
   mode: serverNetworkInterfaceModeSchema,
 });
-
-export const serverNetworkInterfaceWithConfigurationSchema =
-  serverNetworkInterfaceSchema.extend({
-    configuration: serverNetworkInterfaceConfigurationSchema,
-    supported_media: z.array(z.unknown()),
-  });
-
-export const serverNetworkInterfaceDetailedSchema =
-  serverNetworkInterfaceWithConfigurationSchema.extend({
-    data: z.array(z.array(z.number())),
-  });
 
 export const serverProcessorInfoSchema = z.object({
   base_clock: z.string(),
@@ -168,6 +150,8 @@ const vmPassthroughDeviceChoiceSchema = z.any();
 
 const vmUsbPassthroughDeviceChoiceSchema = z.any();
 
+const networkInterfaceTypeSchema = z.any();
+
 export const serverPoolBasicsSchema = z.object({
   type: serverPoolTypeSchema,
   disks_type: diskTypeSchema,
@@ -175,6 +159,7 @@ export const serverPoolBasicsSchema = z.object({
 });
 
 export const serverDriveSchema = z.object({
+  guid: z.string(),
   details: z.string(),
   model: z.string(),
   serial: z.string(),
@@ -244,7 +229,28 @@ export const serverSystemSchema = serverStatusBasicsSchema.extend({
   data: z.array(serverSystemDataSchema).optional(),
 });
 
+export const serverNetworkInterfaceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  type: networkInterfaceTypeSchema,
+  in: z.number(),
+  out: z.number(),
+});
+
+export const serverNetworkInterfaceWithConfigurationSchema =
+  serverNetworkInterfaceSchema.extend({
+    configuration: serverNetworkInterfaceConfigurationSchema,
+    supported_media: z.array(z.unknown()),
+  });
+
+export const serverNetworkInterfaceDetailedSchema =
+  serverNetworkInterfaceWithConfigurationSchema.extend({
+    data: z.array(z.array(z.number())),
+  });
+
 export const serverPoolSchema = serverPoolBasicsSchema.extend({
+  id: z.number(),
+  guid: z.string(),
   path: z.string(),
   errors: z.array(serverPoolErrorSchema).optional(),
   useable_storage: z.string().optional(),
