@@ -1,4 +1,4 @@
-import type { ServerFolder, ServerPool} from './server';
+import type { ServerFolder, ServerPool } from './server';
 import { ServerStorageIcon } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
 import { sub, formatDistance } from 'date-fns';
@@ -141,13 +141,13 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
 export const getPoolIcon = (pool: ServerPool): ServerStorageIcon => {
     switch (pool.disks_type) {
         case DiskType.Hdd:
-            return ServerStorageIcon.HDD;
+            return ServerStorageIcon.HDD_GROUP;
         case DiskType.Ssd:
-            return ServerStorageIcon.SSD;
+            return ServerStorageIcon.SSD_GROUP;
         case DiskType.Nvme:
-            return ServerStorageIcon.NVME;
+            return ServerStorageIcon.NVME_GROUP;
         default:
-            return ServerStorageIcon.HDD;
+            return ServerStorageIcon.HDD_GROUP;
     }
 };
 
@@ -229,8 +229,7 @@ export const isSystemFolder = (folder: ServerFolder): boolean => {
     if (folder.label.toLowerCase() === 'applications' && folder.access === ServerAccess.PRIVATE) {
         return true;
     } else if (
-        (folder.label.toLowerCase() === 'virtualization' ||
-            folder.label.toLowerCase() === 'ix-virtualization') &&
+        (folder.label.toLowerCase() === 'virtualization' || folder.label.toLowerCase() === 'ix-virtualization') &&
         folder.access === ServerAccess.PRIVATE
     ) {
         return true;
@@ -318,11 +317,7 @@ import { z } from 'zod';
 import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
 import type { VMInfo, VMInfoDetailed, VMListing } from './vms';
 import { VMIcons, VMType } from './vms';
-import type {
-    PreferenceLocation,
-    PreferenceLocationId,
-    PreferenceLocationTree,
-} from './preferences';
+import type { PreferenceLocation, PreferenceLocationId, PreferenceLocationTree } from './preferences';
 import { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 /**
@@ -330,9 +325,7 @@ import { DiskType } from '../truenas/webui/enums/disk-type.enum';
  * @param {ZodTypeAny} schema - The schema to be used for validation and parsing
  * @returns {ZodUnion<[ZodString, ZodTypeAny]>} - A union schema that accepts both the original schema and its serialized (JSON string) form
  */
-export const createSerializedUnionSchema = (
-    schema: ZodTypeAny,
-): ZodUnion<[ZodString, ZodTypeAny]> => {
+export const createSerializedUnionSchema = (schema: ZodTypeAny): ZodUnion<[ZodString, ZodTypeAny]> => {
     // Schema to handle the serialized (JSON string) form of the data
     const serializedSchema = z.preprocess((str) => {
         // Attempt to parse the JSON string
@@ -418,9 +411,7 @@ export function debounce(func: () => void, wait: number) {
 export function celsiusToFahrenheit(celsius: number | string): number {
     const celsiusNum = typeof celsius === 'string' ? parseFloat(celsius) : celsius;
     if (isNaN(celsiusNum)) {
-        throw new Error(
-            'Invalid input: Temperature must be a number or a string representing a number',
-        );
+        throw new Error('Invalid input: Temperature must be a number or a string representing a number');
     }
     return (celsiusNum * 9) / 5 + 32;
 }
@@ -434,9 +425,7 @@ export function celsiusToFahrenheit(celsius: number | string): number {
 export function fahrenheitToCelsius(fahrenheit: number | string): number {
     const fahrenheitNum = typeof fahrenheit === 'string' ? parseFloat(fahrenheit) : fahrenheit;
     if (isNaN(fahrenheitNum)) {
-        throw new Error(
-            'Invalid input: Temperature must be a number or a string representing a number',
-        );
+        throw new Error('Invalid input: Temperature must be a number or a string representing a number');
     }
     return ((fahrenheitNum - 32) * 5) / 9;
 }
@@ -525,11 +514,7 @@ export function getHighestValue(data: number[][]): number {
  * @param acceptableSteps - An optional array of acceptable step sizes. Defaults to [1, 5, 10, 20, 25, 50, 100, 1000].
  * @returns The step size that is closest to the calculated raw step size and is a multiple of one of the acceptable step sizes.
  */
-export function getStepSize(
-    range: number,
-    steps: number = 10,
-    acceptableSteps: number[] = [1, 5, 10, 20, 25],
-): number {
+export function getStepSize(range: number, steps: number = 10, acceptableSteps: number[] = [1, 5, 10, 20, 25]): number {
     const rawStep = range / steps;
     return acceptableSteps.reduce((prev, curr) => {
         return Math.abs(curr - rawStep) < Math.abs(prev - rawStep) ? curr : prev;
@@ -541,9 +526,7 @@ export function getStepSize(
  * @param locations Record<PreferenceLocationId, PreferenceLocation>
  * @returns Tree structure of locations for easier rendering
  */
-export const buildLocationHierarchy = (
-    locations: Record<PreferenceLocationId, PreferenceLocation>,
-): PreferenceLocationTree[] => {
+export const buildLocationHierarchy = (locations: Record<PreferenceLocationId, PreferenceLocation>): PreferenceLocationTree[] => {
     // Map of parentId (string or 'root' for undefined) to its children
     const groupedByParent: Record<string, PreferenceLocationTree[]> = {};
 
