@@ -1,5 +1,5 @@
 import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
-import { NetworkInterfaceType } from '@shared/truenas/webui/enums/network-interface.enum';
+import type { NetworkInterfaceType } from '@shared/truenas/webui/enums/network-interface.enum';
 import type { PoolStatus } from '@shared/truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
@@ -89,6 +89,10 @@ export enum ServerPoolError {
     POOL_OFFLINE = 'POOL_OFFLINE',
     UNKNOWN = 'UNKNOWN',
 }
+export enum ServerPoolWarning {
+    POOL_IS_AT_OR_NEAR_CAPACITY = 'POOL_IS_AT_OR_NEAR_CAPACITY',
+}
+
 
 export interface ServerPoolBasics {
     type: ServerPoolType;
@@ -101,6 +105,7 @@ export interface ServerPool extends ServerPoolBasics {
     guid: string;
     path: string;
     errors?: ServerPoolError[];
+    warnings?: ServerPoolWarning[];
     useable_storage?: string;
     healthy?: boolean;
     status: PoolStatus;
@@ -305,6 +310,9 @@ export enum ServerHealthError {
     DRIVE_ERRORS_PRESENT = 'DRIVE_ERRORS_PRESENT',
     POOL_ERRORS_PRESENT = 'POOL_ERRORS_PRESENT',
 }
+export enum ServerHealthWarning {
+    ONE_OR_MORE_POOL_AT_OR_NEAR_CAPACITY = 'ONE_OR_MORE_POOL_AT_OR_NEAR_CAPACITY',
+}
 
 export enum ServerActions {
     POOL_EXPAND = 'POOL_EXPAND',
@@ -315,6 +323,7 @@ export enum ServerActions {
 export interface ServerHealth {
     healthy: boolean;
     errors: ServerHealthError[];
+    warnings: ServerHealthWarning[];
     actions_available: ServerActions[];
     /*
     TODO : Q3 objective
