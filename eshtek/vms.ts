@@ -1,15 +1,8 @@
-import type {
-    VmDevice,
-    VmDisplayDevice,
-} from '@shared/truenas/webui/interfaces/vm-device.interface';
-import type {
-    ServerSystemAudio,
-    ServerSystemGPU,
-    ServerSystemPCI,
-    ServerSystemUSB,
-} from './server';
+import type { VmDevice, VmDisplayDevice } from '@shared/truenas/webui/interfaces/vm-device.interface';
+import type { ServerSystemAudio, ServerSystemGPU, ServerSystemPCI, ServerSystemUSB } from './server';
 
 export enum VMCreateType {
+    Generic = 'generic',
     VirtualPC = 'virtual_pc',
     VirtualServer = 'virtual_server',
     ExistingVM = 'existing_vm',
@@ -95,10 +88,7 @@ export interface VMSnapshotEventSettings {
     events: VMEventTypes[];
 }
 
-export type VMSnapshotSettings =
-    | VMSnapshotManualSettings
-    | VMSnapshotScheduledSettings
-    | VMSnapshotEventSettings;
+export type VMSnapshotSettings = VMSnapshotManualSettings | VMSnapshotScheduledSettings | VMSnapshotEventSettings;
 
 export interface VMInstallationMedia {
     path: string;
@@ -152,7 +142,6 @@ export interface VMBasics {
     description: string;
     settings?: VMSettings;
 }
-
 
 export interface VMInfo extends VMBasics {
     id: string;

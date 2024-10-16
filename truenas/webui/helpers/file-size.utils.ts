@@ -7,26 +7,15 @@ export function normalizeFileSize(
     base: 10 | 2 = 2,
     increment?: number,
 ): [formatted: number, unit: string, increment: number] {
-    return base === 10
-        ? normalizeFileSizeBase10(value, baseUnit, increment)
-        : normalizeFileSizeBase2(value, baseUnit, increment);
+    return base === 10 ? normalizeFileSizeBase10(value, baseUnit, increment) : normalizeFileSizeBase2(value, baseUnit, increment);
 }
 
-export function buildNormalizedFileSize(
-    value: number,
-    baseUnit: 'b' | 'B' = 'B',
-    base: 10 | 2 = 2,
-    providedIncrement?: number,
-): string {
+export function buildNormalizedFileSize(value: number, baseUnit: 'b' | 'B' = 'B', base: 10 | 2 = 2, providedIncrement?: number): string {
     const [formatted, unit] = normalizeFileSize(value, baseUnit, base, providedIncrement);
     return `${formatted} ${unit}`;
 }
 
-function normalizeFileSizeBase2(
-    value: number,
-    baseUnit: 'b' | 'B',
-    providedIncrement?: number,
-): [formatted: number, unit: string, increment: number] {
+function normalizeFileSizeBase2(value: number, baseUnit: 'b' | 'B', providedIncrement?: number): [formatted: number, unit: string, increment: number] {
     let formatted = value;
     let increment = providedIncrement ?? 1;
     if (providedIncrement) {
@@ -52,11 +41,7 @@ function normalizeFileSizeBase2(
     }
 }
 
-function normalizeFileSizeBase10(
-    value: number,
-    baseUnit: 'b' | 'B',
-    providedIncrement?: number,
-): [formatted: number, unit: string, increment: number] {
+function normalizeFileSizeBase10(value: number, baseUnit: 'b' | 'B', providedIncrement?: number): [formatted: number, unit: string, increment: number] {
     let formatted = value;
     let increment = providedIncrement ?? 1;
     if (providedIncrement) {
