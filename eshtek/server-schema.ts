@@ -10,6 +10,7 @@ import {
   ServerFolderIcons,
   ServerPoolType,
   ServerPoolError,
+  ServerPoolWarning,
   ServerAccess,
   FileAccess,
   ServerDriveLabel,
@@ -18,6 +19,7 @@ import {
   ServerStatusType,
   ServerNetworkInterfaceMode,
   ServerHealthError,
+  ServerHealthWarning,
   ServerActions,
 } from "./server";
 
@@ -49,6 +51,8 @@ export const serverSettingSchema = z.object({
 export const serverPoolTypeSchema = z.nativeEnum(ServerPoolType);
 
 export const serverPoolErrorSchema = z.nativeEnum(ServerPoolError);
+
+export const serverPoolWarningSchema = z.nativeEnum(ServerPoolWarning);
 
 export const serverRecordSchema = z.object({
   hostid: z.string(),
@@ -132,11 +136,14 @@ export const serverProcessorInfoSchema = z.object({
 
 export const serverHealthErrorSchema = z.nativeEnum(ServerHealthError);
 
+export const serverHealthWarningSchema = z.nativeEnum(ServerHealthWarning);
+
 export const serverActionsSchema = z.nativeEnum(ServerActions);
 
 export const serverHealthSchema = z.object({
   healthy: z.boolean(),
   errors: z.array(serverHealthErrorSchema),
+  warnings: z.array(serverHealthWarningSchema),
   actions_available: z.array(serverActionsSchema),
 });
 
@@ -253,6 +260,7 @@ export const serverPoolSchema = serverPoolBasicsSchema.extend({
   guid: z.string(),
   path: z.string(),
   errors: z.array(serverPoolErrorSchema).optional(),
+  warnings: z.array(serverPoolWarningSchema).optional(),
   useable_storage: z.string().optional(),
   healthy: z.boolean().optional(),
   status: poolStatusSchema,
