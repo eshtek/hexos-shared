@@ -77,6 +77,17 @@ export const servernameFormat = (hostname: string): boolean => {
 };
 
 /**
+ * Checks if a given ip address follows a specific format.
+ * @param ip - The ip address to check.
+ * @returns - Returns true if the ip address is valid, otherwise false.
+ */
+export const ipFormat = (ip?: string): boolean => {
+    if (!ip) return false;
+    const regex = /^(\d{1,3}\.){3}\d{1,3}$/;
+    return !/\s/.test(ip) && regex.test(ip);
+};
+
+/**
  * Checks if a given username follows a specific format.
  * @param {string} username - The username to check.
  * @returns {boolean} - Returns true if the username follows the format, otherwise false.
