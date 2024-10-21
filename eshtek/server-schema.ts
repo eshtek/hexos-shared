@@ -114,6 +114,13 @@ export const serverMemoryInfoSchema = z.object({
   data: z.array(z.array(z.number())),
 });
 
+export const serverGlobalNetworkSchema = z.object({
+  name: z.string(),
+  dns1: z.string(),
+  dns2: z.string(),
+  dns3: z.string(),
+});
+
 export const serverNetworkInterfaceModeSchema = z.nativeEnum(
   ServerNetworkInterfaceMode,
 );
