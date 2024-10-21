@@ -101,8 +101,8 @@ export interface ServerPoolBasics {
 }
 
 export interface ServerPool extends ServerPoolBasics {
-    id: number;
-    guid: string;
+    id?: number;
+    guid?: string;
     path: string;
     errors?: ServerPoolError[];
     warnings?: ServerPoolWarning[];
