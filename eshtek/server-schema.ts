@@ -256,8 +256,8 @@ export const serverNetworkInterfaceDetailedSchema =
   });
 
 export const serverPoolSchema = serverPoolBasicsSchema.extend({
-  id: z.number(),
-  guid: z.string(),
+  id: z.number().optional(),
+  guid: z.string().optional(),
   path: z.string(),
   errors: z.array(serverPoolErrorSchema).optional(),
   warnings: z.array(serverPoolWarningSchema).optional(),
