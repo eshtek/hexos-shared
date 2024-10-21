@@ -270,6 +270,13 @@ export interface ServerMemoryInfo {
     data: number[][];
 }
 
+export interface ServerGlobalNetwork {
+    name: string;
+    dns1: string;
+    dns2: string;
+    dns3: string;
+}
+
 export enum ServerNetworkInterfaceMode {
     DHCP = 'DHCP',
     MANUAL = 'MANUAL',
