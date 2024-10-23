@@ -174,9 +174,6 @@ export function getVMIcon(vm: VMType | VMInfo | VMInfoDetailed | undefined): VMI
     if (typeof vm === 'string') {
         // vm is of type VMType
         vmType = vm as VMType;
-    } else if ('type' in vm) {
-        // vm is of type VMListing
-        vmType = vm.type;
     } else if (vm.settings?.os) {
         // vm is of type VMInfo or VMInfoDetailed and has settings with an os property
         vmType = vm.settings.os;
