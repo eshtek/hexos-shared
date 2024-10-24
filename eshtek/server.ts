@@ -179,6 +179,7 @@ export enum ServerDriveWarning {
 }
 export enum ServerDriveError {
     SMART = 'SMART',
+    IO = 'IO',
     REMOVED = 'REMOVED',
 }
 
