@@ -1,7 +1,6 @@
 import type { ServerFolder, ServerPool } from './server';
 import { ServerStorageIcon } from './server';
 import { ServerAccess, ServerFolderIcons } from './server';
-import { sub, formatDistance } from 'date-fns';
 
 export type ID = `${number}` | number;
 
@@ -450,42 +449,6 @@ export function getSpeedFormatted(value: number | undefined, precision: number =
     const result = buildNormalizedFileSize(value * 1024, 'b', 10);
     const parts = result.split(' ');
     return `${toFixed(parts[0], precision)} ${parts[1]}/s`;
-}
-
-/**
- * Formats the given uptime string into a human-readable format.
- *
- * @param {string} uptime - The uptime string in the format "HH:MM:SS.sss".
- * @returns {string} - The formatted uptime in a human-readable format.
- */
-export function formatUptime(uptime: string): string {
-    // Split the uptime string to get hours, minutes, seconds, and milliseconds
-    const [hours, minutes, seconds] = uptime.split(':');
-    const [wholeSeconds, milliseconds] = seconds.split('.');
-
-    // Convert hours, minutes, and whole seconds to numbers
-    const hoursNum = parseInt(hours, 10);
-    const minutesNum = parseInt(minutes, 10);
-    const secondsNum = parseInt(wholeSeconds, 10);
-
-    // Note: milliseconds are currently not used in the calculation
-    // const millisecondsNum = parseInt(milliseconds, 10);
-
-    // Get the current date and time
-    const now = new Date();
-
-    // Subtract the uptime duration from the current time to get the server start date and time
-    const serverStartDate = sub(now, {
-        hours: hoursNum,
-        minutes: minutesNum,
-        seconds: secondsNum,
-    });
-
-    // Format the difference between the current time and the server start time into a human-readable format
-    const readableFormat = formatDistance(serverStartDate, now, { addSuffix: false });
-
-    // Return the human-readable formatted uptime
-    return readableFormat;
 }
 
 /**
