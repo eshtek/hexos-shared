@@ -10,7 +10,6 @@ export interface HexTaskBase<K extends HexTaskType> {
   created: Date;
   updated: Date;
   active: boolean;
-  parentTaskId?: string;
 }
 
 export interface HexTaskDataAchievement {
@@ -27,7 +26,12 @@ export enum HexTaskType {
 
 
 export type HexTask<T extends HexTaskType = HexTaskType> = HexTaskBase<T> & HexTaskDataMap[T];
-export type HexTaskNew<T extends HexTaskType = HexTaskType> = Omit<HexTask<T>, 'id' | 'userId' | 'active' | 'created' | 'updated'>;
+export type HexTaskNew<T extends HexTaskType = HexTaskType> = {
+  type: T;
+  status?: HexTaskStatus;
+  progress?: number;
+  active?: boolean;
+} & HexTaskDataMap[T];
 export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = Partial<Omit<HexTask<T>, 'id' | 'userId' | 'type' | 'created' | 'updated'>>;
 
 export enum HexTaskStatus {
@@ -51,26 +55,29 @@ export const parseTaskData = <T extends HexTaskType>(
 
 interface HexTaskTypeInfo {
   canHaveMultiple: boolean;
-  predictedSecondsToComplete?: number;
-  requiresParentTask?: boolean;
+  predictedSecondsToComplete?: number
 }
 
 export type HexTaskDataMap = {
   [HexTaskType.RESTART]: {
     hostId: string;
     data?: never;
+    parentTaskId?: never;
   };
   [HexTaskType.SHUTDOWN]: {
     hostId: string;
     data?: never;
+    parentTaskId?: never;
   };
   [HexTaskType.NETWORK_UPDATE]: {
     hostId: string;
     data?: never;
+    parentTaskId?: never;
   };
   [HexTaskType.ACHIEVEMENT]: {
     data: HexTaskDataAchievement;
     hostId?: never;
+    parentTaskId?: never;
   };
 };
 
