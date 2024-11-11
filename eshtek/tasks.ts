@@ -12,6 +12,7 @@ export interface HexTaskBase<K extends HexTaskType> {
   active: boolean;
 }
 
+
 export interface HexTaskDataAchievement {
   achievementId: string;
   data: Record<string, any>;

@@ -3,10 +3,12 @@ import type { JobState } from '@shared/truenas/webui/enums/job-state.enum';
 import type { ApiTimestamp } from '@shared/truenas/webui/interfaces/api-date.interface';
 import type { ApiJobMethod } from '@shared/truenas/webui/interfaces/api/api-job-directory.interface';
 import type { JobProgress } from '@shared/truenas/webui/interfaces/job.interface';
+import type { HexTask } from './tasks';
 
 export enum NotificationType {
     Alert = 'alert',
     Job = 'job',
+    Task = 'task',
 }
 
 export interface NotificationBasics<K extends NotificationType, T> {
@@ -17,7 +19,7 @@ export interface NotificationBasics<K extends NotificationType, T> {
 }
 export type Notification =
     | NotificationBasics<NotificationType.Alert, NotificationAlert>
-    | NotificationBasics<NotificationType.Job, NotificationJob>;
+    | NotificationBasics<NotificationType.Job, NotificationJob> |  NotificationBasics<NotificationType.Task, HexTask>;
 
 export interface NotificationAlert {
     datetime: number;
