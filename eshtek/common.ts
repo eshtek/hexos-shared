@@ -71,8 +71,12 @@ export const hasItems = (data: any) => {
  * @returns {boolean} - Returns true if the hostname follows the format, otherwise false.
  */
 export const servernameFormat = (hostname: string): boolean => {
-    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{0,62}[a-zA-Z0-9]$/;
-    return !/\s/.test(hostname) && regex.test(hostname);
+    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{0,13}[a-zA-Z0-9]$/;
+    return (
+        !/\s/.test(hostname) && // Ensure no whitespace
+        hostname.length <= 15 && // Limit length to 15
+        regex.test(hostname) // Match pattern
+    );
 };
 
 /**
@@ -110,8 +114,8 @@ Allowed special characters: !@#$%^&*()-_=+[]{}|;:,.<>?`~/\
 No spaces allowed.
 */
 export const passwordFormat = (password: string): boolean => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?/~\\-]).{8,30}$/;
-    return !/\s/.test(password) && regex.test(password);
+    const regex = /^.{6,}$/; // Requires at least 6 characters
+    return !/\s/.test(password) && regex.test(password); // Ensures no whitespace and meets length
 };
 
 /**

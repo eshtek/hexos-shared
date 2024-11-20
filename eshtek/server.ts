@@ -5,7 +5,7 @@ import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
 
 export const cleanCPUModel = (model: string): string => {
-    return model.replace('Processor', '').replace('CPU', '').replace('(TM)', '™').replace('(C)', '©').replace('(R)', '®');
+    return model.replace('Processor', '').replace('CPU', '').replace('(TM)', '™').replace('CoreTM', 'Core™').replace('(C)', '©').replace('(R)', '®');
 };
 
 export const cleanVendor = (vendor: string): string => {
@@ -20,7 +20,8 @@ export const cleanVendor = (vendor: string): string => {
         .replace(' Co., Ltd.', '')
         .replace(', Ltd.', '')
         .replace(', Ltd', '')
-        .replace(', Inc.', '');
+        .replace(', Inc.', '')
+        
 };
 
 export const cleanProduct = (product: string): string => {
