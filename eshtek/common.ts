@@ -71,7 +71,7 @@ export const hasItems = (data: any) => {
  * @returns {boolean} - Returns true if the hostname follows the format, otherwise false.
  */
 export const servernameFormat = (hostname: string): boolean => {
-    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{0,13}[a-zA-Z0-9]$/;
+    const regex = /^[a-zA-Z][a-zA-Z0-9-]{0,13}[a-zA-Z0-9]$/;
     return (
         !/\s/.test(hostname) && // Ensure no whitespace
         hostname.length <= 15 && // Limit length to 15
