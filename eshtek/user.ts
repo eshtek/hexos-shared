@@ -4,6 +4,7 @@ export interface User {
     id: ID;
     email: string;
     name: string;
+    groups?: UserGroups[];
     image?: string;
     preferences?: UserPreferences;
     purchases?: UserPurchase[];
@@ -12,6 +13,17 @@ export interface User {
 export interface UserPreferences {
     theme: UserPreferenceTheme;
     temperature: UserPreferenceTemperature;
+}
+
+// must match https://hub.hexos.com/admin/?app=core&module=members&controller=groups
+export enum UserGroups {
+    GUESTS = '2',
+    MEMBERS = '3',
+    ADMINISTRATORS = '4',
+    MODERATORS = '6',
+    BETA_UNLIMITED = '7',
+    CUSTOMERS = '8',
+    BETA_CUSTOMERS = '9',
 }
 
 export enum UserPreferenceTheme {
