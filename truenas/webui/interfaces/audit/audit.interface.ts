@@ -1,8 +1,8 @@
-import { AuditEvent, AuditService } from '@shared/truenas/webui/enums/audit.enum';
-import { ApiTimestamp } from '@shared/truenas/webui/interfaces/api-date.interface';
-import { MiddlewareAuditEntry } from '@shared/truenas/webui/interfaces/audit/middleware-audit-entry.interface';
-import { SmbAuditEntry } from '@shared/truenas/webui/interfaces/audit/smb-audit-entry.interface';
-import { QueryFilters, QueryOptions } from '@shared/truenas/webui/interfaces/query-api.interface';
+import { AuditEvent, AuditService } from '../truenas/webui/enums/audit.enum';
+import { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import { MiddlewareAuditEntry } from '../truenas/webui/interfaces/audit/middleware-audit-entry.interface';
+import { SmbAuditEntry } from '../truenas/webui/interfaces/audit/smb-audit-entry.interface';
+import { QueryFilters, QueryOptions } from '../truenas/webui/interfaces/query-api.interface';
 
 export interface AuditQueryParams {
     services?: AuditService[];

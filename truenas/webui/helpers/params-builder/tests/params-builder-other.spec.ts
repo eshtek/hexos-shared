@@ -1,5 +1,5 @@
-import { ParamsBuilder } from '@shared/truenas/webui/helpers/params-builder/params-builder.class';
-import { QueryParams } from '@shared/truenas/webui/interfaces/query-api.interface';
+import { ParamsBuilder } from '../truenas/webui/helpers/params-builder/params-builder.class';
+import { QueryParams } from '../truenas/webui/interfaces/query-api.interface';
 
 interface User {
     username: string;
@@ -39,9 +39,7 @@ describe('ParamsBuilder - other', () => {
         });
 
         it('merges params when first set is empty', () => {
-            const builder = new ParamsBuilder<User>()
-                .setOptions({ limit: 5 })
-                .mergeWith([[['username', '=', 'bob']], { limit: 10 }]);
+            const builder = new ParamsBuilder<User>().setOptions({ limit: 5 }).mergeWith([[['username', '=', 'bob']], { limit: 10 }]);
 
             expect(builder.getParams()).toEqual([[['username', '=', 'bob']], { limit: 10 }]);
         });

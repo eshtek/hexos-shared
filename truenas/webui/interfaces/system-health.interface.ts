@@ -1,5 +1,5 @@
 // Eshtek added because not yet implemented in TrueNAS as of 6/2/2024 should replace with official when it becomes available
-import { PoolStatus } from '@shared/truenas/webui/enums/pool-status.enum';
+import { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
 
 export interface SystemHealth {
     cpu_percent: number;

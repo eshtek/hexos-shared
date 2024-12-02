@@ -1,9 +1,9 @@
-import type { Direction } from '@shared/truenas/webui/enums/direction.enum';
-import type { RsyncMode } from '@shared/truenas/webui/enums/rsync-mode.enum';
-import type { DataProtectionTaskState } from '@shared/truenas/webui/interfaces/data-protection-task-state.interface';
-import type { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import type { KeychainSshCredentials } from '@shared/truenas/webui/interfaces/keychain-credential.interface';
-import type { Schedule } from '@shared/truenas/webui/interfaces/schedule.interface';
+import type { Direction } from '../truenas/webui/enums/direction.enum';
+import type { RsyncMode } from '../truenas/webui/enums/rsync-mode.enum';
+import type { DataProtectionTaskState } from '../truenas/webui/interfaces/data-protection-task-state.interface';
+import type { Job } from '../truenas/webui/interfaces/job.interface';
+import type { KeychainSshCredentials } from '../truenas/webui/interfaces/keychain-credential.interface';
+import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
 
 export interface RsyncTask {
     archive: boolean;

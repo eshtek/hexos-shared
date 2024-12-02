@@ -1,4 +1,4 @@
-import { ParamsBuilder } from '@shared/truenas/webui/helpers/params-builder/params-builder.class';
+import { ParamsBuilder } from '../truenas/webui/helpers/params-builder/params-builder.class';
 
 interface User {
     username: string;
@@ -16,9 +16,7 @@ describe('ParamsBuilder - filters simple', () => {
 
         describe('andFilter()', () => {
             it('after filter()', () => {
-                const builder = new ParamsBuilder<User>()
-                    .andFilter('username', '=', 'bob')
-                    .andFilter('age', '>', 18);
+                const builder = new ParamsBuilder<User>().andFilter('username', '=', 'bob').andFilter('age', '>', 18);
 
                 expect(builder.getParams()).toEqual([
                     [
@@ -30,10 +28,7 @@ describe('ParamsBuilder - filters simple', () => {
             });
 
             it('after OR', () => {
-                const builder = new ParamsBuilder<User>()
-                    .filter('username', '=', 'bob')
-                    .orFilter('username', '=', 'alice')
-                    .andFilter('age', '>', 18);
+                const builder = new ParamsBuilder<User>().filter('username', '=', 'bob').orFilter('username', '=', 'alice').andFilter('age', '>', 18);
 
                 // username = 'bob' OR username = 'alice' AND age > 18
                 // Equivalent to: username = 'bob' OR (username = 'alice' AND age > 18)
@@ -84,9 +79,7 @@ describe('ParamsBuilder - filters simple', () => {
 
         describe('orFilter()', () => {
             it('after filter()', () => {
-                const builder = new ParamsBuilder<User>()
-                    .filter('username', '=', 'bob')
-                    .orFilter('username', '=', 'alice');
+                const builder = new ParamsBuilder<User>().filter('username', '=', 'bob').orFilter('username', '=', 'alice');
 
                 expect(builder.getParams()).toEqual([
                     [
@@ -103,10 +96,7 @@ describe('ParamsBuilder - filters simple', () => {
             });
 
             it('after OR', () => {
-                const builder1 = new ParamsBuilder<User>()
-                    .filter('username', '=', 'bob')
-                    .orFilter('username', '=', 'alice')
-                    .orFilter('username', '=', 'eve');
+                const builder1 = new ParamsBuilder<User>().filter('username', '=', 'bob').orFilter('username', '=', 'alice').orFilter('username', '=', 'eve');
 
                 // username = 'bob' OR username = 'alice' OR username = 'eve'
                 expect(builder1.getParams()).toEqual([

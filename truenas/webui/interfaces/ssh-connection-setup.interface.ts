@@ -1,5 +1,5 @@
-import type { SshConnectionsSetupMethod } from '@shared/truenas/webui/enums/ssh-connections-setup-method.enum';
-import type { SshCredentials } from '@shared/truenas/webui/interfaces/ssh-credentials.interface';
+import type { SshConnectionsSetupMethod } from '../truenas/webui/enums/ssh-connections-setup-method.enum';
+import type { SshCredentials } from '../truenas/webui/interfaces/ssh-credentials.interface';
 
 export interface SshConnectionSetup {
     setup_type: SshConnectionsSetupMethod;

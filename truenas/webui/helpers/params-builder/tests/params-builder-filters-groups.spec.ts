@@ -1,4 +1,4 @@
-import { ParamsBuilder } from '@shared/truenas/webui/helpers/params-builder/params-builder.class';
+import { ParamsBuilder } from '../truenas/webui/helpers/params-builder/params-builder.class';
 
 interface User {
     username: string;

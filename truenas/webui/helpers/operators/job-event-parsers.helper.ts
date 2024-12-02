@@ -1,16 +1,14 @@
 import type { OperatorFunction } from 'rxjs';
 import { catchError, pipe, tap, throwError } from 'rxjs';
-import { JobState } from '@shared/truenas/webui/enums/job-state.enum';
-import type { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import type { WebSocketError } from '@shared/truenas/webui/interfaces/websocket-error.interface';
+import { JobState } from '../truenas/webui/enums/job-state.enum';
+import type { Job } from '../truenas/webui/interfaces/job.interface';
+import type { WebSocketError } from '../truenas/webui/interfaces/websocket-error.interface';
 
 /**
  * Treats both job state FAILURE and error thrown by the observable as failure.
  * Will throw the error again for further processing
  */
-export function onJobFailureOrError(
-    failureCallback: (job: Job | WebSocketError) => void,
-): OperatorFunction<Job, Job | WebSocketError> {
+export function onJobFailureOrError(failureCallback: (job: Job | WebSocketError) => void): OperatorFunction<Job, Job | WebSocketError> {
     return pipe(
         tap((job) => {
             if (job.state === JobState.Error || job.state === JobState.Failed) {

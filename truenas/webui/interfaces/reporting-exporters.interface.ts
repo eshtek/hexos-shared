@@ -1,4 +1,4 @@
-import type { Schema } from '@shared/truenas/webui/interfaces/schema.interface';
+import type { Schema } from '../truenas/webui/interfaces/schema.interface';
 
 export enum ReportingExporterKey {
     Graphite = 'GRAPHITE',

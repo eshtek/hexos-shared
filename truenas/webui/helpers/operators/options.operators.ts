@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import type { OperatorFunction } from 'rxjs';
 import { map } from 'rxjs/operators';
-import type { Choices } from '@shared/truenas/webui/interfaces/choices.interface';
-import type { MapOption, Option } from '@shared/truenas/webui/interfaces/option.interface';
+import type { Choices } from '../truenas/webui/interfaces/choices.interface';
+import type { MapOption, Option } from '../truenas/webui/interfaces/option.interface';
 
 /**
  * Convert choices to options

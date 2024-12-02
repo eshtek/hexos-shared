@@ -1,11 +1,5 @@
 import { merge } from 'lodash';
-import type {
-    OrQueryFilter,
-    QueryFilter,
-    QueryFilters,
-    QueryOptions,
-    QueryParams,
-} from '@shared/truenas/webui/interfaces/query-api.interface';
+import type { OrQueryFilter, QueryFilter, QueryFilters, QueryOptions, QueryParams } from '../truenas/webui/interfaces/query-api.interface';
 
 export class ParamsBuilder<T, ExtraOptions = Record<string, unknown>> {
     private filters: QueryFilters<T> = [];
@@ -33,11 +27,7 @@ export class ParamsBuilder<T, ExtraOptions = Record<string, unknown>> {
     /**
      * Sets new filter replacing all previous filters.
      */
-    filter(
-        property: QueryFilter<T>[0],
-        comparator: QueryFilter<T>[1],
-        value: QueryFilter<T>[2],
-    ): this {
+    filter(property: QueryFilter<T>[0], comparator: QueryFilter<T>[1], value: QueryFilter<T>[2]): this {
         this.filters = [[property, comparator, value]];
         this.wasLastConditionGroup = false;
         return this;
@@ -55,11 +45,7 @@ export class ParamsBuilder<T, ExtraOptions = Record<string, unknown>> {
      * username = 'bob' AND age > 40
      * ```
      */
-    andFilter(
-        property: QueryFilter<T>[0],
-        comparator: QueryFilter<T>[1],
-        value: QueryFilter<T>[2],
-    ): this {
+    andFilter(property: QueryFilter<T>[0], comparator: QueryFilter<T>[1], value: QueryFilter<T>[2]): this {
         this.andFilters([[property, comparator, value]]);
         this.wasLastConditionGroup = false;
         return this;
@@ -77,11 +63,7 @@ export class ParamsBuilder<T, ExtraOptions = Record<string, unknown>> {
      * username = 'bob' OR username = 'alice'
      * ```
      */
-    orFilter(
-        property: QueryFilter<T>[0],
-        comparator: QueryFilter<T>[1],
-        value: QueryFilter<T>[2],
-    ): this {
+    orFilter(property: QueryFilter<T>[0], comparator: QueryFilter<T>[1], value: QueryFilter<T>[2]): this {
         this.orFilters([property, comparator, value] as QueryFilters<T>);
         this.wasLastConditionGroup = false;
         return this;
@@ -202,12 +184,5 @@ export class ParamsBuilder<T, ExtraOptions = Record<string, unknown>> {
 
 export type ParamsBuilderGroup<T, ExtraOptions = Record<string, unknown>> = Pick<
     ParamsBuilder<T, ExtraOptions>,
-    | 'filter'
-    | 'andFilter'
-    | 'orFilter'
-    | 'group'
-    | 'andGroup'
-    | 'orGroup'
-    | 'mergeWith'
-    | 'getFilters'
+    'filter' | 'andFilter' | 'orFilter' | 'group' | 'andGroup' | 'orGroup' | 'mergeWith' | 'getFilters'
 >;

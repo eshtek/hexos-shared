@@ -1,5 +1,5 @@
-import type { DatasetQuotaType } from '@shared/truenas/webui/enums/dataset.enum';
-import type { QueryParams } from '@shared/truenas/webui/interfaces/query-api.interface';
+import type { DatasetQuotaType } from '../truenas/webui/enums/dataset.enum';
+import type { QueryParams } from '../truenas/webui/interfaces/query-api.interface';
 
 export interface DatasetQuota {
     id: number;
@@ -18,8 +18,4 @@ export interface SetDatasetQuota {
     quota_value: number;
 }
 
-export type DatasetQuotaQueryParams = [
-    mountpoint: string,
-    quotaType: DatasetQuotaType,
-    params: QueryParams<DatasetQuota>,
-];
+export type DatasetQuotaQueryParams = [mountpoint: string, quotaType: DatasetQuotaType, params: QueryParams<DatasetQuota>];

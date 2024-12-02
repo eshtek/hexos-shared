@@ -7,7 +7,7 @@ import {
     NetworkInterfaceFlag,
     NetworkInterfaceType,
     XmitHashPolicy,
-} from '@shared/truenas/webui/enums/network-interface.enum';
+} from '../truenas/webui/enums/network-interface.enum';
 
 export interface BaseNetworkInterface {
     aliases: NetworkInterfaceAlias[];
@@ -54,11 +54,7 @@ export interface LinkAggregationNetworkInterface extends BaseNetworkInterface {
     xmit_hash_policy: XmitHashPolicy;
 }
 
-export type NetworkInterface =
-    | PhysicalNetworkInterface
-    | LinkAggregationNetworkInterface
-    | BridgeNetworkInterface
-    | VlanNetworkInterface;
+export type NetworkInterface = PhysicalNetworkInterface | LinkAggregationNetworkInterface | BridgeNetworkInterface | VlanNetworkInterface;
 
 export interface NetworkInterfaceAlias {
     type?: NetworkInterfaceAliasType;

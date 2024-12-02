@@ -1,7 +1,7 @@
-import { DiskPowerLevel } from '@shared/truenas/webui/enums/disk-power-level.enum';
-import { DiskStandby } from '@shared/truenas/webui/enums/disk-standby.enum';
-import { EnclosureSlotTopologyStatus } from '@shared/truenas/webui/enums/enclosure-slot-status.enum';
-import { VdevType } from '@shared/truenas/webui/enums/v-dev-type.enum';
+import { DiskPowerLevel } from '../truenas/webui/enums/disk-power-level.enum';
+import { DiskStandby } from '../truenas/webui/enums/disk-standby.enum';
+import { EnclosureSlotTopologyStatus } from '../truenas/webui/enums/enclosure-slot-status.enum';
+import { VdevType } from '../truenas/webui/enums/v-dev-type.enum';
 import { Disk, TopologyItem, TopologyItemStats } from './storage.interface';
 
 // DEPRECATED

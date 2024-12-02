@@ -1,4 +1,4 @@
-import type { EmptyType } from '@shared/truenas/webui/enums/empty-type.enum';
+import type { EmptyType } from '../truenas/webui/enums/empty-type.enum';
 
 export interface EmptyConfig {
     type?: EmptyType;

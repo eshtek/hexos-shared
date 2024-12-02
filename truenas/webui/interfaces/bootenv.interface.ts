@@ -1,5 +1,5 @@
-import type { BootEnvironmentActive } from '@shared/truenas/webui/enums/boot-environment-active.enum';
-import type { ApiTimestamp } from '@shared/truenas/webui/interfaces/api-date.interface';
+import type { BootEnvironmentActive } from '../truenas/webui/enums/boot-environment-active.enum';
+import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
 
 export interface Bootenv {
     activated: boolean;

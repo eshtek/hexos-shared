@@ -1,5 +1,5 @@
-import { DatasetType } from '@shared/truenas/webui/enums/dataset.enum';
-import { VmwareState } from '@shared/pages/data-protection/vmware-snapshot/vmware-snapshot-list/vmware-status-cell/vmware-status-cell.component';
+import { DatasetType } from '../truenas/webui/enums/dataset.enum';
+import { VmwareState } from '../pages/data-protection/vmware-snapshot/vmware-snapshot-list/vmware-status-cell/vmware-status-cell.component';
 
 export interface MatchDatastoresWithDatasets {
     datastores: VmwareDatastore[];

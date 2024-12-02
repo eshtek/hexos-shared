@@ -1,4 +1,4 @@
-import type { ResponseErrorType } from '@shared/truenas/webui/enums/response-error-type.enum';
+import type { ResponseErrorType } from '../truenas/webui/enums/response-error-type.enum';
 
 export interface ErrorResponse {
     error: number;

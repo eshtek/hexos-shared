@@ -1,4 +1,4 @@
-import type { SidenavStatusData } from '@shared/truenas/webui/interfaces/events/sidenav-status-event.interface';
+import type { SidenavStatusData } from '../truenas/webui/interfaces/events/sidenav-status-event.interface';
 
 interface Column {
     name: string;

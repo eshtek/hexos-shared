@@ -1,109 +1,40 @@
-import type { DockerConfig, DockerConfigUpdate } from '@shared/truenas/webui/enums/docker-config.interface';
-import type { SetAcl } from '@shared/truenas/webui/interfaces/acl.interface';
-import type {
-    ActiveDirectoryConfig,
-    LeaveActiveDirectory,
-} from '@shared/truenas/webui/interfaces/active-directory-config.interface';
-import type { ActiveDirectoryUpdate } from '@shared/truenas/webui/interfaces/active-directory.interface';
-import type { AuditEntry } from '@shared/truenas/webui/interfaces/audit/audit.interface';
-import type { Catalog, CatalogCreate } from '@shared/truenas/webui/interfaces/catalog.interface';
-import type {
-    Certificate,
-    CertificateCreate,
-    CertificateUpdate,
-} from '@shared/truenas/webui/interfaces/certificate.interface';
-import {
-    ChartRollbackParams,
-    ChartScaleQueryParams,
-    ChartScaleResult,
-} from '@shared/truenas/webui/interfaces/chart-release-event.interface';
-import {
-    ChartRelease,
-    ChartReleaseCreate,
-    ChartReleaseUpdate,
-    ChartReleaseUpgrade,
-} from '@shared/truenas/webui/interfaces/chart-release.interface';
-import type { CloudSyncTaskUpdate } from '@shared/truenas/webui/interfaces/cloud-sync-task.interface';
-import type { ConfigResetParams } from '@shared/truenas/webui/interfaces/config-reset-params.interface';
-import type {
-    PullContainerImageParams,
-    PullContainerImageResponse,
-} from '@shared/truenas/webui/interfaces/container-image.interface';
-import type {
-    CoreBulkQuery,
-    CoreBulkResponse,
-} from '@shared/truenas/webui/interfaces/core-bulk.interface';
-import type { DatasetChangeKeyParams } from '@shared/truenas/webui/interfaces/dataset-change-key.interface';
-import type {
-    DatasetEncryptionSummary,
-    DatasetEncryptionSummaryQueryParams,
-} from '@shared/truenas/webui/interfaces/dataset-encryption-summary.interface';
-import type {
-    DatasetLockParams,
-    DatasetUnlockParams,
-    DatasetUnlockResult,
-} from '@shared/truenas/webui/interfaces/dataset-lock.interface';
-import type { ExportParams } from '@shared/truenas/webui/interfaces/export-params.interface';
-import type { FailoverUpgradeParams } from '@shared/truenas/webui/interfaces/failover.interface';
-import type {
-    FilesystemPutParams,
-    FilesystemSetPermParams,
-} from '@shared/truenas/webui/interfaces/filesystem-stat.interface';
-import type { IpmiEvent } from '@shared/truenas/webui/interfaces/ipmi.interface';
-import { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import type {
-    KmipConfig,
-    KmipConfigUpdate,
-} from '@shared/truenas/webui/interfaces/kmip-config.interface';
-import {
-    KubernetesConfig,
-    KubernetesConfigUpdate,
-} from '@shared/truenas/webui/interfaces/kubernetes-config.interface';
-import type {
-    LdapConfig,
-    LdapConfigUpdate,
-} from '@shared/truenas/webui/interfaces/ldap-config.interface';
-import type {
-    MailConfigUpdate,
-    SendMailParams,
-} from '@shared/truenas/webui/interfaces/mail-config.interface';
-import type { PoolExportParams } from '@shared/truenas/webui/interfaces/pool-export.interface';
-import type {
-    PoolFindResult,
-    PoolImportParams,
-} from '@shared/truenas/webui/interfaces/pool-import.interface';
-import type { PoolRemoveParams } from '@shared/truenas/webui/interfaces/pool-remove.interface';
-import type { PoolScrubTaskParams } from '@shared/truenas/webui/interfaces/pool-scrub.interface';
-import type {
-    CreatePool,
-    Pool,
-    PoolAttachParams,
-    PoolExpandParams,
-    PoolReplaceParams,
-    UpdatePool,
-} from '@shared/truenas/webui/interfaces/pool.interface';
-import type { DiskWipeParams } from '@shared/truenas/webui/interfaces/storage.interface';
-import type {
-    SystemDatasetConfig,
-    SystemDatasetUpdate,
-} from '@shared/truenas/webui/interfaces/system-dataset-config.interface';
-import type { SystemSecurityConfig } from '@shared/truenas/webui/interfaces/system-security-config.interface';
-import type { UpdateParams } from '@shared/truenas/webui/interfaces/system-update.interface';
-import type {
-    Tunable,
-    TunableCreate,
-    TunableUpdate,
-} from '@shared/truenas/webui/interfaces/tunable.interface';
-import type { VmStopParams } from '@shared/truenas/webui/interfaces/virtual-machine.interface';
-import type {
-    App,
-    AppCreate,
-    AppDeleteParams,
-    AppRollbackParams,
-    AppStartQueryParams,
-    AppUpdate,
-    AppUpgradeParams,
-} from '../app.interface';
+import type { DockerConfig, DockerConfigUpdate } from '../truenas/webui/enums/docker-config.interface';
+import type { SetAcl } from '../truenas/webui/interfaces/acl.interface';
+import type { ActiveDirectoryConfig, LeaveActiveDirectory } from '../truenas/webui/interfaces/active-directory-config.interface';
+import type { ActiveDirectoryUpdate } from '../truenas/webui/interfaces/active-directory.interface';
+import type { AuditEntry } from '../truenas/webui/interfaces/audit/audit.interface';
+import type { Catalog, CatalogCreate } from '../truenas/webui/interfaces/catalog.interface';
+import type { Certificate, CertificateCreate, CertificateUpdate } from '../truenas/webui/interfaces/certificate.interface';
+import { ChartRollbackParams, ChartScaleQueryParams, ChartScaleResult } from '../truenas/webui/interfaces/chart-release-event.interface';
+import { ChartRelease, ChartReleaseCreate, ChartReleaseUpdate, ChartReleaseUpgrade } from '../truenas/webui/interfaces/chart-release.interface';
+import type { CloudSyncTaskUpdate } from '../truenas/webui/interfaces/cloud-sync-task.interface';
+import type { ConfigResetParams } from '../truenas/webui/interfaces/config-reset-params.interface';
+import type { PullContainerImageParams, PullContainerImageResponse } from '../truenas/webui/interfaces/container-image.interface';
+import type { CoreBulkQuery, CoreBulkResponse } from '../truenas/webui/interfaces/core-bulk.interface';
+import type { DatasetChangeKeyParams } from '../truenas/webui/interfaces/dataset-change-key.interface';
+import type { DatasetEncryptionSummary, DatasetEncryptionSummaryQueryParams } from '../truenas/webui/interfaces/dataset-encryption-summary.interface';
+import type { DatasetLockParams, DatasetUnlockParams, DatasetUnlockResult } from '../truenas/webui/interfaces/dataset-lock.interface';
+import type { ExportParams } from '../truenas/webui/interfaces/export-params.interface';
+import type { FailoverUpgradeParams } from '../truenas/webui/interfaces/failover.interface';
+import type { FilesystemPutParams, FilesystemSetPermParams } from '../truenas/webui/interfaces/filesystem-stat.interface';
+import type { IpmiEvent } from '../truenas/webui/interfaces/ipmi.interface';
+import { Job } from '../truenas/webui/interfaces/job.interface';
+import type { KmipConfig, KmipConfigUpdate } from '../truenas/webui/interfaces/kmip-config.interface';
+import { KubernetesConfig, KubernetesConfigUpdate } from '../truenas/webui/interfaces/kubernetes-config.interface';
+import type { LdapConfig, LdapConfigUpdate } from '../truenas/webui/interfaces/ldap-config.interface';
+import type { MailConfigUpdate, SendMailParams } from '../truenas/webui/interfaces/mail-config.interface';
+import type { PoolExportParams } from '../truenas/webui/interfaces/pool-export.interface';
+import type { PoolFindResult, PoolImportParams } from '../truenas/webui/interfaces/pool-import.interface';
+import type { PoolRemoveParams } from '../truenas/webui/interfaces/pool-remove.interface';
+import type { PoolScrubTaskParams } from '../truenas/webui/interfaces/pool-scrub.interface';
+import type { CreatePool, Pool, PoolAttachParams, PoolExpandParams, PoolReplaceParams, UpdatePool } from '../truenas/webui/interfaces/pool.interface';
+import type { DiskWipeParams } from '../truenas/webui/interfaces/storage.interface';
+import type { SystemDatasetConfig, SystemDatasetUpdate } from '../truenas/webui/interfaces/system-dataset-config.interface';
+import type { SystemSecurityConfig } from '../truenas/webui/interfaces/system-security-config.interface';
+import type { UpdateParams } from '../truenas/webui/interfaces/system-update.interface';
+import type { Tunable, TunableCreate, TunableUpdate } from '../truenas/webui/interfaces/tunable.interface';
+import type { VmStopParams } from '../truenas/webui/interfaces/virtual-machine.interface';
+import type { App, AppCreate, AppDeleteParams, AppRollbackParams, AppStartQueryParams, AppUpdate, AppUpgradeParams } from '../app.interface';
 
 export interface ApiJobDirectory {
     // Active Directory
@@ -192,7 +123,7 @@ export interface ApiJobDirectory {
     // KMIP
     'kmip.update': { params: [KmipConfigUpdate]; response: KmipConfig };
 
-     // Docker
+    // Docker
     'docker.update': { params: [DockerConfigUpdate]; response: DockerConfig };
 
     // LDAP

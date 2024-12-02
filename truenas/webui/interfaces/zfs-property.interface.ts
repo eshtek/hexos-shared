@@ -1,4 +1,4 @@
-import type { ZfsPropertySource } from '@shared/truenas/webui/enums/zfs-property-source.enum';
+import type { ZfsPropertySource } from '../truenas/webui/enums/zfs-property-source.enum';
 
 /**
  * An object that contains both the original value from ZFS

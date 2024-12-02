@@ -1,15 +1,15 @@
-import type { AlertPolicy } from '@shared/truenas/webui/enums/alert-policy.enum';
-import type { DatasetRecordSize, DatasetType } from '@shared/truenas/webui/enums/dataset.enum';
-import type { DeviceType } from '@shared/truenas/webui/enums/device-type.enum';
-import type { EnclosureSlotStatus } from '@shared/truenas/webui/enums/enclosure-slot-status.enum';
-import type { FailoverDisabledReason } from '@shared/truenas/webui/enums/failover-disabled-reason.enum';
-import type { FailoverStatus } from '@shared/truenas/webui/enums/failover-status.enum';
-import type { OnOff } from '@shared/truenas/webui/enums/on-off.enum';
-import type { ProductType } from '@shared/truenas/webui/enums/product-type.enum';
-import type { ServiceName } from '@shared/truenas/webui/enums/service-name.enum';
-import type { SmbInfoLevel } from '@shared/truenas/webui/enums/smb-info-level.enum';
-import type { SystemEnvironment } from '@shared/truenas/webui/enums/system-environment.enum';
-import type { TransportMode } from '@shared/truenas/webui/enums/transport-mode.enum';
+import type { AlertPolicy } from '../truenas/webui/enums/alert-policy.enum';
+import type { DatasetRecordSize, DatasetType } from '../truenas/webui/enums/dataset.enum';
+import type { DeviceType } from '../truenas/webui/enums/device-type.enum';
+import type { EnclosureSlotStatus } from '../truenas/webui/enums/enclosure-slot-status.enum';
+import type { FailoverDisabledReason } from '../truenas/webui/enums/failover-disabled-reason.enum';
+import type { FailoverStatus } from '../truenas/webui/enums/failover-status.enum';
+import type { OnOff } from '../truenas/webui/enums/on-off.enum';
+import type { ProductType } from '../truenas/webui/enums/product-type.enum';
+import type { ServiceName } from '../truenas/webui/enums/service-name.enum';
+import type { SmbInfoLevel } from '../truenas/webui/enums/smb-info-level.enum';
+import type { SystemEnvironment } from '../truenas/webui/enums/system-environment.enum';
+import type { TransportMode } from '../truenas/webui/enums/transport-mode.enum';
 import type {
     Acl,
     AclQueryParams,
@@ -17,43 +17,19 @@ import type {
     AclTemplateByPathParams,
     AclTemplateCreateParams,
     AclTemplateCreateResponse,
-} from '@shared/truenas/webui/interfaces/acl.interface';
-import type { ActiveDirectoryConfig } from '@shared/truenas/webui/interfaces/active-directory-config.interface';
-import type {
-    AdvancedConfig,
-    AdvancedConfigUpdate,
-} from '@shared/truenas/webui/interfaces/advanced-config.interface';
-import type {
-    AlertService,
-    AlertServiceEdit,
-} from '@shared/truenas/webui/interfaces/alert-service.interface';
-import type {
-    Alert,
-    AlertCategory,
-    AlertClasses,
-    AlertClassesUpdate,
-} from '@shared/truenas/webui/interfaces/alert.interface';
-import type { ApiTimestamp } from '@shared/truenas/webui/interfaces/api-date.interface';
-import type {
-    ApiKey,
-    CreateApiKeyRequest,
-    UpdateApiKeyRequest,
-} from '@shared/truenas/webui/interfaces/api-key.interface';
-import type { AppUpgradeSummary, UpgradeSummary } from '@shared/truenas/webui/interfaces/application.interface';
-import type {
-    AuditConfig,
-    AuditEntry,
-    AuditQueryParams,
-} from '@shared/truenas/webui/interfaces/audit/audit.interface';
-import type { AuthSession } from '@shared/truenas/webui/interfaces/auth-session.interface';
-import type { LoginQuery } from '@shared/truenas/webui/interfaces/auth.interface';
-import type { AvailableApp } from '@shared/truenas/webui/interfaces/available-app.interface';
-import type {
-    Bootenv,
-    CreateBootenvParams,
-    SetBootenvAttributeParams,
-    UpdateBootenvParams,
-} from '@shared/truenas/webui/interfaces/bootenv.interface';
+} from '../truenas/webui/interfaces/acl.interface';
+import type { ActiveDirectoryConfig } from '../truenas/webui/interfaces/active-directory-config.interface';
+import type { AdvancedConfig, AdvancedConfigUpdate } from '../truenas/webui/interfaces/advanced-config.interface';
+import type { AlertService, AlertServiceEdit } from '../truenas/webui/interfaces/alert-service.interface';
+import type { Alert, AlertCategory, AlertClasses, AlertClassesUpdate } from '../truenas/webui/interfaces/alert.interface';
+import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import type { ApiKey, CreateApiKeyRequest, UpdateApiKeyRequest } from '../truenas/webui/interfaces/api-key.interface';
+import type { AppUpgradeSummary, UpgradeSummary } from '../truenas/webui/interfaces/application.interface';
+import type { AuditConfig, AuditEntry, AuditQueryParams } from '../truenas/webui/interfaces/audit/audit.interface';
+import type { AuthSession } from '../truenas/webui/interfaces/auth-session.interface';
+import type { LoginQuery } from '../truenas/webui/interfaces/auth.interface';
+import type { AvailableApp } from '../truenas/webui/interfaces/available-app.interface';
+import type { Bootenv, CreateBootenvParams, SetBootenvAttributeParams, UpdateBootenvParams } from '../truenas/webui/interfaces/bootenv.interface';
 import type {
     Catalog,
     CatalogApp,
@@ -62,126 +38,64 @@ import type {
     CatalogQueryParams,
     CatalogUpdate,
     GetItemDetailsParams,
-} from '@shared/truenas/webui/interfaces/catalog.interface';
+} from '../truenas/webui/interfaces/catalog.interface';
 import type {
     CertificateAuthority,
     CertificateAuthoritySignRequest,
     CertificateAuthorityUpdate,
-} from '@shared/truenas/webui/interfaces/certificate-authority.interface';
-import type {
-    Certificate,
-    CertificateProfiles,
-    ExtendedKeyUsageChoices,
-} from '@shared/truenas/webui/interfaces/certificate.interface';
-import type { ChartReleaseEvent } from '@shared/truenas/webui/interfaces/chart-release-event.interface';
-import type {
-    ChartRelease,
-    ChartReleaseQueryParams,
-    ChartReleaseUpgradeParams,
-} from '@shared/truenas/webui/interfaces/chart-release.interface';
-import type { Choices } from '@shared/truenas/webui/interfaces/choices.interface';
-import type {
-    CloudBackup,
-    CloudBackupSnapshot,
-    CloudBackupUpdate,
-} from '@shared/truenas/webui/interfaces/cloud-backup.interface';
+} from '../truenas/webui/interfaces/certificate-authority.interface';
+import type { Certificate, CertificateProfiles, ExtendedKeyUsageChoices } from '../truenas/webui/interfaces/certificate.interface';
+import type { ChartReleaseEvent } from '../truenas/webui/interfaces/chart-release-event.interface';
+import type { ChartRelease, ChartReleaseQueryParams, ChartReleaseUpgradeParams } from '../truenas/webui/interfaces/chart-release.interface';
+import type { Choices } from '../truenas/webui/interfaces/choices.interface';
+import type { CloudBackup, CloudBackupSnapshot, CloudBackupUpdate } from '../truenas/webui/interfaces/cloud-backup.interface';
 import type {
     CloudSyncDirectoryListing,
     CloudSyncListDirectoryParams,
     CloudSyncTask,
     CloudSyncTaskUpdate,
-} from '@shared/truenas/webui/interfaces/cloud-sync-task.interface';
+} from '../truenas/webui/interfaces/cloud-sync-task.interface';
 import type {
     CloudSyncBucket,
     CloudSyncCredential,
     CloudSyncCredentialUpdate,
     CloudSyncCredentialVerify,
     CloudSyncCredentialVerifyResult,
-} from '@shared/truenas/webui/interfaces/cloudsync-credential.interface';
-import type {
-    CloudSyncProvider,
-    CloudSyncRestoreParams,
-} from '@shared/truenas/webui/interfaces/cloudsync-provider.interface';
-import type {
-    ContainerConfig,
-    ContainerConfigUpdate,
-} from '@shared/truenas/webui/interfaces/container-config.interface';
-import type {
-    ContainerImage,
-    DeleteContainerImageParams,
-} from '@shared/truenas/webui/interfaces/container-image.interface';
-import type {
-    CoreDownloadQuery,
-    CoreDownloadResponse,
-} from '@shared/truenas/webui/interfaces/core-download.interface';
+} from '../truenas/webui/interfaces/cloudsync-credential.interface';
+import type { CloudSyncProvider, CloudSyncRestoreParams } from '../truenas/webui/interfaces/cloudsync-provider.interface';
+import type { ContainerConfig, ContainerConfigUpdate } from '../truenas/webui/interfaces/container-config.interface';
+import type { ContainerImage, DeleteContainerImageParams } from '../truenas/webui/interfaces/container-image.interface';
+import type { CoreDownloadQuery, CoreDownloadResponse } from '../truenas/webui/interfaces/core-download.interface';
 import type {
     CountManualSnapshotsParams,
     EligibleManualSnapshotsCount,
     TargetUnmatchedSnapshotsParams,
-} from '@shared/truenas/webui/interfaces/count-manual-snapshots.interface';
-import type { Cronjob, CronjobUpdate } from '@shared/truenas/webui/interfaces/cronjob.interface';
-import type { DatasetHasVmsQueryParams } from '@shared/truenas/webui/interfaces/dataset-has-vms-query-params.interface';
-import type {
-    DatasetQuota,
-    DatasetQuotaQueryParams,
-    SetDatasetQuota,
-} from '@shared/truenas/webui/interfaces/dataset-quota.interface';
-import type {
-    Dataset,
-    DatasetCreate,
-    DatasetDetails,
-    DatasetUpdate,
-    ExtraDatasetQueryOptions,
-} from '@shared/truenas/webui/interfaces/dataset.interface';
-import type { Device } from '@shared/truenas/webui/interfaces/device.interface';
-import type { DirectoryServicesState } from '@shared/truenas/webui/interfaces/directory-services-state.interface';
+} from '../truenas/webui/interfaces/count-manual-snapshots.interface';
+import type { Cronjob, CronjobUpdate } from '../truenas/webui/interfaces/cronjob.interface';
+import type { DatasetHasVmsQueryParams } from '../truenas/webui/interfaces/dataset-has-vms-query-params.interface';
+import type { DatasetQuota, DatasetQuotaQueryParams, SetDatasetQuota } from '../truenas/webui/interfaces/dataset-quota.interface';
+import type { Dataset, DatasetCreate, DatasetDetails, DatasetUpdate, ExtraDatasetQueryOptions } from '../truenas/webui/interfaces/dataset.interface';
+import type { Device } from '../truenas/webui/interfaces/device.interface';
+import type { DirectoryServicesState } from '../truenas/webui/interfaces/directory-services-state.interface';
 import type {
     AuthenticatorSchema,
     CreateDnsAuthenticator,
     DnsAuthenticator,
     UpdateDnsAuthenticator,
-} from '@shared/truenas/webui/interfaces/dns-authenticator.interface';
-import type { DockerHubRateLimit } from '@shared/truenas/webui/interfaces/dockerhub-rate-limit.interface';
-import type {
-    DsUncachedGroup,
-    DsUncachedUser,
-    LoggedInUser,
-} from '@shared/truenas/webui/interfaces/ds-cache.interface';
-import type { EnclosureUi } from '@shared/truenas/webui/interfaces/enclosure.interface';
-import type {
-    FailoverConfig,
-    FailoverUpdate,
-} from '@shared/truenas/webui/interfaces/failover.interface';
-import type {
-    FileRecord,
-    ListdirQueryParams,
-} from '@shared/truenas/webui/interfaces/file-record.interface';
-import type { FileSystemStat, Statfs } from '@shared/truenas/webui/interfaces/filesystem-stat.interface';
-import type { FtpConfig, FtpConfigUpdate } from '@shared/truenas/webui/interfaces/ftp-config.interface';
-import type {
-    CreateGroup,
-    DeleteGroupParams,
-    Group,
-    UpdateGroup,
-} from '@shared/truenas/webui/interfaces/group.interface';
-import type { IdmapBackendOptions } from '@shared/truenas/webui/interfaces/idmap-backend-options.interface';
-import type { Idmap, IdmapUpdate } from '@shared/truenas/webui/interfaces/idmap.interface';
-import type {
-    CreateInitShutdownScript,
-    InitShutdownScript,
-    UpdateInitShutdownScriptParams,
-} from '@shared/truenas/webui/interfaces/init-shutdown-script.interface';
-import type {
-    Ipmi,
-    IpmiChassis,
-    IpmiQueryParams,
-    IpmiUpdate,
-} from '@shared/truenas/webui/interfaces/ipmi.interface';
-import type {
-    IscsiGlobalConfig,
-    IscsiGlobalConfigUpdate,
-    IscsiGlobalSession,
-} from '@shared/truenas/webui/interfaces/iscsi-global-config.interface';
+} from '../truenas/webui/interfaces/dns-authenticator.interface';
+import type { DockerHubRateLimit } from '../truenas/webui/interfaces/dockerhub-rate-limit.interface';
+import type { DsUncachedGroup, DsUncachedUser, LoggedInUser } from '../truenas/webui/interfaces/ds-cache.interface';
+import type { EnclosureUi } from '../truenas/webui/interfaces/enclosure.interface';
+import type { FailoverConfig, FailoverUpdate } from '../truenas/webui/interfaces/failover.interface';
+import type { FileRecord, ListdirQueryParams } from '../truenas/webui/interfaces/file-record.interface';
+import type { FileSystemStat, Statfs } from '../truenas/webui/interfaces/filesystem-stat.interface';
+import type { FtpConfig, FtpConfigUpdate } from '../truenas/webui/interfaces/ftp-config.interface';
+import type { CreateGroup, DeleteGroupParams, Group, UpdateGroup } from '../truenas/webui/interfaces/group.interface';
+import type { IdmapBackendOptions } from '../truenas/webui/interfaces/idmap-backend-options.interface';
+import type { Idmap, IdmapUpdate } from '../truenas/webui/interfaces/idmap.interface';
+import type { CreateInitShutdownScript, InitShutdownScript, UpdateInitShutdownScriptParams } from '../truenas/webui/interfaces/init-shutdown-script.interface';
+import type { Ipmi, IpmiChassis, IpmiQueryParams, IpmiUpdate } from '../truenas/webui/interfaces/ipmi.interface';
+import type { IscsiGlobalConfig, IscsiGlobalConfigUpdate, IscsiGlobalSession } from '../truenas/webui/interfaces/iscsi-global-config.interface';
 import type {
     IscsiAuthAccess,
     IscsiAuthAccessUpdate,
@@ -195,103 +109,61 @@ import type {
     IscsiTargetExtent,
     IscsiTargetExtentUpdate,
     IscsiTargetUpdate,
-} from '@shared/truenas/webui/interfaces/iscsi.interface';
-import type { Jbof, JbofUpdate } from '@shared/truenas/webui/interfaces/jbof.interface';
-import type { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import type {
-    KerberosConfig,
-    KerberosConfigUpdate,
-    KerberosKeytab,
-    KerberosKeytabUpdate,
-} from '@shared/truenas/webui/interfaces/kerberos-config.interface';
-import type {
-    KerberosRealm,
-    KerberosRealmUpdate,
-} from '@shared/truenas/webui/interfaces/kerberos-realm.interface';
+} from '../truenas/webui/interfaces/iscsi.interface';
+import type { Jbof, JbofUpdate } from '../truenas/webui/interfaces/jbof.interface';
+import type { Job } from '../truenas/webui/interfaces/job.interface';
+import type { KerberosConfig, KerberosConfigUpdate, KerberosKeytab, KerberosKeytabUpdate } from '../truenas/webui/interfaces/kerberos-config.interface';
+import type { KerberosRealm, KerberosRealmUpdate } from '../truenas/webui/interfaces/kerberos-realm.interface';
 import type {
     KeychainCredential,
     KeychainCredentialCreate,
     KeychainCredentialUpdate,
     KeychainSshCredentials,
     SshKeyPair,
-} from '@shared/truenas/webui/interfaces/keychain-credential.interface';
-import type { KmipConfig } from '@shared/truenas/webui/interfaces/kmip-config.interface';
-import type { KubernetesConfig } from '@shared/truenas/webui/interfaces/kubernetes-config.interface';
-import type { KubernetesStatusData } from '@shared/truenas/webui/interfaces/kubernetes-status-data.interface';
-import type { LdapConfig } from '@shared/truenas/webui/interfaces/ldap-config.interface';
-import type {
-    MailConfig,
-    MailConfigUpdate,
-} from '@shared/truenas/webui/interfaces/mail-config.interface';
-import type {
-    NetworkConfiguration,
-    NetworkConfigurationUpdate,
-} from '@shared/truenas/webui/interfaces/network-configuration.interface';
+} from '../truenas/webui/interfaces/keychain-credential.interface';
+import type { KmipConfig } from '../truenas/webui/interfaces/kmip-config.interface';
+import type { KubernetesConfig } from '../truenas/webui/interfaces/kubernetes-config.interface';
+import type { KubernetesStatusData } from '../truenas/webui/interfaces/kubernetes-status-data.interface';
+import type { LdapConfig } from '../truenas/webui/interfaces/ldap-config.interface';
+import type { MailConfig, MailConfigUpdate } from '../truenas/webui/interfaces/mail-config.interface';
+import type { NetworkConfiguration, NetworkConfigurationUpdate } from '../truenas/webui/interfaces/network-configuration.interface';
 import type {
     NetworkInterface,
     NetworkInterfaceCreate,
     NetworkInterfaceUpdate,
     ServiceRestartedOnNetworkSync,
-} from '@shared/truenas/webui/interfaces/network-interface.interface';
-import type { NetworkSummary } from '@shared/truenas/webui/interfaces/network-summary.interface';
-import type {
-    AddNfsPrincipal,
-    NfsConfig,
-    NfsConfigUpdate,
-} from '@shared/truenas/webui/interfaces/nfs-config.interface';
-import type {
-    Nfs3Session,
-    Nfs4Session,
-    NfsShare,
-    NfsShareUpdate,
-} from '@shared/truenas/webui/interfaces/nfs-share.interface';
-import type { CreateNtpServer, NtpServer } from '@shared/truenas/webui/interfaces/ntp-server.interface';
-import type { MapOption } from '@shared/truenas/webui/interfaces/option.interface';
+} from '../truenas/webui/interfaces/network-interface.interface';
+import type { NetworkSummary } from '../truenas/webui/interfaces/network-summary.interface';
+import type { AddNfsPrincipal, NfsConfig, NfsConfigUpdate } from '../truenas/webui/interfaces/nfs-config.interface';
+import type { Nfs3Session, Nfs4Session, NfsShare, NfsShareUpdate } from '../truenas/webui/interfaces/nfs-share.interface';
+import type { CreateNtpServer, NtpServer } from '../truenas/webui/interfaces/ntp-server.interface';
+import type { MapOption } from '../truenas/webui/interfaces/option.interface';
 import type {
     PeriodicSnapshotTask,
     PeriodicSnapshotTaskCreate,
     PeriodicSnapshotTaskUpdate,
-} from '@shared/truenas/webui/interfaces/periodic-snapshot-task.interface';
-import type {
-    DatasetAttachment,
-    PoolAttachment,
-} from '@shared/truenas/webui/interfaces/pool-attachment.interface';
-import type {
-    CreatePoolScrubTask,
-    PoolScrubTask,
-} from '@shared/truenas/webui/interfaces/pool-scrub.interface';
-import type { Pool, PoolInstance } from '@shared/truenas/webui/interfaces/pool.interface';
-import type {
-    Privilege,
-    PrivilegeRole,
-    PrivilegeUpdate,
-} from '@shared/truenas/webui/interfaces/privilege.interface';
-import type { Process } from '@shared/truenas/webui/interfaces/process.interface';
-import type { QueryParams } from '@shared/truenas/webui/interfaces/query-api.interface';
-import type { ReplicationConfigUpdate } from '@shared/truenas/webui/interfaces/replication-config-update.interface';
-import type { ReplicationConfig } from '@shared/truenas/webui/interfaces/replication-config.interface';
-import type {
-    ReplicationCreate,
-    ReplicationTask,
-} from '@shared/truenas/webui/interfaces/replication-task.interface';
+} from '../truenas/webui/interfaces/periodic-snapshot-task.interface';
+import type { DatasetAttachment, PoolAttachment } from '../truenas/webui/interfaces/pool-attachment.interface';
+import type { CreatePoolScrubTask, PoolScrubTask } from '../truenas/webui/interfaces/pool-scrub.interface';
+import type { Pool, PoolInstance } from '../truenas/webui/interfaces/pool.interface';
+import type { Privilege, PrivilegeRole, PrivilegeUpdate } from '../truenas/webui/interfaces/privilege.interface';
+import type { Process } from '../truenas/webui/interfaces/process.interface';
+import type { QueryParams } from '../truenas/webui/interfaces/query-api.interface';
+import type { ReplicationConfigUpdate } from '../truenas/webui/interfaces/replication-config-update.interface';
+import type { ReplicationConfig } from '../truenas/webui/interfaces/replication-config.interface';
+import type { ReplicationCreate, ReplicationTask } from '../truenas/webui/interfaces/replication-task.interface';
 import type {
     CreateReportingExporter,
     ReportingExporter,
     ReportingExporterSchema,
     UpdateReportingExporter,
-} from '@shared/truenas/webui/interfaces/reporting-exporters.interface';
-import type { ReportingGraph } from '@shared/truenas/webui/interfaces/reporting-graph.interface';
-import type {
-    ReportingData,
-    ReportingQueryParams,
-} from '@shared/truenas/webui/interfaces/reporting.interface';
-import type {
-    ResilverConfig,
-    ResilverConfigUpdate,
-} from '@shared/truenas/webui/interfaces/resilver-config.interface';
-import type { RsyncTask, RsyncTaskUpdate } from '@shared/truenas/webui/interfaces/rsync-task.interface';
-import type { Service } from '@shared/truenas/webui/interfaces/service.interface';
-import type { ResizeShellRequest } from '@shared/truenas/webui/interfaces/shell.interface';
+} from '../truenas/webui/interfaces/reporting-exporters.interface';
+import type { ReportingGraph } from '../truenas/webui/interfaces/reporting-graph.interface';
+import type { ReportingData, ReportingQueryParams } from '../truenas/webui/interfaces/reporting.interface';
+import type { ResilverConfig, ResilverConfigUpdate } from '../truenas/webui/interfaces/resilver-config.interface';
+import type { RsyncTask, RsyncTaskUpdate } from '../truenas/webui/interfaces/rsync-task.interface';
+import type { Service } from '../truenas/webui/interfaces/service.interface';
+import type { ResizeShellRequest } from '../truenas/webui/interfaces/shell.interface';
 import type {
     SmartManualTestParams,
     SmartConfig,
@@ -300,69 +172,30 @@ import type {
     SmartTestResults,
     ManualSmartTest,
     SmartTestTaskUpdate,
-} from '@shared/truenas/webui/interfaces/smart-test.interface';
-import type { SmbConfig, SmbConfigUpdate } from '@shared/truenas/webui/interfaces/smb-config.interface';
-import type {
-    SmbPresets,
-    SmbShare,
-    SmbSharesec,
-    SmbSharesecAce,
-    SmbShareUpdate,
-} from '@shared/truenas/webui/interfaces/smb-share.interface';
-import type { SmbStatus } from '@shared/truenas/webui/interfaces/smb-status.interface';
-import type {
-    SnmpConfig,
-    SnmpConfigUpdate,
-} from '@shared/truenas/webui/interfaces/snmp-config.interface';
-import type { SshConfig, SshConfigUpdate } from '@shared/truenas/webui/interfaces/ssh-config.interface';
-import type {
-    RemoteSshScanParams,
-    SshConnectionSetup,
-    SshSemiAutomaticSetup,
-} from '@shared/truenas/webui/interfaces/ssh-connection-setup.interface';
-import type {
-    StaticRoute,
-    UpdateStaticRoute,
-} from '@shared/truenas/webui/interfaces/static-route.interface';
-import type {
-    Disk,
-    ExtraDiskQueryOptions,
-    DiskTemperatures,
-    DiskTemperatureAgg,
-    DiskUpdate,
-    UnusedDisk,
-} from '@shared/truenas/webui/interfaces/storage.interface';
-import type {
-    SystemGeneralConfig,
-    SystemGeneralConfigUpdate,
-} from '@shared/truenas/webui/interfaces/system-config.interface';
-import type { SystemDatasetConfig } from '@shared/truenas/webui/interfaces/system-dataset-config.interface';
-import type { SystemInfo } from '@shared/truenas/webui/interfaces/system-info.interface';
-import type { SystemSecurityConfig } from '@shared/truenas/webui/interfaces/system-security-config.interface';
-import type {
-    SystemUpdate,
-    SystemUpdateChange,
-    SystemUpdateTrains,
-} from '@shared/truenas/webui/interfaces/system-update.interface';
+} from '../truenas/webui/interfaces/smart-test.interface';
+import type { SmbConfig, SmbConfigUpdate } from '../truenas/webui/interfaces/smb-config.interface';
+import type { SmbPresets, SmbShare, SmbSharesec, SmbSharesecAce, SmbShareUpdate } from '../truenas/webui/interfaces/smb-share.interface';
+import type { SmbStatus } from '../truenas/webui/interfaces/smb-status.interface';
+import type { SnmpConfig, SnmpConfigUpdate } from '../truenas/webui/interfaces/snmp-config.interface';
+import type { SshConfig, SshConfigUpdate } from '../truenas/webui/interfaces/ssh-config.interface';
+import type { RemoteSshScanParams, SshConnectionSetup, SshSemiAutomaticSetup } from '../truenas/webui/interfaces/ssh-connection-setup.interface';
+import type { StaticRoute, UpdateStaticRoute } from '../truenas/webui/interfaces/static-route.interface';
+import type { Disk, ExtraDiskQueryOptions, DiskTemperatures, DiskTemperatureAgg, DiskUpdate, UnusedDisk } from '../truenas/webui/interfaces/storage.interface';
+import type { SystemGeneralConfig, SystemGeneralConfigUpdate } from '../truenas/webui/interfaces/system-config.interface';
+import type { SystemDatasetConfig } from '../truenas/webui/interfaces/system-dataset-config.interface';
+import type { SystemInfo } from '../truenas/webui/interfaces/system-info.interface';
+import type { SystemSecurityConfig } from '../truenas/webui/interfaces/system-security-config.interface';
+import type { SystemUpdate, SystemUpdateChange, SystemUpdateTrains } from '../truenas/webui/interfaces/system-update.interface';
 import type {
     TrueCommandConfig,
     TrueCommandConnectionState,
     TrueCommandUpdateResponse,
     UpdateTrueCommand,
-} from '@shared/truenas/webui/interfaces/true-command-config.interface';
-import type { Tunable } from '@shared/truenas/webui/interfaces/tunable.interface';
-import type {
-    GlobalTwoFactorConfig,
-    GlobalTwoFactorConfigUpdate,
-    UserTwoFactorConfig,
-} from '@shared/truenas/webui/interfaces/two-factor-config.interface';
-import type { UpsConfig, UpsConfigUpdate } from '@shared/truenas/webui/interfaces/ups-config.interface';
-import type {
-    DeleteUserParams,
-    SetPasswordParams,
-    User,
-    UserUpdate,
-} from '@shared/truenas/webui/interfaces/user.interface';
+} from '../truenas/webui/interfaces/true-command-config.interface';
+import type { Tunable } from '../truenas/webui/interfaces/tunable.interface';
+import type { GlobalTwoFactorConfig, GlobalTwoFactorConfigUpdate, UserTwoFactorConfig } from '../truenas/webui/interfaces/two-factor-config.interface';
+import type { UpsConfig, UpsConfigUpdate } from '../truenas/webui/interfaces/ups-config.interface';
+import type { DeleteUserParams, SetPasswordParams, User, UserUpdate } from '../truenas/webui/interfaces/user.interface';
 import type {
     VirtualizationDetails,
     VirtualMachine,
@@ -372,7 +205,7 @@ import type {
     VmDisplayWebUri,
     VmDisplayWebUriParams,
     VmPortWizardResult,
-} from '@shared/truenas/webui/interfaces/virtual-machine.interface';
+} from '../truenas/webui/interfaces/virtual-machine.interface';
 import type {
     VmDevice,
     VmDeviceDelete,
@@ -380,25 +213,15 @@ import type {
     VmDisplayDevice,
     VmPassthroughDeviceChoice,
     VmUsbPassthroughDeviceChoice,
-} from '@shared/truenas/webui/interfaces/vm-device.interface';
+} from '../truenas/webui/interfaces/vm-device.interface';
 import type {
     MatchDatastoresWithDatasets,
     MatchDatastoresWithDatasetsParams,
     VmwareSnapshot,
     VmwareSnapshotUpdate,
-} from '@shared/truenas/webui/interfaces/vmware.interface';
-import type {
-    CloneZfsSnapshot,
-    CreateZfsSnapshot,
-    ZfsRollbackParams,
-    ZfsSnapshot,
-} from '@shared/truenas/webui/interfaces/zfs-snapshot.interface';
-import type {
-    SimilarIssue,
-    SimilarIssuesParams,
-    SupportConfig,
-    SupportConfigUpdate,
-} from '@shared/modules/feedback/interfaces/file-ticket.interface';
+} from '../truenas/webui/interfaces/vmware.interface';
+import type { CloneZfsSnapshot, CreateZfsSnapshot, ZfsRollbackParams, ZfsSnapshot } from '../truenas/webui/interfaces/zfs-snapshot.interface';
+import type { SimilarIssue, SimilarIssuesParams, SupportConfig, SupportConfigUpdate } from '../modules/feedback/interfaces/file-ticket.interface';
 import type { SystemHealth } from '../system-health.interface';
 import type { App, AppQueryParams, AppUpgradeParams } from '../app.interface';
 
@@ -1321,8 +1144,7 @@ export type ApiCallMethod = keyof ApiCallDirectory;
 
 export type ApiCallParams<T extends ApiCallMethod> = ApiCallDirectory[T]['params'];
 export type ApiCallResponse<T extends ApiCallMethod> = ApiCallDirectory[T]['response'];
-export type ApiCallResponseType<T extends ApiCallMethod> =
-    ApiCallDirectory[T]['response'] extends (infer U)[] ? U : never;
+export type ApiCallResponseType<T extends ApiCallMethod> = ApiCallDirectory[T]['response'] extends (infer U)[] ? U : never;
 
 export type QueryMethods = {
     [T in ApiCallMethod]: T extends `${string}.query` ? T : never;

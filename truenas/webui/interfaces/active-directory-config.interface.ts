@@ -1,4 +1,4 @@
-import type { NssInfoType } from '@shared/truenas/webui/interfaces/active-directory.interface';
+import type { NssInfoType } from '../truenas/webui/interfaces/active-directory.interface';
 
 export interface ActiveDirectoryConfig {
     allow_dns_updates: boolean;

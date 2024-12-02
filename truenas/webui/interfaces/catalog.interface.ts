@@ -1,12 +1,7 @@
-import type { JobState } from '@shared/truenas/webui/enums/job-state.enum';
-import type { AppMaintainer } from '@shared/truenas/webui/interfaces/available-app.interface';
-import type {
-    AppMetadata,
-    ChartFormValue,
-    ChartSchemaGroup,
-    ChartSchemaNode,
-} from '@shared/truenas/webui/interfaces/chart-release.interface';
-import type { QueryParams } from '@shared/truenas/webui/interfaces/query-api.interface';
+import type { JobState } from '../truenas/webui/enums/job-state.enum';
+import type { AppMaintainer } from '../truenas/webui/interfaces/available-app.interface';
+import type { AppMetadata, ChartFormValue, ChartSchemaGroup, ChartSchemaNode } from '../truenas/webui/interfaces/chart-release.interface';
+import type { QueryParams } from '../truenas/webui/interfaces/query-api.interface';
 
 export interface Catalog {
     branch: string;

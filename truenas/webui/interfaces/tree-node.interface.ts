@@ -1,5 +1,5 @@
 import { TreeNode as OriginalTreeNode } from '@bugsplat/angular-tree-component';
-import { ExplorerNodeType } from '@shared/truenas/webui/enums/explorer-type.enum';
+import { ExplorerNodeType } from '../truenas/webui/enums/explorer-type.enum';
 
 /**
  * This is basically a TreeNode from 'angular-tree-component'

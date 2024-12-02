@@ -1,8 +1,5 @@
-import {
-    IpmiChassisIdentifyState,
-    IpmiIpAddressSource,
-} from '@shared/truenas/webui/enums/ipmi.enum';
-import { QueryFilters, QueryOptions } from '@shared/truenas/webui/interfaces/query-api.interface';
+import { IpmiChassisIdentifyState, IpmiIpAddressSource } from '../truenas/webui/enums/ipmi.enum';
+import { QueryFilters, QueryOptions } from '../truenas/webui/interfaces/query-api.interface';
 
 export interface Ipmi {
     backup_gateway_ip_address: string;

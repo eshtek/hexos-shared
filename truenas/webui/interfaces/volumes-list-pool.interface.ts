@@ -1,10 +1,6 @@
-import type { Dataset } from '@shared/truenas/webui/interfaces/dataset.interface';
+import type { Dataset } from '../truenas/webui/interfaces/dataset.interface';
 
-export interface VolumesListDataset
-    extends Omit<
-        Dataset,
-        'compression' | 'compressratio' | 'dedup' | 'readonly' | 'comments' | 'children'
-    > {
+export interface VolumesListDataset extends Omit<Dataset, 'compression' | 'compressratio' | 'dedup' | 'readonly' | 'comments' | 'children'> {
     non_encrypted_on_encrypted?: boolean;
     is_encrypted_root?: boolean;
     available_parsed?: string;

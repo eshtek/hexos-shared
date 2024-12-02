@@ -1,8 +1,8 @@
-import type { DiskType } from '@/shared/truenas/webui/enums/disk-type.enum';
-import type { NetworkInterfaceType } from '@shared/truenas/webui/enums/network-interface.enum';
-import type { PoolStatus } from '@shared/truenas/webui/enums/pool-status.enum';
-import type { TopologyItemStatus } from '@shared/truenas/webui/enums/vdev-status.enum';
-import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '@shared/truenas/webui/interfaces/vm-device.interface';
+import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
+import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interface.enum';
+import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
+import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
+import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '../truenas/webui/interfaces/vm-device.interface';
 
 export const cleanCPUModel = (model: string): string => {
     return model.replace('Processor', '').replace('CPU', '').replace('(TM)', '™').replace('CoreTM', 'Core™').replace('(C)', '©').replace('(R)', '®');
@@ -20,8 +20,7 @@ export const cleanVendor = (vendor: string): string => {
         .replace(' Co., Ltd.', '')
         .replace(', Ltd.', '')
         .replace(', Ltd', '')
-        .replace(', Inc.', '')
-        
+        .replace(', Inc.', '');
 };
 
 export const cleanProduct = (product: string): string => {
@@ -93,7 +92,6 @@ export enum ServerPoolError {
 export enum ServerPoolWarning {
     POOL_IS_AT_OR_NEAR_CAPACITY = 'POOL_IS_AT_OR_NEAR_CAPACITY',
 }
-
 
 export interface ServerPoolBasics {
     type: ServerPoolType;

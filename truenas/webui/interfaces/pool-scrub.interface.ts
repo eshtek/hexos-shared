@@ -1,5 +1,5 @@
-import type { PoolScrubAction } from '@shared/truenas/webui/enums/pool-scrub-action.enum';
-import type { Schedule } from '@shared/truenas/webui/interfaces/schedule.interface';
+import type { PoolScrubAction } from '../truenas/webui/enums/pool-scrub-action.enum';
+import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
 
 export interface PoolScrubTask {
     description: string;

@@ -1,9 +1,6 @@
-import type { FileAttribute } from '@shared/truenas/webui/enums/file-attribute.enum';
-import type { FileType } from '@shared/truenas/webui/enums/file-type.enum';
-import type {
-    QueryFilter,
-    QueryOptions,
-} from '@shared/truenas/webui/interfaces/query-api.interface';
+import type { FileAttribute } from '../truenas/webui/enums/file-attribute.enum';
+import type { FileType } from '../truenas/webui/enums/file-type.enum';
+import type { QueryFilter, QueryOptions } from '../truenas/webui/interfaces/query-api.interface';
 
 export interface FileRecord {
     acl: boolean;
@@ -20,8 +17,4 @@ export interface FileRecord {
     attributes: FileAttribute[];
 }
 
-export type ListdirQueryParams = [
-    path: string,
-    filter: [QueryFilter<FileRecord>?],
-    options: QueryOptions<FileRecord>,
-];
+export type ListdirQueryParams = [path: string, filter: [QueryFilter<FileRecord>?], options: QueryOptions<FileRecord>];

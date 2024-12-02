@@ -1,4 +1,4 @@
-import { UpsMode, UpsShutdownMode } from '@shared/truenas/webui/enums/ups-mode.enum';
+import { UpsMode, UpsShutdownMode } from '../truenas/webui/enums/ups-mode.enum';
 
 export interface UpsConfig {
     complete_identifier: string;

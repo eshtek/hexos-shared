@@ -1,4 +1,4 @@
-import { CloudSyncProviderName } from '@shared/truenas/webui/enums/cloudsync-provider.enum';
+import { CloudSyncProviderName } from '../truenas/webui/enums/cloudsync-provider.enum';
 
 export interface CloudSyncCredential {
     attributes: Record<string, string | number | boolean>;

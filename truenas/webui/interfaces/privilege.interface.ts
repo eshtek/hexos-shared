@@ -1,5 +1,5 @@
-import type { Role } from '@shared/truenas/webui/enums/role.enum';
-import type { Group } from '@shared/truenas/webui/interfaces/group.interface';
+import type { Role } from '../truenas/webui/enums/role.enum';
+import type { Group } from '../truenas/webui/interfaces/group.interface';
 
 export interface Privilege {
     id: number;

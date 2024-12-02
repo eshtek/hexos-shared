@@ -1,4 +1,4 @@
-import { NfsProtocol } from '@shared/truenas/webui/enums/nfs-protocol.enum';
+import { NfsProtocol } from '../truenas/webui/enums/nfs-protocol.enum';
 
 export interface NfsConfig {
     allow_nonroot: boolean;

@@ -1,4 +1,4 @@
-import { NetworkActivityType } from '@shared/truenas/webui/enums/network-activity-type.enum';
+import { NetworkActivityType } from '../truenas/webui/enums/network-activity-type.enum';
 
 export interface NetworkConfiguration extends NetworkConfigurationState {
     activity: NetworkConfigurationActivity;
@@ -15,9 +15,7 @@ export interface NetworkConfiguration extends NetworkConfigurationState {
     state: NetworkConfigurationState;
 }
 
-export interface NetworkConfigurationConfig
-    extends NetworkConfigurationState,
-        NetworkServiceAnnouncement {
+export interface NetworkConfigurationConfig extends NetworkConfigurationState, NetworkServiceAnnouncement {
     inherit_dhcp: boolean;
     domain: string;
     domains: string[];

@@ -1,9 +1,6 @@
-import { AuditEvent, AuditService } from '@shared/truenas/webui/enums/audit.enum';
-import {
-    AuditVersions,
-    BaseAuditEntry,
-} from '@shared/truenas/webui/interfaces/audit/audit.interface';
-import { CredentialType } from '@shared/truenas/webui/interfaces/credential-type.interface';
+import { AuditEvent, AuditService } from '../truenas/webui/enums/audit.enum';
+import { AuditVersions, BaseAuditEntry } from '../truenas/webui/interfaces/audit/audit.interface';
+import { CredentialType } from '../truenas/webui/interfaces/credential-type.interface';
 
 interface BaseMiddlewareAuditEntry extends BaseAuditEntry {
     service: AuditService.Middleware;

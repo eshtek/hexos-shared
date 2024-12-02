@@ -1,6 +1,6 @@
-import { KubernetesStatus } from '@shared/pages/apps/enum/kubernetes-status.enum';
+import { KubernetesStatus } from '../pages/apps/enum/kubernetes-status.enum';
 
 export interface KubernetesStatusData {
-  status: KubernetesStatus;
-  description: string;
+    status: KubernetesStatus;
+    description: string;
 }

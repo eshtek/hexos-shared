@@ -1,17 +1,17 @@
-import type { CompressionType } from '@shared/truenas/webui/enums/compression-type.enum';
-import type { Direction } from '@shared/truenas/webui/enums/direction.enum';
-import type { EncryptionKeyFormat } from '@shared/truenas/webui/enums/encryption-key-format.enum';
-import type { LifetimeUnit } from '@shared/truenas/webui/enums/lifetime-unit.enum';
-import type { LoggingLevel } from '@shared/truenas/webui/enums/logging-level.enum';
-import type { NetcatMode } from '@shared/truenas/webui/enums/netcat-mode.enum';
-import type { ReadOnlyMode } from '@shared/truenas/webui/enums/readonly-mode.enum';
-import type { RetentionPolicy } from '@shared/truenas/webui/enums/retention-policy.enum';
-import type { ScheduleMethod } from '@shared/truenas/webui/enums/schedule-method.enum';
-import type { TransportMode } from '@shared/truenas/webui/enums/transport-mode.enum';
-import type { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import type { KeychainSshCredentials } from '@shared/truenas/webui/interfaces/keychain-credential.interface';
-import type { PeriodicSnapshotTask } from '@shared/truenas/webui/interfaces/periodic-snapshot-task.interface';
-import type { Schedule } from '@shared/truenas/webui/interfaces/schedule.interface';
+import type { CompressionType } from '../truenas/webui/enums/compression-type.enum';
+import type { Direction } from '../truenas/webui/enums/direction.enum';
+import type { EncryptionKeyFormat } from '../truenas/webui/enums/encryption-key-format.enum';
+import type { LifetimeUnit } from '../truenas/webui/enums/lifetime-unit.enum';
+import type { LoggingLevel } from '../truenas/webui/enums/logging-level.enum';
+import type { NetcatMode } from '../truenas/webui/enums/netcat-mode.enum';
+import type { ReadOnlyMode } from '../truenas/webui/enums/readonly-mode.enum';
+import type { RetentionPolicy } from '../truenas/webui/enums/retention-policy.enum';
+import type { ScheduleMethod } from '../truenas/webui/enums/schedule-method.enum';
+import type { TransportMode } from '../truenas/webui/enums/transport-mode.enum';
+import type { Job } from '../truenas/webui/interfaces/job.interface';
+import type { KeychainSshCredentials } from '../truenas/webui/interfaces/keychain-credential.interface';
+import type { PeriodicSnapshotTask } from '../truenas/webui/interfaces/periodic-snapshot-task.interface';
+import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
 import type { DataProtectionTaskState } from './data-protection-task-state.interface';
 
 export interface ReplicationTask {

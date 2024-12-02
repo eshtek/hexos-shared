@@ -1,8 +1,8 @@
-import type { Direction } from '@shared/truenas/webui/enums/direction.enum';
-import type { TransferMode } from '@shared/truenas/webui/enums/transfer-mode.enum';
-import type { DataProtectionTaskState } from '@shared/truenas/webui/interfaces/data-protection-task-state.interface';
-import type { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import type { Schedule } from '@shared/truenas/webui/interfaces/schedule.interface';
+import type { Direction } from '../truenas/webui/enums/direction.enum';
+import type { TransferMode } from '../truenas/webui/enums/transfer-mode.enum';
+import type { DataProtectionTaskState } from '../truenas/webui/interfaces/data-protection-task-state.interface';
+import type { Job } from '../truenas/webui/interfaces/job.interface';
+import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
 
 export interface CloudCredential {
     id: number;
@@ -45,17 +45,7 @@ export interface CloudSyncTask {
 }
 
 export interface CloudSyncTaskUpdate
-    extends Omit<
-        CloudSyncTask,
-        | 'id'
-        | 'job'
-        | 'locked'
-        | 'credentials'
-        | 'encryption_salt'
-        | 'args'
-        | 'filename_encryption'
-        | 'bwlimit'
-    > {
+    extends Omit<CloudSyncTask, 'id' | 'job' | 'locked' | 'credentials' | 'encryption_salt' | 'args' | 'filename_encryption' | 'bwlimit'> {
     credentials: number;
     bwlimit: { time: string; bandwidth: string }[];
 }

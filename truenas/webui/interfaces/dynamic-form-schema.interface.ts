@@ -1,10 +1,10 @@
 import type { UntypedFormArray } from '@angular/forms';
 import type { Observable } from 'rxjs';
-import type { CodeEditorLanguage } from '@shared/truenas/webui/enums/code-editor-language.enum';
-import type { DynamicFormSchemaType } from '@shared/truenas/webui/enums/dynamic-form-schema-type.enum';
-import type { ChartSchemaNode } from '@shared/truenas/webui/interfaces/chart-release.interface';
-import type { Option } from '@shared/truenas/webui/interfaces/option.interface';
-import type { TreeNodeProvider } from '@shared/modules/ix-forms/components/ix-explorer/tree-node-provider.interface';
+import type { CodeEditorLanguage } from '../truenas/webui/enums/code-editor-language.enum';
+import type { DynamicFormSchemaType } from '../truenas/webui/enums/dynamic-form-schema-type.enum';
+import type { ChartSchemaNode } from '../truenas/webui/interfaces/chart-release.interface';
+import type { Option } from '../truenas/webui/interfaces/option.interface';
+import type { TreeNodeProvider } from '../modules/ix-forms/components/ix-explorer/tree-node-provider.interface';
 
 export interface DynamicFormSchema {
     name: string;

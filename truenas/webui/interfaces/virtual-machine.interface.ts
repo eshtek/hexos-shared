@@ -1,5 +1,5 @@
-import type { VmBootloader, VmCpuMode, VmState, VmTime } from '@shared/truenas/webui/enums/vm.enum';
-import type { VmDevice } from '@shared/truenas/webui/interfaces/vm-device.interface';
+import type { VmBootloader, VmCpuMode, VmState, VmTime } from '../truenas/webui/enums/vm.enum';
+import type { VmDevice } from '../truenas/webui/interfaces/vm-device.interface';
 
 export interface VirtualMachine {
     autostart: boolean;
@@ -51,11 +51,7 @@ export type VmStopParams = [
     },
 ];
 
-export type VmDisplayWebUriParams = [
-    id: number,
-    domain: string,
-    options?: VmDisplayWebUriParamsOptions,
-];
+export type VmDisplayWebUriParams = [id: number, domain: string, options?: VmDisplayWebUriParamsOptions];
 
 export interface VmDisplayWebUriParamsOptions {
     protocol?: string;

@@ -1,4 +1,4 @@
-import { Role } from '@shared/truenas/webui/enums/role.enum';
+import { Role } from '../truenas/webui/enums/role.enum';
 
 export interface Group {
     builtin: boolean;

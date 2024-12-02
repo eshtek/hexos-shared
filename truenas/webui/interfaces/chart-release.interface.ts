@@ -1,9 +1,9 @@
-import { ChartReleaseStatus } from '@shared/truenas/webui/enums/chart-release-status.enum';
-import { ChartSchemaType } from '@shared/truenas/webui/enums/chart-schema-type.enum';
-import { CodeEditorLanguage } from '@shared/truenas/webui/enums/code-editor-language.enum';
-import { ChartMetadata } from '@shared/truenas/webui/interfaces/catalog.interface';
-import { HierarchicalObjectMap } from '@shared/truenas/webui/interfaces/hierarhical-object-map.interface';
-import { QueryParams } from '@shared/truenas/webui/interfaces/query-api.interface';
+import { ChartReleaseStatus } from '../truenas/webui/enums/chart-release-status.enum';
+import { ChartSchemaType } from '../truenas/webui/enums/chart-schema-type.enum';
+import { CodeEditorLanguage } from '../truenas/webui/enums/code-editor-language.enum';
+import { ChartMetadata } from '../truenas/webui/interfaces/catalog.interface';
+import { HierarchicalObjectMap } from '../truenas/webui/interfaces/hierarhical-object-map.interface';
+import { QueryParams } from '../truenas/webui/interfaces/query-api.interface';
 
 export interface UsedPort {
     port: number;

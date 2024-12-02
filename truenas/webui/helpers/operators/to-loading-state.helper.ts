@@ -1,6 +1,6 @@
 import { of, OperatorFunction, pipe } from 'rxjs';
 import { catchError, map, startWith } from 'rxjs/operators';
-import { WebSocketError } from '@shared/truenas/webui/interfaces/websocket-error.interface';
+import { WebSocketError } from '../truenas/webui/interfaces/websocket-error.interface';
 
 export interface LoadingState<T> {
     isLoading: boolean;

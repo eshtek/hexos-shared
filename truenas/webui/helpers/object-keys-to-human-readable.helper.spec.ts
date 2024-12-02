@@ -1,7 +1,4 @@
-import {
-    convertObjectKeysToHumanReadable,
-    toHumanReadableKey,
-} from '@shared/truenas/webui/helpers/object-keys-to-human-readable.helper';
+import { convertObjectKeysToHumanReadable, toHumanReadableKey } from '../truenas/webui/helpers/object-keys-to-human-readable.helper';
 
 const specObject = {
     firstName: 'Alex',

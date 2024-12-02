@@ -1,4 +1,4 @@
-import { MailSecurity } from '@shared/truenas/webui/enums/mail-security.enum';
+import { MailSecurity } from '../truenas/webui/enums/mail-security.enum';
 
 export interface MailConfig {
     fromemail: string;

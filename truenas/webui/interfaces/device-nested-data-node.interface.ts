@@ -1,5 +1,5 @@
-import type { VdevType } from '@shared/truenas/webui/enums/v-dev-type.enum';
-import type { TopologyItem } from '@shared/truenas/webui/interfaces/storage.interface';
+import type { VdevType } from '../truenas/webui/enums/v-dev-type.enum';
+import type { TopologyItem } from '../truenas/webui/interfaces/storage.interface';
 
 export interface VDevGroup {
     group: string;

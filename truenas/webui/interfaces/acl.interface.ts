@@ -1,14 +1,7 @@
-import type { AclType } from '@shared/truenas/webui/enums/acl-type.enum';
-import type {
-    NfsAclTag,
-    NfsAclType,
-    NfsAdvancedFlag,
-    NfsAdvancedPermission,
-    NfsBasicFlag,
-    NfsBasicPermission,
-} from '@shared/truenas/webui/enums/nfs-acl.enum';
-import type { PosixAclTag, PosixPermission } from '@shared/truenas/webui/enums/posix-acl.enum';
-import type { QueryFilter, QueryOptions } from '@shared/truenas/webui/interfaces/query-api.interface';
+import type { AclType } from '../truenas/webui/enums/acl-type.enum';
+import type { NfsAclTag, NfsAclType, NfsAdvancedFlag, NfsAdvancedPermission, NfsBasicFlag, NfsBasicPermission } from '../truenas/webui/enums/nfs-acl.enum';
+import type { PosixAclTag, PosixPermission } from '../truenas/webui/enums/posix-acl.enum';
+import type { QueryFilter, QueryOptions } from '../truenas/webui/interfaces/query-api.interface';
 
 export type Acl = NfsAcl | PosixAcl;
 
@@ -72,9 +65,7 @@ export interface BasicNfsPermissions {
     BASIC: NfsBasicPermission;
 }
 
-export function areNfsPermissionsBasic(
-    permissions: BasicNfsPermissions | AdvancedNfsPermissions,
-): permissions is BasicNfsPermissions {
+export function areNfsPermissionsBasic(permissions: BasicNfsPermissions | AdvancedNfsPermissions): permissions is BasicNfsPermissions {
     return 'BASIC' in permissions;
 }
 

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-import type { IncomingApiMessageType } from '@shared/truenas/webui/enums/api-message-type.enum';
-import type { ApiCallMethod } from '@shared/truenas/webui/interfaces/api/api-call-directory.interface';
-import type { ApiEventDirectory } from '@shared/truenas/webui/interfaces/api/api-event-directory.interface';
-import type { ApiJobMethod } from '@shared/truenas/webui/interfaces/api/api-job-directory.interface';
-import type { WebSocketError } from '@shared/truenas/webui/interfaces/websocket-error.interface';
+import type { IncomingApiMessageType } from '../truenas/webui/enums/api-message-type.enum';
+import type { ApiCallMethod } from '../truenas/webui/interfaces/api/api-call-directory.interface';
+import type { ApiEventDirectory } from '../truenas/webui/interfaces/api/api-event-directory.interface';
+import type { ApiJobMethod } from '../truenas/webui/interfaces/api/api-job-directory.interface';
+import type { WebSocketError } from '../truenas/webui/interfaces/websocket-error.interface';
 
 export interface PongMessage {
     id: string;
@@ -31,25 +31,12 @@ export interface ApiEvent<T = unknown> {
     collection: ApiCallMethod | ApiJobMethod | ApiEventMethod;
     fields: T;
     id: number | string;
-    msg:
-        | IncomingApiMessageType.Changed
-        | IncomingApiMessageType.Added
-        | IncomingApiMessageType.Removed
-        | IncomingApiMessageType.NoSub;
+    msg: IncomingApiMessageType.Changed | IncomingApiMessageType.Added | IncomingApiMessageType.Removed | IncomingApiMessageType.NoSub;
 }
 
 export type ApiEventMethod = keyof ApiEventDirectory;
-export type ApiEventResponseType<K extends ApiEventMethod = ApiEventMethod> =
-    ApiEventDirectory[K]['response'];
+export type ApiEventResponseType<K extends ApiEventMethod = ApiEventMethod> = ApiEventDirectory[K]['response'];
 
-export type ApiEventTyped<
-    M extends ApiEventMethod = ApiEventMethod,
-    T extends ApiEventResponseType<M> = ApiEventResponseType<M>,
-> = ApiEvent<T>;
+export type ApiEventTyped<M extends ApiEventMethod = ApiEventMethod, T extends ApiEventResponseType<M> = ApiEventResponseType<M>> = ApiEvent<T>;
 
-export type IncomingWebSocketMessage =
-    | PongMessage
-    | SubscriptionReadyMessage
-    | ResultMessage
-    | ConnectedMessage
-    | ApiEvent;
+export type IncomingWebSocketMessage = PongMessage | SubscriptionReadyMessage | ResultMessage | ConnectedMessage | ApiEvent;

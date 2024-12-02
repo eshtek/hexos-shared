@@ -1,11 +1,8 @@
-import type { Credentials } from '@shared/truenas/webui/interfaces/credential-type.interface';
-import { CredentialType } from '@shared/truenas/webui/interfaces/credential-type.interface';
+import type { Credentials } from '../truenas/webui/interfaces/credential-type.interface';
+import { CredentialType } from '../truenas/webui/interfaces/credential-type.interface';
 
 export function getCredentialsCreationSource(credentials: Credentials): string {
-    if (
-        credentials.type === CredentialType.UnixSocket ||
-        credentials.type === CredentialType.LoginPassword
-    ) {
+    if (credentials.type === CredentialType.UnixSocket || credentials.type === CredentialType.LoginPassword) {
         return credentials.data.username;
     }
     if (credentials.type === CredentialType.ApiKey) {

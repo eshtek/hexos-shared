@@ -1,4 +1,4 @@
-import { TrueCommandStatus } from '@shared/truenas/webui/enums/true-command-status.enum';
+import { TrueCommandStatus } from '../truenas/webui/enums/true-command-status.enum';
 
 export interface TrueCommandConfig {
     api_key: string;

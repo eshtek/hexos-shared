@@ -1,5 +1,5 @@
-import { ResponseErrorType } from '@shared/truenas/webui/enums/response-error-type.enum';
-import { WebSocketErrorName } from '@shared/truenas/webui/enums/websocket-error-name.enum';
+import { ResponseErrorType } from '../truenas/webui/enums/response-error-type.enum';
+import { WebSocketErrorName } from '../truenas/webui/enums/websocket-error-name.enum';
 
 export interface WebSocketError {
     errname: WebSocketErrorName;

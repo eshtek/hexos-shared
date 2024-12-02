@@ -1,8 +1,8 @@
-import type { JobState } from '@shared/truenas/webui/enums/job-state.enum';
-import type { ResponseErrorType } from '@shared/truenas/webui/enums/response-error-type.enum';
-import type { ApiJobMethod } from '@shared/truenas/webui/interfaces/api/api-job-directory.interface';
-import type { ApiTimestamp } from '@shared/truenas/webui/interfaces/api-date.interface';
-import type { Credentials } from '@shared/truenas/webui/interfaces/credential-type.interface';
+import type { JobState } from '../truenas/webui/enums/job-state.enum';
+import type { ResponseErrorType } from '../truenas/webui/enums/response-error-type.enum';
+import type { ApiJobMethod } from '../truenas/webui/interfaces/api/api-job-directory.interface';
+import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import type { Credentials } from '../truenas/webui/interfaces/credential-type.interface';
 
 export interface Job<R = unknown, A = unknown[]> {
     abortable: boolean;

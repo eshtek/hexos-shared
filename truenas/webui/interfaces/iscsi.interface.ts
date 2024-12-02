@@ -1,9 +1,4 @@
-import {
-    IscsiAuthMethod,
-    IscsiExtentRpm,
-    IscsiExtentType,
-    IscsiTargetMode,
-} from '@shared/truenas/webui/enums/iscsi.enum';
+import { IscsiAuthMethod, IscsiExtentRpm, IscsiExtentType, IscsiTargetMode } from '../truenas/webui/enums/iscsi.enum';
 
 export interface IscsiPortal {
     comment: string;

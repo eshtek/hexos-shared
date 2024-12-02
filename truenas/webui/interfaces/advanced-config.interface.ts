@@ -1,5 +1,5 @@
-import { SedUser } from '@shared/truenas/webui/enums/sed-user.enum';
-import { SyslogLevel, SyslogTransport } from '@shared/truenas/webui/enums/syslog.enum';
+import { SedUser } from '../truenas/webui/enums/sed-user.enum';
+import { SyslogLevel, SyslogTransport } from '../truenas/webui/enums/syslog.enum';
 
 export interface AdvancedConfig {
     advancedmode: boolean;

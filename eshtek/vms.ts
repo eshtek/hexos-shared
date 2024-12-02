@@ -1,4 +1,4 @@
-import type { VmDevice, VmDisplayDevice } from '@shared/truenas/webui/interfaces/vm-device.interface';
+import type { VmDevice, VmDisplayDevice } from '../truenas/webui/interfaces/vm-device.interface';
 import type { ServerSystemAudio, ServerSystemGPU, ServerSystemPCI, ServerSystemUSB } from './server';
 
 export enum VMCreateType {

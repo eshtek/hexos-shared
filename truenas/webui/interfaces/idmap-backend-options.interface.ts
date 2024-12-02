@@ -1,4 +1,4 @@
-import type { IdmapBackend } from '@shared/truenas/webui/enums/idmap.enum';
+import type { IdmapBackend } from '../truenas/webui/enums/idmap.enum';
 
 export type IdmapBackendOptions = {
     [key in IdmapBackend]: IdmapBackendOption;

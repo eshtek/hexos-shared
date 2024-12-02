@@ -1,5 +1,5 @@
-import { PosixPermission } from '@shared/truenas/webui/enums/posix-acl.enum';
-import type { UnixFilePermissions } from '@shared/truenas/webui/interfaces/posix-permissions.interface';
+import { PosixPermission } from '../truenas/webui/enums/posix-acl.enum';
+import type { UnixFilePermissions } from '../truenas/webui/interfaces/posix-permissions.interface';
 
 /**
  * Converts unix octal permission (usually coming from API) to an object.

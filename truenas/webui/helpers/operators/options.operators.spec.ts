@@ -1,10 +1,5 @@
 import { lastValueFrom, of } from 'rxjs';
-import {
-    arrayToOptions,
-    choicesToOptions,
-    idNameArrayToOptions,
-    singleArrayToOptions,
-} from '@shared/truenas/webui/helpers/operators/options.operators';
+import { arrayToOptions, choicesToOptions, idNameArrayToOptions, singleArrayToOptions } from '../truenas/webui/helpers/operators/options.operators';
 
 describe('choicesToOptions', () => {
     it('converts key-value objects to an array of options', async () => {

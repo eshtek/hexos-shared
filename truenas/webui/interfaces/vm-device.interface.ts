@@ -1,10 +1,5 @@
 import type { Overwrite } from 'utility-types';
-import type {
-    VmDeviceType,
-    VmDiskMode,
-    VmDisplayType,
-    VmNicType,
-} from '@shared/truenas/webui/enums/vm.enum';
+import type { VmDeviceType, VmDiskMode, VmDisplayType, VmNicType } from '../truenas/webui/enums/vm.enum';
 
 interface VmPciPassthroughAttributes {
     pptdev: string;
@@ -106,14 +101,7 @@ export interface VmUsbPassthroughDevice extends BaseVmDevice {
     attributes: VmUsbPassthroughAttributes;
 }
 
-export type VmDevice =
-    | VmPciPassthroughDevice
-    | VmUsbPassthroughDevice
-    | VmRawFileDevice
-    | VmNicDevice
-    | VmDisplayDevice
-    | VmDiskDevice
-    | VmCdRomDevice;
+export type VmDevice = VmPciPassthroughDevice | VmUsbPassthroughDevice | VmRawFileDevice | VmNicDevice | VmDisplayDevice | VmDiskDevice | VmCdRomDevice;
 
 export type VmDeviceUpdate = Overwrite<
     Partial<Omit<VmDevice, 'id'>>,

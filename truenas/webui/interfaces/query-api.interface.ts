@@ -1,13 +1,10 @@
-import type { PropertyPath } from '@shared/truenas/webui/interfaces/property-path.type';
+import type { PropertyPath } from '../truenas/webui/interfaces/property-path.type';
 
 /**
  * If you are typing query API, you probably just need this, i.e. QueryParams<User>
  * https://github.com/truenas/middleware/blob/master/src/middlewared/middlewared/apidocs/templates/websocket/query.md
  */
-export type QueryParams<T, ExtraOptions = Record<string, unknown>> = [
-    QueryFilters<T>?,
-    (QueryOptions<T> & ExtraOptions)?,
-];
+export type QueryParams<T, ExtraOptions = Record<string, unknown>> = [QueryFilters<T>?, (QueryOptions<T> & ExtraOptions)?];
 
 export type QueryFilters<T> = (QueryFilters<T> | QueryFilter<T> | OrQueryFilter<T>)[];
 

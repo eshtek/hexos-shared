@@ -1,10 +1,7 @@
-import { CertificateCreateType } from '@shared/truenas/webui/enums/certificate-create-type.enum';
-import { CertificateDigestAlgorithm } from '@shared/truenas/webui/enums/certificate-digest-algorithm.enum';
-import { CertificateKeyType } from '@shared/truenas/webui/enums/certificate-key-type.enum';
-import {
-    CertificateAuthority,
-    CertificateExtensions,
-} from '@shared/truenas/webui/interfaces/certificate-authority.interface';
+import { CertificateCreateType } from '../truenas/webui/enums/certificate-create-type.enum';
+import { CertificateDigestAlgorithm } from '../truenas/webui/enums/certificate-digest-algorithm.enum';
+import { CertificateKeyType } from '../truenas/webui/enums/certificate-key-type.enum';
+import { CertificateAuthority, CertificateExtensions } from '../truenas/webui/interfaces/certificate-authority.interface';
 
 export interface Certificate {
     CA_type_existing: boolean;

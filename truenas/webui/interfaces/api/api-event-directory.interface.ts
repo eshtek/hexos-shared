@@ -1,29 +1,22 @@
-import { FailoverStatus } from '@shared/truenas/webui/enums/failover-status.enum';
-import { Alert } from '@shared/truenas/webui/interfaces/alert.interface';
-import {
-    ChartRelease,
-    ChartReleaseStats,
-} from '@shared/truenas/webui/interfaces/chart-release.interface';
-import {
-    PullContainerImageResponse,
-    PullContainerImageParams,
-    ContainerImage,
-} from '@shared/truenas/webui/interfaces/container-image.interface';
-import { DirectoryServicesState } from '@shared/truenas/webui/interfaces/directory-services-state.interface';
-import { FailoverDisabledReasonEvent } from '@shared/truenas/webui/interfaces/failover-disabled-reasons.interface';
-import { Group } from '@shared/truenas/webui/interfaces/group.interface';
-import { Job } from '@shared/truenas/webui/interfaces/job.interface';
-import { KubernetesStatusData } from '@shared/truenas/webui/interfaces/kubernetes-status-data.interface';
-import { Pool } from '@shared/truenas/webui/interfaces/pool.interface';
-import { ReportingRealtimeUpdate } from '@shared/truenas/webui/interfaces/reporting.interface';
-import { PoolScan } from '@shared/truenas/webui/interfaces/resilver-job.interface';
-import { Service } from '@shared/truenas/webui/interfaces/service.interface';
-import { SmartTestProgressUpdate } from '@shared/truenas/webui/interfaces/smart-test-progress.interface';
-import { Disk } from '@shared/truenas/webui/interfaces/storage.interface';
-import { TrueCommandConfig } from '@shared/truenas/webui/interfaces/true-command-config.interface';
-import { User } from '@shared/truenas/webui/interfaces/user.interface';
-import { VirtualMachine } from '@shared/truenas/webui/interfaces/virtual-machine.interface';
-import { ZfsSnapshot } from '@shared/truenas/webui/interfaces/zfs-snapshot.interface';
+import { FailoverStatus } from '../truenas/webui/enums/failover-status.enum';
+import { Alert } from '../truenas/webui/interfaces/alert.interface';
+import { ChartRelease, ChartReleaseStats } from '../truenas/webui/interfaces/chart-release.interface';
+import { PullContainerImageResponse, PullContainerImageParams, ContainerImage } from '../truenas/webui/interfaces/container-image.interface';
+import { DirectoryServicesState } from '../truenas/webui/interfaces/directory-services-state.interface';
+import { FailoverDisabledReasonEvent } from '../truenas/webui/interfaces/failover-disabled-reasons.interface';
+import { Group } from '../truenas/webui/interfaces/group.interface';
+import { Job } from '../truenas/webui/interfaces/job.interface';
+import { KubernetesStatusData } from '../truenas/webui/interfaces/kubernetes-status-data.interface';
+import { Pool } from '../truenas/webui/interfaces/pool.interface';
+import { ReportingRealtimeUpdate } from '../truenas/webui/interfaces/reporting.interface';
+import { PoolScan } from '../truenas/webui/interfaces/resilver-job.interface';
+import { Service } from '../truenas/webui/interfaces/service.interface';
+import { SmartTestProgressUpdate } from '../truenas/webui/interfaces/smart-test-progress.interface';
+import { Disk } from '../truenas/webui/interfaces/storage.interface';
+import { TrueCommandConfig } from '../truenas/webui/interfaces/true-command-config.interface';
+import { User } from '../truenas/webui/interfaces/user.interface';
+import { VirtualMachine } from '../truenas/webui/interfaces/virtual-machine.interface';
+import { ZfsSnapshot } from '../truenas/webui/interfaces/zfs-snapshot.interface';
 import { SystemHealth } from '../system-health.interface';
 
 export interface ApiEventDirectory {

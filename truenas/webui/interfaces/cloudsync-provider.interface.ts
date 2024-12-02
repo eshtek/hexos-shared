@@ -1,5 +1,5 @@
-import { CloudSyncProviderName } from '@shared/truenas/webui/enums/cloudsync-provider.enum';
-import { TransferMode } from '@shared/truenas/webui/enums/transfer-mode.enum';
+import { CloudSyncProviderName } from '../truenas/webui/enums/cloudsync-provider.enum';
+import { TransferMode } from '../truenas/webui/enums/transfer-mode.enum';
 
 export interface CloudSyncProvider {
     bucket_title: string;

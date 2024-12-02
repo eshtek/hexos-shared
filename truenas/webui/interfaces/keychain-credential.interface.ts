@@ -1,5 +1,5 @@
-import type { KeychainCredentialType } from '@shared/truenas/webui/enums/keychain-credential-type.enum';
-import type { SshCredentials } from '@shared/truenas/webui/interfaces/ssh-credentials.interface';
+import type { KeychainCredentialType } from '../truenas/webui/enums/keychain-credential-type.enum';
+import type { SshCredentials } from '../truenas/webui/interfaces/ssh-credentials.interface';
 
 export type KeychainCredential = KeychainSshKeyPair | KeychainSshCredentials;
 

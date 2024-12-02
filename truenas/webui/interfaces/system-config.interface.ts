@@ -1,4 +1,4 @@
-import type { Certificate } from '@shared/truenas/webui/interfaces/certificate.interface';
+import type { Certificate } from '../truenas/webui/interfaces/certificate.interface';
 
 export interface SystemGeneralConfig {
     id: number;

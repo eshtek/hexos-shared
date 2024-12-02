@@ -1,5 +1,5 @@
 import type { TranslateService } from '@ngx-translate/core';
-import { generateOptionsRange, mapToOptions } from '@shared/truenas/webui/helpers/options.helper';
+import { generateOptionsRange, mapToOptions } from '../truenas/webui/helpers/options.helper';
 
 describe('generateOptionsRange', () => {
     it('generates a range of options based on range of numbers', () => {

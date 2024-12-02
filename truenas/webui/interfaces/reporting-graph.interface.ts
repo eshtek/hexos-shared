@@ -1,4 +1,4 @@
-import type { ReportingGraphName } from '@shared/truenas/webui/enums/reporting.enum';
+import type { ReportingGraphName } from '../truenas/webui/enums/reporting.enum';
 
 export interface ReportingGraph {
     identifiers: string[];
