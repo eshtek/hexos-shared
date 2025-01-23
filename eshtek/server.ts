@@ -149,6 +149,11 @@ export enum FileAccess {
     EXECUTE = 'execute',
 }
 
+export interface ServerFile {
+    name: string;
+    path: string;
+}
+
 export interface ServerFolderUser {
     access: FileAccess[];
     user: ServerUser;
