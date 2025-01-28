@@ -1,6 +1,6 @@
-import { ZfsSnapshotRetentionSource } from '../truenas/webui/enums/zfs-snapshot-retention-source.enum';
-import { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
-import { ZfsProperty } from '../truenas/webui/interfaces/zfs-property.interface';
+import type { ZfsSnapshotRetentionSource } from '../enums/zfs-snapshot-retention-source.enum';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
+import type { ZfsProperty } from '../interfaces/zfs-property.interface';
 
 export interface ZfsSnapshot {
     name: string;

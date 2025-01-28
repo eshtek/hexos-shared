@@ -1,5 +1,5 @@
-import { TopologyItemType } from '../truenas/webui/enums/v-dev-type.enum';
-import type { PoolTopology } from '../truenas/webui/interfaces/pool.interface';
+import { TopologyItemType } from '../enums/v-dev-type.enum';
+import type { PoolTopology } from '../interfaces/pool.interface';
 
 export const countDisksTotal = (topology: PoolTopology): string => {
     let total = 0;

@@ -1,12 +1,12 @@
-import { DeduplicationSetting } from '../truenas/webui/enums/deduplication-setting.enum';
-import { OnOff } from '../truenas/webui/enums/on-off.enum';
-import { PoolScanFunction } from '../truenas/webui/enums/pool-scan-function.enum';
-import { PoolScanState } from '../truenas/webui/enums/pool-scan-state.enum';
-import { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
-import { CreateVdevLayout, VdevType } from '../truenas/webui/enums/v-dev-type.enum';
-import { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
-import { TopologyItem } from '../truenas/webui/interfaces/storage.interface';
-import { ZfsProperty } from '../truenas/webui/interfaces/zfs-property.interface';
+import type { DeduplicationSetting } from '../enums/deduplication-setting.enum';
+import type { OnOff } from '../enums/on-off.enum';
+import type { PoolScanFunction } from '../enums/pool-scan-function.enum';
+import type { PoolScanState } from '../enums/pool-scan-state.enum';
+import type { PoolStatus } from '../enums/pool-status.enum';
+import type { CreateVdevLayout, VdevType } from '../enums/v-dev-type.enum';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
+import type { TopologyItem } from '../interfaces/storage.interface';
+import type { ZfsProperty } from '../interfaces/zfs-property.interface';
 
 export interface Pool {
     autotrim: ZfsProperty<string>;

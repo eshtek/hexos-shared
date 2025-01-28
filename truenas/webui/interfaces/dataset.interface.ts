@@ -1,5 +1,5 @@
-import { AclMode } from '../truenas/webui/enums/acl-type.enum';
-import {
+import type { AclMode } from '../enums/acl-type.enum';
+import type {
     DatasetAclType,
     DatasetCaseSensitivity,
     DatasetChecksum,
@@ -11,13 +11,13 @@ import {
     DatasetType,
     DatasetVolumeBlockSize,
     DatasetXattr,
-} from '../truenas/webui/enums/dataset.enum';
-import { DeduplicationSetting } from '../truenas/webui/enums/deduplication-setting.enum';
-import { EncryptionKeyFormat } from '../truenas/webui/enums/encryption-key-format.enum';
-import { IscsiExtentType } from '../truenas/webui/enums/iscsi.enum';
-import { OnOff } from '../truenas/webui/enums/on-off.enum';
-import { WithInherit } from '../truenas/webui/enums/with-inherit.enum';
-import { ZfsProperty } from '../truenas/webui/interfaces/zfs-property.interface';
+} from '../enums/dataset.enum';
+import type { DeduplicationSetting } from '../enums/deduplication-setting.enum';
+import type { EncryptionKeyFormat } from '../enums/encryption-key-format.enum';
+import type { IscsiExtentType } from '../enums/iscsi.enum';
+import type { OnOff } from '../enums/on-off.enum';
+import type { WithInherit } from '../enums/with-inherit.enum';
+import type { ZfsProperty } from '../interfaces/zfs-property.interface';
 
 export interface Dataset {
     available: ZfsProperty<string, number>;

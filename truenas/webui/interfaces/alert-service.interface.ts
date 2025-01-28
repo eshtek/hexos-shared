@@ -1,5 +1,5 @@
-import type { AlertLevel } from '../truenas/webui/enums/alert-level.enum';
-import type { AlertServiceType } from '../truenas/webui/enums/alert-service-type.enum';
+import type { AlertLevel } from '../enums/alert-level.enum';
+import type { AlertServiceType } from '../enums/alert-service-type.enum';
 
 export interface AlertServiceEdit {
     enabled?: boolean;

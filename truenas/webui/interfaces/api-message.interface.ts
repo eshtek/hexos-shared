@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-import type { IncomingApiMessageType } from '../truenas/webui/enums/api-message-type.enum';
-import type { ApiCallMethod } from '../truenas/webui/interfaces/api/api-call-directory.interface';
-import type { ApiEventDirectory } from '../truenas/webui/interfaces/api/api-event-directory.interface';
-import type { ApiJobMethod } from '../truenas/webui/interfaces/api/api-job-directory.interface';
-import type { WebSocketError } from '../truenas/webui/interfaces/websocket-error.interface';
+import type { IncomingApiMessageType } from '../enums/api-message-type.enum';
+import type { ApiCallMethod } from '../interfaces/api/api-call-directory.interface';
+import type { ApiEventDirectory } from '../interfaces/api/api-event-directory.interface';
+import type { ApiJobMethod } from '../interfaces/api/api-job-directory.interface';
+import type { WebSocketError } from '../interfaces/websocket-error.interface';
 
 export interface PongMessage {
     id: string;

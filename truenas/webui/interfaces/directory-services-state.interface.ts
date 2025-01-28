@@ -1,4 +1,4 @@
-import type { DirectoryServiceState } from '../truenas/webui/enums/directory-service-state.enum';
+import type { DirectoryServiceState } from '../enums/directory-service-state.enum';
 
 export interface DirectoryServicesState {
     activedirectory: DirectoryServiceState;

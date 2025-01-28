@@ -1,5 +1,5 @@
-import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
-import type { CredentialType } from '../truenas/webui/interfaces/credential-type.interface';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
+import type { CredentialType } from '../interfaces/credential-type.interface';
 
 export interface AuthSession extends AuthSessionCredentialsData {
     id: string;

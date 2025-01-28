@@ -1,4 +1,4 @@
-import { DatasetEncryptionType } from '../truenas/webui/enums/dataset.enum';
+import type { DatasetEncryptionType } from '../enums/dataset.enum';
 
 export interface DatasetEncryptionSummary {
     key_format: DatasetEncryptionType;

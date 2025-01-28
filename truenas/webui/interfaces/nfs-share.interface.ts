@@ -1,4 +1,4 @@
-import type { NfsSecurityProvider } from '../truenas/webui/enums/nfs-security-provider.enum';
+import type { NfsSecurityProvider } from '../enums/nfs-security-provider.enum';
 
 export interface NfsShare {
     aliases: string[];

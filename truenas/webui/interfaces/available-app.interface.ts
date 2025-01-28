@@ -1,5 +1,5 @@
-import { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
-import { AppMetadata } from '../truenas/webui/interfaces/chart-release.interface';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
+import type { AppMetadata } from '../interfaces/chart-release.interface';
 
 export interface AvailableApp {
     healthy: boolean;

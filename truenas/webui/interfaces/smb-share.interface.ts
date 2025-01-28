@@ -1,5 +1,5 @@
-import { NfsAclTag } from '../truenas/webui/enums/nfs-acl.enum';
-import { SmbSharesecPermission, SmbSharesecType } from '../truenas/webui/enums/smb-sharesec.enum';
+import type { NfsAclTag } from '../enums/nfs-acl.enum';
+import type { SmbSharesecPermission, SmbSharesecType } from '../enums/smb-sharesec.enum';
 
 export interface SmbShare {
     aapl_name_mangling: boolean;

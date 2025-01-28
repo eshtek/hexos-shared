@@ -1,3 +1,3 @@
-import type { ReplicationConfig } from '../truenas/webui/interfaces/replication-config.interface';
+import type { ReplicationConfig } from '../interfaces/replication-config.interface';
 
 export type ReplicationConfigUpdate = Partial<ReplicationConfig>;

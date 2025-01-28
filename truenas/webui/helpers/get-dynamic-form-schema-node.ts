@@ -1,8 +1,8 @@
-import { DynamicFormSchemaType } from '../truenas/webui/enums/dynamic-form-schema-type.enum';
-import { SchemaType } from '../truenas/webui/enums/schema.enum';
-import { toHumanReadableKey } from '../truenas/webui/helpers/object-keys-to-human-readable.helper';
-import type { DynamicFormSchemaCheckbox, DynamicFormSchemaInput, DynamicFormSchemaNode } from '../truenas/webui/interfaces/dynamic-form-schema.interface';
-import type { Schema } from '../truenas/webui/interfaces/schema.interface';
+import { DynamicFormSchemaType } from '../enums/dynamic-form-schema-type.enum';
+import { SchemaType } from '../enums/schema.enum';
+import { toHumanReadableKey } from '../helpers/object-keys-to-human-readable.helper';
+import type { DynamicFormSchemaCheckbox, DynamicFormSchemaInput, DynamicFormSchemaNode } from '../interfaces/dynamic-form-schema.interface';
+import type { Schema } from '../interfaces/schema.interface';
 
 export function getDynamicFormSchemaNode(schema: Schema): DynamicFormSchemaNode {
     const baseSchema = {

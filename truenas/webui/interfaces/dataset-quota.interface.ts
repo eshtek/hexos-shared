@@ -1,5 +1,5 @@
-import type { DatasetQuotaType } from '../truenas/webui/enums/dataset.enum';
-import type { QueryParams } from '../truenas/webui/interfaces/query-api.interface';
+import type { DatasetQuotaType } from '../enums/dataset.enum';
+import type { QueryParams } from '../interfaces/query-api.interface';
 
 export interface DatasetQuota {
     id: number;

@@ -1,8 +1,8 @@
-import { CaCreateType } from '../truenas/webui/enums/ca-create-type.enum';
-import { CertificateDigestAlgorithm } from '../truenas/webui/enums/certificate-digest-algorithm.enum';
-import { CertificateKeyType } from '../truenas/webui/enums/certificate-key-type.enum';
-import { EcCurve } from '../truenas/webui/enums/ec-curve.enum';
-import { ExtendedKeyUsageFlag } from '../truenas/webui/enums/extended-key-usage-flag.enum';
+import type { CaCreateType } from '../enums/ca-create-type.enum';
+import type { CertificateDigestAlgorithm } from '../enums/certificate-digest-algorithm.enum';
+import type { CertificateKeyType } from '../enums/certificate-key-type.enum';
+import type { EcCurve } from '../enums/ec-curve.enum';
+import type { ExtendedKeyUsageFlag } from '../enums/extended-key-usage-flag.enum';
 
 export interface BasicConstraints {
     ca: boolean;

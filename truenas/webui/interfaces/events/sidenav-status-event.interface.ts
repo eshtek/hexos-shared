@@ -1,7 +1,6 @@
-import { MatDrawerMode } from '@angular/material/sidenav';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface SidenavStatusData {
-  isOpen: boolean;
-  mode: MatDrawerMode;
-  isCollapsed: boolean;
+    isOpen: boolean;
+    mode: any;
+    isCollapsed: boolean;
 }

@@ -1,4 +1,4 @@
-import type { SystemUpdateOperationType, SystemUpdateStatus } from '../truenas/webui/enums/system-update.enum';
+import type { SystemUpdateOperationType, SystemUpdateStatus } from '../enums/system-update.enum';
 
 export interface SystemUpdate {
     changelog: string;

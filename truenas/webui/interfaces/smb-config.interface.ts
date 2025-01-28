@@ -1,4 +1,4 @@
-import { LogLevel } from '../truenas/webui/enums/log-level.enum';
+import type { LogLevel } from '../enums/log-level.enum';
 
 export interface SmbConfig {
     aapl_extensions: boolean;

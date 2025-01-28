@@ -1,5 +1,5 @@
-import { InitShutdownScriptType } from '../truenas/webui/enums/init-shutdown-script-type.enum';
-import { InitShutdownScriptWhen } from '../truenas/webui/enums/init-shutdown-script-when.enum';
+import type { InitShutdownScriptType } from '../enums/init-shutdown-script-type.enum';
+import type { InitShutdownScriptWhen } from '../enums/init-shutdown-script-when.enum';
 
 export interface InitShutdownScript {
     command: string;

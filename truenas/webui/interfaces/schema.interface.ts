@@ -1,4 +1,4 @@
-import type { SchemaType } from '../truenas/webui/enums/schema.enum';
+import type { SchemaType } from '../enums/schema.enum';
 
 export interface Schema {
     title: string;

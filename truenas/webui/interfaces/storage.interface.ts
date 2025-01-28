@@ -1,12 +1,12 @@
-import type { DiskBus } from '../truenas/webui/enums/disk-bus.enum';
-import type { DiskPowerLevel } from '../truenas/webui/enums/disk-power-level.enum';
-import type { DiskStandby } from '../truenas/webui/enums/disk-standby.enum';
-import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
-import type { DiskWipeMethod } from '../truenas/webui/enums/disk-wipe-method.enum';
-import { TopologyItemType } from '../truenas/webui/enums/v-dev-type.enum';
-import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
-import type { Alert } from '../truenas/webui/interfaces/alert.interface';
-import type { SmartTestResult } from '../truenas/webui/interfaces/smart-test.interface';
+import type { DiskBus } from '../enums/disk-bus.enum';
+import type { DiskPowerLevel } from '../enums/disk-power-level.enum';
+import type { DiskStandby } from '../enums/disk-standby.enum';
+import type { DiskType } from '../enums/disk-type.enum';
+import type { DiskWipeMethod } from '../enums/disk-wipe-method.enum';
+import { TopologyItemType } from '../enums/v-dev-type.enum';
+import type { TopologyItemStatus } from '../enums/vdev-status.enum';
+import type { Alert } from '../interfaces/alert.interface';
+import type { SmartTestResult } from '../interfaces/smart-test.interface';
 import type { ZfsProperty } from './zfs-property.interface';
 
 // As returned by pool.query under topology[<vdevtype>]

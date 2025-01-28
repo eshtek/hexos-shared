@@ -1,4 +1,4 @@
-import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
+import type { PoolStatus } from '../enums/pool-status.enum';
 
 export interface PoolFindResult {
     guid: string;

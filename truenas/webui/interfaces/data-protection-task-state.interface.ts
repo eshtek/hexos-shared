@@ -1,5 +1,5 @@
-import type { JobState } from '../truenas/webui/enums/job-state.enum';
-import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import type { JobState } from '../enums/job-state.enum';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
 
 export interface DataProtectionTaskState {
     state: JobState;
