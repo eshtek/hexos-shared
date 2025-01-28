@@ -180,6 +180,7 @@ export enum ServerDriveLabel {
 
 export enum ServerDriveWarning {
     SMR = 'SMR',
+    EXISTING_DATA = 'EXISTING_DATA',
 }
 export enum ServerDriveError {
     SMART = 'SMART',
