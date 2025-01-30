@@ -1,4 +1,4 @@
-import type { PoolScanUpdate } from '../truenas/webui/interfaces/pool.interface';
+import type { PoolScanUpdate } from '../interfaces/pool.interface';
 
 export interface PoolScan {
     name: string;

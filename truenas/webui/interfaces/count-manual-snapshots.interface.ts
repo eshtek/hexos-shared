@@ -1,5 +1,5 @@
-import { Direction } from '../truenas/webui/enums/direction.enum';
-import { TransportMode } from '../truenas/webui/enums/transport-mode.enum';
+import type { Direction } from '../enums/direction.enum';
+import type { TransportMode } from '../enums/transport-mode.enum';
 
 export interface CountManualSnapshotsParams {
     datasets: string[];

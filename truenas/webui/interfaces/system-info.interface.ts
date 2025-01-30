@@ -1,6 +1,6 @@
-import { Codename } from '../truenas/webui/enums/codename.enum';
-import { LicenseFeature } from '../truenas/webui/enums/license-feature.enum';
-import { ApiDate, ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import type { Codename } from '../enums/codename.enum';
+import type { LicenseFeature } from '../enums/license-feature.enum';
+import type { ApiDate, ApiTimestamp } from '../interfaces/api-date.interface';
 
 export interface SystemInfo {
     platform: string;

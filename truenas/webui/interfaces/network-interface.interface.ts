@@ -1,4 +1,4 @@
-import {
+import type {
     CreateNetworkInterfaceType,
     LacpduRate,
     LinkAggregationProtocol,
@@ -7,7 +7,7 @@ import {
     NetworkInterfaceFlag,
     NetworkInterfaceType,
     XmitHashPolicy,
-} from '../truenas/webui/enums/network-interface.enum';
+} from '../enums/network-interface.enum';
 
 export interface BaseNetworkInterface {
     aliases: NetworkInterfaceAlias[];

@@ -1,5 +1,5 @@
-import type { ServiceName } from '../truenas/webui/enums/service-name.enum';
-import type { ServiceStatus } from '../truenas/webui/enums/service-status.enum';
+import type { ServiceName } from '../enums/service-name.enum';
+import type { ServiceStatus } from '../enums/service-status.enum';
 
 export interface Service {
     enable: boolean;

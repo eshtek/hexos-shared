@@ -1,4 +1,4 @@
-import type { PosixPermissions } from '../truenas/webui/interfaces/acl.interface';
+import type { PosixPermissions } from '../interfaces/acl.interface';
 
 export interface UnixFilePermissions {
     owner: PosixPermissions;

@@ -1,4 +1,4 @@
-import type { PropertyPath } from '../truenas/webui/interfaces/property-path.type';
+import type { PropertyPath } from '../interfaces/property-path.type';
 
 /**
  * If you are typing query API, you probably just need this, i.e. QueryParams<User>

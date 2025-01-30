@@ -14,3 +14,8 @@ To add this repository as a submodule in your project, run:
 
 ```bash
 git submodule add https://github.com/eshtek/hexos-shared shared
+```
+
+## License
+
+HexOS - Shared is released under the [GNU General Public License v3.0](./LICENSE).

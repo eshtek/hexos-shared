@@ -69,3 +69,23 @@ export interface AppInfo extends AppBasics {
 export interface AppInfoDetailed extends AppInfo {
     data: number[][];
 }
+
+export enum AppsError {
+    APP_ENGINE_NOT_RUNNING = 'APP_ENGINE_NOT_RUNNING',
+}
+
+export enum AppsWarning {
+    NO_GPU_AVAILABLE = 'NO_GPU_AVAILABLE',
+    INSUFFICIENT_MEMORY = 'INSUFFICIENT_MEMORY',
+}
+
+export enum AppsActions {
+    RESTART_APP_ENGINE = 'RESTART_APP_ENGINE',
+    INSTALL_NVIDIA_DRIVERS = 'INSTALL_NVIDIA_DRIVERS',
+}
+export interface AppsHealth {
+    healthy: boolean;
+    errors: AppsError[];
+    warnings: AppsWarning[];
+    actions_available: AppsActions[];
+}

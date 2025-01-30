@@ -1,8 +1,8 @@
-import { DiskPowerLevel } from '../truenas/webui/enums/disk-power-level.enum';
-import { DiskStandby } from '../truenas/webui/enums/disk-standby.enum';
-import { EnclosureSlotTopologyStatus } from '../truenas/webui/enums/enclosure-slot-status.enum';
-import { VdevType } from '../truenas/webui/enums/v-dev-type.enum';
-import { Disk, TopologyItem, TopologyItemStats } from './storage.interface';
+import type { DiskPowerLevel } from '../enums/disk-power-level.enum';
+import type { DiskStandby } from '../enums/disk-standby.enum';
+import type { EnclosureSlotTopologyStatus } from '../enums/enclosure-slot-status.enum';
+import type { VdevType } from '../enums/v-dev-type.enum';
+import type { Disk, TopologyItem, TopologyItemStats } from './storage.interface';
 
 // DEPRECATED
 // TODO: Remove deprecated interfaces once mock templates have been updated

@@ -1,4 +1,4 @@
-import { Role } from '../truenas/webui/enums/role.enum';
+import type { Role } from '../enums/role.enum';
 
 export interface User {
     id: number;

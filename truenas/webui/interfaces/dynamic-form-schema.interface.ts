@@ -1,10 +1,9 @@
-import type { UntypedFormArray } from '@angular/forms';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Observable } from 'rxjs';
-import type { CodeEditorLanguage } from '../truenas/webui/enums/code-editor-language.enum';
-import type { DynamicFormSchemaType } from '../truenas/webui/enums/dynamic-form-schema-type.enum';
-import type { ChartSchemaNode } from '../truenas/webui/interfaces/chart-release.interface';
-import type { Option } from '../truenas/webui/interfaces/option.interface';
-import type { TreeNodeProvider } from '../modules/ix-forms/components/ix-explorer/tree-node-provider.interface';
+import type { CodeEditorLanguage } from '../enums/code-editor-language.enum';
+import type { DynamicFormSchemaType } from '../enums/dynamic-form-schema-type.enum';
+import type { ChartSchemaNode } from '../interfaces/chart-release.interface';
+import type { Option } from '../interfaces/option.interface';
 
 export interface DynamicFormSchema {
     name: string;
@@ -108,11 +107,11 @@ export interface DynamicFormSchemaDict extends DynamicFormSchemaBase {
 }
 
 export interface AddListItemEvent {
-    array: UntypedFormArray;
+    array: any;
     schema: ChartSchemaNode[];
 }
 
 export interface DeleteListItemEvent {
-    array: UntypedFormArray;
+    array: any;
     index: number;
 }

@@ -1,5 +1,5 @@
-import type { VmBootloader, VmCpuMode, VmState, VmTime } from '../truenas/webui/enums/vm.enum';
-import type { VmDevice } from '../truenas/webui/interfaces/vm-device.interface';
+import type { VmBootloader, VmCpuMode, VmState, VmTime } from '../enums/vm.enum';
+import type { VmDevice } from '../interfaces/vm-device.interface';
 
 export interface VirtualMachine {
     autostart: boolean;

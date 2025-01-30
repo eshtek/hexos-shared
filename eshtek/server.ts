@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
 import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interface.enum';
 import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '../truenas/webui/interfaces/vm-device.interface';
+import type { AppsHealth } from './apps';
+import type { VMSHealth } from './vms';
 
 export const cleanCPUModel = (model: string): string => {
     return model.replace('Processor', '').replace('CPU', '').replace('(TM)', '™').replace('CoreTM', 'Core™').replace('(C)', '©').replace('(R)', '®');
@@ -149,6 +152,11 @@ export enum FileAccess {
     EXECUTE = 'execute',
 }
 
+export interface ServerFile {
+    name: string;
+    path: string;
+}
+
 export interface ServerFolderUser {
     access: FileAccess[];
     user: ServerUser;
@@ -175,6 +183,7 @@ export enum ServerDriveLabel {
 
 export enum ServerDriveWarning {
     SMR = 'SMR',
+    EXISTING_DATA = 'EXISTING_DATA',
 }
 export enum ServerDriveError {
     SMART = 'SMART',
@@ -214,19 +223,48 @@ export enum ServerStatusType {
     APPLICATIONS = 'Applications',
 }
 
+export enum ServerDeviceError {
+    UNKNOWN_ERROR = 'UNKNOWN_ERROR',
+}
+export enum ServerDeviceWarning {
+    UNKOWN_WARNING = 'UNKNOWN_WARNING',
+}
+
+export enum ServerDeviceActions {}
+
+export interface ServerDeviceHealth {
+    healthy: boolean;
+    errors: ServerDeviceError[];
+    warnings: ServerDeviceWarning[];
+    actions_available: ServerDeviceActions[];
+}
+
 export interface ServerStatusBasics {
     type: ServerStatusType;
     details?: string;
     status?: ServerStatusSupported;
     statusIcon?: ServerStatusIcons;
 }
+
+export interface ServerSystemDataSystemDevice {
+    details: string;
+    data?: any;
+    status: ServerStatusSupported;
+    statusIcon: ServerStatusIcons;
+    health: ServerDeviceHealth;
+}
+
 export interface ServerSystemDataSystem extends ServerStatusBasics {
     //label: 'System';
     type: ServerStatusType.SYSTEM;
     data: {
-        processor?: string;
-        memory?: string;
+        processor?: ServerSystemDataSystemDevice;
+        memory?: ServerSystemDataSystemDevice;
+        motherboard?: ServerSystemDataSystemDevice;
+        gpu?: ServerSystemDataSystemDevice[];
+        networking?: ServerSystemDataSystemDevice[];
     };
+    health: ServerHealth;
 }
 export interface ServerSystemDataStorage extends ServerStatusBasics {
     type: ServerStatusType.STORAGE;
@@ -234,11 +272,24 @@ export interface ServerSystemDataStorage extends ServerStatusBasics {
         drives?: ServerDrive[];
     };
 }
+export interface ServerSystemDataApplications extends ServerStatusBasics {
+    type: ServerStatusType.APPLICATIONS;
+    health: AppsHealth;
+}
+export interface ServerSystemDataVirtualization extends ServerStatusBasics {
+    type: ServerStatusType.VIRTUALIZATION;
+    health: VMSHealth;
+}
 export interface ServerSystemDataEmpty extends ServerStatusBasics {
     type: ServerStatusType.VIRTUALIZATION | ServerStatusType.APPLICATIONS;
 }
 
-export type ServerSystemData = ServerSystemDataSystem | ServerSystemDataStorage | ServerSystemDataEmpty; // TODO: Add more here if necessary not sure if that will be or this can be consolidated in some way yet
+export type ServerSystemData =
+    | ServerSystemDataSystem
+    | ServerSystemDataStorage
+    | ServerSystemDataApplications
+    | ServerSystemDataVirtualization
+    | ServerSystemDataEmpty;
 
 export interface ServerSystemDevice {
     name: string;
@@ -332,37 +383,4 @@ export interface ServerHealth {
     errors: ServerHealthError[];
     warnings: ServerHealthWarning[];
     actions_available: ServerActions[];
-    /*
-    TODO : Q3 objective
-    overview: string;
-    system_temperatures: {
-        processor: string;
-        drives: {
-            label: string;
-            temperature: string;
-        }[];
-    };
-    smart_status: {
-        overview: string;
-    }[];
-    resources: {
-        label: string;
-        usage: string;
-    }[];
-    storage_utilization: {
-        label: string;
-        usage: string;
-    }[];
-    ups_utilization: {
-        label: string;
-        usage: string;
-    }[];
-    apps: {
-        label: string;
-        details: string;
-    }[];
-    vms: {
-        label: string;
-        details: string;
-    }[];*/
 }

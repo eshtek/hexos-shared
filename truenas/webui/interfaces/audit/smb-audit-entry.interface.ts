@@ -1,5 +1,5 @@
-import { AuditEvent, AuditService } from '../truenas/webui/enums/audit.enum';
-import { AuditVersions, BaseAuditEntry } from '../truenas/webui/interfaces/audit/audit.interface';
+import type { AuditEvent, AuditService } from '../../enums/audit.enum';
+import type { AuditVersions, BaseAuditEntry } from '../../interfaces/audit/audit.interface';
 
 export interface BaseSmbAuditEntry extends BaseAuditEntry {
     service: AuditService.Smb;

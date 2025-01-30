@@ -1,4 +1,4 @@
-import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
 
 export interface PullContainerImageParams {
     authentication?: {

@@ -1,3 +1,4 @@
+import type { PreferenceLocationId } from './preferences';
 import type { ServerPool, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
 
@@ -86,4 +87,9 @@ export interface RequestVMCreate extends VMBasics {
 export interface RequestSetting {
     value: string;
     json?: boolean;
+}
+
+export interface RequestPreferenceLocationUpdate {
+    id: PreferenceLocationId;
+    path: string;
 }

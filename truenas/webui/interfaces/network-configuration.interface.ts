@@ -1,4 +1,4 @@
-import { NetworkActivityType } from '../truenas/webui/enums/network-activity-type.enum';
+import type { NetworkActivityType } from '../enums/network-activity-type.enum';
 
 export interface NetworkConfiguration extends NetworkConfigurationState {
     activity: NetworkConfigurationActivity;

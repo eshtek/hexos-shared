@@ -1,5 +1,5 @@
-import type { DnsAuthenticatorType } from '../truenas/webui/enums/dns-authenticator-type.enum';
-import type { Schema } from '../truenas/webui/interfaces/schema.interface';
+import type { DnsAuthenticatorType } from '../enums/dns-authenticator-type.enum';
+import type { Schema } from '../interfaces/schema.interface';
 
 export type DnsAuthenticator = CloudflareDnsAuthenticator | Route53DnsAuthenticator;
 

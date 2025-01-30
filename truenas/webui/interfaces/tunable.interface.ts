@@ -1,4 +1,4 @@
-import type { TunableType } from '../truenas/webui/enums/tunable-type.enum';
+import type { TunableType } from '../enums/tunable-type.enum';
 
 export interface Tunable {
     comment: string;

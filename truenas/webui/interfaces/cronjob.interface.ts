@@ -1,4 +1,4 @@
-import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
+import type { Schedule } from '../interfaces/schedule.interface';
 
 export interface Cronjob {
     command: string;

@@ -1,4 +1,4 @@
-import type { SshSftpLogFacility, SshSftpLogLevel, SshWeakCipher } from '../truenas/webui/enums/ssh.enum';
+import type { SshSftpLogFacility, SshSftpLogLevel, SshWeakCipher } from '../enums/ssh.enum';
 
 export interface SshConfig {
     bindiface: string[];

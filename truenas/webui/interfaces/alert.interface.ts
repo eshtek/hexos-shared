@@ -1,6 +1,6 @@
-import { AlertLevel } from '../truenas/webui/enums/alert-level.enum';
-import { AlertPolicy } from '../truenas/webui/enums/alert-policy.enum';
-import { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
+import type { AlertLevel } from '../enums/alert-level.enum';
+import type { AlertPolicy } from '../enums/alert-policy.enum';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
 
 export interface Alert {
     args: unknown;

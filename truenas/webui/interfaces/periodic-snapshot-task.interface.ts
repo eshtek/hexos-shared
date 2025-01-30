@@ -1,6 +1,6 @@
-import type { LifetimeUnit } from '../truenas/webui/enums/lifetime-unit.enum';
-import type { DataProtectionTaskState } from '../truenas/webui/interfaces/data-protection-task-state.interface';
-import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
+import type { LifetimeUnit } from '../enums/lifetime-unit.enum';
+import type { DataProtectionTaskState } from '../interfaces/data-protection-task-state.interface';
+import type { Schedule } from '../interfaces/schedule.interface';
 
 export interface PeriodicSnapshotTask {
     schedule: Schedule;

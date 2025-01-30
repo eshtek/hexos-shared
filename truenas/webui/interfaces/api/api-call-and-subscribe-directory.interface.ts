@@ -1,9 +1,9 @@
-import type { App } from '../truenas/webui/interfaces/app.interface';
-import type { ContainerImage } from '../truenas/webui/interfaces/container-image.interface';
-import type { Group } from '../truenas/webui/interfaces/group.interface';
-import type { Pool } from '../truenas/webui/interfaces/pool.interface';
-import type { User } from '../truenas/webui/interfaces/user.interface';
-import type { VirtualMachine } from '../truenas/webui/interfaces/virtual-machine.interface';
+import type { App } from '../../interfaces/app.interface';
+import type { ContainerImage } from '../../interfaces/container-image.interface';
+import type { Group } from '../../interfaces/group.interface';
+import type { Pool } from '../../interfaces/pool.interface';
+import type { User } from '../../interfaces/user.interface';
+import type { VirtualMachine } from '../../interfaces/virtual-machine.interface';
 
 /**
  * Directory of compatible API call and subscribe methods.

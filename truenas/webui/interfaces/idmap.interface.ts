@@ -1,4 +1,4 @@
-import type { IdmapBackend, IdmapName } from '../truenas/webui/enums/idmap.enum';
+import type { IdmapBackend, IdmapName } from '../enums/idmap.enum';
 
 export interface Idmap {
     certificate: {

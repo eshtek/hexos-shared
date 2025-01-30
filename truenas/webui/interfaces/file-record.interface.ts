@@ -1,6 +1,6 @@
-import type { FileAttribute } from '../truenas/webui/enums/file-attribute.enum';
-import type { FileType } from '../truenas/webui/enums/file-type.enum';
-import type { QueryFilter, QueryOptions } from '../truenas/webui/interfaces/query-api.interface';
+import type { FileAttribute } from '../enums/file-attribute.enum';
+import type { FileType } from '../enums/file-type.enum';
+import type { QueryFilter, QueryOptions } from '../interfaces/query-api.interface';
 
 export interface FileRecord {
     acl: boolean;

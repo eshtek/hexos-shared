@@ -1,8 +1,8 @@
-import type { AccountAttribute } from '../truenas/webui/enums/account-attribute.enum';
-import type { Role } from '../truenas/webui/enums/role.enum';
-import type { Preferences } from '../truenas/webui/interfaces/preferences.interface';
-import type { UserTwoFactorConfig } from '../truenas/webui/interfaces/two-factor-config.interface';
-import type { DashConfigItem } from '../pages/dashboard-old/components/widget-controller/widget-controller.component';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { AccountAttribute } from '../enums/account-attribute.enum';
+import type { Role } from '../enums/role.enum';
+import type { Preferences } from '../interfaces/preferences.interface';
+import type { UserTwoFactorConfig } from '../interfaces/two-factor-config.interface';
 
 export interface DsUncachedUser {
     pw_dir: string;
@@ -13,7 +13,7 @@ export interface DsUncachedUser {
     pw_uid: number;
     attributes: {
         preferences: Preferences;
-        dashState: DashConfigItem[];
+        dashState: any;
         appsAgreement: boolean;
     };
 }

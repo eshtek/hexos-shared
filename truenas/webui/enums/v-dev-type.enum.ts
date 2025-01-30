@@ -1,6 +1,5 @@
 const T = (str: string) => str;
 // eslint-disable-next-line no-restricted-imports
-import { helptextManager } from '../helptext/storage/volumes/manager/manager';
 
 // TODO: This may actually be several enums. Consider splitting.
 export enum TopologyItemType {
@@ -31,49 +30,6 @@ export enum CreateVdevLayout {
     Draid2 = 'DRAID2',
     Draid3 = 'DRAID3',
 }
-
-export const vdevLayoutOptions = [
-    {
-        label: T('Stripe'),
-        value: CreateVdevLayout.Stripe,
-        hoverTooltip: helptextManager.stripeTooltip,
-    },
-    {
-        label: T('Mirror'),
-        value: CreateVdevLayout.Mirror,
-        hoverTooltip: helptextManager.mirrorTooltip,
-    },
-    {
-        label: T('RAIDZ1'),
-        value: CreateVdevLayout.Raidz1,
-        hoverTooltip: helptextManager.raidz1Tooltip,
-    },
-    {
-        label: T('RAIDZ2'),
-        value: CreateVdevLayout.Raidz2,
-        hoverTooltip: helptextManager.raidz2Tooltip,
-    },
-    {
-        label: T('RAIDZ3'),
-        value: CreateVdevLayout.Raidz3,
-        hoverTooltip: helptextManager.raidz3Tooltip,
-    },
-    {
-        label: T('dRAID1'),
-        value: CreateVdevLayout.Draid1,
-        hoverTooltip: helptextManager.dRaidTooltip,
-    },
-    {
-        label: T('dRAID2'),
-        value: CreateVdevLayout.Draid2,
-        hoverTooltip: helptextManager.dRaidTooltip,
-    },
-    {
-        label: T('dRAID3'),
-        value: CreateVdevLayout.Draid3,
-        hoverTooltip: helptextManager.dRaidTooltip,
-    },
-];
 
 export enum TopologyWarning {
     MixedVdevLayout = 'Mixed VDEV types',

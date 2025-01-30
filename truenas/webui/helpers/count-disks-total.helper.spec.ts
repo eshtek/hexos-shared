@@ -1,7 +1,7 @@
-import { TopologyItemType } from '../truenas/webui/enums/v-dev-type.enum';
-import { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
-import type { PoolTopology } from '../truenas/webui/interfaces/pool.interface';
-import type { TopologyDisk, TopologyItemStats } from '../truenas/webui/interfaces/storage.interface';
+import { TopologyItemType } from '../enums/v-dev-type.enum';
+import { TopologyItemStatus } from '../enums/vdev-status.enum';
+import type { PoolTopology } from '../interfaces/pool.interface';
+import type { TopologyDisk, TopologyItemStats } from '../interfaces/storage.interface';
 import { countDisksTotal } from './count-disks-total.helper';
 
 const stats: TopologyItemStats = {

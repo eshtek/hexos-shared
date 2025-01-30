@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import type { OrQueryFilter, QueryFilter, QueryFilters, QueryOptions, QueryParams } from '../truenas/webui/interfaces/query-api.interface';
+import type { OrQueryFilter, QueryFilter, QueryFilters, QueryOptions, QueryParams } from '../../interfaces/query-api.interface';
 
 export class ParamsBuilder<T, ExtraOptions = Record<string, unknown>> {
     private filters: QueryFilters<T> = [];

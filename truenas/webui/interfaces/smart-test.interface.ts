@@ -1,8 +1,8 @@
-import type { SmartPowerMode } from '../truenas/webui/enums/smart-power.mode';
-import type { SmartTestResultStatus } from '../truenas/webui/enums/smart-test-result-status.enum';
-import type { SmartTestType } from '../truenas/webui/enums/smart-test-type.enum';
-import type { ApiTimestamp } from '../truenas/webui/interfaces/api-date.interface';
-import type { Schedule } from '../truenas/webui/interfaces/schedule.interface';
+import type { SmartPowerMode } from '../enums/smart-power.mode';
+import type { SmartTestResultStatus } from '../enums/smart-test-result-status.enum';
+import type { SmartTestType } from '../enums/smart-test-type.enum';
+import type { ApiTimestamp } from '../interfaces/api-date.interface';
+import type { Schedule } from '../interfaces/schedule.interface';
 
 export interface SmartTestTask {
     all_disks: boolean;
