@@ -1,5 +1,4 @@
 import type { JobState } from '../truenas/webui/enums/job-state.enum';
-import type { AppJobAction } from './apps';
 
 export interface WizardJob {
     name: WizardJobs;
@@ -15,6 +14,7 @@ export interface Wizard {
 
 export enum WizardJobs {
     Initializing = 'Initializing',
+    ReformattingDrives = 'Preparing Drives',
     CreatingPools = 'Creating Pools',
     EnablingDocker = 'Enabling Docker',
     UpdatingNetworkInterface = 'Updating Network Interface',

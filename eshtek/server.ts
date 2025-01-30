@@ -233,6 +233,7 @@ export interface ServerSystemDataSystem extends ServerStatusBasics {
         processor?: string;
         memory?: string;
     };
+    health: ServerHealth;
 }
 export interface ServerSystemDataStorage extends ServerStatusBasics {
     type: ServerStatusType.STORAGE;
