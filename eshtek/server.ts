@@ -228,12 +228,19 @@ export interface ServerStatusBasics {
     status?: ServerStatusSupported;
     statusIcon?: ServerStatusIcons;
 }
+export interface ServerSystemDataSystemDevice {
+    details: string;
+    model?: string;
+}
 export interface ServerSystemDataSystem extends ServerStatusBasics {
     //label: 'System';
     type: ServerStatusType.SYSTEM;
     data: {
-        processor?: string;
-        memory?: string;
+        processor?: ServerSystemDataSystemDevice;
+        memory?: ServerSystemDataSystemDevice;
+        motherboard?: ServerSystemDataSystemDevice;
+        gpu?: ServerSystemDataSystemDevice[];
+        networking?: ServerSystemDataSystemDevice[];
     };
     health: ServerHealth;
 }
