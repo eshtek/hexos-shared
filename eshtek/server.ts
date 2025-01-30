@@ -3,6 +3,8 @@ import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interf
 import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
 import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '../truenas/webui/interfaces/vm-device.interface';
+import type { AppsHealth } from './apps';
+import type { VMSHealth } from './vms';
 
 export const cleanCPUModel = (model: string): string => {
     return model.replace('Processor', '').replace('CPU', '').replace('(TM)', '™').replace('CoreTM', 'Core™').replace('(C)', '©').replace('(R)', '®');
@@ -241,11 +243,24 @@ export interface ServerSystemDataStorage extends ServerStatusBasics {
         drives?: ServerDrive[];
     };
 }
+export interface ServerSystemDataApplications extends ServerStatusBasics {
+    type: ServerStatusType.APPLICATIONS;
+    health: AppsHealth;
+}
+export interface ServerSystemDataVirtualization extends ServerStatusBasics {
+    type: ServerStatusType.VIRTUALIZATION;
+    health: VMSHealth;
+}
 export interface ServerSystemDataEmpty extends ServerStatusBasics {
     type: ServerStatusType.VIRTUALIZATION | ServerStatusType.APPLICATIONS;
 }
 
-export type ServerSystemData = ServerSystemDataSystem | ServerSystemDataStorage | ServerSystemDataEmpty; // TODO: Add more here if necessary not sure if that will be or this can be consolidated in some way yet
+export type ServerSystemData =
+    | ServerSystemDataSystem
+    | ServerSystemDataStorage
+    | ServerSystemDataApplications
+    | ServerSystemDataVirtualization
+    | ServerSystemDataEmpty;
 
 export interface ServerSystemDevice {
     name: string;

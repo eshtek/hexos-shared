@@ -152,3 +152,23 @@ export interface VMInfoDetailed extends VMInfo {
     data: number[][];
     display_devices?: VmDisplayDevice[];
 }
+
+export enum VMSError {
+    VM_ENGINE_NOT_RUNNING = 'VM_ENGINE_NOT_RUNNING',
+}
+
+export enum VMSWarning {
+    NO_GPU_AVAILABLE = 'NO_GPU_AVAILABLE',
+    INSUFFICIENT_MEMORY = 'INSUFFICIENT_MEMORY',
+}
+
+export enum VMSActions {
+    RESTART_VM_ENGINE = 'RESTART_VM_ENGINE',
+}
+
+export interface VMSHealth {
+    healthy: boolean;
+    errors: VMSError[];
+    warnings: VMSWarning[];
+    actions_available: VMSActions[];
+}
