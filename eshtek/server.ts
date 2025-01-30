@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
 import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interface.enum';
 import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
@@ -222,16 +223,37 @@ export enum ServerStatusType {
     APPLICATIONS = 'Applications',
 }
 
+export enum ServerDeviceError {
+    UNKNOWN_ERROR = 'UNKNOWN_ERROR',
+}
+export enum ServerDeviceWarning {
+    UNKOWN_WARNING = 'UNKNOWN_WARNING',
+}
+
+export enum ServerDeviceActions {}
+
+export interface ServerDeviceHealth {
+    healthy: boolean;
+    errors: ServerDeviceError[];
+    warnings: ServerDeviceWarning[];
+    actions_available: ServerDeviceActions[];
+}
+
 export interface ServerStatusBasics {
     type: ServerStatusType;
     details?: string;
     status?: ServerStatusSupported;
     statusIcon?: ServerStatusIcons;
 }
+
 export interface ServerSystemDataSystemDevice {
     details: string;
-    model?: string;
+    data?: any;
+    status: ServerStatusSupported;
+    statusIcon: ServerStatusIcons;
+    health: ServerDeviceHealth;
 }
+
 export interface ServerSystemDataSystem extends ServerStatusBasics {
     //label: 'System';
     type: ServerStatusType.SYSTEM;
@@ -361,37 +383,4 @@ export interface ServerHealth {
     errors: ServerHealthError[];
     warnings: ServerHealthWarning[];
     actions_available: ServerActions[];
-    /*
-    TODO : Q3 objective
-    overview: string;
-    system_temperatures: {
-        processor: string;
-        drives: {
-            label: string;
-            temperature: string;
-        }[];
-    };
-    smart_status: {
-        overview: string;
-    }[];
-    resources: {
-        label: string;
-        usage: string;
-    }[];
-    storage_utilization: {
-        label: string;
-        usage: string;
-    }[];
-    ups_utilization: {
-        label: string;
-        usage: string;
-    }[];
-    apps: {
-        label: string;
-        details: string;
-    }[];
-    vms: {
-        label: string;
-        details: string;
-    }[];*/
 }
