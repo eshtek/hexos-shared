@@ -232,7 +232,9 @@ export enum ServerDeviceWarning {
     UNKOWN_WARNING = 'UNKNOWN_WARNING',
 }
 
-export enum ServerDeviceActions {}
+export enum ServerDeviceActions {
+    IGNORE_DEVICE = 'IGNORE_DEVICE',
+}
 
 export interface ServerDeviceHealth {
     healthy: boolean;
