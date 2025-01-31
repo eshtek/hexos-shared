@@ -93,3 +93,9 @@ export interface RequestPreferenceLocationUpdate {
     id: PreferenceLocationId;
     path: string;
 }
+
+export interface RequestListDir {
+    path: string;
+    limit?: number;
+    fileType?: 'files' | 'directories' | 'all';
+}

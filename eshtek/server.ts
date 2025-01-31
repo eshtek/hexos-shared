@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
+import type { FileType } from '../truenas/webui/enums/file-type.enum';
 import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interface.enum';
 import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
@@ -155,6 +156,7 @@ export enum FileAccess {
 export interface ServerFile {
     name: string;
     path: string;
+    type: FileType;
 }
 
 export interface ServerFolderUser {
@@ -230,7 +232,9 @@ export enum ServerDeviceWarning {
     UNKOWN_WARNING = 'UNKNOWN_WARNING',
 }
 
-export enum ServerDeviceActions {}
+export enum ServerDeviceActions {
+    IGNORE_DEVICE = 'IGNORE_DEVICE',
+}
 
 export interface ServerDeviceHealth {
     healthy: boolean;
