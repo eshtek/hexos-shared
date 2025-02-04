@@ -164,11 +164,21 @@ export interface ServerFolderUser {
     user: ServerUser;
 }
 
+export enum ServerFolderUseType {
+    APP = 'app',
+    VM = 'vm',
+}
+
+export interface ServerFolderUse {
+    type: ServerFolderUseType;
+    id: string;
+}
 export interface ServerFolder {
     label: string;
     access: ServerAccess;
     pool?: ServerPool;
     users?: ServerFolderUser[];
+    used_by?: ServerFolderUse[];
 }
 
 export interface ServerFolders {

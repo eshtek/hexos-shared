@@ -1,3 +1,5 @@
+import type { ServerFolderUse } from './server';
+
 export interface Preferences {
   locations: Record<PreferenceLocationId, PreferenceLocation>;
 }
@@ -24,6 +26,7 @@ export interface PreferenceLocation {
   name: string; 
   path: string;
   parentId?: PreferenceLocationId;
+  used_by?: ServerFolderUse[];
 }
 export interface PreferenceLocationTree extends PreferenceLocation {
   children?: PreferenceLocationTree[];
