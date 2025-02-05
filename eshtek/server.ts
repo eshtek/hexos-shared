@@ -268,16 +268,18 @@ export interface ServerSystemDataSystemDevice {
     health: ServerDeviceHealth;
 }
 
+export interface ServerSystemDataSystemDeviceData {
+    processor?: ServerSystemDataSystemDevice;
+    memory?: ServerSystemDataSystemDevice;
+    motherboard?: ServerSystemDataSystemDevice;
+    gpu?: ServerSystemDataSystemDevice[];
+    networking?: ServerSystemDataSystemDevice[];
+}
+
 export interface ServerSystemDataSystem extends ServerStatusBasics {
     //label: 'System';
     type: ServerStatusType.SYSTEM;
-    data: {
-        processor?: ServerSystemDataSystemDevice;
-        memory?: ServerSystemDataSystemDevice;
-        motherboard?: ServerSystemDataSystemDevice;
-        gpu?: ServerSystemDataSystemDevice[];
-        networking?: ServerSystemDataSystemDevice[];
-    };
+    data: ServerSystemDataSystemDeviceData;
     health: ServerHealth;
 }
 export interface ServerSystemDataStorage extends ServerStatusBasics {
