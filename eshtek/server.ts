@@ -164,11 +164,21 @@ export interface ServerFolderUser {
     user: ServerUser;
 }
 
+export enum ServerFolderUseType {
+    APP = 'app',
+    VM = 'vm',
+}
+
+export interface ServerFolderUse {
+    type: ServerFolderUseType;
+    id: string;
+}
 export interface ServerFolder {
     label: string;
     access: ServerAccess;
     pool?: ServerPool;
     users?: ServerFolderUser[];
+    used_by?: ServerFolderUse[];
 }
 
 export interface ServerFolders {
@@ -258,16 +268,18 @@ export interface ServerSystemDataSystemDevice {
     health: ServerDeviceHealth;
 }
 
+export interface ServerSystemDataSystemDeviceData {
+    processor?: ServerSystemDataSystemDevice;
+    memory?: ServerSystemDataSystemDevice;
+    motherboard?: ServerSystemDataSystemDevice;
+    gpu?: ServerSystemDataSystemDevice[];
+    networking?: ServerSystemDataSystemDevice[];
+}
+
 export interface ServerSystemDataSystem extends ServerStatusBasics {
     //label: 'System';
     type: ServerStatusType.SYSTEM;
-    data: {
-        processor?: ServerSystemDataSystemDevice;
-        memory?: ServerSystemDataSystemDevice;
-        motherboard?: ServerSystemDataSystemDevice;
-        gpu?: ServerSystemDataSystemDevice[];
-        networking?: ServerSystemDataSystemDevice[];
-    };
+    data: ServerSystemDataSystemDeviceData;
     health: ServerHealth;
 }
 export interface ServerSystemDataStorage extends ServerStatusBasics {

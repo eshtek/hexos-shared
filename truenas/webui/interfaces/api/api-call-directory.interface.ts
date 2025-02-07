@@ -115,6 +115,7 @@ import type { MailConfig, MailConfigUpdate } from '../../interfaces/mail-config.
 import type { NetworkConfiguration, NetworkConfigurationUpdate } from '../../interfaces/network-configuration.interface';
 import type {
     NetworkInterface,
+    NetworkInterfaceAlias,
     NetworkInterfaceCreate,
     NetworkInterfaceUpdate,
     ServiceRestartedOnNetworkSync,
@@ -558,6 +559,7 @@ export interface ApiCallDirectory {
     };
     'interface.vlan_parent_interface_choices': { params: void; response: Choices };
     'interface.xmit_hash_policy_choices': { params: void; response: Choices };
+    'interface.ip_in_use': { params: void; response: NetworkInterfaceAlias[] };
 
     // IPMI
     'ipmi.chassis.identify': { params: [OnOff]; response: void };
