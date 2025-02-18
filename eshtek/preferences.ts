@@ -26,7 +26,8 @@ export interface PreferenceLocation {
   name: string; 
   path: string;
   parentId?: PreferenceLocationId;
-  used_by?: ServerFolderUse[];
+  used_by: ServerFolderUse[];
+  created: boolean
 }
 export interface PreferenceLocationTree extends PreferenceLocation {
   children?: PreferenceLocationTree[];
