@@ -83,4 +83,6 @@ export interface NotificationDismissal {
     id: string | number;
     dismissal_target_id: string;
     dismissal_target_type: NotificationType;
+    hostid?: string;
+    user?: string;
 }
