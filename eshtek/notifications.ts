@@ -2,6 +2,7 @@ import type { AlertLevel } from '../truenas/webui/enums/alert-level.enum';
 import type { JobState } from '../truenas/webui/enums/job-state.enum';
 import type { ApiJobMethod } from '../truenas/webui/interfaces/api/api-job-directory.interface';
 import type { JobProgress } from '../truenas/webui/interfaces/job.interface';
+import type { ServerActions } from './server';
 import type { HexTaskWithChildren } from './tasks';
 
 export enum NotificationType {
@@ -53,10 +54,6 @@ export enum NotificationMessageType {
     Release = 'release',
 }
 
-export enum NotificationMessageAction {
-    UpdateSystem = 'update_system',
-}
-
 export interface NotificationMessageLink {
     type: 'internal' | 'external';
     path: string;
@@ -69,7 +66,7 @@ export interface NotificationMessage {
     content_preview: string;
     content_reference_id: string;
     type: NotificationMessageType;
-    actions: NotificationMessageAction[];
+    actions: ServerActions[];
     links: NotificationMessageLink[];
     updated: Date;
     created: Date;
