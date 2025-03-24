@@ -21,6 +21,23 @@ export enum PreferenceLocationId {
   VIRTUAL_DISKS = 'VirtualDisks',
 }
 
+export const PreferenceLocationIcons: Record<PreferenceLocationId, string> = {
+  [PreferenceLocationId.APPLICATIONS_PERFORMANCE]: 'misc/app',
+  [PreferenceLocationId.APPLICATIONS_CAPACITY]: 'misc/app',
+  [PreferenceLocationId.DOWNLOADS]: 'vms/download',
+  [PreferenceLocationId.DOCUMENTS]: 'files/file-txt',
+  [PreferenceLocationId.MEDIA]: 'files/file-movie',
+  [PreferenceLocationId.PHOTOS]: 'files/file-image',
+  [PreferenceLocationId.MUSIC]: 'files/file-audio',
+  [PreferenceLocationId.MOVIES]: 'files/file-movie',
+  [PreferenceLocationId.SHOWS]: 'misc/remote',
+  [PreferenceLocationId.VIDEOS]: 'vms/play',
+  [PreferenceLocationId.VIRTUALIZATION_PERFORMANCE]: 'files/folder-virtualization',
+  [PreferenceLocationId.VIRTUALIZATION_CAPACITY]: 'files/folder-virtualization',
+  [PreferenceLocationId.INSTALL_MEDIA]: 'storage/usb-key',
+  [PreferenceLocationId.VIRTUAL_DISKS]: 'vms/select',
+}
+
 export interface PreferenceLocation {
   id: PreferenceLocationId;
   name: string; 
