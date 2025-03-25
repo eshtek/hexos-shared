@@ -328,7 +328,7 @@ import { z } from 'zod';
 import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
 import type { VMInfo, VMInfoDetailed, VMListing } from './vms';
 import { VMIcons, VMType } from './vms';
-import type { PreferenceLocation, PreferenceLocationId, PreferenceLocationTree } from './preferences';
+import type { ResolvedLocationPreference, LocationPreferenceId, ResolvedLocationPreferenceNode } from './preferences';
 import { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 /**
@@ -498,12 +498,12 @@ export function getStepSize(range: number, steps: number = 10, acceptableSteps: 
 
 /**
  * Converts flat preferences locations into a hierarchical structure.
- * @param locations Record<PreferenceLocationId, PreferenceLocation>
+ * @param locations Record<LocationPreferenceId, ResolvedLocationPreference>
  * @returns Tree structure of locations for easier rendering
  */
-export const buildLocationHierarchy = (locations: Record<PreferenceLocationId, PreferenceLocation>): PreferenceLocationTree[] => {
+export const buildLocationHierarchy = (locations: Record<LocationPreferenceId, ResolvedLocationPreference>): ResolvedLocationPreferenceNode[] => {
     // Map of parentId (string or 'root' for undefined) to its children
-    const groupedByParent: Record<string, PreferenceLocationTree[]> = {};
+    const groupedByParent: Record<string, ResolvedLocationPreferenceNode[]> = {};
 
     // Initialize the map
     for (const location of Object.values(locations)) {
@@ -518,7 +518,7 @@ export const buildLocationHierarchy = (locations: Record<PreferenceLocationId, P
     }
 
     // Recursive function to build the hierarchy
-    const buildHierarchy = (parentId: string): PreferenceLocationTree[] => {
+    const buildHierarchy = (parentId: string): ResolvedLocationPreferenceNode[] => {
         return (groupedByParent[parentId] || []).map((location) => {
             // Recursively build children
             location.children = buildHierarchy(location.id);

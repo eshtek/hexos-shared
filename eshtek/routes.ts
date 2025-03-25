@@ -1,4 +1,4 @@
-import type { PreferenceLocationId } from './preferences';
+import type { LocationPreferenceId } from './preferences';
 import type { ServerPool, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
 
@@ -90,7 +90,7 @@ export interface RequestSetting {
 }
 
 export interface RequestPreferenceLocationUpdate {
-    id: PreferenceLocationId;
+    id: LocationPreferenceId;
     path: string;
 }
 

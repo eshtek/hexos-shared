@@ -1,10 +1,14 @@
 import type { ServerFolderUse } from './server';
 
-export interface Preferences {
-  locations: Record<PreferenceLocationId, PreferenceLocation>;
+export interface ResolvedPreferences {
+  locations: Record<LocationPreferenceId, ResolvedLocationPreference>;
 }
 
-export enum PreferenceLocationId { 
+export interface StoredPreferences {
+  locations: Partial<Record<LocationPreferenceId, string>>;
+}
+
+export enum LocationPreferenceId { 
   APPLICATIONS_PERFORMANCE = 'ApplicationsPerformance',
   APPLICATIONS_CAPACITY = 'ApplicationsCapacity',
   DOWNLOADS = 'Downloads',
@@ -21,36 +25,36 @@ export enum PreferenceLocationId {
   VIRTUAL_DISKS = 'VirtualDisks',
 }
 
-export const PreferenceLocationIcons: Record<PreferenceLocationId, string> = {
-  [PreferenceLocationId.APPLICATIONS_PERFORMANCE]: 'misc/app',
-  [PreferenceLocationId.APPLICATIONS_CAPACITY]: 'misc/app',
-  [PreferenceLocationId.DOWNLOADS]: 'vms/download',
-  [PreferenceLocationId.DOCUMENTS]: 'files/file-txt',
-  [PreferenceLocationId.MEDIA]: 'files/file-movie',
-  [PreferenceLocationId.PHOTOS]: 'files/file-image',
-  [PreferenceLocationId.MUSIC]: 'files/file-audio',
-  [PreferenceLocationId.MOVIES]: 'files/file-movie',
-  [PreferenceLocationId.SHOWS]: 'misc/remote',
-  [PreferenceLocationId.VIDEOS]: 'vms/play',
-  [PreferenceLocationId.VIRTUALIZATION_PERFORMANCE]: 'files/folder-virtualization',
-  [PreferenceLocationId.VIRTUALIZATION_CAPACITY]: 'files/folder-virtualization',
-  [PreferenceLocationId.INSTALL_MEDIA]: 'storage/usb-key',
-  [PreferenceLocationId.VIRTUAL_DISKS]: 'vms/select',
+export const PreferenceLocationIcons: Record<LocationPreferenceId, string> = {
+  [LocationPreferenceId.APPLICATIONS_PERFORMANCE]: 'misc/app',
+  [LocationPreferenceId.APPLICATIONS_CAPACITY]: 'misc/app',
+  [LocationPreferenceId.DOWNLOADS]: 'vms/download',
+  [LocationPreferenceId.DOCUMENTS]: 'files/file-txt',
+  [LocationPreferenceId.MEDIA]: 'files/file-movie',
+  [LocationPreferenceId.PHOTOS]: 'files/file-image',
+  [LocationPreferenceId.MUSIC]: 'files/file-audio',
+  [LocationPreferenceId.MOVIES]: 'files/file-movie',
+  [LocationPreferenceId.SHOWS]: 'misc/remote',
+  [LocationPreferenceId.VIDEOS]: 'vms/play',
+  [LocationPreferenceId.VIRTUALIZATION_PERFORMANCE]: 'files/folder-virtualization',
+  [LocationPreferenceId.VIRTUALIZATION_CAPACITY]: 'files/folder-virtualization',
+  [LocationPreferenceId.INSTALL_MEDIA]: 'storage/usb-key',
+  [LocationPreferenceId.VIRTUAL_DISKS]: 'vms/select',
 }
 
-export interface PreferenceLocation {
-  id: PreferenceLocationId;
+export interface ResolvedLocationPreference {
+  id: LocationPreferenceId;
   name: string; 
   path: string;
-  parentId?: PreferenceLocationId;
+  parentId?: LocationPreferenceId;
   used_by: ServerFolderUse[];
   created: boolean
 }
-export interface PreferenceLocationTree extends PreferenceLocation {
-  children?: PreferenceLocationTree[];
+export interface ResolvedLocationPreferenceNode extends ResolvedLocationPreference {
+  children?: ResolvedLocationPreferenceNode[];
 }
 
-export enum PreferenceLocationDependencyType {
+export enum LocationPreferenceDependencyType {
   APP = 'app',
   VM = 'vm',
 }

@@ -1,6 +1,6 @@
 import type { AvailableApp } from '../truenas/webui/interfaces/available-app.interface';
 import type { AppState } from '../truenas/webui/enums/app-state.enum';
-import type { PreferenceLocationId } from './preferences';
+import type { LocationPreferenceId } from './preferences';
 
 export enum AppJobAction {
     NONE = 'none',
@@ -39,7 +39,7 @@ export enum AppPermission {
 export interface AppRequirements {
     permissions: AppPermission[];
     specifications: AppSpec[];
-    locations: PreferenceLocationId[];
+    locations: LocationPreferenceId[];
 }
 export interface AppRequirementsCheck {
     permissions: {
@@ -51,8 +51,8 @@ export interface AppRequirementsCheck {
         unmet: AppSpec[];
     };
     locations: {
-        met: PreferenceLocationId[];
-        unmet: PreferenceLocationId[];
+        met: LocationPreferenceId[];
+        unmet: LocationPreferenceId[];
     };
 }
 
