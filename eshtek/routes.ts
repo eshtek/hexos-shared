@@ -1,5 +1,5 @@
 import type { LocationPreferenceId } from './preferences';
-import type { ServerPool, ServerUser, ServerUserType } from './server';
+import type { ServerPool, ServerPoolNew, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
 
 export type ResponseSuccess<T> = {
@@ -98,4 +98,8 @@ export interface RequestListDir {
     path: string;
     limit?: number;
     fileType?: 'files' | 'directories' | 'all';
+}
+
+export interface RequestCreatePool {
+    pools: ServerPoolNew[];
 }
