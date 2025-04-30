@@ -94,14 +94,14 @@ export const ipFormat = (ip?: string): boolean => {
  * Checks if a given username follows a specific format.
  * @param {string} username - The username to check.
  * @returns {boolean} - Returns true if the username follows the format, otherwise false.
-Length between 3 and 8 characters.
+Length between 3 and 30 characters.
 Allowed characters: letters (both uppercase and lowercase), numbers, underscores, and hyphens.
 Cannot start or end with an underscore or hyphen.
 No consecutive underscores or hyphens.
 Must start with a letter
 */
 export const usernameFormat = (username: string): boolean => {
-    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{2,7}$/;
+    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{2,29}$/;
     return regex.test(username);
 };
 /**
