@@ -117,6 +117,9 @@ export interface ServerPool extends ServerPoolBasics {
     used_percentage?: number;
     drives: ServerDrive[];
 }
+export interface ServerPoolNew extends ServerPoolBasics {
+    devnames: string[];
+}
 
 export interface ServerStorage {
     pools: ServerPool[];
