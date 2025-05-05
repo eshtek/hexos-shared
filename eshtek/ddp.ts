@@ -18,7 +18,6 @@ export enum WizardJobs {
     CreatingPools = 'Creating Pools',
     EnablingDocker = 'Enabling Docker',
     UpdatingNetworkInterface = 'Updating Network Interface',
-    DefaultLocations = 'Creating Default Locations',
     AssigningServerName = 'Assigning Server Name',
     UpdatingServices = 'Updating Services',
     Complete = 'Complete',
