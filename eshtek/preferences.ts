@@ -39,7 +39,7 @@ export const PreferenceLocationIcons: Record<LocationPreferenceId, string> = {
   [LocationPreferenceId.VIRTUALIZATION_PERFORMANCE]: 'files/folder-virtualization',
   [LocationPreferenceId.VIRTUALIZATION_CAPACITY]: 'files/folder-virtualization',
   [LocationPreferenceId.INSTALL_MEDIA]: 'storage/usb-key',
-  [LocationPreferenceId.VIRTUAL_DISKS]: 'vms/select',
+  [LocationPreferenceId.VIRTUAL_DISKS]: 'application/VHD',
 }
 
 export interface ResolvedLocationPreference {
