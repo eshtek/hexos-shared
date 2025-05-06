@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "generate-schemas": "npx ts-to-zod --all --skipValidation"
+    }
+}
