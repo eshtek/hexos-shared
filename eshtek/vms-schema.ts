@@ -19,7 +19,7 @@ import {
   serverSystemGPUSchema,
   serverSystemPCISchema,
   serverSystemUSBSchema,
-} from "./server-schema";
+} from "./server-system-device-schema";
 
 export const vMCreateTypeSchema = z.nativeEnum(VMCreateType);
 

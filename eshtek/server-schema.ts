@@ -202,10 +202,6 @@ const topologyItemStatusSchema = z.any();
 
 const appsHealthSchema = z.any();
 
-const vmPassthroughDeviceChoiceSchema = z.any();
-
-const vmUsbPassthroughDeviceChoiceSchema = z.any();
-
 const networkInterfaceTypeSchema = z.any();
 
 export const serverPoolBasicsSchema = z.object({
@@ -307,30 +303,6 @@ export const serverSystemDataSchema = z.union([
   serverSystemDataVirtualizationSchema,
   serverSystemDataEmptySchema,
 ]);
-
-export const serverSystemDeviceSchema = z.object({
-  name: z.string(),
-  guid: z.string(),
-  data: z.union([
-    vmPassthroughDeviceChoiceSchema,
-    vmUsbPassthroughDeviceChoiceSchema,
-  ]),
-});
-
-export const serverSystemGPUSchema = serverSystemDeviceSchema;
-
-export const serverSystemAudioSchema = serverSystemDeviceSchema;
-
-export const serverSystemUSBSchema = serverSystemDeviceSchema;
-
-export const serverSystemPCISchema = serverSystemDeviceSchema;
-
-export const serverSystemDevicesSchema = z.object({
-  gpu: z.array(serverSystemGPUSchema).optional(),
-  audio: z.array(serverSystemAudioSchema).optional(),
-  usb: z.array(serverSystemUSBSchema).optional(),
-  pci: z.array(serverSystemPCISchema).optional(),
-});
 
 export const serverSystemSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
