@@ -41,6 +41,7 @@ export type ResponsePaginated<T> = ResponsePaginatedSuccess<T> | ResponseError<T
 export interface RequestAuth {
     email: string;
     password: string;
+    twofactor?: string;
 }
 
 export interface RequestNewAccount {
