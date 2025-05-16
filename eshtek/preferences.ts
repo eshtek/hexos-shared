@@ -46,7 +46,6 @@ export interface ResolvedLocationPreference {
   id: LocationPreferenceId;
   name: string; 
   path: string;
-  parentId?: LocationPreferenceId;
   used_by: ServerFolderUse[];
   created: boolean
 }
