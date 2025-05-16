@@ -1,3 +1,4 @@
+import { GlobalErrorCode } from './errors';
 import type { LocationPreferenceId } from './preferences';
 import type { ServerPool, ServerPoolNew, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
@@ -9,7 +10,7 @@ export type ResponseSuccess<T> = {
 
 export type ResponseError<T> = {
     success: false;
-    error: string;
+    error: string | GlobalErrorCode;
     data?: T;
 };
 export type Response<T> = ResponseSuccess<T> | ResponseError<T>;
@@ -41,6 +42,12 @@ export type ResponsePaginated<T> = ResponsePaginatedSuccess<T> | ResponseError<T
 export interface RequestAuth {
     email: string;
     password: string;
+}
+
+export interface RequestAuth2FA {
+    email: string;
+    password: string;
+    twofactor: string;
 }
 
 export interface RequestNewAccount {
