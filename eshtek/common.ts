@@ -326,9 +326,8 @@ export const deserialize = (val: string | object | undefined): any => {
 import type { ZodString, ZodTypeAny, ZodUnion } from 'zod';
 import { z } from 'zod';
 import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
-import type { VMInfo, VMInfoDetailed, VMListing } from './vms';
+import type { VMInfo, VMInfoDetailed } from './vms';
 import { VMIcons, VMType } from './vms';
-import type { ResolvedLocationPreference, LocationPreferenceId, ResolvedLocationPreferenceNode } from './preferences';
 import { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 /**
@@ -495,37 +494,3 @@ export function getStepSize(range: number, steps: number = 10, acceptableSteps: 
         return Math.abs(curr - rawStep) < Math.abs(prev - rawStep) ? curr : prev;
     });
 }
-
-/**
- * Converts flat preferences locations into a hierarchical structure.
- * @param locations Record<LocationPreferenceId, ResolvedLocationPreference>
- * @returns Tree structure of locations for easier rendering
- */
-export const buildLocationHierarchy = (locations: Record<LocationPreferenceId, ResolvedLocationPreference>): ResolvedLocationPreferenceNode[] => {
-    // Map of parentId (string or 'root' for undefined) to its children
-    const groupedByParent: Record<string, ResolvedLocationPreferenceNode[]> = {};
-
-    // Initialize the map
-    for (const location of Object.values(locations)) {
-        const parentId = location.parentId ?? 'root'; // Use 'root' for locations with no parent
-
-        if (!groupedByParent[parentId]) {
-            groupedByParent[parentId] = [];
-        }
-
-        // Add the location to the appropriate parent group
-        groupedByParent[parentId].push({ ...location, children: [] });
-    }
-
-    // Recursive function to build the hierarchy
-    const buildHierarchy = (parentId: string): ResolvedLocationPreferenceNode[] => {
-        return (groupedByParent[parentId] || []).map((location) => {
-            // Recursively build children
-            location.children = buildHierarchy(location.id);
-            return location;
-        });
-    };
-
-    // Start building from the root locations (parentId is 'root')
-    return buildHierarchy('root');
-};
