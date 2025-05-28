@@ -93,7 +93,7 @@ export type HexTaskDataMap = {
   [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.POOL_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number }; parentTaskId?: string;  };
+  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, poolName: string; }; parentTaskId?: string;  };
   [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
@@ -115,15 +115,15 @@ export const HexTaskSettings: {
   [HexTaskType.RESTART]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.SHUTDOWN]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.NETWORK_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 90 },
-  [HexTaskType.POOL_CREATE]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
-  [HexTaskType.POOL_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.POOL_DELETE]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
-  [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.USER_CREATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.USER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.USER_DELETE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
+  [HexTaskType.POOL_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 30 },
+  [HexTaskType.POOL_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.POOL_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 30 },
+  [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.USER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.USER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.USER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.SERVER_RESET]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
   [HexTaskType.SERVER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
   [HexTaskType.USERS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
