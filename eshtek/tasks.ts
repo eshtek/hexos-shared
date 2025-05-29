@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // tasks.ts
 
+import { DiskType } from "../truenas/webui/enums/disk-type.enum";
+
 export interface HexTaskBase<K extends HexTaskType> {
   id: string;
   userId: string;
@@ -91,9 +93,9 @@ export type HexTaskDataMap = {
   [HexTaskType.RESTART]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.SHUTDOWN]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: never; parentTaskId?: never; };
-  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
+  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType }; parentTaskId?: never; };
   [HexTaskType.POOL_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, poolName: string; }; parentTaskId?: string;  };
+  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; }; parentTaskId?: string;  };
   [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
