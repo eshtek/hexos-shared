@@ -73,6 +73,10 @@ export enum ServerFolderIcons {
     VIRTUALIZATION = 'files/folder-virtualization',
 }
 
+export enum ServerMiscIcons {
+    MEDAL = 'misc/medal',
+}
+
 export interface ServerSetting {
     id: string;
     name: string;
