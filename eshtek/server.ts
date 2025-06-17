@@ -59,6 +59,7 @@ export enum ServerStatusIcons {
     CHECK = 'status/check',
     WARNING = 'status/warning',
     ERROR = 'status/error',
+    INFO = 'status/info',
 }
 export enum ServerFolderIcons {
     HIDDEN = 'files/folder-hidden',
