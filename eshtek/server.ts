@@ -75,6 +75,7 @@ export enum ServerFolderIcons {
 
 export enum ServerMiscIcons {
     MEDAL = 'misc/medal',
+    DIAMOND_BLUE = 'misc/shape-diamond-blue',
 }
 
 export interface ServerSetting {
