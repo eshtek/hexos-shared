@@ -1,6 +1,6 @@
-import { AlertLevel } from "../truenas/webui/enums/alert-level.enum";
-import { JobState } from "../truenas/webui/enums/job-state.enum";
-import { HexTaskStatus, HexTaskType } from "./tasks";
+import type { AlertLevel } from '../truenas/webui/enums/alert-level.enum';
+import type { JobState } from '../truenas/webui/enums/job-state.enum';
+import type { HexTaskStatus, HexTaskType } from './tasks';
 
 interface BaseServerMessage {
     id: string;
@@ -78,86 +78,3 @@ export type ServerMessage =
     | Task
     | Achievement
     | GlobalMessage;
-
-const dummyServerMessages: ServerMessage[] = [
-    {
-        id: 'TRUENAS_UPDATE_AVAILABLE:0',
-        type: 'TRUENAS_UPDATE_AVAILABLE',
-        title: 'TrueNAS Update Available',
-        content: 'A new version of TrueNAS is available.',
-        icon: 'ok',
-        createdAt: new Date(),
-        serverId: 'a2d6a678e70f347af6018fcb7c5706ad8812cccc27dd47340c249f6f696efa38',
-        meta: {
-            currentVersion: '24.10.0',
-            latestVersion: '24.10.2.1',
-            releaseNotesUrl: 'https://www.truenas.com/docs/scale/24.10/gettingstarted/scalereleasenotes/#241021',
-        }
-    },
-    {
-        id: 'APP_UPDATE_AVAILABLE:minecraft',
-        type: 'APP_UPDATE_AVAILABLE',
-        title: 'Update Available',
-        content: 'An update is available for the app: minecraft',
-        icon: 'ok',
-        createdAt: new Date(),
-        serverId: 'a2d6a678e70f347af6018fcb7c5706ad8812cccc27dd47340c249f6f696efa38',
-        resourceId: 'minecraft',
-        meta: {
-            currentVersion: '1.0.0',
-        }
-    },
-    {
-        id: 'TRUENAS_JOB:5839',
-        type: 'TRUENAS_JOB',
-        title: 'Folder Create',
-        content: 'Creating folder "my_folder"',
-        icon: 'ok',
-        createdAt: new Date(),
-        serverId: 'a2d6a678e70f347af6018fcb7c5706ad8812cccc27dd47340c249f6f696efa38',
-        resourceId: '5839',
-        meta: {
-            progress: 100,
-            state: JobState.Success,
-            finishedAt: new Date(),
-        }
-    },
-    {
-        id: 'TRUENAS_ALERT:1234',
-        type: 'TRUENAS_ALERT',
-        title: 'Disk Failure',
-        content: 'The disk "sda" has failed.',
-        icon: 'error',
-        createdAt: new Date(),
-        serverId: 'a2d6a678e70f347af6018fcb7c5706ad8812cccc27dd47340c249f6f696efa38',
-        resourceId: '1234',
-        meta: {
-            level: AlertLevel.Error,
-        }
-    },
-    {
-        id: 'ACHIEVEMENT:first_user_created',
-        type: 'ACHIEVEMENT',
-        title: 'New Achievement Unlocked!',
-        content: 'You have created your first user.',
-        icon: 'award',
-        resourceId: 'first_user_created',
-        createdAt: new Date(),
-        serverId: 'a2d6a678e70f347af6018fcb7c5706ad8812cccc27dd47340c249f6f696efa38',
-    },
-    {
-        id: 'TASK:5512',
-        type: 'TASK',
-        title: 'Pool Expansion',
-        content: 'Expanding pool "my_pool"',
-        icon: 'progress',
-        createdAt: new Date(),
-        serverId: 'a2d6a678e70f347af6018fcb7c5706ad8812cccc27dd47340c249f6f696efa38',
-        resourceId: '5512',
-        meta: {
-            type: HexTaskType.POOL_UPDATE,
-            progress: 75,
-            status: HexTaskStatus.IN_PROGRESS,
-        }
-    },
-];
