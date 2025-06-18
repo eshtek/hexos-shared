@@ -6,6 +6,7 @@ import {
   ServerStatusSupported,
   ServerStatusIcons,
   ServerFolderIcons,
+  ServerMiscIcons,
   ServerPoolType,
   ServerPoolError,
   ServerPoolWarning,
@@ -41,6 +42,8 @@ export const serverStatusSupportedSchema = z.nativeEnum(ServerStatusSupported);
 export const serverStatusIconsSchema = z.nativeEnum(ServerStatusIcons);
 
 export const serverFolderIconsSchema = z.nativeEnum(ServerFolderIcons);
+
+export const serverMiscIconsSchema = z.nativeEnum(ServerMiscIcons);
 
 export const serverSettingSchema = z.object({
   id: z.string(),
