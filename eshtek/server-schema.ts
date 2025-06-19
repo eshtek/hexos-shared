@@ -160,6 +160,7 @@ export const serverGlobalNetworkSchema = z.object({
   dns1: z.string(),
   dns2: z.string(),
   dns3: z.string(),
+  gateway: z.string(),
 });
 
 export const serverNetworkInterfaceModeSchema = z.nativeEnum(
@@ -171,6 +172,7 @@ export const serverNetworkInterfaceConfigurationSchema = z.object({
   ipv6: z.string(),
   description: z.string(),
   mode: serverNetworkInterfaceModeSchema,
+  gateway: z.string().optional(),
 });
 
 export const serverProcessorInfoSchema = z.object({
