@@ -332,6 +332,7 @@ export interface ServerGlobalNetwork {
     dns1: string;
     dns2: string;
     dns3: string;
+    gateway: string;
 }
 
 export enum ServerNetworkInterfaceMode {
@@ -351,6 +352,7 @@ export interface ServerNetworkInterfaceConfiguration {
     ipv6: string;
     description: string;
     mode: ServerNetworkInterfaceMode;
+    gateway?: string;
 }
 export interface ServerNetworkInterfaceWithConfiguration extends ServerNetworkInterface {
     configuration: ServerNetworkInterfaceConfiguration;
