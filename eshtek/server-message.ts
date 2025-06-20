@@ -43,6 +43,7 @@ export interface TNAlert extends BaseServerMessage {
     type: 'TRUENAS_ALERT';
     meta: {
         level: AlertLevel;
+        klass: string;
     }
 }
 
