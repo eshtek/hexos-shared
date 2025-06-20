@@ -6,6 +6,7 @@ import {
   ServerStatusSupported,
   ServerStatusIcons,
   ServerFolderIcons,
+  ServerMiscIcons,
   ServerPoolType,
   ServerPoolError,
   ServerPoolWarning,
@@ -41,6 +42,8 @@ export const serverStatusSupportedSchema = z.nativeEnum(ServerStatusSupported);
 export const serverStatusIconsSchema = z.nativeEnum(ServerStatusIcons);
 
 export const serverFolderIconsSchema = z.nativeEnum(ServerFolderIcons);
+
+export const serverMiscIconsSchema = z.nativeEnum(ServerMiscIcons);
 
 export const serverSettingSchema = z.object({
   id: z.string(),
@@ -157,6 +160,7 @@ export const serverGlobalNetworkSchema = z.object({
   dns1: z.string(),
   dns2: z.string(),
   dns3: z.string(),
+  gateway: z.string(),
 });
 
 export const serverNetworkInterfaceModeSchema = z.nativeEnum(
@@ -168,6 +172,7 @@ export const serverNetworkInterfaceConfigurationSchema = z.object({
   ipv6: z.string(),
   description: z.string(),
   mode: serverNetworkInterfaceModeSchema,
+  gateway: z.string().optional(),
 });
 
 export const serverProcessorInfoSchema = z.object({

@@ -59,6 +59,7 @@ export enum ServerStatusIcons {
     CHECK = 'status/check',
     WARNING = 'status/warning',
     ERROR = 'status/error',
+    INFO = 'status/info',
 }
 export enum ServerFolderIcons {
     HIDDEN = 'files/folder-hidden',
@@ -70,6 +71,11 @@ export enum ServerFolderIcons {
     SYSTEM = 'files/folder-system',
     APPLICATIONS = 'files/folder-applications',
     VIRTUALIZATION = 'files/folder-virtualization',
+}
+
+export enum ServerMiscIcons {
+    MEDAL = 'misc/medal',
+    DIAMOND_BLUE = 'misc/shape-diamond-blue',
 }
 
 export interface ServerSetting {
@@ -326,6 +332,7 @@ export interface ServerGlobalNetwork {
     dns1: string;
     dns2: string;
     dns3: string;
+    gateway: string;
 }
 
 export enum ServerNetworkInterfaceMode {
@@ -345,6 +352,7 @@ export interface ServerNetworkInterfaceConfiguration {
     ipv6: string;
     description: string;
     mode: ServerNetworkInterfaceMode;
+    gateway?: string;
 }
 export interface ServerNetworkInterfaceWithConfiguration extends ServerNetworkInterface {
     configuration: ServerNetworkInterfaceConfiguration;
