@@ -55,7 +55,14 @@ export type HexTaskNew<T extends HexTaskType = HexTaskType> = {
   progress?: number;
   active?: boolean;
 } & HexTaskDataMap[T];
-export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = Partial<Omit<HexTask<T>, 'id' | 'userId' | 'type' | 'created' | 'updated'>>;
+export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = {
+  progress?: number;
+  status?: HexTaskStatus;
+  active?: boolean;
+  data?: HexTaskDataMap[T]['data'];
+  hostId?: string;
+  parentTaskId?: string;
+};
 export type HexTaskWithChildren<T extends HexTaskType = HexTaskType> = HexTaskBase<T> & HexTaskDataMap[T] & {
   childTasks: HexTask[];
 }
