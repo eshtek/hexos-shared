@@ -94,7 +94,7 @@ export type HexTaskDataMap = {
   [HexTaskType.SHUTDOWN]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType }; parentTaskId?: never; };
-  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
+  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string }; parentTaskId?: never };
   [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; }; parentTaskId?: string;  };
   [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
