@@ -446,6 +446,10 @@ export interface ApiCallDirectory {
     'disk.temperatures': { params: [disks: string[]]; response: DiskTemperatures };
     'disk.update': { params: [id: string, update: DiskUpdate]; response: Disk };
 
+    // Docker
+    'docker.status': { params: void; response: { status: "UNCONFIGURED" | "RUNNING" | "STOPPED", description: string } };
+    'docker.update': { params: [{ pool: string }]; response: number };
+
     // Enclosure
     'enclosure2.query': { params: void; response: EnclosureUi[] };
     'webui.enclosure.dashboard': { params: void; response: EnclosureUi[] };
