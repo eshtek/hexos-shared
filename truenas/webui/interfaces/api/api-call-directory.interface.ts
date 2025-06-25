@@ -203,6 +203,7 @@ import type { SimilarIssue, SimilarIssuesParams, SupportConfig, SupportConfigUpd
 import type { SystemHealth } from '../system-health.interface';
 import type { App, AppQueryParams, AppUpgradeParams } from '../app.interface';
 import type { DetailsDisk } from '../disk.interface';
+import { DockerConfig, DockerStatusData } from '../../enums/docker-config.interface';
 
 /**
  * API definitions for `call` methods.
@@ -447,8 +448,9 @@ export interface ApiCallDirectory {
     'disk.update': { params: [id: string, update: DiskUpdate]; response: Disk };
 
     // Docker
-    'docker.status': { params: void; response: { status: "UNCONFIGURED" | "RUNNING" | "STOPPED", description: string } };
-    'docker.update': { params: [{ pool: string }]; response: number };
+    'docker.config': { params: void; response: DockerConfig };
+    'docker.status': { params: void; response: DockerStatusData };
+    'docker.nvidia_present': { params: void; response: boolean };
 
     // Enclosure
     'enclosure2.query': { params: void; response: EnclosureUi[] };
