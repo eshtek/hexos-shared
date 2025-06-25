@@ -44,7 +44,7 @@ export enum HexTaskType {
   APP_INSTALL = 'APP_INSTALL',
   APP_UNINSTALL = 'APP_UNINSTALL',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
-  
+  DRIVE_REPLACE = 'DRIVE_REPLACE',
 }
 
 
@@ -114,7 +114,8 @@ export type HexTaskDataMap = {
   [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
   [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
   [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; };  
+  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; }; 
+  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string }; parentTaskId?: string }; 
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -139,4 +140,5 @@ export const HexTaskSettings: {
   [HexTaskType.POOLS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 20 },
+  [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
 };
