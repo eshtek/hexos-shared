@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // tasks.ts
 
-import { DiskType } from "../truenas/webui/enums/disk-type.enum";
+import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 export interface HexTaskBase<K extends HexTaskType> {
   id: string;
@@ -115,7 +115,7 @@ export type HexTaskDataMap = {
   [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
   [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; };
   [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; }; 
-  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string }; parentTaskId?: string }; 
+  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label:string, disk:string }; parentTaskId?: string }; 
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
