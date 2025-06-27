@@ -203,6 +203,7 @@ import type { SimilarIssue, SimilarIssuesParams, SupportConfig, SupportConfigUpd
 import type { SystemHealth } from '../system-health.interface';
 import type { App, AppQueryParams, AppUpgradeParams } from '../app.interface';
 import type { DetailsDisk } from '../disk.interface';
+import { DockerConfig, DockerStatusData } from '../../enums/docker-config.interface';
 
 /**
  * API definitions for `call` methods.
@@ -445,6 +446,11 @@ export interface ApiCallDirectory {
     'disk.temperature_alerts': { params: [disks: string[]]; response: Alert[] };
     'disk.temperatures': { params: [disks: string[]]; response: DiskTemperatures };
     'disk.update': { params: [id: string, update: DiskUpdate]; response: Disk };
+
+    // Docker
+    'docker.config': { params: void; response: DockerConfig };
+    'docker.status': { params: void; response: DockerStatusData };
+    'docker.nvidia_present': { params: void; response: boolean };
 
     // Enclosure
     'enclosure2.query': { params: void; response: EnclosureUi[] };

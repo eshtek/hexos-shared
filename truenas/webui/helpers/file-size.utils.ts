@@ -1,3 +1,4 @@
+import type { ServerPool } from '../../../eshtek/server';
 import { Gb, kb, Mb, Tb } from '../constants/bits.constant';
 import { GiB, KiB, MiB, TiB } from '../constants/bytes.constant';
 
@@ -66,3 +67,20 @@ function normalizeFileSizeBase10(value: number, baseUnit: 'b' | 'B', providedInc
             return [formatted, baseUnit, increment];
     }
 }
+
+
+export const getUsableStorage = (pool: ServerPool) => {
+    const drives = pool.drives;
+    if (!drives.length) {
+        return buildNormalizedFileSize(0, 'B', 10);
+    } else if (drives.length === 1) {
+        return buildNormalizedFileSize(drives[0].realsize, 'B', 10);
+    } else if (drives.length === 2) {
+        const usableSize = drives.reduce((acc, drive) => acc + drive.realsize, 0) / 2;
+        return buildNormalizedFileSize(usableSize, 'B', 10);
+    } else if (drives.length >= 3) {
+        const smallestDriveSize = Math.min(...drives.map((drive) => drive.realsize));
+        const usableSize = smallestDriveSize * (drives.length - 1);
+        return buildNormalizedFileSize(usableSize, 'B', 10);
+    }
+};

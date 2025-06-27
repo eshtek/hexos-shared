@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // tasks.ts
 
+import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
+
 export interface HexTaskBase<K extends HexTaskType> {
   id: string;
   userId: string;
@@ -22,15 +24,11 @@ export enum HexAchievement {
   FIRST_APP = 'FIRST_APP',
   FIRST_VM = 'FIRST_VM',
 }
-export interface HexTaskDataAchievement {
-  achievement: HexAchievement;
-}
 
 export enum HexTaskType {
   RESTART = 'RESTART',
   SHUTDOWN = 'SHUTDOWN',
   NETWORK_UPDATE = 'NETWORK_UPDATE',
-  ACHIEVEMENT = 'ACHIEVEMENT',
   POOL_CREATE = 'POOL_CREATE',
   POOL_UPDATE = 'POOL_UPDATE',
   POOL_DELETE = 'POOL_DELETE',
@@ -42,10 +40,11 @@ export enum HexTaskType {
   USER_DELETE = 'USER_DELETE',
   USERS_DELETE_ALL = 'USERS_DELETE_ALL',
   SERVER_RESET = 'SERVER_RESET',
+  SERVER_UPDATE = 'SERVER_UPDATE',
   APP_INSTALL = 'APP_INSTALL',
   APP_UNINSTALL = 'APP_UNINSTALL',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
-  
+  DRIVE_REPLACE = 'DRIVE_REPLACE',
 }
 
 
@@ -56,7 +55,14 @@ export type HexTaskNew<T extends HexTaskType = HexTaskType> = {
   progress?: number;
   active?: boolean;
 } & HexTaskDataMap[T];
-export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = Partial<Omit<HexTask<T>, 'id' | 'userId' | 'type' | 'created' | 'updated'>>;
+export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = {
+  progress?: number;
+  status?: HexTaskStatus;
+  active?: boolean;
+  data?: HexTaskDataMap[T]['data'];
+  hostId?: string;
+  parentTaskId?: string;
+};
 export type HexTaskWithChildren<T extends HexTaskType = HexTaskType> = HexTaskBase<T> & HexTaskDataMap[T] & {
   childTasks: HexTask[];
 }
@@ -94,10 +100,9 @@ export type HexTaskDataMap = {
   [HexTaskType.RESTART]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.SHUTDOWN]: { hostId: string; data?: never; parentTaskId?: never; };
   [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: never; parentTaskId?: never; };
-  [HexTaskType.ACHIEVEMENT]: { data: HexTaskDataAchievement; hostId?: string; parentTaskId?: never; };
-  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number }; parentTaskId?: string;  };
+  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType }; parentTaskId?: never; };
+  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string }; parentTaskId?: never };
+  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; }; parentTaskId?: string;  };
   [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
@@ -105,18 +110,12 @@ export type HexTaskDataMap = {
   [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
   [HexTaskType.SERVER_RESET]: { hostId: string; data?: never; parentTaskId?: never; };
+  [HexTaskType.SERVER_UPDATE]: { hostId: string; data?: { targetVersion: string }; parentTaskId?: never; };
   [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
   [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
   [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; };  
-};
-
-export const hasAchievement = (tasks: HexTask[] | undefined, achievement: HexAchievement): boolean => {
-  if (!tasks) return false;
-  return tasks.some((task) => 
-    task.type === HexTaskType.ACHIEVEMENT && 
-    (task.data as HexTaskDataAchievement)?.achievement === achievement
-  );
+  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; }; 
+  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label:string, disk:string }; parentTaskId?: string }; 
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -126,19 +125,20 @@ export const HexTaskSettings: {
   [HexTaskType.RESTART]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.SHUTDOWN]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.NETWORK_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 90 },
-  [HexTaskType.ACHIEVEMENT]: { canHaveMultiple: true },
-  [HexTaskType.POOL_CREATE]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
-  [HexTaskType.POOL_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.POOL_DELETE]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
-  [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.USER_CREATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.USER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
-  [HexTaskType.USER_DELETE]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
+  [HexTaskType.POOL_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 30 },
+  [HexTaskType.POOL_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.POOL_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 30 },
+  [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.USER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.USER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.USER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.SERVER_RESET]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
+  [HexTaskType.SERVER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
   [HexTaskType.USERS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
   [HexTaskType.POOLS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 20 },
+  [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
 };

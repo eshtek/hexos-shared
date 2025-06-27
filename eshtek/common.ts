@@ -94,14 +94,14 @@ export const ipFormat = (ip?: string): boolean => {
  * Checks if a given username follows a specific format.
  * @param {string} username - The username to check.
  * @returns {boolean} - Returns true if the username follows the format, otherwise false.
-Length between 3 and 8 characters.
+Length between 3 and 30 characters.
 Allowed characters: letters (both uppercase and lowercase), numbers, underscores, and hyphens.
 Cannot start or end with an underscore or hyphen.
 No consecutive underscores or hyphens.
 Must start with a letter
 */
 export const usernameFormat = (username: string): boolean => {
-    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{2,7}$/;
+    const regex = /^[a-zA-Z][a-zA-Z0-9_-]{2,29}$/;
     return regex.test(username);
 };
 /**
@@ -326,9 +326,8 @@ export const deserialize = (val: string | object | undefined): any => {
 import type { ZodString, ZodTypeAny, ZodUnion } from 'zod';
 import { z } from 'zod';
 import { buildNormalizedFileSize } from '../truenas/webui/helpers/file-size.utils';
-import type { VMInfo, VMInfoDetailed, VMListing } from './vms';
+import type { VMInfo, VMInfoDetailed } from './vms';
 import { VMIcons, VMType } from './vms';
-import type { PreferenceLocation, PreferenceLocationId, PreferenceLocationTree } from './preferences';
 import { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 /**
@@ -495,37 +494,3 @@ export function getStepSize(range: number, steps: number = 10, acceptableSteps: 
         return Math.abs(curr - rawStep) < Math.abs(prev - rawStep) ? curr : prev;
     });
 }
-
-/**
- * Converts flat preferences locations into a hierarchical structure.
- * @param locations Record<PreferenceLocationId, PreferenceLocation>
- * @returns Tree structure of locations for easier rendering
- */
-export const buildLocationHierarchy = (locations: Record<PreferenceLocationId, PreferenceLocation>): PreferenceLocationTree[] => {
-    // Map of parentId (string or 'root' for undefined) to its children
-    const groupedByParent: Record<string, PreferenceLocationTree[]> = {};
-
-    // Initialize the map
-    for (const location of Object.values(locations)) {
-        const parentId = location.parentId ?? 'root'; // Use 'root' for locations with no parent
-
-        if (!groupedByParent[parentId]) {
-            groupedByParent[parentId] = [];
-        }
-
-        // Add the location to the appropriate parent group
-        groupedByParent[parentId].push({ ...location, children: [] });
-    }
-
-    // Recursive function to build the hierarchy
-    const buildHierarchy = (parentId: string): PreferenceLocationTree[] => {
-        return (groupedByParent[parentId] || []).map((location) => {
-            // Recursively build children
-            location.children = buildHierarchy(location.id);
-            return location;
-        });
-    };
-
-    // Start building from the root locations (parentId is 'root')
-    return buildHierarchy('root');
-};

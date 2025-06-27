@@ -4,7 +4,6 @@ import type { FileType } from '../truenas/webui/enums/file-type.enum';
 import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interface.enum';
 import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
-import type { VmPassthroughDeviceChoice, VmUsbPassthroughDeviceChoice } from '../truenas/webui/interfaces/vm-device.interface';
 import type { AppsHealth } from './apps';
 import type { VMSHealth } from './vms';
 
@@ -60,6 +59,7 @@ export enum ServerStatusIcons {
     CHECK = 'status/check',
     WARNING = 'status/warning',
     ERROR = 'status/error',
+    INFO = 'status/info',
 }
 export enum ServerFolderIcons {
     HIDDEN = 'files/folder-hidden',
@@ -71,6 +71,11 @@ export enum ServerFolderIcons {
     SYSTEM = 'files/folder-system',
     APPLICATIONS = 'files/folder-applications',
     VIRTUALIZATION = 'files/folder-virtualization',
+}
+
+export enum ServerMiscIcons {
+    MEDAL = 'misc/medal',
+    DIAMOND_BLUE = 'misc/shape-diamond-blue',
 }
 
 export interface ServerSetting {
@@ -116,6 +121,9 @@ export interface ServerPool extends ServerPoolBasics {
     used_storage?: string;
     used_percentage?: number;
     drives: ServerDrive[];
+}
+export interface ServerPoolNew extends ServerPoolBasics {
+    devnames: string[];
 }
 
 export interface ServerStorage {
@@ -307,24 +315,6 @@ export type ServerSystemData =
     | ServerSystemDataVirtualization
     | ServerSystemDataEmpty;
 
-export interface ServerSystemDevice {
-    name: string;
-    guid: string;
-    data: VmPassthroughDeviceChoice | VmUsbPassthroughDeviceChoice;
-}
-
-export interface ServerSystemGPU extends ServerSystemDevice {}
-export interface ServerSystemAudio extends ServerSystemDevice {}
-export interface ServerSystemUSB extends ServerSystemDevice {}
-export interface ServerSystemPCI extends ServerSystemDevice {}
-
-export interface ServerSystemDevices {
-    gpu?: ServerSystemGPU[];
-    audio?: ServerSystemAudio[];
-    usb?: ServerSystemUSB[];
-    pci?: ServerSystemPCI[];
-}
-
 export interface ServerSystem extends ServerStatusBasics {
     type: ServerStatusType.SYSTEM_OVERVIEW;
     data?: ServerSystemData[];
@@ -342,6 +332,7 @@ export interface ServerGlobalNetwork {
     dns1: string;
     dns2: string;
     dns3: string;
+    gateway: string;
 }
 
 export enum ServerNetworkInterfaceMode {
@@ -361,6 +352,7 @@ export interface ServerNetworkInterfaceConfiguration {
     ipv6: string;
     description: string;
     mode: ServerNetworkInterfaceMode;
+    gateway?: string;
 }
 export interface ServerNetworkInterfaceWithConfiguration extends ServerNetworkInterface {
     configuration: ServerNetworkInterfaceConfiguration;
