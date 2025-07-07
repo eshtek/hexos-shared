@@ -97,25 +97,25 @@ interface HexTaskTypeInfo {
 }
 
 export type HexTaskDataMap = {
-  [HexTaskType.RESTART]: { hostId: string; data?: never; parentTaskId?: never; };
-  [HexTaskType.SHUTDOWN]: { hostId: string; data?: never; parentTaskId?: never; };
-  [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: never; parentTaskId?: never; };
-  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType }; parentTaskId?: never; };
-  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string }; parentTaskId?: never };
-  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; }; parentTaskId?: string;  };
-  [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string }; parentTaskId?: never; };
-  [HexTaskType.SERVER_RESET]: { hostId: string; data?: never; parentTaskId?: never; };
-  [HexTaskType.SERVER_UPDATE]: { hostId: string; data?: { targetVersion: string }; parentTaskId?: never; };
-  [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
-  [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: never; parentTaskId?: string; };
-  [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string }; parentTaskId?: string; }; 
-  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label:string, disk:string }; parentTaskId?: string }; 
+  [HexTaskType.RESTART]: { hostId: string; data?: { error?: string }; parentTaskId?: never;  };
+  [HexTaskType.SHUTDOWN]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
+  [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
+  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType; error?: string }; parentTaskId?: never; };
+  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string; error?: string  }; parentTaskId?: never };
+  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; error?: string }; parentTaskId?: string;  };
+  [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
+  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
+  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
+  [HexTaskType.SERVER_RESET]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
+  [HexTaskType.SERVER_UPDATE]: { hostId: string; data?: { targetVersion: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
+  [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
+  [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; };
+  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string }; 
+  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label:string, disk:string; error?: string }; parentTaskId?: string }; 
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
