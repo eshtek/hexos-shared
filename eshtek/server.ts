@@ -187,6 +187,7 @@ export interface ServerFolder {
     pool?: ServerPool;
     users?: ServerFolderUser[];
     used_by?: ServerFolderUse[];
+    timeMachine?: boolean;
 }
 
 export interface ServerFolders {

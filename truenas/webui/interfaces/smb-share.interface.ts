@@ -39,6 +39,7 @@ export enum SmbPresetType {
     NoPresets = 'NO_PRESET',
     DefaultShareParameters = 'DEFAULT_SHARE',
     MultiUserTimeMachine = 'ENHANCED_TIMEMACHINE',
+    BasicTimeMachine = 'BASIC_TIMEMACHINE',
     MultiProtocolShares = 'MULTI_PROTOCOL_NFS',
     PrivateSmbDatasets = 'PRIVATE_DATASETS',
     SmbWorm = 'WORM_DROPBOX',
