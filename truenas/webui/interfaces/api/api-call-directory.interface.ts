@@ -277,6 +277,7 @@ export interface ApiCallDirectory {
     'auth.generate_token': { params: void; response: string };
     'auth.login': { params: LoginQuery; response: boolean };
     'auth.login_with_token': { params: [token: string]; response: boolean };
+    'auth.login_with_api_key': { params: [api_key: string]; response: boolean };
     'auth.logout': { params: void; response: void };
     'auth.me': { params: void; response: LoggedInUser };
     'auth.sessions': { params: QueryParams<AuthSession>; response: AuthSession[] };
