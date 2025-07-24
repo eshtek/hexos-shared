@@ -34,7 +34,7 @@ export interface DDPClientMeta {
     lanIp: string;
     wanIp: string;
     wizard?: Wizard;
-    method_data: Data[];
-    misc_data: Data[];
+    buildTime?: Date;
+    buildVersion?: string;
     userId?: string;
 }
