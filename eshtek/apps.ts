@@ -40,6 +40,7 @@ export interface AppRequirements {
     permissions: AppPermission[];
     specifications: AppSpec[];
     locations: LocationPreferenceId[];
+    ports: number[];
 }
 export interface AppRequirementsCheck {
     permissions: {
