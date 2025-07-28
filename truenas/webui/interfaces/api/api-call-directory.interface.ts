@@ -202,7 +202,7 @@ import type { CloneZfsSnapshot, CreateZfsSnapshot, ZfsRollbackParams, ZfsSnapsho
 import type { SimilarIssue, SimilarIssuesParams, SupportConfig, SupportConfigUpdate } from '../modules/feedback/interfaces/file-ticket.interface';
 import type { SystemHealth } from '../system-health.interface';
 import type { App, AppQueryParams, AppUpgradeParams } from '../app.interface';
-import type { DetailsDisk } from '../disk.interface';
+import type { DetailsDisk, DiskSmartAttribute } from '../disk.interface';
 import { DockerConfig, DockerStatusData } from '../../enums/docker-config.interface';
 
 /**
@@ -277,6 +277,7 @@ export interface ApiCallDirectory {
     'auth.generate_token': { params: void; response: string };
     'auth.login': { params: LoginQuery; response: boolean };
     'auth.login_with_token': { params: [token: string]; response: boolean };
+    'auth.login_with_api_key': { params: [api_key: string]; response: boolean };
     'auth.logout': { params: void; response: void };
     'auth.me': { params: void; response: LoggedInUser };
     'auth.sessions': { params: QueryParams<AuthSession>; response: AuthSession[] };
@@ -294,6 +295,7 @@ export interface ApiCallDirectory {
     'boot.detach': { params: [disk: string]; response: void };
     'boot.get_state': { params: void; response: PoolInstance };
     'boot.set_scrub_interval': { params: [number]; response: number };
+    'boot.get_disks': { params: void; response: string[] };
 
     // Bootenv
     'bootenv.activate': { params: [string]; response: boolean };
@@ -910,6 +912,10 @@ export interface ApiCallDirectory {
         response: SmartTestTask;
     };
     'smart.update': { params: [SmartConfigUpdate]; response: SmartConfig };
+    'disk.smart_attributes': {
+        params: [disk: string];
+        response: DiskSmartAttribute[];
+    };
 
     // SMB
     'smb.bindip_choices': { params: void; response: Choices };

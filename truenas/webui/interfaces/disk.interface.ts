@@ -134,3 +134,27 @@ export interface DiskDetailsResponse {
     used: DetailsDisk[];
     unused: DetailsDisk[];
 }
+
+
+export interface DiskSmartAttribute {
+    id: number;
+    value: number;
+    worst: number;
+    thresh: number;
+    name: string;
+    when_failed: string;
+    flags: {
+        value: number;
+        string: string;
+        prefailure: boolean;
+        updated_online: boolean;
+        performance: boolean;
+        error_rate: boolean;
+        event_count: boolean;
+        auto_keep: boolean;
+    };
+    raw: {
+        value: number;
+        string: string;
+    };
+}
