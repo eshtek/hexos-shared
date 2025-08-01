@@ -26,6 +26,7 @@ export interface SmbShare {
     shadowcopy: boolean;
     streams: boolean;
     timemachine: boolean;
+    timemachine_quota?: number, // remove after refactoring smbshare
     vuid: string;
     path_local: string;
     audit: {

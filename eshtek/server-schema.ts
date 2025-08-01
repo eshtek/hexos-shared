@@ -271,6 +271,8 @@ export const serverFolderSchema = z.object({
   pool: serverPoolSchema.optional(),
   users: z.array(serverFolderUserSchema).optional(),
   used_by: z.array(serverFolderUseSchema).optional(),
+  timeMachine: z.boolean().optional(),
+  timeMachineQuota: z.number().optional(),
 });
 
 export const serverFoldersSchema = z.object({

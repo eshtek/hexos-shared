@@ -188,6 +188,7 @@ export interface ServerFolder {
     users?: ServerFolderUser[];
     used_by?: ServerFolderUse[];
     timeMachine?: boolean;
+    timeMachineQuota?: number;
 }
 
 export interface ServerFolders {
