@@ -113,5 +113,6 @@ export interface RequestCreatePool {
 
 export interface RequestAppInstall {
     id: string;
-    installScript?: string
+    train?: 'community' | 'stable';
+    installScript?: string;
 }
