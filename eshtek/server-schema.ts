@@ -26,8 +26,9 @@ import {
   ServerActions,
 } from "./server";
 
-import { appsHealthSchema } from "./apps-schema";
-import { vMSHealthSchema } from "./vms-schema";
+// TODO: Need to fix this circular dependency issue
+const appsHealthSchema = z.any(); 
+const vMSHealthSchema = z.any();
 
 export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
 
