@@ -189,6 +189,8 @@ export interface ServerFolder {
     used_by?: ServerFolderUse[];
     timeMachine?: boolean;
     timeMachineQuota?: number;
+    encryption?: boolean;
+    encryptionPassphrase?: string;
 }
 
 export interface ServerFolders {
