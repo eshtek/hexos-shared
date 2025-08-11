@@ -180,7 +180,7 @@ export enum ServerFolderUseType {
 export interface ServerFolderUse {
     type: ServerFolderUseType;
     id: string;
-}
+} 
 export interface ServerFolder {
     label: string;
     access: ServerAccess;
@@ -188,7 +188,7 @@ export interface ServerFolder {
     users?: ServerFolderUser[];
     used_by?: ServerFolderUse[];
     timeMachine?: boolean;
-    timeMachineQuota?: number;
+    quota?: number;
     encryption?: boolean;
     encryptionPassphrase?: string;
 }
