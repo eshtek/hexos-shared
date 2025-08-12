@@ -35,6 +35,8 @@ export enum HexTaskType {
   FOLDER_CREATE = 'FOLDER_CREATE',
   FOLDER_UPDATE = 'FOLDER_UPDATE',
   FOLDER_DELETE = 'FOLDER_DELETE',
+  FOLDER_LOCK = 'FOLDER_LOCK',
+  FOLDER_UNLOCK = 'FOLDER_UNLOCK',
   USER_CREATE = 'USER_CREATE',
   USER_UPDATE = 'USER_UPDATE',
   USER_DELETE = 'USER_DELETE',
@@ -106,6 +108,8 @@ export type HexTaskDataMap = {
   [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.FOLDER_LOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.FOLDER_UNLOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
   [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
   [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
@@ -131,6 +135,8 @@ export const HexTaskSettings: {
   [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_LOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10},
+  [HexTaskType.FOLDER_UNLOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10},
   [HexTaskType.USER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },

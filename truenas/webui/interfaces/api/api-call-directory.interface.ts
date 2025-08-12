@@ -770,6 +770,14 @@ export interface ApiCallDirectory {
         params: [dataset: string, quotas: SetDatasetQuota[]];
         response: void;
     };
+    'pool.dataset.lock': {
+        params: [string, { force_unmount?: boolean }];
+        response: any;
+    };
+    'pool.dataset.unlock': {
+        params: [string, { key_file?: boolean; recursive?: boolean; toggle_attachments?: boolean; datasets?: { name?: string; passphrase: string }[] }]
+        response: any;
+    }
     'pool.dataset.unlock_services_restart_choices': { params: [id: string]; response: Choices };
     'pool.dataset.update': { params: [id: string, update: DatasetUpdate]; response: Dataset };
     'pool.detach': { params: [id: number, params: { label: string }]; response: boolean };

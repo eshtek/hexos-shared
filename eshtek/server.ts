@@ -190,6 +190,7 @@ export interface ServerFolder {
     timeMachine?: boolean;
     quota?: number;
     encryption?: boolean;
+    locked?: boolean;
     encryptionPassphrase?: string;
 }
 
