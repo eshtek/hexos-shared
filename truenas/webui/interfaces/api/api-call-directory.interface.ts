@@ -771,7 +771,7 @@ export interface ApiCallDirectory {
         response: void;
     };
     'pool.dataset.lock': {
-        params: [string, { force_unmount?: boolean }];
+        params: [string, { force_umount?: boolean }];
         response: any;
     };
     'pool.dataset.unlock': {
@@ -905,6 +905,7 @@ export interface ApiCallDirectory {
         response: null | { reason: string };
     };
     'sharing.smb.update': { params: [id: number, update: SmbShareUpdate]; response: SmbShare };
+    'sharing.smb.sync_registry': { params: []}
 
     // SMART
     'smart.config': { params: void; response: SmartConfig };
