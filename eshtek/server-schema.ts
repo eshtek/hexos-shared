@@ -272,7 +272,10 @@ export const serverFolderSchema = z.object({
   users: z.array(serverFolderUserSchema).optional(),
   used_by: z.array(serverFolderUseSchema).optional(),
   timeMachine: z.boolean().optional(),
-  timeMachineQuota: z.number().optional(),
+  quota: z.number().optional(),
+  encryption: z.boolean().optional(),
+  locked: z.boolean().optional(),
+  encryptionPassphrase: z.string().optional(),
 });
 
 export const serverFoldersSchema = z.object({
