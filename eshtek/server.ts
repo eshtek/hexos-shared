@@ -71,6 +71,8 @@ export enum ServerFolderIcons {
     SYSTEM = 'files/folder-system',
     APPLICATIONS = 'files/folder-applications',
     VIRTUALIZATION = 'files/folder-virtualization',
+    LOCKED = 'files/folder-locked',
+    UNLOCKED = 'files/folder-unlocked'
 }
 
 export enum ServerMiscIcons {
@@ -180,7 +182,7 @@ export enum ServerFolderUseType {
 export interface ServerFolderUse {
     type: ServerFolderUseType;
     id: string;
-} 
+}
 export interface ServerFolder {
     label: string;
     access: ServerAccess;
