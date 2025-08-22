@@ -138,11 +138,20 @@ export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => 
         return ServerFolderIcons.APPLICATIONS;
     } else if (folder.label.toLowerCase() === 'virtualization') {
         return ServerFolderIcons.VIRTUALIZATION;
-    } else if (folder.access === ServerAccess.PRIVATE) {
-        return ServerFolderIcons.PROTECTED;
-    } else if (folder.access === ServerAccess.PUBLIC) {
-        return ServerFolderIcons.PUBLIC;
-    } else {
+    }
+    // } else if (folder.access === ServerAccess.PRIVATE) {
+    //     return ServerFolderIcons.PROTECTED;
+    // } else if (folder.access === ServerAccess.PUBLIC) {
+    //     return ServerFolderIcons.PUBLIC;
+
+    else if (folder.encryption) {
+        if (folder.locked) {
+            return ServerFolderIcons.LOCKED
+        } else {
+            return ServerFolderIcons.UNLOCKED
+        }
+    }
+    else {
         return ServerFolderIcons.FOLDER;
     }
 };
