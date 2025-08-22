@@ -61,8 +61,8 @@ export interface AppRequirementsCheck {
 
 export interface AppListing extends AvailableApp {
     hexos: boolean;
-    recommended_during_setup?: boolean;
-    requirements: AppRequirements;
+    installScript?: string;
+    requirements?: AppRequirements;
 }
 
 export interface AppInfo extends AppBasics {

@@ -26,7 +26,6 @@ import {
   ServerActions,
 } from "./server";
 
-import { appsHealthSchema } from "./apps-schema";
 import { vMSHealthSchema } from "./vms-schema";
 
 export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
@@ -136,12 +135,6 @@ export const serverSystemDataSystemDeviceDataSchema = z.object({
   networking: z.array(serverSystemDataSystemDeviceSchema).optional(),
 });
 
-export const serverSystemDataApplicationsSchema =
-  serverStatusBasicsSchema.extend({
-    type: z.literal(ServerStatusType.APPLICATIONS),
-    health: appsHealthSchema,
-  });
-
 export const serverSystemDataVirtualizationSchema =
   serverStatusBasicsSchema.extend({
     type: z.literal(ServerStatusType.VIRTUALIZATION),
@@ -211,6 +204,8 @@ const poolStatusSchema = z.any();
 const fileTypeSchema = z.any();
 
 const topologyItemStatusSchema = z.any();
+
+const appsHealthSchema = z.any();
 
 const networkInterfaceTypeSchema = z.any();
 
@@ -299,6 +294,12 @@ export const serverSystemDataStorageSchema = serverStatusBasicsSchema.extend({
     drives: z.array(serverDriveSchema).optional(),
   }),
 });
+
+export const serverSystemDataApplicationsSchema =
+  serverStatusBasicsSchema.extend({
+    type: z.literal(ServerStatusType.APPLICATIONS),
+    health: appsHealthSchema,
+  });
 
 export const serverSystemDataSchema = z.union([
   serverSystemDataSystemSchema,

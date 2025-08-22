@@ -9,8 +9,6 @@ import {
   AppsActions,
 } from "./apps";
 
-import { fileAccessSchema } from "./server-schema";
-
 export const appJobActionSchema = z.nativeEnum(AppJobAction);
 
 export const appBasicsSchema = z.object({
@@ -41,9 +39,46 @@ export const appsHealthSchema = z.object({
 
 const locationPreferenceIdSchema = z.any();
 
-const availableAppSchema = z.any();
+export const appMaintainerSchema = z.object({
+  email: z.string(),
+  name: z.string(),
+  url: z.string(),
+});
+
+const appMetadataSchema = z.any();
+
+const apiTimestampSchema = z.any();
+
+export const availableAppSchema = z.object({
+  healthy: z.boolean(),
+  installed: z.boolean(),
+  categories: z.array(z.string()),
+  name: z.string(),
+  title: z.string(),
+  description: z.string(),
+  app_readme: z.string(),
+  app_metadata: appMetadataSchema,
+  location: z.string(),
+  healthy_error: z.string(),
+  latest_version: z.string(),
+  latest_app_version: z.string(),
+  icon_url: z.string(),
+  train: z.string(),
+  catalog: z.string(),
+  last_update: apiTimestampSchema,
+  recommended: z.boolean(),
+  maintainers: z.array(appMaintainerSchema),
+  tags: z.array(z.string()),
+  home: z.string(),
+  latest_human_version: z.string(),
+  screenshots: z.array(z.string()),
+  sources: z.array(z.string()),
+  versions: z.unknown(),
+});
 
 const appStateSchema = z.any();
+
+const fileAccessSchema = z.any();
 
 const chartFormValueSchema = z.any();
 

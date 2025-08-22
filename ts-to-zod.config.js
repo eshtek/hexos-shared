@@ -18,10 +18,5 @@ module.exports = [
         name: "user",
         input: "eshtek/user.ts",
         output: "eshtek/user-schema.ts",
-    },
-    {
-        name: "apps",
-        input: "eshtek/apps.ts",
-        output: "eshtek/apps-schema.ts",
-    },
+    }
 ];
