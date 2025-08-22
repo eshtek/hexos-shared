@@ -1,6 +1,8 @@
 import type { AvailableApp } from '../truenas/webui/interfaces/available-app.interface';
 import type { AppState } from '../truenas/webui/enums/app-state.enum';
 import type { LocationPreferenceId } from './preferences';
+import { FileAccess } from './server';
+import { ChartFormValue } from '../truenas/webui/interfaces/chart-release.interface';
 
 export enum AppJobAction {
     NONE = 'none',
@@ -40,6 +42,7 @@ export interface AppRequirements {
     permissions: AppPermission[];
     specifications: AppSpec[];
     locations: LocationPreferenceId[];
+    ports: number[];
 }
 export interface AppRequirementsCheck {
     permissions: {
@@ -58,8 +61,8 @@ export interface AppRequirementsCheck {
 
 export interface AppListing extends AvailableApp {
     hexos: boolean;
-    recommended_during_setup?: boolean;
-    requirements: AppRequirements;
+    installScript?: string;
+    requirements?: AppRequirements;
 }
 
 export interface AppInfo extends AppBasics {
@@ -89,3 +92,16 @@ export interface AppsHealth {
     warnings: AppsWarning[];
     actions_available: AppsActions[];
 }
+interface AppsInstallScriptV1 {
+    version: 1;
+    ensure_directories_exists?: Array<string | { path: string; network_share?: boolean; posix?: boolean }>;
+    ensure_permissions_exists?: Array<{
+        path: string;
+        username: string;
+        access: FileAccess;
+        posix?: { groupname: string };
+    }>;
+    app_values: Record<string, ChartFormValue>;
+}
+
+export type AppsInstallScript = AppsInstallScriptV1;

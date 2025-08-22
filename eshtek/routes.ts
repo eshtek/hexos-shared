@@ -110,3 +110,9 @@ export interface RequestListDir {
 export interface RequestCreatePool {
     pools: ServerPoolNew[];
 }
+
+export interface RequestAppInstall {
+    id: string;
+    train?: 'community' | 'stable';
+    installScript?: string;
+}
