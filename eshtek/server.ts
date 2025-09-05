@@ -71,10 +71,11 @@ export enum ServerFolderIcons {
     SYSTEM = 'files/folder-system',
     APPLICATIONS = 'misc/app',
     VIRTUALIZATION = 'files/folder-virtualization',
-    MOVIES = 'files/file-movie',
+    MOVIES = 'application/play',
     MUSIC = 'files/file-audio',
+    MEDIA = 'files/file-movie',
     PHOTOS = 'files/file-image',
-    SHOWS = 'files/file-movie',
+    SHOWS = 'misc/remote',
     VIDEOS = 'files/file-movie',
     LOCKED = 'files/folder-locked',
     UNLOCKED = 'files/folder-unlocked'

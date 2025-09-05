@@ -142,6 +142,7 @@ const FOLDER_LABEL_ICONS = new Map([
     ['photos', ServerFolderIcons.PHOTOS],
     ['shows', ServerFolderIcons.SHOWS],
     ['videos', ServerFolderIcons.VIDEOS],
+    ['media', ServerFolderIcons.MEDIA]
 ]);
 
 export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
