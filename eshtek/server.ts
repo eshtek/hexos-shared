@@ -69,8 +69,13 @@ export enum ServerFolderIcons {
     // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
     PUBLIC = 'files/folder',
     SYSTEM = 'files/folder-system',
-    APPLICATIONS = 'files/folder-applications',
+    APPLICATIONS = 'misc/app',
     VIRTUALIZATION = 'files/folder-virtualization',
+    MOVIES = 'files/file-movie',
+    MUSIC = 'files/file-audio',
+    PHOTOS = 'files/file-image',
+    SHOWS = 'files/file-movie',
+    VIDEOS = 'files/file-movie',
     LOCKED = 'files/folder-locked',
     UNLOCKED = 'files/folder-unlocked'
 }

@@ -133,27 +133,25 @@ export const capitalize = (s: string) => {
  * @param {ServerFolder} folder - The server folder.
  * @returns {ServerFolderIcons} - Returns the icon for the folder.
  */
-export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
-    if (folder.label.toLowerCase() === 'applications') {
-        return ServerFolderIcons.APPLICATIONS;
-    } else if (folder.label.toLowerCase() === 'virtualization') {
-        return ServerFolderIcons.VIRTUALIZATION;
-    }
-    // } else if (folder.access === ServerAccess.PRIVATE) {
-    //     return ServerFolderIcons.PROTECTED;
-    // } else if (folder.access === ServerAccess.PUBLIC) {
-    //     return ServerFolderIcons.PUBLIC;
 
-    else if (folder.encryption) {
-        if (folder.locked) {
-            return ServerFolderIcons.LOCKED
-        } else {
-            return ServerFolderIcons.UNLOCKED
-        }
+const FOLDER_LABEL_ICONS = new Map([
+    ['applications', ServerFolderIcons.APPLICATIONS],
+    ['virtualization', ServerFolderIcons.VIRTUALIZATION],
+    ['music', ServerFolderIcons.MUSIC],
+    ['movies', ServerFolderIcons.MOVIES],
+    ['photos', ServerFolderIcons.PHOTOS],
+    ['shows', ServerFolderIcons.SHOWS],
+    ['videos', ServerFolderIcons.VIDEOS],
+]);
+
+export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
+    const folderLabelIcon = FOLDER_LABEL_ICONS.get(folder.label.toLowerCase());
+    if (folderLabelIcon) return folderLabelIcon;
+
+    if (folder.encryption) {
+        return folder.locked ? ServerFolderIcons.LOCKED : ServerFolderIcons.UNLOCKED
     }
-    else {
-        return ServerFolderIcons.FOLDER;
-    }
+    return ServerFolderIcons.FOLDER
 };
 
 /**
