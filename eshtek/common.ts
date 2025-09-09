@@ -234,9 +234,11 @@ const mediaTypeToIconMap: Record<string, string> = {
  * @returns {string} - Returns the icon for the maximum supported media speed.
  */
 export const getMaxSpeedIcon = (supportedMedia?: string[]): string => {
-    const last = supportedMedia?.length ? supportedMedia[supportedMedia.length - 1] : undefined;
-    const unknown = 'networking/ethernet';
-    return last ? mediaTypeToIconMap[last] ?? unknown : unknown;
+    // TODO : re-implement when the supported media response is more consistent to the true capabilities of the cards.  We also need to confirm the repsonse is ordered
+    //const last = supportedMedia?.length ? supportedMedia[supportedMedia.length - 1] : undefined;
+    //const unknown = 'networking/ethernet';
+    //return last ? mediaTypeToIconMap[last] ?? unknown : unknown;
+    return 'networking/ethernet'
 };
 
 /**
