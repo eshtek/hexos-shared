@@ -142,7 +142,8 @@ const FOLDER_LABEL_ICONS = new Map([
     ['photos', ServerFolderIcons.PHOTOS],
     ['shows', ServerFolderIcons.SHOWS],
     ['videos', ServerFolderIcons.VIDEOS],
-    ['media', ServerFolderIcons.MEDIA]
+    ['media', ServerFolderIcons.MEDIA],
+    ['downloads', ServerFolderIcons.DOWNLOADS],
 ]);
 
 export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
@@ -266,7 +267,7 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
     if (isSystemFolder(folder)) {
         return 'System';
     } else if (folder.access === ServerAccess.PRIVATE) {
-        return 'Protected';
+        return 'Private';
     } else if (folder.access === ServerAccess.PUBLIC) {
         return 'Public';
     } else {
