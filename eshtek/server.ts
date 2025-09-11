@@ -78,7 +78,8 @@ export enum ServerFolderIcons {
     SHOWS = 'misc/remote',
     VIDEOS = 'files/file-movie',
     LOCKED = 'files/folder-locked',
-    UNLOCKED = 'files/folder-unlocked'
+    UNLOCKED = 'files/folder-unlocked',
+    DOWNLOADS = 'vms/download',
 }
 
 export enum ServerMiscIcons {
