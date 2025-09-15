@@ -68,11 +68,11 @@ export interface AppListing extends AvailableApp {
 export interface AppInfo extends AppBasics {
     status: AppState;
     url_webui: string;
+    upgradeAvailable: boolean;
+    latestVersion: string;
 }
 export interface AppInfoDetailed extends AppInfo {
     data: number[][];
-    upgradeAvailable: boolean;
-    latestVersion: string;
 }
 
 export enum AppsError {
