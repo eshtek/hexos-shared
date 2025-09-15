@@ -45,6 +45,7 @@ export enum HexTaskType {
   SERVER_UPDATE = 'SERVER_UPDATE',
   APP_INSTALL = 'APP_INSTALL',
   APP_UNINSTALL = 'APP_UNINSTALL',
+  APP_UPGRADE = 'APP_UPGRADE',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
 }
@@ -111,9 +112,9 @@ export type HexTaskDataMap = {
   [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_LOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UNLOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
-  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
-  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
+  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.SERVER_RESET]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
   [HexTaskType.SERVER_UPDATE]: { hostId: string; data?: { targetVersion: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
@@ -136,8 +137,8 @@ export const HexTaskSettings: {
   [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
-  [HexTaskType.FOLDER_LOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10},
-  [HexTaskType.FOLDER_UNLOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10},
+  [HexTaskType.FOLDER_LOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_UNLOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
