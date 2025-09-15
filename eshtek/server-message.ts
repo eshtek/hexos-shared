@@ -44,6 +44,7 @@ export interface TNAlert extends BaseServerMessage {
     meta: {
         level: AlertLevel;
         klass: string;
+        details?: any;
     }
 }
 
