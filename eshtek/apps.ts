@@ -71,6 +71,8 @@ export interface AppInfo extends AppBasics {
 }
 export interface AppInfoDetailed extends AppInfo {
     data: number[][];
+    upgradeAvailable: boolean;
+    latestVersion: string;
 }
 
 export enum AppsError {
