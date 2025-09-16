@@ -20,6 +20,8 @@ export enum GlobalErrorCode {
     PROCESS_INSTALL_SCRIPT_UNKNOWN_LOCATION = 'Install script has an unknown location',
     PROCESS_INSTALL_SCRIPT_INVALID_RANDOM_STRING_LENGTH = 'Install script has an invalid random string length',
     PROCESS_INSTALL_SCRIPT_FAILED_JSON_PARSE_AFTER = 'Failed to JSON parse install script after processing',
+    PROCESS_INSTALL_SCRIPT_INVALID_MEMORY_PERCENTAGE = 'Install script has an invalid memory percentage',
+    PROCESS_INSTALL_SCRIPT_INVALID_MEMORY_VALUE = 'Install script has an invalid memory value',
     RUN_INSTALL_SCRIPT_UNSUPPORTED_VERSION = 'Install script must have a "version" field',
     DDP_CLIENT_DISCONNECTED = 'DDPClient disconnected from DDP server',
 }
