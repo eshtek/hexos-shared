@@ -35,6 +35,8 @@ export enum HexTaskType {
   FOLDER_CREATE = 'FOLDER_CREATE',
   FOLDER_UPDATE = 'FOLDER_UPDATE',
   FOLDER_DELETE = 'FOLDER_DELETE',
+  FOLDER_LOCK = 'FOLDER_LOCK',
+  FOLDER_UNLOCK = 'FOLDER_UNLOCK',
   USER_CREATE = 'USER_CREATE',
   USER_UPDATE = 'USER_UPDATE',
   USER_DELETE = 'USER_DELETE',
@@ -43,6 +45,7 @@ export enum HexTaskType {
   SERVER_UPDATE = 'SERVER_UPDATE',
   APP_INSTALL = 'APP_INSTALL',
   APP_UNINSTALL = 'APP_UNINSTALL',
+  APP_UPGRADE = 'APP_UPGRADE',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
 }
@@ -72,6 +75,7 @@ export enum HexTaskStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',
+  DISMISSED = 'DISMISSED',
 }
 
 export const enforceCompletionProgress = (status: HexTaskStatus, progress: number): number => {
@@ -97,25 +101,28 @@ interface HexTaskTypeInfo {
 }
 
 export type HexTaskDataMap = {
-  [HexTaskType.RESTART]: { hostId: string; data?: { error?: string }; parentTaskId?: never;  };
+  [HexTaskType.RESTART]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
   [HexTaskType.SHUTDOWN]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
   [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
   [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType; error?: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string; error?: string  }; parentTaskId?: never };
-  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; error?: string }; parentTaskId?: string;  };
+  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string; error?: string }; parentTaskId?: never };
+  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; error?: string }; parentTaskId?: string; };
   [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
-  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
-  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string  }; parentTaskId?: never; };
+  [HexTaskType.FOLDER_LOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.FOLDER_UNLOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
+  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.SERVER_RESET]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
   [HexTaskType.SERVER_UPDATE]: { hostId: string; data?: { targetVersion: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
   [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
-  [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string }; 
-  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label:string, disk:string; error?: string }; parentTaskId?: string }; 
+  [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string; train?: string; installType?: 'standard' | 'custom'; error?: string }; parentTaskId?: string; };
+  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string };
+  [HexTaskType.APP_UPGRADE]: { hostId: string; data: { appId: string; fromVersion?: string; toVersion?: string; error?: string }; parentTaskId?: string; };
+  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label: string, disk: string; error?: string }; parentTaskId?: string };
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -131,6 +138,8 @@ export const HexTaskSettings: {
   [HexTaskType.FOLDER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.FOLDER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.FOLDER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_LOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
+  [HexTaskType.FOLDER_UNLOCK]: { canHaveMultiple: false, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
@@ -140,5 +149,6 @@ export const HexTaskSettings: {
   [HexTaskType.POOLS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 20 },
+  [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 90 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
 };

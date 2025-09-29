@@ -258,6 +258,7 @@ export interface ApiCallDirectory {
 
     // App
     'app.query': { params: AppQueryParams; response: App[] };
+    'app.image.dockerhub_rate_limit': { params: void; response: DockerHubRateLimit };
     'app.upgrade_summary': { params: AppUpgradeParams; response: AppUpgradeSummary };
     'app.available': { params: QueryParams<AvailableApp>; response: AvailableApp[] };
     'app.available_space': { params: void; response: number };
@@ -306,10 +307,7 @@ export interface ApiCallDirectory {
 
     // Catalog
     'catalog.delete': { params: [name: string]; response: boolean };
-    'catalog.get_item_details': {
-        params: [name: string, params: GetItemDetailsParams];
-        response: CatalogApp;
-    };
+    'catalog.get_app_details': { params: [name: string, params: GetItemDetailsParams]; response: CatalogApp };
     'catalog.items': {
         params: [label: string, params?: CatalogItemsQueryParams];
         response: CatalogItems;
@@ -409,7 +407,6 @@ export interface ApiCallDirectory {
     // Container
     'container.config': { params: void; response: ContainerConfig };
     'container.image.delete': { params: DeleteContainerImageParams; response: void };
-    'container.image.dockerhub_rate_limit': { params: void; response: DockerHubRateLimit };
     'container.image.query': { params: QueryParams<ContainerImage>; response: ContainerImage[] };
     'container.update': { params: [ContainerConfigUpdate]; response: ContainerConfig };
 
@@ -770,6 +767,14 @@ export interface ApiCallDirectory {
         params: [dataset: string, quotas: SetDatasetQuota[]];
         response: void;
     };
+    'pool.dataset.lock': {
+        params: [string, { force_umount?: boolean }];
+        response: any;
+    };
+    'pool.dataset.unlock': {
+        params: [string, { key_file?: boolean; recursive?: boolean; toggle_attachments?: boolean; datasets?: { name?: string; passphrase: string }[] }]
+        response: any;
+    }
     'pool.dataset.unlock_services_restart_choices': { params: [id: string]; response: Choices };
     'pool.dataset.update': { params: [id: string, update: DatasetUpdate]; response: Dataset };
     'pool.detach': { params: [id: number, params: { label: string }]; response: boolean };
@@ -897,6 +902,7 @@ export interface ApiCallDirectory {
         response: null | { reason: string };
     };
     'sharing.smb.update': { params: [id: number, update: SmbShareUpdate]; response: SmbShare };
+    'sharing.smb.sync_registry': { params: []}
 
     // SMART
     'smart.config': { params: void; response: SmartConfig };

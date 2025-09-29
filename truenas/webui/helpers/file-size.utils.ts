@@ -84,3 +84,21 @@ export const getUsableStorage = (pool: ServerPool) => {
         return buildNormalizedFileSize(usableSize, 'B', 10);
     }
 };
+
+
+export function parseFileSize(value: string): number | null {
+    if (!value) return null;
+    const match = /^([\d.]+)\s*(kB|MB|GB|TB|KiB|MiB|GiB|TiB|B)$/i.exec(value.trim());
+    if (!match) return null;
+
+    const num = parseFloat(match[1]);
+    const unit = match[2].toUpperCase();
+
+    const multipliers: Record<string, number> = {
+        B: 1,
+        KB: 1e3, MB: 1e6, GB: 1e9, TB: 1e12,
+        KIB: 1024, MIB: 1024 ** 2, GIB: 1024 ** 3, TIB: 1024 ** 4,
+    };
+
+    return multipliers[unit] ? num * multipliers[unit] : null;
+}

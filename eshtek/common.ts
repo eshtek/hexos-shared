@@ -133,18 +133,27 @@ export const capitalize = (s: string) => {
  * @param {ServerFolder} folder - The server folder.
  * @returns {ServerFolderIcons} - Returns the icon for the folder.
  */
+
+const FOLDER_LABEL_ICONS = new Map([
+    ['applications', ServerFolderIcons.APPLICATIONS],
+    ['virtualization', ServerFolderIcons.VIRTUALIZATION],
+    ['music', ServerFolderIcons.MUSIC],
+    ['movies', ServerFolderIcons.MOVIES],
+    ['photos', ServerFolderIcons.PHOTOS],
+    ['shows', ServerFolderIcons.SHOWS],
+    ['videos', ServerFolderIcons.VIDEOS],
+    ['media', ServerFolderIcons.MEDIA],
+    ['downloads', ServerFolderIcons.DOWNLOADS],
+]);
+
 export const getServerFolderIcon = (folder: ServerFolder): ServerFolderIcons => {
-    if (folder.label.toLowerCase() === 'applications') {
-        return ServerFolderIcons.APPLICATIONS;
-    } else if (folder.label.toLowerCase() === 'virtualization') {
-        return ServerFolderIcons.VIRTUALIZATION;
-    } else if (folder.access === ServerAccess.PRIVATE) {
-        return ServerFolderIcons.PROTECTED;
-    } else if (folder.access === ServerAccess.PUBLIC) {
-        return ServerFolderIcons.PUBLIC;
-    } else {
-        return ServerFolderIcons.FOLDER;
+    const folderLabelIcon = FOLDER_LABEL_ICONS.get(folder.label.toLowerCase());
+    if (folderLabelIcon) return folderLabelIcon;
+
+    if (folder.encryption) {
+        return folder.locked ? ServerFolderIcons.LOCKED : ServerFolderIcons.UNLOCKED
     }
+    return ServerFolderIcons.FOLDER
 };
 
 /**
@@ -226,9 +235,11 @@ const mediaTypeToIconMap: Record<string, string> = {
  * @returns {string} - Returns the icon for the maximum supported media speed.
  */
 export const getMaxSpeedIcon = (supportedMedia?: string[]): string => {
-    const last = supportedMedia?.length ? supportedMedia[supportedMedia.length - 1] : undefined;
-    const unknown = 'networking/ethernet';
-    return last ? mediaTypeToIconMap[last] ?? unknown : unknown;
+    // TODO : re-implement when the supported media response is more consistent to the true capabilities of the cards.  We also need to confirm the repsonse is ordered
+    //const last = supportedMedia?.length ? supportedMedia[supportedMedia.length - 1] : undefined;
+    //const unknown = 'networking/ethernet';
+    //return last ? mediaTypeToIconMap[last] ?? unknown : unknown;
+    return 'networking/ethernet'
 };
 
 /**
@@ -258,7 +269,7 @@ export const getServerFolderIconLabel = (folder: ServerFolder): string => {
     if (isSystemFolder(folder)) {
         return 'System';
     } else if (folder.access === ServerAccess.PRIVATE) {
-        return 'Protected';
+        return 'Private';
     } else if (folder.access === ServerAccess.PUBLIC) {
         return 'Public';
     } else {

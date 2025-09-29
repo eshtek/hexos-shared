@@ -28,22 +28,22 @@ import {
 
 import { vMSHealthSchema } from "./vms-schema";
 
-export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
+export const serverUserTypeSchema = z.enum(ServerUserType);
 
 export const serverUserSchema = z.object({
   username: z.string(),
   type: serverUserTypeSchema.optional(),
 });
 
-export const serverStorageIconSchema = z.nativeEnum(ServerStorageIcon);
+export const serverStorageIconSchema = z.enum(ServerStorageIcon);
 
-export const serverStatusSupportedSchema = z.nativeEnum(ServerStatusSupported);
+export const serverStatusSupportedSchema = z.enum(ServerStatusSupported);
 
-export const serverStatusIconsSchema = z.nativeEnum(ServerStatusIcons);
+export const serverStatusIconsSchema = z.enum(ServerStatusIcons);
 
-export const serverFolderIconsSchema = z.nativeEnum(ServerFolderIcons);
+export const serverFolderIconsSchema = z.enum(ServerFolderIcons);
 
-export const serverMiscIconsSchema = z.nativeEnum(ServerMiscIcons);
+export const serverMiscIconsSchema = z.enum(ServerMiscIcons);
 
 export const serverSettingSchema = z.object({
   id: z.string(),
@@ -55,11 +55,11 @@ export const serverSettingSchema = z.object({
   json: z.boolean(),
 });
 
-export const serverPoolTypeSchema = z.nativeEnum(ServerPoolType);
+export const serverPoolTypeSchema = z.enum(ServerPoolType);
 
-export const serverPoolErrorSchema = z.nativeEnum(ServerPoolError);
+export const serverPoolErrorSchema = z.enum(ServerPoolError);
 
-export const serverPoolWarningSchema = z.nativeEnum(ServerPoolWarning);
+export const serverPoolWarningSchema = z.enum(ServerPoolWarning);
 
 export const serverRecordSchema = z.object({
   hostid: z.string(),
@@ -75,35 +75,35 @@ export const serverRecordSchema = z.object({
   truenas_version: z.string().optional(),
 });
 
-export const serverAccessSchema = z.nativeEnum(ServerAccess);
+export const serverAccessSchema = z.enum(ServerAccess);
 
-export const fileAccessSchema = z.nativeEnum(FileAccess);
+export const fileAccessSchema = z.enum(FileAccess);
 
 export const serverFolderUserSchema = z.object({
   access: z.array(fileAccessSchema),
   user: serverUserSchema,
 });
 
-export const serverFolderUseTypeSchema = z.nativeEnum(ServerFolderUseType);
+export const serverFolderUseTypeSchema = z.enum(ServerFolderUseType);
 
 export const serverFolderUseSchema = z.object({
   type: serverFolderUseTypeSchema,
   id: z.string(),
 });
 
-export const serverDriveLabelSchema = z.nativeEnum(ServerDriveLabel);
+export const serverDriveLabelSchema = z.enum(ServerDriveLabel);
 
-export const serverDriveWarningSchema = z.nativeEnum(ServerDriveWarning);
+export const serverDriveWarningSchema = z.enum(ServerDriveWarning);
 
-export const serverDriveErrorSchema = z.nativeEnum(ServerDriveError);
+export const serverDriveErrorSchema = z.enum(ServerDriveError);
 
-export const serverStatusTypeSchema = z.nativeEnum(ServerStatusType);
+export const serverStatusTypeSchema = z.enum(ServerStatusType);
 
-export const serverDeviceErrorSchema = z.nativeEnum(ServerDeviceError);
+export const serverDeviceErrorSchema = z.enum(ServerDeviceError);
 
-export const serverDeviceWarningSchema = z.nativeEnum(ServerDeviceWarning);
+export const serverDeviceWarningSchema = z.enum(ServerDeviceWarning);
 
-export const serverDeviceActionsSchema = z.nativeEnum(ServerDeviceActions);
+export const serverDeviceActionsSchema = z.enum(ServerDeviceActions);
 
 export const serverDeviceHealthSchema = z.object({
   healthy: z.boolean(),
@@ -163,7 +163,7 @@ export const serverGlobalNetworkSchema = z.object({
   gateway: z.string(),
 });
 
-export const serverNetworkInterfaceModeSchema = z.nativeEnum(
+export const serverNetworkInterfaceModeSchema = z.enum(
   ServerNetworkInterfaceMode,
 );
 
@@ -184,11 +184,11 @@ export const serverProcessorInfoSchema = z.object({
   data: z.array(z.array(z.number())),
 });
 
-export const serverHealthErrorSchema = z.nativeEnum(ServerHealthError);
+export const serverHealthErrorSchema = z.enum(ServerHealthError);
 
-export const serverHealthWarningSchema = z.nativeEnum(ServerHealthWarning);
+export const serverHealthWarningSchema = z.enum(ServerHealthWarning);
 
-export const serverActionsSchema = z.nativeEnum(ServerActions);
+export const serverActionsSchema = z.enum(ServerActions);
 
 export const serverHealthSchema = z.object({
   healthy: z.boolean(),
@@ -271,6 +271,11 @@ export const serverFolderSchema = z.object({
   pool: serverPoolSchema.optional(),
   users: z.array(serverFolderUserSchema).optional(),
   used_by: z.array(serverFolderUseSchema).optional(),
+  timeMachine: z.boolean().optional(),
+  quota: z.number().optional(),
+  encryption: z.boolean().optional(),
+  locked: z.boolean().optional(),
+  encryptionPassphrase: z.string().optional(),
 });
 
 export const serverFoldersSchema = z.object({
@@ -279,6 +284,7 @@ export const serverFoldersSchema = z.object({
 });
 
 export const serverDrivesGroupedBySizeSchema = z.record(
+  z.string(),
   z.array(serverDriveSchema),
 );
 
