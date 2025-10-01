@@ -48,6 +48,7 @@ export enum HexTaskType {
   APP_UPGRADE = 'APP_UPGRADE',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
+  POOL_ZFS_VERSION_OR_FEATURE_UPGRADE = 'POOL_ZFS_VERSION_OR_FEATURE_UPGRADE',
 }
 
 
@@ -123,6 +124,7 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string };
   [HexTaskType.APP_UPGRADE]: { hostId: string; data: { appId: string; fromVersion?: string; toVersion?: string; error?: string }; parentTaskId?: string; };
   [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label: string, disk: string; error?: string }; parentTaskId?: string };
+  [HexTaskType.POOL_ZFS_VERSION_OR_FEATURE_UPGRADE]: { hostId: string; data: { poolId: number; poolName: string; error?: string }; parentTaskId?: never; };
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -151,4 +153,5 @@ export const HexTaskSettings: {
   [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 20 },
   [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 90 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
+  [HexTaskType.POOL_ZFS_VERSION_OR_FEATURE_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 60 },
 };
