@@ -116,3 +116,7 @@ export interface RequestAppInstall {
     train?: 'community' | 'stable';
     installScript?: string;
 }
+
+export interface RequestAppDelete {
+    deleteData?: boolean;
+}

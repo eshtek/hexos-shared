@@ -109,6 +109,7 @@ export enum ServerPoolError {
 }
 export enum ServerPoolWarning {
     POOL_IS_AT_OR_NEAR_CAPACITY = 'POOL_IS_AT_OR_NEAR_CAPACITY',
+    POOL_UPGRADED = 'POOL_UPGRADED',
 }
 
 export interface ServerPoolBasics {
