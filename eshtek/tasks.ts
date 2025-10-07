@@ -147,8 +147,8 @@ export const HexTaskSettings: {
   [HexTaskType.SERVER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
   [HexTaskType.USERS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
   [HexTaskType.POOLS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
-  [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
-  [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 20 },
+  [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 300 },
+  [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 60 },
   [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 90 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
 };
