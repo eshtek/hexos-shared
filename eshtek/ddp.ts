@@ -1,4 +1,5 @@
 import type { JobState } from '../truenas/webui/enums/job-state.enum';
+import type { ReportingRealtimeUpdate } from '../truenas/webui/interfaces/reporting.interface';
 
 export interface WizardJob {
     name: WizardJobs;
@@ -37,4 +38,5 @@ export interface DDPClientMeta {
     buildTime?: Date;
     buildVersion?: string;
     userId?: string;
+    realtimeReporting?: ReportingRealtimeUpdate;
 }
