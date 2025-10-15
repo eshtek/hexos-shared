@@ -223,7 +223,7 @@ export interface ZfsProperties {
     xattr: ZfsProperty<string>;
 }
 
-export type DiskWipeParams = [disk: string, method: DiskWipeMethod];
+export type DiskWipeParams = [disk: string, method: DiskWipeMethod, synccache?: boolean];
 
 export type DiskTemperatures = Record<string, number | null>;
 
