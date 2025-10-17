@@ -21,21 +21,21 @@ import {
   serverSystemUSBSchema,
 } from "./server-system-device-schema";
 
-export const vMCreateTypeSchema = z.enum(VMCreateType);
+export const vMCreateTypeSchema = z.nativeEnum(VMCreateType);
 
-export const vMTypeSchema = z.enum(VMType);
+export const vMTypeSchema = z.nativeEnum(VMType);
 
-export const vMIconsSchema = z.enum(VMIcons);
+export const vMIconsSchema = z.nativeEnum(VMIcons);
 
-export const vMStatusSchema = z.enum(VMStatus);
+export const vMStatusSchema = z.nativeEnum(VMStatus);
 
-export const vMPerformanceModesSchema = z.enum(VMPerformanceModes);
+export const vMPerformanceModesSchema = z.nativeEnum(VMPerformanceModes);
 
-export const vMSnapshotTypesSchema = z.enum(VMSnapshotTypes);
+export const vMSnapshotTypesSchema = z.nativeEnum(VMSnapshotTypes);
 
-export const vMScheduleFrequencySchema = z.enum(VMScheduleFrequency);
+export const vMScheduleFrequencySchema = z.nativeEnum(VMScheduleFrequency);
 
-export const vMEventTypesSchema = z.enum(VMEventTypes);
+export const vMEventTypesSchema = z.nativeEnum(VMEventTypes);
 
 export const vMSnapshotManualSettingsSchema = z.object({
   type: z.literal(VMSnapshotTypes.MANUAL),
@@ -115,11 +115,11 @@ export const vMInfoSchema = vMBasicsSchema.extend({
   status: vMStatusSchema,
 });
 
-export const vMSErrorSchema = z.enum(VMSError);
+export const vMSErrorSchema = z.nativeEnum(VMSError);
 
-export const vMSWarningSchema = z.enum(VMSWarning);
+export const vMSWarningSchema = z.nativeEnum(VMSWarning);
 
-export const vMSActionsSchema = z.enum(VMSActions);
+export const vMSActionsSchema = z.nativeEnum(VMSActions);
 
 export const vMSHealthSchema = z.object({
   healthy: z.boolean(),

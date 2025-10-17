@@ -1,5 +1,8 @@
 {
     "scripts": {
-        "generate-schemas": "npx ts-to-zod --all --skipValidation"
+        "generate-schemas": "ts-to-zod --all --skipValidation"
+    },
+    "devDependencies": {
+        "ts-to-zod": "^3.13.0"
     }
 }

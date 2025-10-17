@@ -168,7 +168,7 @@ import type { SystemGeneralConfig, SystemGeneralConfigUpdate } from '../../inter
 import type { SystemDatasetConfig } from '../../interfaces/system-dataset-config.interface';
 import type { SystemInfo } from '../../interfaces/system-info.interface';
 import type { SystemSecurityConfig } from '../../interfaces/system-security-config.interface';
-import type { SystemUpdate, SystemUpdateChange, SystemUpdateTrains } from '../../interfaces/system-update.interface';
+import type { SystemUpdate, SystemUpdateChange, SystemUpdateTrains, UpdateStatus, UpdateConfig, UpdateProfileChoices, UpdateConfigUpdate } from '../../interfaces/system-update.interface';
 import type {
     TrueCommandConfig,
     TrueCommandConnectionState,
@@ -1023,11 +1023,15 @@ export interface ApiCallDirectory {
 
     // Update
     'update.check_available': { params: void; response: SystemUpdate };
+    'update.config': { params: void; response: UpdateConfig };
     'update.get_auto_download': { params: void; response: boolean };
     'update.get_pending': { params: void; response: SystemUpdateChange[] };
     'update.get_trains': { params: void; response: SystemUpdateTrains };
+    'update.profile_choices': { params: void; response: UpdateProfileChoices };
     'update.set_auto_download': { params: [boolean]; response: void };
     'update.set_train': { params: [train: string]; response: void };
+    'update.status': { params: void; response: UpdateStatus };
+    'update.update': { params: [UpdateConfigUpdate]; response: UpdateConfig };
 
     // UPS
     'ups.config': { params: void; response: UpsConfig };
