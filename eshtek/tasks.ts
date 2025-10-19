@@ -123,7 +123,7 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string; train?: string; installType?: 'standard' | 'custom'; error?: string }; parentTaskId?: string; };
   [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string };
   [HexTaskType.APP_UPGRADE]: { hostId: string; data: { appId: string; fromVersion?: string; toVersion?: string; error?: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UPDATE]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; };
+  [HexTaskType.APP_UPDATE]: { hostId: string; data: { appId: string; reason?: 'location_preference_change'; locationPreferenceId?: string; error?: string }; parentTaskId?: string; };
   [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label: string, disk: string; error?: string }; parentTaskId?: string };
 };
 
