@@ -70,6 +70,7 @@ export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = {
 };
 export type HexTaskWithChildren<T extends HexTaskType = HexTaskType> = HexTaskBase<T> & HexTaskDataMap[T] & {
   childTasks: HexTask[];
+  parentTask?: HexTask;
 }
 
 export enum HexTaskStatus {
