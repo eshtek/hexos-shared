@@ -46,6 +46,8 @@ export enum HexTaskType {
   APP_INSTALL = 'APP_INSTALL',
   APP_UNINSTALL = 'APP_UNINSTALL',
   APP_UPGRADE = 'APP_UPGRADE',
+  APP_UPDATE = 'APP_UPDATE',
+  PREFERENCE_LOCATION_PATH_MIGRATION = 'PREFERENCE_LOCATION_PATH_MIGRATION',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
 }
@@ -68,6 +70,7 @@ export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = {
 };
 export type HexTaskWithChildren<T extends HexTaskType = HexTaskType> = HexTaskBase<T> & HexTaskDataMap[T] & {
   childTasks: HexTask[];
+  parentTask?: HexTask;
 }
 
 export enum HexTaskStatus {
@@ -122,6 +125,8 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string; train?: string; installType?: 'standard' | 'custom'; error?: string }; parentTaskId?: string; };
   [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string };
   [HexTaskType.APP_UPGRADE]: { hostId: string; data: { appId: string; fromVersion?: string; toVersion?: string; error?: string }; parentTaskId?: string; };
+  [HexTaskType.APP_UPDATE]: { hostId: string; data: { appId: string; reason?: 'location_preference_change'; locationPreferenceId?: string; error?: string }; parentTaskId?: string; };
+  [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { hostId: string; data: { locationPreferenceId: string; oldPath: string; newPath: string; error?: string }; parentTaskId?: never; };
   [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label: string, disk: string; error?: string }; parentTaskId?: string };
 };
 
@@ -150,5 +155,7 @@ export const HexTaskSettings: {
   [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 300 },
   [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 60 },
   [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 90 },
+  [HexTaskType.APP_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 300 },
+  [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { canHaveMultiple: false, predictedSecondsToComplete: 1200 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
 };
