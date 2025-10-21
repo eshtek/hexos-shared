@@ -114,6 +114,8 @@ export interface InstallationQuestion {
     options?: InstallationQuestionOption[];
     required?: boolean;
     default?: string | number | boolean;
+    placeholder?: string;
+    description?: string;
 }
 
 interface AppsInstallScriptV1 {
