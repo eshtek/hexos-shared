@@ -94,6 +94,28 @@ export interface AppsHealth {
     warnings: AppsWarning[];
     actions_available: AppsActions[];
 }
+
+export enum InstallationQuestionType {
+    TEXT = 'text',
+    NUMBER = 'number',
+    SELECT = 'select',
+    BOOLEAN = 'boolean',
+}
+
+export interface InstallationQuestionOption {
+    text: string;
+    value: string | number | boolean;
+}
+
+export interface InstallationQuestion {
+    question: string;
+    type: InstallationQuestionType;
+    key: string;
+    options?: InstallationQuestionOption[];
+    required?: boolean;
+    default?: string | number | boolean;
+}
+
 interface AppsInstallScriptV1 {
     version: 1;
     ensure_directories_exists?: Array<string | { path: string; network_share?: boolean; posix?: boolean }>;
@@ -106,4 +128,17 @@ interface AppsInstallScriptV1 {
     app_values: Record<string, ChartFormValue>;
 }
 
-export type AppsInstallScript = AppsInstallScriptV1;
+interface AppsInstallScriptV2 {
+    version: 2;
+    installation_questions?: InstallationQuestion[];
+    ensure_directories_exists?: Array<string | { path: string; network_share?: boolean; posix?: boolean }>;
+    ensure_permissions_exists?: Array<{
+        path: string;
+        username: string;
+        access: FileAccess;
+        posix?: { groupname: string };
+    }>;
+    app_values: Record<string, ChartFormValue>;
+}
+
+export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2;
