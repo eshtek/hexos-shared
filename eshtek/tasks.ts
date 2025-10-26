@@ -103,31 +103,42 @@ interface HexTaskTypeInfo {
   predictedSecondsToComplete?: number
 }
 
+type HexTaskDataBase = {
+  error?: string;
+  jobId?: number | number[];
+};
+
+type HexTaskMeta<TData extends HexTaskDataBase, TParent extends string | never = never> = {
+  hostId: string;
+  data: TData;
+  parentTaskId?: TParent;
+};
+
 export type HexTaskDataMap = {
-  [HexTaskType.RESTART]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
-  [HexTaskType.SHUTDOWN]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
-  [HexTaskType.NETWORK_UPDATE]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_CREATE]: { hostId: string; data: { name: string, type: DiskType; error?: string }; parentTaskId?: never; };
-  [HexTaskType.POOL_UPDATE]: { hostId: string; data: { poolId: number; name: string; error?: string }; parentTaskId?: never };
-  [HexTaskType.POOL_DELETE]: { hostId: string; data: { poolId: number, name: string; error?: string }; parentTaskId?: string; };
-  [HexTaskType.FOLDER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.FOLDER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.FOLDER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.FOLDER_LOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.FOLDER_UNLOCK]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.USER_CREATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.USER_UPDATE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.USER_DELETE]: { hostId: string; data: { name: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.SERVER_RESET]: { hostId: string; data?: { error?: string }; parentTaskId?: never; };
-  [HexTaskType.SERVER_UPDATE]: { hostId: string; data?: { targetVersion: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.USERS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
-  [HexTaskType.POOLS_DELETE_ALL]: { hostId: string; data?: { error?: string }; parentTaskId?: string; };
-  [HexTaskType.APP_INSTALL]: { hostId: string; data: { appId: string; train?: string; installType?: 'standard' | 'custom'; error?: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UNINSTALL]: { hostId: string; data: { appId: string; error?: string }; parentTaskId?: string; error?: string };
-  [HexTaskType.APP_UPGRADE]: { hostId: string; data: { appId: string; fromVersion?: string; toVersion?: string; error?: string }; parentTaskId?: string; };
-  [HexTaskType.APP_UPDATE]: { hostId: string; data: { appId: string; reason?: 'location_preference_change'; locationPreferenceId?: string; error?: string }; parentTaskId?: string; };
-  [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { hostId: string; data: { locationPreferenceId: string; oldPath: string; newPath: string; error?: string }; parentTaskId?: never; };
-  [HexTaskType.DRIVE_REPLACE]: { hostId: string; data: { poolId: number; devname: string; newDevname: string, label: string, disk: string; error?: string }; parentTaskId?: string };
+  [HexTaskType.RESTART]: HexTaskMeta<HexTaskDataBase, never>;
+  [HexTaskType.SHUTDOWN]: HexTaskMeta<HexTaskDataBase, never>;
+  [HexTaskType.NETWORK_UPDATE]: HexTaskMeta<HexTaskDataBase, never>;
+  [HexTaskType.POOL_CREATE]: HexTaskMeta<HexTaskDataBase & { name: string; type: DiskType }, never>;
+  [HexTaskType.POOL_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolId: number; name: string }, never>;
+  [HexTaskType.POOL_DELETE]: HexTaskMeta<HexTaskDataBase & { poolId: number; name: string }, string>;
+  [HexTaskType.FOLDER_CREATE]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.FOLDER_UPDATE]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.FOLDER_DELETE]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.FOLDER_LOCK]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.FOLDER_UNLOCK]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.USER_CREATE]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.USER_UPDATE]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.USER_DELETE]: HexTaskMeta<HexTaskDataBase & { name: string }, never>;
+  [HexTaskType.SERVER_RESET]: HexTaskMeta<HexTaskDataBase, never>;
+  [HexTaskType.SERVER_UPDATE]: HexTaskMeta<HexTaskDataBase & { targetVersion: string }, never>;
+  [HexTaskType.USERS_DELETE_ALL]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.POOLS_DELETE_ALL]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.APP_INSTALL]: HexTaskMeta<HexTaskDataBase & { appId: string; train?: string; installType?: 'standard' | 'custom' }, string>;
+  [HexTaskType.APP_UNINSTALL]: HexTaskMeta<HexTaskDataBase & { appId: string }, string>;
+  [HexTaskType.APP_UPGRADE]: HexTaskMeta<HexTaskDataBase & { appId: string; fromVersion?: string; toVersion?: string }, string>;
+  [HexTaskType.APP_UPDATE]: HexTaskMeta<HexTaskDataBase & { appId: string; reason?: 'location_preference_change'; locationPreferenceId?: string }, string>;
+  [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: HexTaskMeta<HexTaskDataBase & { locationPreferenceId: string; oldPath: string; newPath: string }, never>;
+  [HexTaskType.DRIVE_REPLACE]: HexTaskMeta<HexTaskDataBase & { poolId: number; devname: string; newDevname: string; label: string; disk: string }, string>;
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -152,10 +163,10 @@ export const HexTaskSettings: {
   [HexTaskType.SERVER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
   [HexTaskType.USERS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
   [HexTaskType.POOLS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
-  [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 300 },
-  [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 60 },
-  [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 90 },
-  [HexTaskType.APP_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 300 },
+  [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
+  [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
+  [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
+  [HexTaskType.APP_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { canHaveMultiple: false, predictedSecondsToComplete: 1200 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
 };
