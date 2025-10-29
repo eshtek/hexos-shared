@@ -50,6 +50,7 @@ export enum HexTaskType {
   PREFERENCE_LOCATION_PATH_MIGRATION = 'PREFERENCE_LOCATION_PATH_MIGRATION',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
+  DOCKER_UPDATE = 'DOCKER_UPDATE',
 }
 
 
@@ -139,6 +140,7 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_UPDATE]: HexTaskMeta<HexTaskDataBase & { appId: string; reason?: 'location_preference_change'; locationPreferenceId?: string }, string>;
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: HexTaskMeta<HexTaskDataBase & { locationPreferenceId: string; oldPath: string; newPath: string }, never>;
   [HexTaskType.DRIVE_REPLACE]: HexTaskMeta<HexTaskDataBase & { poolId: number; devname: string; newDevname: string; label: string; disk: string }, string>;
+  [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName: string; }, string>;
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -169,4 +171,5 @@ export const HexTaskSettings: {
   [HexTaskType.APP_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { canHaveMultiple: false, predictedSecondsToComplete: 1200 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
+  [HexTaskType.DOCKER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
 };

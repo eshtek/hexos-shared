@@ -111,6 +111,10 @@ export interface RequestCreatePool {
     pools: ServerPoolNew[];
 }
 
+export interface RequestDockerUpdatePool {
+    poolName: string;
+}
+
 export interface RequestAppInstall {
     id: string;
     train?: 'community' | 'stable';
