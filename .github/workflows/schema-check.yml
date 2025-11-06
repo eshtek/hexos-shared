@@ -13,9 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Generate Zod schemas
-        run: |
-          npm run generate-schemas
+        run: npm run generate-schemas
 
       - name: Fail if diff is present
         run: |

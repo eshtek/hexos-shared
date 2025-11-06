@@ -7,15 +7,15 @@ import {
   UserPurchaseType,
 } from "./user";
 
-export const userGroupsSchema = z.enum(UserGroups);
+export const userGroupsSchema = z.nativeEnum(UserGroups);
 
-export const userPreferenceThemeSchema = z.enum(UserPreferenceTheme);
+export const userPreferenceThemeSchema = z.nativeEnum(UserPreferenceTheme);
 
-export const userPreferenceTemperatureSchema = z.enum(
+export const userPreferenceTemperatureSchema = z.nativeEnum(
   UserPreferenceTemperature,
 );
 
-export const userPurchaseTypeSchema = z.enum(UserPurchaseType);
+export const userPurchaseTypeSchema = z.nativeEnum(UserPurchaseType);
 
 export const userPurchaseSchema = z.object({
   active: z.boolean(),

@@ -1,6 +1,6 @@
-import type { LinkState } from '../truenas/webui/enums/network-interface.enum';
-import type { ReportingQueryUnit } from '../truenas/webui/enums/reporting.enum';
-import type { WebSocketError } from '../truenas/webui/interfaces/websocket-error.interface';
+import type { LinkState } from '../enums/network-interface.enum';
+import type { ReportingQueryUnit } from '../enums/reporting.enum';
+import type { WebSocketError } from './websocket-error.interface';
 
 export interface ReportingRealtimeUpdate {
     cpu: AllCpusUpdate;

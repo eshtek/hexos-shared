@@ -119,6 +119,22 @@ export const appInfoDetailedSchema = appInfoSchema.extend({
   data: z.array(z.array(z.number())),
 });
 
+export const installationQuestionTypeSchema = z.enum(['text', 'number', 'select', 'boolean']);
+
+export const installationQuestionOptionSchema = z.object({
+  text: z.string(),
+  value: z.union([z.string(), z.number(), z.boolean()]),
+});
+
+export const installationQuestionSchema = z.object({
+  question: z.string(),
+  type: installationQuestionTypeSchema,
+  key: z.string(),
+  options: z.array(installationQuestionOptionSchema).optional(),
+  required: z.boolean().optional(),
+  default: z.union([z.string(), z.number(), z.boolean()]).optional(),
+});
+
 const appsInstallScriptV1Schema = z.object({
   version: z.literal(1),
   ensure_directories_exists: z
@@ -150,4 +166,36 @@ const appsInstallScriptV1Schema = z.object({
   app_values: z.record(chartFormValueSchema),
 });
 
-export const appsInstallScriptSchema = appsInstallScriptV1Schema;
+const appsInstallScriptV2Schema = z.object({
+  version: z.literal(2),
+  installation_questions: z.array(installationQuestionSchema).optional(),
+  ensure_directories_exists: z
+    .array(
+      z.union([
+        z.string(),
+        z.object({
+          path: z.string(),
+          network_share: z.boolean().optional(),
+          posix: z.boolean().optional(),
+        }),
+      ]),
+    )
+    .optional(),
+  ensure_permissions_exists: z
+    .array(
+      z.object({
+        path: z.string(),
+        username: z.string(),
+        access: fileAccessSchema,
+        posix: z
+          .object({
+            groupname: z.string(),
+          })
+          .optional(),
+      }),
+    )
+    .optional(),
+  app_values: z.record(chartFormValueSchema),
+});
+
+export const appsInstallScriptSchema = z.union([appsInstallScriptV1Schema, appsInstallScriptV2Schema]);

@@ -22,6 +22,8 @@ export enum GlobalErrorCode {
     PROCESS_INSTALL_SCRIPT_FAILED_JSON_PARSE_AFTER = 'Failed to JSON parse install script after processing',
     PROCESS_INSTALL_SCRIPT_INVALID_MEMORY_PERCENTAGE = 'Install script has an invalid memory percentage',
     PROCESS_INSTALL_SCRIPT_INVALID_MEMORY_VALUE = 'Install script has an invalid memory value',
+    PROCESS_INSTALL_SCRIPT_MISSING_QUESTION_RESPONSE = 'Install script requires a response for a question',
+    PROCESS_INSTALL_SCRIPT_INVALID_QUESTION_RESPONSE_TYPE = 'Install script question response has invalid type',
     RUN_INSTALL_SCRIPT_UNSUPPORTED_VERSION = 'Install script must have a "version" field',
     DDP_CLIENT_DISCONNECTED = 'DDPClient disconnected from DDP server',
 }

@@ -111,10 +111,15 @@ export interface RequestCreatePool {
     pools: ServerPoolNew[];
 }
 
+export interface RequestDockerUpdatePool {
+    poolName: string;
+}
+
 export interface RequestAppInstall {
     id: string;
     train?: 'community' | 'stable';
     installScript?: string;
+    questionResponses?: Record<string, string | number | boolean>;
 }
 
 export interface RequestAppDelete {
