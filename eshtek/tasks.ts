@@ -147,8 +147,8 @@ export type HexTaskDataMap = {
 export const HexTaskSettings: {
   [K in HexTaskType]: HexTaskTypeInfo;
 } = {
-  [HexTaskType.RESTART]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
-  [HexTaskType.SHUTDOWN]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
+  [HexTaskType.RESTART]: { canHaveMultiple: false, predictedSecondsToComplete: 600 },
+  [HexTaskType.SHUTDOWN]: { canHaveMultiple: false, predictedSecondsToComplete: 600 },
   [HexTaskType.NETWORK_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 90 },
   [HexTaskType.POOL_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 30 },
   [HexTaskType.POOL_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
@@ -161,8 +161,8 @@ export const HexTaskSettings: {
   [HexTaskType.USER_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
   [HexTaskType.USER_DELETE]: { canHaveMultiple: true, predictedSecondsToComplete: 10 },
-  [HexTaskType.SERVER_RESET]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
-  [HexTaskType.SERVER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 300 },
+  [HexTaskType.SERVER_RESET]: { canHaveMultiple: false, predictedSecondsToComplete: 600 },
+  [HexTaskType.SERVER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 600 },
   [HexTaskType.USERS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 30 },
   [HexTaskType.POOLS_DELETE_ALL]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.APP_INSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
