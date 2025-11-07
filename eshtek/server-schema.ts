@@ -190,13 +190,6 @@ export const serverHealthWarningSchema = z.nativeEnum(ServerHealthWarning);
 
 export const serverActionsSchema = z.nativeEnum(ServerActions);
 
-export const serverHealthSchema = z.object({
-  healthy: z.boolean(),
-  errors: z.array(serverHealthErrorSchema),
-  warnings: z.array(serverHealthWarningSchema),
-  actions_available: z.array(serverActionsSchema),
-});
-
 const diskTypeSchema = z.any();
 
 const poolStatusSchema = z.any();
@@ -239,21 +232,6 @@ export const serverPoolNewSchema = serverPoolBasicsSchema.extend({
   devnames: z.array(z.string()),
 });
 
-export const serverPoolSchema = serverPoolBasicsSchema.extend({
-  id: z.number().optional(),
-  guid: z.string().optional(),
-  path: z.string(),
-  errors: z.array(serverPoolErrorSchema).optional(),
-  warnings: z.array(serverPoolWarningSchema).optional(),
-  useable_storage: z.string().optional(),
-  healthy: z.boolean().optional(),
-  status: poolStatusSchema,
-  status_detail: z.string(),
-  used_storage: z.string().optional(),
-  used_percentage: z.number().optional(),
-  drives: z.array(serverDriveSchema),
-});
-
 export const serversSchema = z.object({
   claimed: z.array(serverRecordSchema),
   configured: z.array(serverRecordSchema),
@@ -265,32 +243,15 @@ export const serverFileSchema = z.object({
   type: fileTypeSchema,
 });
 
-export const serverFolderSchema = z.object({
-  label: z.string(),
-  access: serverAccessSchema,
-  pool: serverPoolSchema.optional(),
-  users: z.array(serverFolderUserSchema).optional(),
-  used_by: z.array(serverFolderUseSchema).optional(),
-  timeMachine: z.boolean().optional(),
-  quota: z.number().optional(),
-  encryption: z.boolean().optional(),
-  locked: z.boolean().optional(),
-  encryptionPassphrase: z.string().optional(),
-});
-
-export const serverFoldersSchema = z.object({
-  user: z.array(serverFolderSchema),
-  system: z.array(serverFolderSchema),
-});
-
 export const serverDrivesGroupedBySizeSchema = z.record(
   z.array(serverDriveSchema),
 );
 
-export const serverSystemDataSystemSchema = serverStatusBasicsSchema.extend({
-  type: z.literal(ServerStatusType.SYSTEM),
-  data: serverSystemDataSystemDeviceDataSchema,
-  health: serverHealthSchema,
+export const serverHealthSchema = z.object({
+  healthy: z.boolean(),
+  errors: z.array(serverHealthErrorSchema),
+  warnings: z.array(serverHealthWarningSchema),
+  actions_available: z.array(serverActionsSchema),
 });
 
 export const serverSystemDataStorageSchema = serverStatusBasicsSchema.extend({
@@ -305,19 +266,6 @@ export const serverSystemDataApplicationsSchema =
     type: z.literal(ServerStatusType.APPLICATIONS),
     health: appsHealthSchema,
   });
-
-export const serverSystemDataSchema = z.union([
-  serverSystemDataSystemSchema,
-  serverSystemDataStorageSchema,
-  serverSystemDataApplicationsSchema,
-  serverSystemDataVirtualizationSchema,
-  serverSystemDataEmptySchema,
-]);
-
-export const serverSystemSchema = serverStatusBasicsSchema.extend({
-  type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
-  data: z.array(serverSystemDataSchema).optional(),
-});
 
 export const serverNetworkInterfaceSchema = z.object({
   id: z.string(),
@@ -338,7 +286,59 @@ export const serverNetworkInterfaceDetailedSchema =
     data: z.array(z.array(z.number())),
   });
 
+export const serverPoolSchema = serverPoolBasicsSchema.extend({
+  id: z.number().optional(),
+  guid: z.string().optional(),
+  path: z.string(),
+  errors: z.array(serverPoolErrorSchema).optional(),
+  warnings: z.array(serverPoolWarningSchema).optional(),
+  useable_storage: z.string().optional(),
+  healthy: z.boolean().optional(),
+  status: poolStatusSchema,
+  status_detail: z.string(),
+  used_storage: z.string().optional(),
+  used_percentage: z.number().optional(),
+  drives: z.array(serverDriveSchema),
+});
+
 export const serverStorageSchema = z.object({
   pools: z.array(serverPoolSchema),
   unassigned: z.array(serverDriveSchema),
+});
+
+export const serverFolderSchema = z.object({
+  label: z.string(),
+  access: serverAccessSchema,
+  pool: serverPoolSchema.optional(),
+  users: z.array(serverFolderUserSchema).optional(),
+  used_by: z.array(serverFolderUseSchema).optional(),
+  timeMachine: z.boolean().optional(),
+  quota: z.number().optional(),
+  encryption: z.boolean().optional(),
+  locked: z.boolean().optional(),
+  encryptionPassphrase: z.string().optional(),
+});
+
+export const serverFoldersSchema = z.object({
+  user: z.array(serverFolderSchema),
+  system: z.array(serverFolderSchema),
+});
+
+export const serverSystemDataSystemSchema = serverStatusBasicsSchema.extend({
+  type: z.literal(ServerStatusType.SYSTEM),
+  data: serverSystemDataSystemDeviceDataSchema,
+  health: serverHealthSchema,
+});
+
+export const serverSystemDataSchema = z.union([
+  serverSystemDataSystemSchema,
+  serverSystemDataStorageSchema,
+  serverSystemDataApplicationsSchema,
+  serverSystemDataVirtualizationSchema,
+  serverSystemDataEmptySchema,
+]);
+
+export const serverSystemSchema = serverStatusBasicsSchema.extend({
+  type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
+  data: z.array(serverSystemDataSchema).optional(),
 });
