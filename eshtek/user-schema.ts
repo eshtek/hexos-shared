@@ -17,6 +17,13 @@ export const userPreferenceTemperatureSchema = z.nativeEnum(
 
 export const userPurchaseTypeSchema = z.nativeEnum(UserPurchaseType);
 
+export const userPurchaseSchema = z.object({
+  active: z.boolean(),
+  purchase_type: userPurchaseTypeSchema,
+  purchased: z.date().optional(),
+  expiraration: z.date().optional(),
+});
+
 export const newUserRequestSchema = z.object({
   name: z.string(),
   email: z.string(),
@@ -29,13 +36,6 @@ const idSchema = z.any();
 export const userPreferencesSchema = z.object({
   theme: userPreferenceThemeSchema,
   temperature: userPreferenceTemperatureSchema,
-});
-
-export const userPurchaseSchema = z.object({
-  active: z.boolean(),
-  purchase_type: userPurchaseTypeSchema,
-  purchased: z.date().optional(),
-  expiraration: z.date().optional(),
 });
 
 export const userSchema = z.object({

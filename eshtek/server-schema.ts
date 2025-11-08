@@ -190,6 +190,13 @@ export const serverHealthWarningSchema = z.nativeEnum(ServerHealthWarning);
 
 export const serverActionsSchema = z.nativeEnum(ServerActions);
 
+export const serverHealthSchema = z.object({
+  healthy: z.boolean(),
+  errors: z.array(serverHealthErrorSchema),
+  warnings: z.array(serverHealthWarningSchema),
+  actions_available: z.array(serverActionsSchema),
+});
+
 const diskTypeSchema = z.any();
 
 const poolStatusSchema = z.any();
@@ -232,60 +239,6 @@ export const serverPoolNewSchema = serverPoolBasicsSchema.extend({
   devnames: z.array(z.string()),
 });
 
-export const serversSchema = z.object({
-  claimed: z.array(serverRecordSchema),
-  configured: z.array(serverRecordSchema),
-});
-
-export const serverFileSchema = z.object({
-  name: z.string(),
-  path: z.string(),
-  type: fileTypeSchema,
-});
-
-export const serverDrivesGroupedBySizeSchema = z.record(
-  z.array(serverDriveSchema),
-);
-
-export const serverHealthSchema = z.object({
-  healthy: z.boolean(),
-  errors: z.array(serverHealthErrorSchema),
-  warnings: z.array(serverHealthWarningSchema),
-  actions_available: z.array(serverActionsSchema),
-});
-
-export const serverSystemDataStorageSchema = serverStatusBasicsSchema.extend({
-  type: z.literal(ServerStatusType.STORAGE),
-  data: z.object({
-    drives: z.array(serverDriveSchema).optional(),
-  }),
-});
-
-export const serverSystemDataApplicationsSchema =
-  serverStatusBasicsSchema.extend({
-    type: z.literal(ServerStatusType.APPLICATIONS),
-    health: appsHealthSchema,
-  });
-
-export const serverNetworkInterfaceSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  type: networkInterfaceTypeSchema,
-  in: z.number(),
-  out: z.number(),
-});
-
-export const serverNetworkInterfaceWithConfigurationSchema =
-  serverNetworkInterfaceSchema.extend({
-    configuration: serverNetworkInterfaceConfigurationSchema,
-    supported_media: z.array(z.unknown()),
-  });
-
-export const serverNetworkInterfaceDetailedSchema =
-  serverNetworkInterfaceWithConfigurationSchema.extend({
-    data: z.array(z.array(z.number())),
-  });
-
 export const serverPoolSchema = serverPoolBasicsSchema.extend({
   id: z.number().optional(),
   guid: z.string().optional(),
@@ -301,9 +254,15 @@ export const serverPoolSchema = serverPoolBasicsSchema.extend({
   drives: z.array(serverDriveSchema),
 });
 
-export const serverStorageSchema = z.object({
-  pools: z.array(serverPoolSchema),
-  unassigned: z.array(serverDriveSchema),
+export const serversSchema = z.object({
+  claimed: z.array(serverRecordSchema),
+  configured: z.array(serverRecordSchema),
+});
+
+export const serverFileSchema = z.object({
+  name: z.string(),
+  path: z.string(),
+  type: fileTypeSchema,
 });
 
 export const serverFolderSchema = z.object({
@@ -324,11 +283,28 @@ export const serverFoldersSchema = z.object({
   system: z.array(serverFolderSchema),
 });
 
+export const serverDrivesGroupedBySizeSchema = z.record(
+  z.array(serverDriveSchema),
+);
+
 export const serverSystemDataSystemSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.SYSTEM),
   data: serverSystemDataSystemDeviceDataSchema,
   health: serverHealthSchema,
 });
+
+export const serverSystemDataStorageSchema = serverStatusBasicsSchema.extend({
+  type: z.literal(ServerStatusType.STORAGE),
+  data: z.object({
+    drives: z.array(serverDriveSchema).optional(),
+  }),
+});
+
+export const serverSystemDataApplicationsSchema =
+  serverStatusBasicsSchema.extend({
+    type: z.literal(ServerStatusType.APPLICATIONS),
+    health: appsHealthSchema,
+  });
 
 export const serverSystemDataSchema = z.union([
   serverSystemDataSystemSchema,
@@ -341,4 +317,28 @@ export const serverSystemDataSchema = z.union([
 export const serverSystemSchema = serverStatusBasicsSchema.extend({
   type: z.literal(ServerStatusType.SYSTEM_OVERVIEW),
   data: z.array(serverSystemDataSchema).optional(),
+});
+
+export const serverNetworkInterfaceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  type: networkInterfaceTypeSchema,
+  in: z.number(),
+  out: z.number(),
+});
+
+export const serverNetworkInterfaceWithConfigurationSchema =
+  serverNetworkInterfaceSchema.extend({
+    configuration: serverNetworkInterfaceConfigurationSchema,
+    supported_media: z.array(z.unknown()),
+  });
+
+export const serverNetworkInterfaceDetailedSchema =
+  serverNetworkInterfaceWithConfigurationSchema.extend({
+    data: z.array(z.array(z.number())),
+  });
+
+export const serverStorageSchema = z.object({
+  pools: z.array(serverPoolSchema),
+  unassigned: z.array(serverDriveSchema),
 });
