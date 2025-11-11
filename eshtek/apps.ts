@@ -144,3 +144,9 @@ interface AppsInstallScriptV2 {
 }
 
 export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2;
+
+export interface InstallScriptCuration {
+    name: string;
+    url: string;
+    script: AppsInstallScript;
+}
