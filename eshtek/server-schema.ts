@@ -197,6 +197,14 @@ export const serverHealthSchema = z.object({
   actions_available: z.array(serverActionsSchema),
 });
 
+export const serverUpgradeInfoSchema = z.object({
+  serverName: z.string(),
+  hostId: z.string(),
+  currentVersion: z.string(),
+  targetVersion: z.string(),
+  updateStatus: z.string(),
+});
+
 const diskTypeSchema = z.any();
 
 const poolStatusSchema = z.any();
