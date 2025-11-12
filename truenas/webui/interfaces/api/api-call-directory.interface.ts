@@ -881,6 +881,17 @@ export interface ApiCallDirectory {
         params: [ServiceName, { silent: boolean }];
         response: boolean; // False indicates that service has been stopped.
     };
+    'service.reload': {
+        params: [
+            service: string,
+            options?: {
+                ha_propagate?: boolean;
+                silent?: boolean;
+                timeout?: number | null;
+            }
+        ];
+        response: boolean;
+    };
     'service.update': { params: [number | ServiceName, Partial<Service>]; response: number };
 
     // Sharing
@@ -902,7 +913,20 @@ export interface ApiCallDirectory {
         response: null | { reason: string };
     };
     'sharing.smb.update': { params: [id: number, update: SmbShareUpdate]; response: SmbShare };
-    'sharing.smb.sync_registry': { params: []}
+    'sharing.smb.sync_registry': { params: []; response: void };
+
+    // Etc
+    'etc.generate': {
+        params: [
+            name: string,
+            checkpoint?: 'initial' | 'interface_sync' | 'post_init' | 'pool_import' | 'pre_interface_sync' | null
+        ];
+        response: Array<{
+            path: string;
+            status: 'CHANGED' | 'REMOVED';
+            changes: string[];
+        }>;
+    };
 
     // SMART
     'smart.config': { params: void; response: SmartConfig };

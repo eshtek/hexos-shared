@@ -407,3 +407,11 @@ export interface ServerHealth {
     warnings: ServerHealthWarning[];
     actions_available: ServerActions[];
 }
+
+export interface ServerUpgradeInfo {
+    serverName: string;
+    hostId: string;
+    currentVersion: string;
+    targetVersion: string;
+    updateStatus: string;
+}
