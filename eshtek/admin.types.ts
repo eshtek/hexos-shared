@@ -37,6 +37,10 @@ export interface CatalogApp {
     compatibility: string | null;
     lastCatalogSync: Date | null;
     metadata: any;
+    // Event statistics
+    installs?: number;
+    uninstalls?: number;
+    failures?: number;
 }
 
 /**
@@ -48,4 +52,39 @@ export interface AppsCatalogResponse {
     totalWithScripts: number;
     totalDeprecated: number;
     lastSync: Date | null;
+}
+
+/**
+ * Drive data with event statistics
+ */
+export interface DriveData {
+    id: number;
+    manufacturer: string;
+    model: string;
+    name: string | null;
+    type: string | null;
+    size: number | null;
+    smr: boolean;
+    notes: string | null;
+    isUserDiscovered: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+    // Event statistics
+    utilized: number;
+    replaced: number;
+    removed: number;
+    failed: number;
+    discovered: number;
+}
+
+/**
+ * Response from the drives data endpoint
+ */
+export interface DrivesResponse {
+    drives: DriveData[];
+    totalDrives: number;
+    totalSMR: number;
+    totalUtilized: number;
+    totalFailed: number;
+    totalRemoved: number;
 }
