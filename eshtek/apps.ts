@@ -67,7 +67,7 @@ export interface AppMaintainer {
 export interface AppListing {
     appId: string;
     name: string;
-    train: string;
+    train: "stable" | "community";
     version: string;
     appVersion: string;
     description: string;
