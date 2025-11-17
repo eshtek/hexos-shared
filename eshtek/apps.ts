@@ -80,6 +80,7 @@ export interface AppListing {
     homepage: string;
     recommended: boolean;
     supported: boolean;
+    fresh: boolean;
     installScript?: string;
     requirements?: AppRequirements;
 }
