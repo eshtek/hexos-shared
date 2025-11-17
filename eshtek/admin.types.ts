@@ -37,10 +37,15 @@ export interface CatalogApp {
     compatibility: string | null;
     lastCatalogSync: Date | null;
     metadata: any;
-    // Event statistics
-    installs?: number;
-    uninstalls?: number;
-    failures?: number;
+    // Event statistics (detailed)
+    installsCompleted?: number;
+    installsFailed?: number;
+    uninstallsCompleted?: number;
+    uninstallsFailed?: number;
+    upgradesCompleted?: number;
+    upgradesFailed?: number;
+    updatesCompleted?: number;
+    updatesFailed?: number;
 }
 
 /**
