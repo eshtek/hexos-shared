@@ -42,6 +42,7 @@ export const SystemEventNames = {
   DRIVE_FAILED: 'drive_failed',
   DRIVE_HEALTHY: 'drive_healthy',  // Drive has no errors
   DRIVE_DISCOVERED: 'drive_discovered',  // Drive found on system (assigned or unassigned)
+  APP_DISCOVERED: 'app_discovered',  // App found on system
 } as const;
 
 export type SystemEventName = typeof SystemEventNames[keyof typeof SystemEventNames];
