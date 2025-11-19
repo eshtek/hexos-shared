@@ -139,6 +139,7 @@ export enum AppSearchSortOrder {
 }
 
 export interface RequestAppSearch {
+    appId?: string;
     search?: string;
     category?: string;
     fresh?: boolean;
@@ -151,6 +152,7 @@ export interface RequestAppSearch {
     popularityEndDate?: string;
     page?: number;
     pageSize?: number;
+    limit?: number; // -1 means return all results
 }
 
 export interface AppCategoryInfo {
