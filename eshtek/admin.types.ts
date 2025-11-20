@@ -7,7 +7,9 @@
  */
 export interface CatalogStatusResponse {
     totalApps: number;
+    totalNonDeprecated: number;
     totalWithScripts: number;
+    totalWithScriptsNonDeprecated: number;
     totalDeprecated: number;
     lastSync: Date | null;
 }
