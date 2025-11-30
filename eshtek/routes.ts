@@ -125,3 +125,45 @@ export interface RequestAppInstall {
 export interface RequestAppDelete {
     deleteData?: boolean;
 }
+
+export enum AppSearchSortBy {
+    NAME = 'name',
+    POPULARITY = 'popularity',
+    CREATED_AT = 'createdAt',
+    UPDATED_AT = 'updatedAt',
+}
+
+export enum AppSearchSortOrder {
+    ASC = 'asc',
+    DESC = 'desc',
+}
+
+export interface RequestAppSearch {
+    appId?: string;
+    search?: string;
+    category?: string;
+    fresh?: boolean;
+    supported?: boolean;
+    recommended?: boolean;
+    train?: 'stable' | 'community';
+    sortBy?: AppSearchSortBy;
+    sortOrder?: AppSearchSortOrder;
+    popularityStartDate?: string;
+    popularityEndDate?: string;
+    page?: number;
+    pageSize?: number;
+    limit?: number; // -1 means return all results
+}
+
+export interface AppCategoryInfo {
+    name: string;
+    appCount: number;
+}
+
+export interface RequestAppCategories {
+    train?: 'stable' | 'community';
+    supported?: boolean;
+    fresh?: boolean;
+}
+
+export type ResponseAppCategories = Response<AppCategoryInfo[]>;

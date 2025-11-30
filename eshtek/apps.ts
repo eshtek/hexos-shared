@@ -59,8 +59,28 @@ export interface AppRequirementsCheck {
     };
 }
 
-export interface AppListing extends AvailableApp {
-    hexos: boolean;
+export interface AppMaintainer {
+    name: string;
+    email: string;
+}
+
+export interface AppListing {
+    appId: string;
+    name: string;
+    train: "stable" | "community";
+    version: string;
+    appVersion: string;
+    description: string;
+    icon: string;
+    categories: string[];
+    keywords: string[];
+    maintainers: AppMaintainer[];
+    screenshots: string[];
+    sources: string[];
+    homepage: string;
+    recommended: boolean;
+    supported: boolean;
+    fresh: boolean;
     installScript?: string;
     requirements?: AppRequirements;
 }
@@ -120,6 +140,7 @@ export interface InstallationQuestion {
 
 interface AppsInstallScriptV1 {
     version: 1;
+    requirements?: AppRequirements;
     ensure_directories_exists?: Array<string | { path: string; network_share?: boolean; posix?: boolean }>;
     ensure_permissions_exists?: Array<{
         path: string;
@@ -132,6 +153,7 @@ interface AppsInstallScriptV1 {
 
 interface AppsInstallScriptV2 {
     version: 2;
+    requirements?: AppRequirements;
     installation_questions?: InstallationQuestion[];
     ensure_directories_exists?: Array<string | { path: string; network_share?: boolean; posix?: boolean }>;
     ensure_permissions_exists?: Array<{

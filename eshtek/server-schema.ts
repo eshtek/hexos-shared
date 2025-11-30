@@ -241,6 +241,7 @@ export const serverDriveSchema = z.object({
   existingData: z.boolean().optional(),
   temperature: z.number().optional(),
   healthDetails: topologyItemStatusSchema.optional(),
+  driveId: z.number().optional(),
 });
 
 export const serverPoolNewSchema = serverPoolBasicsSchema.extend({

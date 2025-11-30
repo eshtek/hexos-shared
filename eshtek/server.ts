@@ -244,6 +244,7 @@ export interface ServerDrive {
     existingData?: boolean;
     temperature?: number;
     healthDetails?: TopologyItemStatus;
+    driveId?: number; // Database ID from drives table
 }
 
 export interface ServerDrivesGroupedBySize {

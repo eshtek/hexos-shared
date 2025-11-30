@@ -147,7 +147,7 @@ export type HexTaskDataMap = {
 export const HexTaskSettings: {
   [K in HexTaskType]: HexTaskTypeInfo;
 } = {
-  [HexTaskType.RESTART]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
+  [HexTaskType.RESTART]: { canHaveMultiple: false, predictedSecondsToComplete: 500 },
   [HexTaskType.SHUTDOWN]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
   [HexTaskType.NETWORK_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 90 },
   [HexTaskType.POOL_CREATE]: { canHaveMultiple: true, predictedSecondsToComplete: 30 },
