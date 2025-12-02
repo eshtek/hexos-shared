@@ -40,6 +40,7 @@ export interface CatalogApp {
     lastCatalogSync: Date | null;
     metadata: any;
     // Event statistics (detailed)
+    installsDiscovered?: number;
     installsCompleted?: number;
     installsFailed?: number;
     uninstallsCompleted?: number;
