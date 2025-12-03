@@ -409,6 +409,13 @@ export interface ServerHealth {
     actions_available: ServerActions[];
 }
 
+export interface ServerVersion {
+    isVersionLatest: boolean;
+    isVersionSupported: boolean;
+    currentVersion: string;
+    latestVersion: string;
+}
+
 export interface ServerUpgradeInfo {
     serverName: string;
     hostId: string;
