@@ -197,6 +197,13 @@ export const serverHealthSchema = z.object({
   actions_available: z.array(serverActionsSchema),
 });
 
+export const serverVersionSchema = z.object({
+  isVersionLatest: z.boolean(),
+  isVersionSupported: z.boolean(),
+  currentVersion: z.string(),
+  latestVersion: z.string(),
+});
+
 export const serverUpgradeInfoSchema = z.object({
   serverName: z.string(),
   hostId: z.string(),
