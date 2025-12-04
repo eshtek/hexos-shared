@@ -165,7 +165,17 @@ interface AppsInstallScriptV2 {
     app_values: Record<string, ChartFormValue>;
 }
 
-export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2;
+interface AppsInstallScriptV3 extends Omit<AppsInstallScriptV2, 'version' | 'requirements'> {
+    version: 3;
+    script: {
+        version: string;
+        updateCompatibility?: string;
+        changeLog?: string;
+    };
+    requirements: AppRequirements;  // Required in V3
+}
+
+export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2 | AppsInstallScriptV3;
 
 export interface InstallScriptCuration {
     name: string;
