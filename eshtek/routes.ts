@@ -122,6 +122,63 @@ export interface RequestAppInstall {
     questionResponses?: Record<string, string | number | boolean>;
 }
 
+export interface RequestAppUpdate {
+    installScript?: string;
+    questionResponses?: Record<string, string | number | boolean>;
+}
+
+export interface RequestAppUpdateAnalysis {
+    installScript?: string;
+    questionResponses?: Record<string, string | number | boolean>;
+}
+
+export enum ResourceChangeType {
+    STORAGE = 'storage',
+    NETWORK = 'network',
+    ENVIRONMENT = 'environment',
+    RESOURCE = 'resource',
+    PERMISSION = 'permission',
+    CONFIG = 'config'
+}
+
+export enum ResourceChangeAction {
+    CREATE = 'create',
+    UPDATE = 'update',
+    DELETE = 'delete',
+    NO_OP = 'no-op'
+}
+
+export interface ResponseResourceChanges {
+    resourceChanges: Array<{
+        address: string;
+        type: ResourceChangeType;
+        change: {
+            actions: Array<ResourceChangeAction>;
+            before: any;
+            after: any;
+        };
+    }>;
+    planSummary: {
+        totalChanges: number;
+        changesByAction: {
+            create: number;
+            update: number;
+            delete: number;
+            noOp: number;
+        };
+    };
+    validation: {
+        updateCompatible: boolean;
+        compatibilityConstraint?: string;
+        warnings: string[];
+    };
+    versionInfo: {
+        current: string;
+        target: string;
+        changelog?: string;
+    };
+}
+
 export interface RequestAppDelete {
     deleteData?: boolean;
 }

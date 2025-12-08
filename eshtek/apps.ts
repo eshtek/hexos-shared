@@ -89,6 +89,7 @@ export interface AppInfo extends AppBasics {
     status: AppState;
     url_webui: string;
     upgradeAvailable: boolean;
+    updatedScriptAvailable: boolean;
     latestVersion: string;
 }
 export interface AppInfoDetailed extends AppInfo {
