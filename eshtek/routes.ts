@@ -1,4 +1,5 @@
 import { GlobalErrorCode } from './errors';
+import type { AppConfiguration } from './apps';
 import type { LocationPreferenceId } from './preferences';
 import type { ServerPool, ServerPoolNew, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
@@ -115,22 +116,14 @@ export interface RequestDockerUpdatePool {
     poolName: string;
 }
 
-export interface RequestAppInstall {
+export interface RequestAppInstall extends AppConfiguration {
     id: string;
     train?: 'community' | 'stable';
-    installScript?: string;
-    questionResponses?: Record<string, string | number | boolean>;
 }
 
-export interface RequestAppUpdate {
-    installScript?: string;
-    questionResponses?: Record<string, string | number | boolean>;
-}
+export interface RequestAppUpdate extends AppConfiguration {}
+export interface RequestAppUpdateAnalysis extends AppConfiguration {}
 
-export interface RequestAppUpdateAnalysis {
-    installScript?: string;
-    questionResponses?: Record<string, string | number | boolean>;
-}
 
 export enum ResourceChangeType {
     STORAGE = 'storage',
@@ -173,7 +166,7 @@ export interface ResponseResourceChanges {
         warnings: string[];
     };
     versionInfo: {
-        current: string;
+        current?: string;
         target: string;
         changelog?: string;
     };

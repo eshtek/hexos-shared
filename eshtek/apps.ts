@@ -178,6 +178,11 @@ interface AppsInstallScriptV3 extends Omit<AppsInstallScriptV2, 'version' | 'req
 
 export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2 | AppsInstallScriptV3;
 
+export interface AppConfiguration {
+    installScript?: AppsInstallScript | null;
+    questionResponses?: Record<string, string | number | boolean>;
+}
+
 export interface InstallScriptCuration {
     name: string;
     url: string;
