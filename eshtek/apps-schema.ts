@@ -7,7 +7,10 @@ import {
   AppsError,
   AppsWarning,
   AppsActions,
+  InstallationQuestionType,
 } from "./apps";
+
+import { fileAccessSchema } from "./server-schema";
 
 export const appJobActionSchema = z.nativeEnum(AppJobAction);
 
@@ -24,6 +27,11 @@ export const appSpecSchema = z.nativeEnum(AppSpec);
 
 export const appPermissionSchema = z.nativeEnum(AppPermission);
 
+export const appMaintainerSchema = z.object({
+  name: z.string(),
+  email: z.string(),
+});
+
 export const appsErrorSchema = z.nativeEnum(AppsError);
 
 export const appsWarningSchema = z.nativeEnum(AppsWarning);
@@ -37,48 +45,29 @@ export const appsHealthSchema = z.object({
   actions_available: z.array(appsActionsSchema),
 });
 
+export const installationQuestionTypeSchema = z.nativeEnum(
+  InstallationQuestionType,
+);
+
+export const installationQuestionOptionSchema = z.object({
+  text: z.string(),
+  value: z.union([z.string(), z.number(), z.boolean()]),
+});
+
+export const installationQuestionSchema = z.object({
+  question: z.string(),
+  type: installationQuestionTypeSchema,
+  key: z.string(),
+  options: z.array(installationQuestionOptionSchema).optional(),
+  required: z.boolean().optional(),
+  default: z.union([z.string(), z.number(), z.boolean()]).optional(),
+  placeholder: z.string().optional(),
+  description: z.string().optional(),
+});
+
 const locationPreferenceIdSchema = z.any();
 
-export const appMaintainerSchema = z.object({
-  email: z.string(),
-  name: z.string(),
-  url: z.string(),
-});
-
-const appMetadataSchema = z.any();
-
-const apiTimestampSchema = z.any();
-
-export const availableAppSchema = z.object({
-  healthy: z.boolean(),
-  installed: z.boolean(),
-  categories: z.array(z.string()),
-  name: z.string(),
-  title: z.string(),
-  description: z.string(),
-  app_readme: z.string(),
-  app_metadata: appMetadataSchema,
-  location: z.string(),
-  healthy_error: z.string(),
-  latest_version: z.string(),
-  latest_app_version: z.string(),
-  icon_url: z.string(),
-  train: z.string(),
-  catalog: z.string(),
-  last_update: apiTimestampSchema,
-  recommended: z.boolean(),
-  maintainers: z.array(appMaintainerSchema),
-  tags: z.array(z.string()),
-  home: z.string(),
-  latest_human_version: z.string(),
-  screenshots: z.array(z.string()),
-  sources: z.array(z.string()),
-  versions: z.unknown(),
-});
-
 const appStateSchema = z.any();
-
-const fileAccessSchema = z.any();
 
 const chartFormValueSchema = z.any();
 
@@ -104,39 +93,42 @@ export const appRequirementsCheckSchema = z.object({
   }),
 });
 
-export const appListingSchema = availableAppSchema.extend({
-  hexos: z.boolean(),
-  recommended_during_setup: z.boolean().optional(),
-  requirements: appRequirementsSchema,
+export const appListingSchema = z.object({
+  appId: z.string(),
+  name: z.string(),
+  train: z.union([z.literal("stable"), z.literal("community")]),
+  version: z.string(),
+  appVersion: z.string(),
+  description: z.string(),
+  icon: z.string(),
+  categories: z.array(z.string()),
+  keywords: z.array(z.string()),
+  maintainers: z.array(appMaintainerSchema),
+  screenshots: z.array(z.string()),
+  sources: z.array(z.string()),
+  homepage: z.string(),
+  recommended: z.boolean(),
+  supported: z.boolean(),
+  fresh: z.boolean(),
+  installScript: z.string().optional(),
+  requirements: appRequirementsSchema.optional(),
 });
 
 export const appInfoSchema = appBasicsSchema.extend({
   status: appStateSchema,
   url_webui: z.string(),
+  upgradeAvailable: z.boolean(),
+  updatedScriptAvailable: z.boolean(),
+  latestVersion: z.string(),
 });
 
 export const appInfoDetailedSchema = appInfoSchema.extend({
   data: z.array(z.array(z.number())),
 });
 
-export const installationQuestionTypeSchema = z.enum(['text', 'number', 'select', 'boolean']);
-
-export const installationQuestionOptionSchema = z.object({
-  text: z.string(),
-  value: z.union([z.string(), z.number(), z.boolean()]),
-});
-
-export const installationQuestionSchema = z.object({
-  question: z.string(),
-  type: installationQuestionTypeSchema,
-  key: z.string(),
-  options: z.array(installationQuestionOptionSchema).optional(),
-  required: z.boolean().optional(),
-  default: z.union([z.string(), z.number(), z.boolean()]).optional(),
-});
-
 const appsInstallScriptV1Schema = z.object({
   version: z.literal(1),
+  requirements: appRequirementsSchema.optional(),
   ensure_directories_exists: z
     .array(
       z.union([
@@ -168,6 +160,7 @@ const appsInstallScriptV1Schema = z.object({
 
 const appsInstallScriptV2Schema = z.object({
   version: z.literal(2),
+  requirements: appRequirementsSchema.optional(),
   installation_questions: z.array(installationQuestionSchema).optional(),
   ensure_directories_exists: z
     .array(
@@ -198,4 +191,33 @@ const appsInstallScriptV2Schema = z.object({
   app_values: z.record(chartFormValueSchema),
 });
 
-export const appsInstallScriptSchema = z.union([appsInstallScriptV1Schema, appsInstallScriptV2Schema]);
+const appsInstallScriptV3Schema = appsInstallScriptV2Schema
+  .omit({ version: true, requirements: true })
+  .extend({
+    version: z.literal(3),
+    script: z.object({
+      version: z.string(),
+      updateCompatibility: z.string().optional(),
+      changeLog: z.string().optional(),
+    }),
+    requirements: appRequirementsSchema,
+  });
+
+export const appsInstallScriptSchema = z.union([
+  appsInstallScriptV1Schema,
+  appsInstallScriptV2Schema,
+  appsInstallScriptV3Schema,
+]);
+
+export const appConfigurationSchema = z.object({
+  installScript: appsInstallScriptSchema.optional().nullable(),
+  questionResponses: z
+    .record(z.union([z.string(), z.number(), z.boolean()]))
+    .optional(),
+});
+
+export const installScriptCurationSchema = z.object({
+  name: z.string(),
+  url: z.string(),
+  script: appsInstallScriptSchema,
+});

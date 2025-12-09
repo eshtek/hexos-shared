@@ -162,7 +162,7 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_UPDATE]: HexTaskMeta<HexTaskDataBase & HexTaskAppUpdateData, string>;
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: HexTaskMeta<HexTaskDataBase & { locationPreferenceId: string; oldPath: string; newPath: string }, never>;
   [HexTaskType.DRIVE_REPLACE]: HexTaskMeta<HexTaskDataBase & { poolId: number; devname: string; newDevname: string; label: string; disk: string }, string>;
-  [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName: string; }, string>;
+  [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName?: string; }, string>;
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file

@@ -1,6 +1,6 @@
 module.exports = [
     {
-        name: "vms",
+        name: "apps",
         input: "eshtek/vms.ts",
         output: "eshtek/vms-schema.ts",
     },
@@ -18,5 +18,11 @@ module.exports = [
         name: "user",
         input: "eshtek/user.ts",
         output: "eshtek/user-schema.ts",
-    }
+    },
+    {
+        name: "apps",
+        input: "eshtek/apps.ts",
+        output: "eshtek/apps-schema.ts",
+    },
+    
 ];

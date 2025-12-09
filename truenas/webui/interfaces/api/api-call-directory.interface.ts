@@ -204,6 +204,7 @@ import type { SystemHealth } from '../system-health.interface';
 import type { App, AppQueryParams, AppUpgradeParams } from '../app.interface';
 import type { DetailsDisk, DiskSmartAttribute } from '../disk.interface';
 import { DockerConfig, DockerStatusData } from '../../enums/docker-config.interface';
+import type { GpuChoices } from '../gpu.interface';
 
 /**
  * API definitions for `call` methods.
@@ -267,6 +268,7 @@ export interface ApiCallDirectory {
     'app.similar': { params: [app_name: string, train: string]; response: AvailableApp[] };
     'app.rollback_versions': { params: [app_name: string]; response: string[] };
     'app.used_ports': { params: void; response: number[] };
+    'app.gpu_choices': { params: void; response: GpuChoices };
 
     // Audit
     'audit.config': { params: void; response: AuditConfig };

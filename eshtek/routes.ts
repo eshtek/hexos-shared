@@ -170,6 +170,7 @@ export interface ResponseResourceChanges {
         target: string;
         changelog?: string;
     };
+    partialUpdate?: Record<string, any>;
 }
 
 export interface RequestAppDelete {
