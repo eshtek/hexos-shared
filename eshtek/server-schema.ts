@@ -26,8 +26,9 @@ import {
   ServerActions,
 } from "./server";
 
-import { appsHealthSchema } from "./apps-schema";
 import { vMSHealthSchema } from "./vms-schema";
+const appsHealthSchema = z.any();
+
 
 export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
 
