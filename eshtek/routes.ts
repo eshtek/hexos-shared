@@ -138,7 +138,8 @@ export enum ResourceChangeAction {
     CREATE = 'create',
     UPDATE = 'update',
     DELETE = 'delete',
-    NO_OP = 'no-op'
+    NO_OP = 'no-op',
+    PRESERVE = 'preserve'
 }
 
 export interface ResponseResourceChanges {
@@ -158,6 +159,7 @@ export interface ResponseResourceChanges {
             update: number;
             delete: number;
             noOp: number;
+            preserve: number;
         };
     };
     validation: {
@@ -167,10 +169,9 @@ export interface ResponseResourceChanges {
     };
     versionInfo: {
         current?: string;
-        target: string;
+        target?: string;
         changelog?: string;
     };
-    partialUpdate?: Record<string, any>;
 }
 
 export interface RequestAppDelete {
