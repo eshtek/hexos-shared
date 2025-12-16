@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // tasks.ts
 
+import type { ResponseResourceChanges } from './routes';
 import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 export interface HexTaskBase<K extends HexTaskType> {
@@ -115,6 +116,27 @@ type HexTaskMeta<TData extends HexTaskDataBase, TParent extends string | never =
   parentTaskId?: TParent;
 };
 
+export enum HexTaskAppUpdateReason {
+  LOCATION_PREFERENCE_CHANGE = 'location_preference_change',
+  INSTALL_SCRIPT_UPDATE = 'install_script_update',
+}
+
+export type HexTaskAppUpdateDataMap = {
+  [HexTaskAppUpdateReason.LOCATION_PREFERENCE_CHANGE]: {
+    appId: string;
+    reason: HexTaskAppUpdateReason.LOCATION_PREFERENCE_CHANGE;
+    locationPreferenceId: string;
+  };
+  [HexTaskAppUpdateReason.INSTALL_SCRIPT_UPDATE]: {
+    appId: string;
+    reason: HexTaskAppUpdateReason.INSTALL_SCRIPT_UPDATE;
+    updateAnalysis: ResponseResourceChanges;
+  };
+};
+
+export type HexTaskAppUpdateData<R extends HexTaskAppUpdateReason = HexTaskAppUpdateReason> =
+  R extends HexTaskAppUpdateReason ? HexTaskAppUpdateDataMap[R] : HexTaskAppUpdateDataMap[HexTaskAppUpdateReason];
+
 export type HexTaskDataMap = {
   [HexTaskType.RESTART]: HexTaskMeta<HexTaskDataBase, never>;
   [HexTaskType.SHUTDOWN]: HexTaskMeta<HexTaskDataBase, never>;
@@ -137,10 +159,10 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_INSTALL]: HexTaskMeta<HexTaskDataBase & { appId: string; train?: string; installType?: 'standard' | 'custom' }, string>;
   [HexTaskType.APP_UNINSTALL]: HexTaskMeta<HexTaskDataBase & { appId: string }, string>;
   [HexTaskType.APP_UPGRADE]: HexTaskMeta<HexTaskDataBase & { appId: string; fromVersion?: string; toVersion?: string }, string>;
-  [HexTaskType.APP_UPDATE]: HexTaskMeta<HexTaskDataBase & { appId: string; reason?: 'location_preference_change'; locationPreferenceId?: string }, string>;
+  [HexTaskType.APP_UPDATE]: HexTaskMeta<HexTaskDataBase & HexTaskAppUpdateData, string>;
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: HexTaskMeta<HexTaskDataBase & { locationPreferenceId: string; oldPath: string; newPath: string }, never>;
   [HexTaskType.DRIVE_REPLACE]: HexTaskMeta<HexTaskDataBase & { poolId: number; devname: string; newDevname: string; label: string; disk: string }, string>;
-  [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName: string; }, string>;
+  [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName?: string; }, string>;
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file

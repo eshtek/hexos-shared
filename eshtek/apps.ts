@@ -89,7 +89,9 @@ export interface AppInfo extends AppBasics {
     status: AppState;
     url_webui: string;
     upgradeAvailable: boolean;
+    updatedScriptAvailable: boolean;
     latestVersion: string;
+    recommended: boolean;
 }
 export interface AppInfoDetailed extends AppInfo {
     data: number[][];
@@ -165,7 +167,22 @@ interface AppsInstallScriptV2 {
     app_values: Record<string, ChartFormValue>;
 }
 
-export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2;
+interface AppsInstallScriptV3 extends Omit<AppsInstallScriptV2, 'version' | 'requirements'> {
+    version: 3;
+    script: {
+        version: string;
+        updateCompatibility?: string;
+        changeLog?: string;
+    };
+    requirements: AppRequirements;  // Required in V3
+}
+
+export type AppsInstallScript = AppsInstallScriptV1 | AppsInstallScriptV2 | AppsInstallScriptV3;
+
+export interface AppConfiguration {
+    installScript?: AppsInstallScript | null;
+    questionResponses?: Record<string, string | number | boolean>;
+}
 
 export interface InstallScriptCuration {
     name: string;
