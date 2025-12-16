@@ -91,6 +91,7 @@ export interface AppInfo extends AppBasics {
     upgradeAvailable: boolean;
     updatedScriptAvailable: boolean;
     latestVersion: string;
+    recommended: boolean;
 }
 export interface AppInfoDetailed extends AppInfo {
     data: number[][];
