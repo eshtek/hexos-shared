@@ -1,4 +1,5 @@
 import { GlobalErrorCode } from './errors';
+import type { AppConfiguration } from './apps';
 import type { LocationPreferenceId } from './preferences';
 import type { ServerPool, ServerPoolNew, ServerUser, ServerUserType } from './server';
 import type { VMBasics, VMSettings } from './vms';
@@ -115,13 +116,106 @@ export interface RequestDockerUpdatePool {
     poolName: string;
 }
 
-export interface RequestAppInstall {
+export interface RequestAppInstall extends AppConfiguration {
     id: string;
     train?: 'community' | 'stable';
-    installScript?: string;
-    questionResponses?: Record<string, string | number | boolean>;
+}
+
+export interface RequestAppUpdate extends AppConfiguration {}
+export interface RequestAppUpdateAnalysis extends AppConfiguration {}
+
+
+export enum ResourceChangeType {
+    STORAGE = 'storage',
+    NETWORK = 'network',
+    ENVIRONMENT = 'environment',
+    RESOURCE = 'resource',
+    PERMISSION = 'permission',
+    CONFIG = 'config'
+}
+
+export enum ResourceChangeAction {
+    CREATE = 'create',
+    UPDATE = 'update',
+    DELETE = 'delete',
+    NO_OP = 'no-op',
+    PRESERVE = 'preserve'
+}
+
+export interface ResponseResourceChanges {
+    resourceChanges: Array<{
+        address: string;
+        type: ResourceChangeType;
+        change: {
+            actions: Array<ResourceChangeAction>;
+            before: any;
+            after: any;
+        };
+    }>;
+    planSummary: {
+        totalChanges: number;
+        changesByAction: {
+            create: number;
+            update: number;
+            delete: number;
+            noOp: number;
+            preserve: number;
+        };
+    };
+    validation: {
+        updateCompatible: boolean;
+        compatibilityConstraint?: string;
+        warnings: string[];
+    };
+    versionInfo: {
+        current?: string;
+        target?: string;
+        changelog?: string;
+    };
 }
 
 export interface RequestAppDelete {
     deleteData?: boolean;
 }
+
+export enum AppSearchSortBy {
+    NAME = 'name',
+    POPULARITY = 'popularity',
+    CREATED_AT = 'createdAt',
+    UPDATED_AT = 'updatedAt',
+}
+
+export enum AppSearchSortOrder {
+    ASC = 'asc',
+    DESC = 'desc',
+}
+
+export interface RequestAppSearch {
+    appId?: string;
+    search?: string;
+    category?: string;
+    fresh?: boolean;
+    supported?: boolean;
+    recommended?: boolean;
+    train?: 'stable' | 'community';
+    sortBy?: AppSearchSortBy;
+    sortOrder?: AppSearchSortOrder;
+    popularityStartDate?: string;
+    popularityEndDate?: string;
+    page?: number;
+    pageSize?: number;
+    limit?: number; // -1 means return all results
+}
+
+export interface AppCategoryInfo {
+    name: string;
+    appCount: number;
+}
+
+export interface RequestAppCategories {
+    train?: 'stable' | 'community';
+    supported?: boolean;
+    fresh?: boolean;
+}
+
+export type ResponseAppCategories = Response<AppCategoryInfo[]>;

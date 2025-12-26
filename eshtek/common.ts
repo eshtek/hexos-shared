@@ -505,3 +505,16 @@ export function getStepSize(range: number, steps: number = 10, acceptableSteps: 
         return Math.abs(curr - rawStep) < Math.abs(prev - rawStep) ? curr : prev;
     });
 }
+
+import type { HexTaskType } from './tasks';
+import type { EventState, TaskEventName } from './events';
+
+/**
+ * Generates a task event name from a task type and event state.
+ * @param {HexTaskType} taskType - The type of the task.
+ * @param {EventState} state - The state of the event (started, completed, failed).
+ * @returns {TaskEventName} - Returns the generated event name (e.g., 'app_install_started').
+ */
+export function getTaskEventName(taskType: HexTaskType, state: EventState): TaskEventName {
+  return `${taskType.toLowerCase()}_${state}` as TaskEventName;
+}

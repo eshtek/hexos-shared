@@ -244,6 +244,7 @@ export interface ServerDrive {
     existingData?: boolean;
     temperature?: number;
     healthDetails?: TopologyItemStatus;
+    driveId?: number; // Database ID from drives table
 }
 
 export interface ServerDrivesGroupedBySize {
@@ -406,6 +407,13 @@ export interface ServerHealth {
     errors: ServerHealthError[];
     warnings: ServerHealthWarning[];
     actions_available: ServerActions[];
+}
+
+export interface ServerVersion {
+    isVersionLatest: boolean;
+    isVersionSupported: boolean;
+    currentVersion: string;
+    latestVersion: string;
 }
 
 export interface ServerUpgradeInfo {

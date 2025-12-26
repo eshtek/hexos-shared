@@ -27,6 +27,8 @@ import {
 } from "./server";
 
 import { vMSHealthSchema } from "./vms-schema";
+const appsHealthSchema = z.any();
+
 
 export const serverUserTypeSchema = z.nativeEnum(ServerUserType);
 
@@ -135,6 +137,12 @@ export const serverSystemDataSystemDeviceDataSchema = z.object({
   networking: z.array(serverSystemDataSystemDeviceSchema).optional(),
 });
 
+export const serverSystemDataApplicationsSchema =
+  serverStatusBasicsSchema.extend({
+    type: z.literal(ServerStatusType.APPLICATIONS),
+    health: appsHealthSchema,
+  });
+
 export const serverSystemDataVirtualizationSchema =
   serverStatusBasicsSchema.extend({
     type: z.literal(ServerStatusType.VIRTUALIZATION),
@@ -197,6 +205,13 @@ export const serverHealthSchema = z.object({
   actions_available: z.array(serverActionsSchema),
 });
 
+export const serverVersionSchema = z.object({
+  isVersionLatest: z.boolean(),
+  isVersionSupported: z.boolean(),
+  currentVersion: z.string(),
+  latestVersion: z.string(),
+});
+
 export const serverUpgradeInfoSchema = z.object({
   serverName: z.string(),
   hostId: z.string(),
@@ -212,8 +227,6 @@ const poolStatusSchema = z.any();
 const fileTypeSchema = z.any();
 
 const topologyItemStatusSchema = z.any();
-
-const appsHealthSchema = z.any();
 
 const networkInterfaceTypeSchema = z.any();
 
@@ -241,6 +254,7 @@ export const serverDriveSchema = z.object({
   existingData: z.boolean().optional(),
   temperature: z.number().optional(),
   healthDetails: topologyItemStatusSchema.optional(),
+  driveId: z.number().optional(),
 });
 
 export const serverPoolNewSchema = serverPoolBasicsSchema.extend({
@@ -307,12 +321,6 @@ export const serverSystemDataStorageSchema = serverStatusBasicsSchema.extend({
     drives: z.array(serverDriveSchema).optional(),
   }),
 });
-
-export const serverSystemDataApplicationsSchema =
-  serverStatusBasicsSchema.extend({
-    type: z.literal(ServerStatusType.APPLICATIONS),
-    health: appsHealthSchema,
-  });
 
 export const serverSystemDataSchema = z.union([
   serverSystemDataSystemSchema,
