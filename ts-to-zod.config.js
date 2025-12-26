@@ -1,6 +1,6 @@
 module.exports = [
     {
-        name: "apps",
+        name: "vms",
         input: "eshtek/vms.ts",
         output: "eshtek/vms-schema.ts",
     },
