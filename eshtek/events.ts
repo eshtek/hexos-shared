@@ -187,6 +187,7 @@ export interface EventsListParams {
   taskType?: string;
   taskStatus?: string;
   appId?: string;
+  appIdRaw?: string;
   startDate?: string;
   endDate?: string;
 }

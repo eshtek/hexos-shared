@@ -19,6 +19,7 @@ export interface CatalogStatusResponse {
  */
 export interface CatalogApp {
     id: number;
+    appId: string;
     name: string;
     train: string | null;
     version: string | null;
