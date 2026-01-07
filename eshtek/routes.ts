@@ -23,6 +23,11 @@ export interface PaginationMeta {
     page_size: number;
 }
 
+export interface PaginationMetaUnique extends PaginationMeta {
+    unique_users: number;
+    unique_servers: number;
+}
+
 export interface PaginationRequest {
     page: number;
     page_size: number;
