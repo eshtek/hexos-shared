@@ -69,3 +69,138 @@ export interface AppPopularityMetrics {
   failureCount: number;
   lastInstalled: Date;
 }
+
+export enum EventsStatsCategory {
+  TASKS = 'tasks',
+  USERS = 'users',
+  APPS = 'apps',
+  SERVERS = 'servers',
+  DRIVES = 'drives',
+  POOLS = 'pools',
+  FOLDERS = 'folders',
+  TIMELINE = 'timeline',
+  ERRORS = 'errors',
+}
+
+export interface EventTaskStats {
+  taskType: string;
+  total: number;
+  completed: number;
+  failed: number;
+  successRate: number;
+  avgDurationSeconds: number | null;
+}
+
+export interface EventUserActivity {
+  userId: string;
+  totalEvents: number;
+  lastLogin: string | null;
+  tasksInitiated: number;
+  appActions: number;
+  failures: number;
+}
+
+export interface EventAppLifecycle {
+  appId: string;
+  discovered: number;
+  installAttempts: number;
+  installSuccesses: number;
+  installFailures: number;
+  upgradeAttempts: number;
+  upgradeSuccesses: number;
+  uninstalls: number;
+  lastActivity: string;
+}
+
+export interface EventServerActivity {
+  hostId: string;
+  connections: number;
+  disconnections: number;
+  totalEvents: number;
+  lastConnection: string | null;
+}
+
+export interface EventTimeline {
+  timestamp: string;
+  eventCount: number;
+  failures: number;
+}
+
+export interface EventErrorPattern {
+  taskType: string | null;
+  errorMessage: string;
+  occurrences: number;
+  lastOccurrence: string;
+}
+
+export interface EventDriveActivity {
+  driveSerial: string;
+  driveModel: string | null;
+  discovered: number;
+  utilized: number;
+  replaced: number;
+  removed: number;
+  failed: number;
+  healthy: number;
+  lastActivity: string;
+}
+
+export interface EventPoolActivity {
+  poolName: string;
+  poolId: number | null;
+  creates: number;
+  updates: number;
+  deletes: number;
+  totalEvents: number;
+  lastActivity: string;
+}
+
+export interface EventFolderActivity {
+  folderName: string;
+  creates: number;
+  updates: number;
+  deletes: number;
+  locks: number;
+  unlocks: number;
+  totalEvents: number;
+  lastActivity: string;
+}
+
+export type EventsStatsData =
+  | EventTaskStats
+  | EventUserActivity
+  | EventAppLifecycle
+  | EventServerActivity
+  | EventTimeline
+  | EventErrorPattern
+  | EventDriveActivity
+  | EventPoolActivity
+  | EventFolderActivity;
+
+export type TimelineGroupBy = 'hour' | 'day';
+
+export interface EventsListParams {
+  page?: number;
+  pageSize?: number;
+  eventName?: string | string[];
+  userId?: string;
+  hostId?: string;
+  taskType?: string;
+  taskStatus?: string;
+  appId?: string;
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface EventsStatsParams {
+  type: EventsStatsCategory;
+  days?: number;
+  groupBy?: TimelineGroupBy;
+  userId?: string;
+  hostId?: string;
+  taskType?: string;
+  taskStatus?: string;
+  appId?: string;
+  startDate?: string;
+  endDate?: string;
+}
