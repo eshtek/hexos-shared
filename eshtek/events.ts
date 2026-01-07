@@ -73,7 +73,6 @@ export interface AppPopularityMetrics {
 export enum EventsStatsCategory {
   TASKS = 'tasks',
   USERS = 'users',
-  APPS = 'apps',
   SERVERS = 'servers',
   DRIVES = 'drives',
   POOLS = 'pools',
