@@ -73,12 +73,7 @@ export interface AppPopularityMetrics {
 export enum EventsStatsCategory {
   TASKS = 'tasks',
   USERS = 'users',
-  SERVERS = 'servers',
-  DRIVES = 'drives',
-  POOLS = 'pools',
-  FOLDERS = 'folders',
   TIMELINE = 'timeline',
-  ERRORS = 'errors',
 }
 
 export interface EventTaskStats {
@@ -99,82 +94,16 @@ export interface EventUserActivity {
   failures: number;
 }
 
-export interface EventAppLifecycle {
-  appId: string;
-  discovered: number;
-  installAttempts: number;
-  installSuccesses: number;
-  installFailures: number;
-  upgradeAttempts: number;
-  upgradeSuccesses: number;
-  uninstalls: number;
-  lastActivity: string;
-}
-
-export interface EventServerActivity {
-  hostId: string;
-  connections: number;
-  disconnections: number;
-  totalEvents: number;
-  lastConnection: string | null;
-}
-
 export interface EventTimeline {
   timestamp: string;
   eventCount: number;
   failures: number;
 }
 
-export interface EventErrorPattern {
-  taskType: string | null;
-  errorMessage: string;
-  occurrences: number;
-  lastOccurrence: string;
-}
-
-export interface EventDriveActivity {
-  driveSerial: string;
-  driveModel: string | null;
-  discovered: number;
-  utilized: number;
-  replaced: number;
-  removed: number;
-  failed: number;
-  healthy: number;
-  lastActivity: string;
-}
-
-export interface EventPoolActivity {
-  poolName: string;
-  poolId: number | null;
-  creates: number;
-  updates: number;
-  deletes: number;
-  totalEvents: number;
-  lastActivity: string;
-}
-
-export interface EventFolderActivity {
-  folderName: string;
-  creates: number;
-  updates: number;
-  deletes: number;
-  locks: number;
-  unlocks: number;
-  totalEvents: number;
-  lastActivity: string;
-}
-
 export type EventsStatsData =
   | EventTaskStats
   | EventUserActivity
-  | EventAppLifecycle
-  | EventServerActivity
-  | EventTimeline
-  | EventErrorPattern
-  | EventDriveActivity
-  | EventPoolActivity
-  | EventFolderActivity;
+  | EventTimeline;
 
 export type TimelineGroupBy = 'hour' | 'day';
 
