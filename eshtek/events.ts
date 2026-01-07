@@ -108,6 +108,7 @@ export type EventsStatsData =
 export type TimelineGroupBy = 'hour' | 'day';
 
 export interface EventsListParams {
+  id?: number | string;
   page?: number;
   pageSize?: number;
   eventName?: string | string[];
