@@ -69,3 +69,68 @@ export interface AppPopularityMetrics {
   failureCount: number;
   lastInstalled: Date;
 }
+
+export enum EventsStatsCategory {
+  TASKS = 'tasks',
+  USERS = 'users',
+  TIMELINE = 'timeline',
+}
+
+export interface EventTaskStats {
+  taskType: string;
+  total: number;
+  completed: number;
+  failed: number;
+  successRate: number;
+  avgDurationSeconds: number | null;
+}
+
+export interface EventUserActivity {
+  userId: string;
+  totalEvents: number;
+  lastLogin: string | null;
+  tasksInitiated: number;
+  appActions: number;
+  failures: number;
+}
+
+export interface EventTimeline {
+  timestamp: string;
+  eventCount: number;
+  failures: number;
+}
+
+export type EventsStatsData =
+  | EventTaskStats
+  | EventUserActivity
+  | EventTimeline;
+
+export type TimelineGroupBy = 'hour' | 'day';
+
+export interface EventsListParams {
+  id?: number | string;
+  page?: number;
+  pageSize?: number;
+  eventName?: string | string[];
+  userId?: string;
+  hostId?: string;
+  taskType?: string;
+  taskStatus?: string;
+  appId?: string;
+  appIdRaw?: string;
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface EventsStatsParams {
+  type: EventsStatsCategory;
+  days?: number;
+  groupBy?: TimelineGroupBy;
+  userId?: string;
+  hostId?: string;
+  taskType?: string;
+  taskStatus?: string;
+  appId?: string;
+  startDate?: string;
+  endDate?: string;
+}
