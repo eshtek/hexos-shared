@@ -3,6 +3,16 @@
  */
 
 /**
+ * Admin access groups for role-based permissions
+ */
+export enum AdminGroup {
+    APPS = 'APPS',
+    BUSINESS = 'BUSINESS',
+    ENGINEERING = 'ENGINEERING',
+    FULL = 'FULL',
+}
+
+/**
  * Response from the catalog status endpoint
  */
 export interface CatalogStatusResponse {
