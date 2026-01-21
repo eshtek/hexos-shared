@@ -48,6 +48,8 @@ export enum HexTaskType {
   APP_UNINSTALL = 'APP_UNINSTALL',
   APP_UPGRADE = 'APP_UPGRADE',
   APP_UPDATE = 'APP_UPDATE',
+  APP_START = 'APP_START',
+  APP_STOP = 'APP_STOP',
   PREFERENCE_LOCATION_PATH_MIGRATION = 'PREFERENCE_LOCATION_PATH_MIGRATION',
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
@@ -160,6 +162,8 @@ export type HexTaskDataMap = {
   [HexTaskType.APP_UNINSTALL]: HexTaskMeta<HexTaskDataBase & { appId: string }, string>;
   [HexTaskType.APP_UPGRADE]: HexTaskMeta<HexTaskDataBase & { appId: string; fromVersion?: string; toVersion?: string }, string>;
   [HexTaskType.APP_UPDATE]: HexTaskMeta<HexTaskDataBase & HexTaskAppUpdateData, string>;
+  [HexTaskType.APP_START]: HexTaskMeta<HexTaskDataBase & { appId: string }, string>;
+  [HexTaskType.APP_STOP]: HexTaskMeta<HexTaskDataBase & { appId: string }, string>;
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: HexTaskMeta<HexTaskDataBase & { locationPreferenceId: string; oldPath: string; newPath: string }, never>;
   [HexTaskType.DRIVE_REPLACE]: HexTaskMeta<HexTaskDataBase & { poolId: number; devname: string; newDevname: string; label: string; disk: string }, string>;
   [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName?: string; }, string>;
@@ -191,6 +195,8 @@ export const HexTaskSettings: {
   [HexTaskType.APP_UNINSTALL]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
   [HexTaskType.APP_UPGRADE]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
   [HexTaskType.APP_UPDATE]: { canHaveMultiple: true, predictedSecondsToComplete: 500 },
+  [HexTaskType.APP_START]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
+  [HexTaskType.APP_STOP]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { canHaveMultiple: false, predictedSecondsToComplete: 1200 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
   [HexTaskType.DOCKER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
