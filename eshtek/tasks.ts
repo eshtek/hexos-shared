@@ -5,7 +5,7 @@ import type { ResponseResourceChanges } from './routes';
 import type { DiskType } from '../truenas/webui/enums/disk-type.enum';
 
 export interface HexTaskBase<K extends HexTaskType> {
-  id: string;
+  id: number;
   userId: string;
   type: K;
   status: HexTaskStatus;

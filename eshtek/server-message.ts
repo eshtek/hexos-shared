@@ -3,7 +3,7 @@ import type { JobState } from '../truenas/webui/enums/job-state.enum';
 import type { HexTaskStatus, HexTaskType } from './tasks';
 
 interface BaseServerMessage {
-    id: string;
+    id: number;
     title: string;
     content?: string;
     serverId: string;

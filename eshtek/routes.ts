@@ -64,6 +64,7 @@ export interface RequestNewAccount {
 }
 
 export interface RequestClaimServer {
+    name: string;
     password: string;
     hostId: string;
 }
@@ -76,7 +77,6 @@ export interface RequestUser extends ServerUser {
 export interface RequestFinishServer {
     hostId: string;
     pools: ServerPool[];
-    name: string;
 }
 
 export interface RequestFeedback {

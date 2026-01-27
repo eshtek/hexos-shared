@@ -228,6 +228,7 @@ export enum ServerDriveError {
 
 export interface ServerDrive {
     guid: string;
+    identifier: string;
     details: string;
     model: string;
     serial: string;
@@ -245,6 +246,7 @@ export interface ServerDrive {
     temperature?: number;
     healthDetails?: TopologyItemStatus;
     driveId?: number; // Database ID from drives table
+    poolId?: number;
 }
 
 export interface ServerDrivesGroupedBySize {
