@@ -1,4 +1,3 @@
-import { GlobalErrorCode } from './errors';
 import type { AppConfiguration } from './apps';
 import type { LocationPreferenceId } from './preferences';
 import type { ServerPool, ServerPoolNew, ServerUser, ServerUserType } from './server';
@@ -11,7 +10,7 @@ export type ResponseSuccess<T> = {
 
 export type ResponseError<T> = {
     success: false;
-    error: string | GlobalErrorCode;
+    error: string;
     data?: T;
 };
 export type Response<T> = ResponseSuccess<T> | ResponseError<T>;
