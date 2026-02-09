@@ -52,7 +52,7 @@ export interface ApiJobDirectory {
 
     // Catalog
     'catalog.create': { params: [CatalogCreate]; response: Catalog };
-    'catalog.sync': { params: [label: string]; response: void };
+    'catalog.sync': { params: void; response: void };
 
     // Certificate
     'certificate.create': { params: [CertificateCreate]; response: Certificate };
