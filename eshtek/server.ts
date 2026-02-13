@@ -149,10 +149,10 @@ export interface Servers {
 export interface ServerRecord {
     hostid: string;
     email?: string;
-    apikey?: string;
     lanip?: string;
     wanip?: string;
     nodehost?: string;
+    localAccessDomain?: string;
     connected?: 'N' | 'Y';
     servername?: string;
     wizardcompleted?: Date | string;

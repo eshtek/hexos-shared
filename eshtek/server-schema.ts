@@ -64,10 +64,10 @@ export const serverPoolWarningSchema = z.nativeEnum(ServerPoolWarning);
 export const serverRecordSchema = z.object({
   hostid: z.string(),
   email: z.string().optional(),
-  apikey: z.string().optional(),
   lanip: z.string().optional(),
   wanip: z.string().optional(),
   nodehost: z.string().optional(),
+  localAccessDomain: z.string().optional(),
   connected: z.union([z.literal("N"), z.literal("Y")]).optional(),
   servername: z.string().optional(),
   wizardcompleted: z.union([z.date(), z.string()]).optional(),
