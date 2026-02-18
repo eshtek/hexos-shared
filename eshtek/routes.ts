@@ -73,7 +73,7 @@ export interface RequestUser extends ServerUser {
     type: ServerUserType;
 }
 
-export interface RequestFinishServer {
+export interface RequestProvisionServer {
     hostId: string;
     pools: ServerPool[];
 }
