@@ -36,13 +36,13 @@ export const SystemEventNames = {
   SERVER_DISCONNECTED: 'server_disconnected',
   USER_LOGIN: 'user_login',
   USER_LOGOUT: 'user_logout',
-  DRIVE_UTILIZED: 'drive_utilized',  // Drive added to a pool
+  DRIVE_UTILIZED: 'drive_utilized',
   DRIVE_REPLACED: 'drive_replaced',
   DRIVE_REMOVED: 'drive_removed',
   DRIVE_FAILED: 'drive_failed',
-  DRIVE_HEALTHY: 'drive_healthy',  // Drive has no errors
-  DRIVE_DISCOVERED: 'drive_discovered',  // Drive found on system (assigned or unassigned)
-  APP_DISCOVERED: 'app_discovered',  // App found on system
+  DRIVE_HEALTHY: 'drive_healthy',
+  DRIVE_DISCOVERED: 'drive_discovered',
+  APP_DISCOVERED: 'app_discovered',
 } as const;
 
 export type SystemEventName = typeof SystemEventNames[keyof typeof SystemEventNames];
