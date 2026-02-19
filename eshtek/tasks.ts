@@ -54,6 +54,20 @@ export enum HexTaskType {
   POOLS_DELETE_ALL = 'POOLS_DELETE_ALL',
   DRIVE_REPLACE = 'DRIVE_REPLACE',
   DOCKER_UPDATE = 'DOCKER_UPDATE',
+
+  // Main server tasks (provisioning — stored in main MySQL, not local SQLite)
+  PROVISIONING = 'PROVISIONING',
+  PROVISION_WIPE_DISKS = 'PROVISION_WIPE_DISKS',
+  PROVISION_CREATE_POOLS = 'PROVISION_CREATE_POOLS',
+  PROVISION_VALIDATE_STORAGE = 'PROVISION_VALIDATE_STORAGE',
+  PROVISION_CONFIGURE_NETWORK = 'PROVISION_CONFIGURE_NETWORK',
+  PROVISION_CONFIGURE_DOCKER = 'PROVISION_CONFIGURE_DOCKER',
+  PROVISION_INSTALL_HEXOS = 'PROVISION_INSTALL_HEXOS',
+
+  // Grandchild tasks (individual disk/pool tracking under WIPE_DISKS / CREATE_POOLS)
+  PROVISION_EXPORT_POOL = 'PROVISION_EXPORT_POOL',
+  PROVISION_WIPE_DISK = 'PROVISION_WIPE_DISK',
+  PROVISION_CREATE_POOL = 'PROVISION_CREATE_POOL',
 }
 
 
@@ -70,7 +84,7 @@ export type HexTaskUpdate<T extends HexTaskType = HexTaskType> = {
   active?: boolean;
   data?: HexTaskDataMap[T]['data'];
   hostId?: string;
-  parentTaskId?: string;
+  parentTaskId?: number;
 };
 export type HexTaskWithChildren<T extends HexTaskType = HexTaskType> = HexTaskBase<T> & HexTaskDataMap[T] & {
   childTasks: HexTask[];
@@ -82,11 +96,12 @@ export enum HexTaskStatus {
   IN_PROGRESS = 'IN_PROGRESS',
   COMPLETED = 'COMPLETED',
   FAILED = 'FAILED',
+  SKIPPED = 'SKIPPED',
   DISMISSED = 'DISMISSED',
 }
 
 export const enforceCompletionProgress = (status: HexTaskStatus, progress: number): number => {
-  return status === HexTaskStatus.COMPLETED ? 100 : progress;
+  return (status === HexTaskStatus.COMPLETED || status === HexTaskStatus.SKIPPED) ? 100 : progress;
 };
 
 export const parseTaskData = <T extends HexTaskType>(
@@ -112,7 +127,7 @@ type HexTaskDataBase = {
   jobId?: number | number[];
 };
 
-type HexTaskMeta<TData extends HexTaskDataBase, TParent extends string | never = never> = {
+type HexTaskMeta<TData extends HexTaskDataBase, TParent extends number | never = never> = {
   hostId: string;
   data: TData;
   parentTaskId?: TParent;
@@ -167,6 +182,20 @@ export type HexTaskDataMap = {
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: HexTaskMeta<HexTaskDataBase & { locationPreferenceId: string; oldPath: string; newPath: string }, never>;
   [HexTaskType.DRIVE_REPLACE]: HexTaskMeta<HexTaskDataBase & { poolId: number; devname: string; newDevname: string; label: string; disk: string }, string>;
   [HexTaskType.DOCKER_UPDATE]: HexTaskMeta<HexTaskDataBase & { poolName?: string; }, string>;
+
+  // Main server tasks (provisioning)
+  [HexTaskType.PROVISIONING]: HexTaskMeta<HexTaskDataBase & { serverName?: string }, never>;
+  [HexTaskType.PROVISION_WIPE_DISKS]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.PROVISION_CREATE_POOLS]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.PROVISION_VALIDATE_STORAGE]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.PROVISION_CONFIGURE_NETWORK]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.PROVISION_CONFIGURE_DOCKER]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.PROVISION_INSTALL_HEXOS]: HexTaskMeta<HexTaskDataBase, string>;
+
+  // Grandchild tasks (individual disk/pool tracking)
+  [HexTaskType.PROVISION_EXPORT_POOL]: HexTaskMeta<HexTaskDataBase & { poolId: number; name: string }, number>;
+  [HexTaskType.PROVISION_WIPE_DISK]: HexTaskMeta<HexTaskDataBase & { devname: string }, number>;
+  [HexTaskType.PROVISION_CREATE_POOL]: HexTaskMeta<HexTaskDataBase & { name: string }, number>;
 };
 
 // This looks a little strange with duplicated code, but we need a runtime const avail for the utils file
@@ -200,4 +229,32 @@ export const HexTaskSettings: {
   [HexTaskType.PREFERENCE_LOCATION_PATH_MIGRATION]: { canHaveMultiple: false, predictedSecondsToComplete: 1200 },
   [HexTaskType.DRIVE_REPLACE]: { canHaveMultiple: true, predictedSecondsToComplete: 120 },
   [HexTaskType.DOCKER_UPDATE]: { canHaveMultiple: false, predictedSecondsToComplete: 120 },
+
+  // Main server tasks (provisioning)
+  [HexTaskType.PROVISIONING]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_WIPE_DISKS]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_CREATE_POOLS]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_VALIDATE_STORAGE]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_CONFIGURE_NETWORK]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_CONFIGURE_DOCKER]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_INSTALL_HEXOS]: { canHaveMultiple: false },
+
+  // Grandchild tasks (individual disk/pool tracking)
+  [HexTaskType.PROVISION_EXPORT_POOL]: { canHaveMultiple: true },
+  [HexTaskType.PROVISION_WIPE_DISK]: { canHaveMultiple: true },
+  [HexTaskType.PROVISION_CREATE_POOL]: { canHaveMultiple: true },
 };
+
+// Task types stored in the main MySQL database (provisioning tasks)
+export const MAIN_TASK_TYPES: readonly HexTaskType[] = [
+  HexTaskType.PROVISIONING,
+  HexTaskType.PROVISION_WIPE_DISKS,
+  HexTaskType.PROVISION_CREATE_POOLS,
+  HexTaskType.PROVISION_VALIDATE_STORAGE,
+  HexTaskType.PROVISION_CONFIGURE_NETWORK,
+  HexTaskType.PROVISION_CONFIGURE_DOCKER,
+  HexTaskType.PROVISION_INSTALL_HEXOS,
+  HexTaskType.PROVISION_EXPORT_POOL,
+  HexTaskType.PROVISION_WIPE_DISK,
+  HexTaskType.PROVISION_CREATE_POOL,
+];

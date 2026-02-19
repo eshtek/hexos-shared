@@ -1,14 +1,5 @@
 import type { HexTaskType } from './tasks';
 
-export enum EventTaskType {
-  PROVISION_WIPE_DISKS = 'PROVISION_WIPE_DISKS',
-  PROVISION_CREATE_POOLS = 'PROVISION_CREATE_POOLS',
-  PROVISION_VALIDATE_STORAGE = 'PROVISION_VALIDATE_STORAGE',
-  PROVISION_CONFIGURE_NETWORK = 'PROVISION_CONFIGURE_NETWORK',
-  PROVISION_CONFIGURE_DOCKER = 'PROVISION_CONFIGURE_DOCKER',
-  PROVISION_INSTALL_HEXOS = 'PROVISION_INSTALL_HEXOS',
-}
-
 export interface BaseEvent {
   eventName: string;
   userId: string;
@@ -43,13 +34,6 @@ export type TaskEventName = `${Lowercase<`${HexTaskType}`>}_${EventState}`;
 export const SystemEventNames = {
   SERVER_CONNECTED: 'server_connected',
   SERVER_DISCONNECTED: 'server_disconnected',
-  SERVER_CLAIMED: 'server_claimed',
-  SERVER_UNCLAIMED: 'server_unclaimed',
-  SERVER_RESET: 'server_reset',
-  SERVER_SETUP_STARTED: 'server_setup_started',
-  SERVER_SETUP_COMPLETED: 'server_setup_completed',
-  SERVER_SETUP_FAILED: 'server_setup_failed',
-  TASK: 'task', // Separate from HexTasks ie. EventTaskTypes
   USER_LOGIN: 'user_login',
   USER_LOGOUT: 'user_logout',
   DRIVE_UTILIZED: 'drive_utilized',
@@ -149,18 +133,4 @@ export interface EventsStatsParams {
   appId?: string;
   startDate?: string;
   endDate?: string;
-}
-
-export interface EventTask {
-  taskType: EventTaskType;
-  status: 'PENDING' | 'IN_PROGRESS' | 'COMPLETED' | 'FAILED' | 'SKIPPED';
-  progress: number;
-  errorMessage?: string;
-  updatedAt?: string;
-}
-
-export interface EventTaskStatusData {
-  tasks: EventTask[];
-  isComplete: boolean;
-  hasFailed: boolean;
 }
