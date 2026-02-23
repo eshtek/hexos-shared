@@ -9,9 +9,9 @@ interface BaseServerMessage {
     serverId: string;
     icon?: 'ok' | 'error' | 'warning' | 'info' | 'progress' | 'award';
     resourceId?: string;
-    createdAt: Date;
-    readAt?: Date;
-    dismissedAt?: Date;
+    createdAt: string;
+    readAt?: string;
+    dismissedAt?: string;
 }
 
 export interface TNUpdateAvailable extends BaseServerMessage {
