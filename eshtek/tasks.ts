@@ -10,8 +10,8 @@ export interface HexTaskBase<K extends HexTaskType> {
   type: K;
   status: HexTaskStatus;
   progress: number;
-  created: Date;
-  updated: Date;
+  created: string;
+  updated: string;
   active: boolean;
 }
 
