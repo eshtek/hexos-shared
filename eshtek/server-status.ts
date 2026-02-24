@@ -1,45 +1,62 @@
 /**
- * Server Status — 6 values representing what phase the server is in.
+ * Server Status
  *
- * Two columns encode server state:
- *   status  — "What phase is this server in?"  (6 values below)
- *   userId  — "Who owns this server?"          (null = unclaimed, string = claimed)
+ * Three columns encode server state:
+ *   status          - "Is the main server connected to TrueNAS and/or the local node?" (4 values below)
+ *   userId          - "Who owns this server?"                                          (null = unclaimed, string = claimed)
+ *   provisionStatus - "Has provisioning started, failed, completed?"                   (4 values below)
  *
  * Everything else is derived:
- *   Unclaimed?              → userId === null
- *   In setup?               → isServerInSetup(status)
- *   Operational?            → isServerConnected(status)
- *   Provisioning progress?  → Read from main tasks (PROVISION_* children of PROVISIONING)
+ *   Unclaimed (Offline)         → OFFLINE && userId == null
+ *   Unclaimed (Online)          → (TN_ONLY || ONLINE) && userId == null
+ *   Claimed (Offline, not prov) → OFFLINE && userId != null && provisionStatus == NOT_STARTED
+ *   Claimed (Online, not prov)  → (TN_ONLY || ONLINE) && userId != null && provisionStatus == NOT_STARTED
+ *   Provisioning                → (TN_ONLY || ONLINE) && userId != null && provisionStatus == IN_PROGRESS
+ *   Provisioned (Online)        → ONLINE
+ *   Provisioned (Offline)       → OFFLINE && userId != null && provisionStatus == SUCCESS
+ *   Provisioning progress?      → Read from main tasks (PROVISION_* children of PROVISIONING)
  *
- * Status transitions:
- *   Server discovered    → OFFLINE (userId null)
- *   Claim                → SETUP
- *   Start provisioning   → PROVISIONING
- *   Provisioning done    → OFFLINE → syncServerStatus → ONLINE / WAIT_FOR_LOCAL_NODE / etc.
- *   Reset / disconnect   → OFFLINE (userId cleared)
+ * Transitions:
+ *   TN → Main Connect
+ *      If no DB server, create with userId == null & return early
+ *      If no API key, return early
+ *      If auth fails, Clear userId & return early
+ *      Call syncServerStatus()
+ *   TN → Main Disconnect   → Call syncServerStatus()
+ *   Claim                  → Set userId & apiKey
+ *   Configure Setup        → Set provisionStatus to IN_PROGRESS
+ *   Provision Finish       → Set provisionStatus to SUCCESS/FAILED & Call syncServerStatus()
+ *   Hex → Main Connect     → Call syncServerStatus()
+ *   Hex → Main Disconnect  → Call syncServerStatus()
+ *   Reset/Unclaim          → Clear userId & apiKey & Set provisionStatus to NOT_STARTED
  *
- * syncServerStatus (post-setup only, guarded by isServerInSetup + userId):
- *   No TN connection     → OFFLINE
- *   Docker not running   → WAIT_FOR_LOCAL_NODE
- *   HexOS app missing    → REINSTALL_HEXOS (auto-recovery)
- *   No hex connection    → WAIT_FOR_LOCAL_NODE
- *   All good             → ONLINE
+ * syncServerStatus
+ *   Updates status based on TN connection and/or Hex connection
+ *   If provisionStatus == SUCCESS && TN_ONLY
+ *     if docker is running
+ *       Put them back into setup
+ *     else
+ *       Attempt to reinstall/restart/start HexOS app
  */
+
+export enum ServerProvisionStatus {
+  NOT_STARTED = "NOT_STARTED",
+  IN_PROGRESS = "IN_PROGRESS",
+  SUCCESS = "SUCCESS",
+  FAILED = "FAILED",
+}
+
 export enum ServerStatus {
   OFFLINE = "OFFLINE",
-  CLAIMED = "CLAIMED",
-  PROVISIONING = "PROVISIONING",
+  TN_ONLY = "TN_ONLY",
+  LOCAL_ONLY = "LOCAL_ONLY",
   ONLINE = "ONLINE",
-  WAIT_FOR_LOCAL_NODE = "WAIT_FOR_LOCAL_NODE",
-  REINSTALL_HEXOS = "REINSTALL_HEXOS",
 }
 
-export function isServerConnected(status?: string): boolean {
-  // CLAIMED and PROVISIONING have a TrueNAS connection but no local node —
-  // the frontend should NOT connect WebSocket or enable dashboard features.
-  return status === ServerStatus.ONLINE || status === ServerStatus.WAIT_FOR_LOCAL_NODE || status === ServerStatus.REINSTALL_HEXOS;
+export function isServerConnected(status: ServerStatus): boolean {
+  return status === ServerStatus.ONLINE;
 }
 
-export function isServerInSetup(status?: string): boolean {
-  return status === ServerStatus.CLAIMED || status === ServerStatus.PROVISIONING;
+export function isServerInSetup(status: ServerProvisionStatus): boolean {
+  return status !== ServerProvisionStatus.SUCCESS;
 }

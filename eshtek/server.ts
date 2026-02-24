@@ -5,7 +5,7 @@ import type { NetworkInterfaceType } from '../truenas/webui/enums/network-interf
 import type { PoolStatus } from '../truenas/webui/enums/pool-status.enum';
 import type { TopologyItemStatus } from '../truenas/webui/enums/vdev-status.enum';
 import type { AppsHealth } from './apps';
-import type { ServerStatus } from './server-status';
+import type { ServerProvisionStatus, ServerStatus } from './server-status';
 import type { VMSHealth } from './vms';
 
 export const cleanCPUModel = (model: string): string => {
@@ -156,7 +156,7 @@ export interface ServerRecord {
     localAccessDomain?: string;
     connected?: 'N' | 'Y';
     servername?: string;
-    wizardcompleted?: Date | string;
+    provisionStatus?: ServerProvisionStatus;
     status?: ServerStatus;
     lastconnected?: Date | string;
     truenas_version?: string;

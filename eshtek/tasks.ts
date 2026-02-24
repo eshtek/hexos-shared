@@ -63,6 +63,7 @@ export enum HexTaskType {
   PROVISION_CONFIGURE_NETWORK = 'PROVISION_CONFIGURE_NETWORK',
   PROVISION_CONFIGURE_DOCKER = 'PROVISION_CONFIGURE_DOCKER',
   PROVISION_INSTALL_HEXOS = 'PROVISION_INSTALL_HEXOS',
+  PROVISION_FINALIZE = 'PROVISION_FINALIZE',
 
   // Grandchild tasks (individual disk/pool tracking under WIPE_DISKS / CREATE_POOLS)
   PROVISION_EXPORT_POOL = 'PROVISION_EXPORT_POOL',
@@ -191,6 +192,7 @@ export type HexTaskDataMap = {
   [HexTaskType.PROVISION_CONFIGURE_NETWORK]: HexTaskMeta<HexTaskDataBase, string>;
   [HexTaskType.PROVISION_CONFIGURE_DOCKER]: HexTaskMeta<HexTaskDataBase, string>;
   [HexTaskType.PROVISION_INSTALL_HEXOS]: HexTaskMeta<HexTaskDataBase, string>;
+  [HexTaskType.PROVISION_FINALIZE]: HexTaskMeta<HexTaskDataBase, string>;
 
   // Grandchild tasks (individual disk/pool tracking)
   [HexTaskType.PROVISION_EXPORT_POOL]: HexTaskMeta<HexTaskDataBase & { poolId: number; name: string }, number>;
@@ -238,6 +240,7 @@ export const HexTaskSettings: {
   [HexTaskType.PROVISION_CONFIGURE_NETWORK]: { canHaveMultiple: false },
   [HexTaskType.PROVISION_CONFIGURE_DOCKER]: { canHaveMultiple: false },
   [HexTaskType.PROVISION_INSTALL_HEXOS]: { canHaveMultiple: false },
+  [HexTaskType.PROVISION_FINALIZE]: { canHaveMultiple: false },
 
   // Grandchild tasks (individual disk/pool tracking)
   [HexTaskType.PROVISION_EXPORT_POOL]: { canHaveMultiple: true },
@@ -254,6 +257,7 @@ export const MAIN_TASK_TYPES: readonly HexTaskType[] = [
   HexTaskType.PROVISION_CONFIGURE_NETWORK,
   HexTaskType.PROVISION_CONFIGURE_DOCKER,
   HexTaskType.PROVISION_INSTALL_HEXOS,
+  HexTaskType.PROVISION_FINALIZE,
   HexTaskType.PROVISION_EXPORT_POOL,
   HexTaskType.PROVISION_WIPE_DISK,
   HexTaskType.PROVISION_CREATE_POOL,
