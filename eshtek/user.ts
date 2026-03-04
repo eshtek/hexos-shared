@@ -24,6 +24,7 @@ export enum UserGroups {
     BETA_UNLIMITED = '7',
     CUSTOMERS = '8',
     BETA_CUSTOMERS = '9',
+    USE_LOCAL = '11',
 }
 
 export enum UserPreferenceTheme {
