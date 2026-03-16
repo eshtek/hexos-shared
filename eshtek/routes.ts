@@ -66,6 +66,7 @@ export interface RequestClaimServer {
     name: string;
     password: string;
     hostId: string;
+    otpToken?: string;
 }
 
 export interface RequestUser extends ServerUser {
