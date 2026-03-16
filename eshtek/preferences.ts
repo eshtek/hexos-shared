@@ -25,10 +25,12 @@ export type ResolvedPreferences = Omit<StoredPreferences, 'locations'> & {
 }
 
 export interface GlobalPreferences {
+  "temperature-unit": "farenheit" | "celsius";
   "theme-setting": 'dark' | 'light';
   "language-setting": 'en' | 'es';
   "dev-mode": "on" | "off";
   "expert-mode": "on" | "off";
+  "dev-mode-non-production": "on" | "off";
 }
 
 export enum LocationPreferenceId { 

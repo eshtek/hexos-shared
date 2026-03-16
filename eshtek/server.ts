@@ -420,10 +420,6 @@ export interface ServerVersion {
     latestVersion: string;
 }
 
-export interface ServerUpgradeInfo {
+export type ServerUpgradeInfo = ServerVersion & {
     serverName: string;
-    hostId: string;
-    currentVersion: string;
-    targetVersion: string;
-    updateStatus: string;
 }

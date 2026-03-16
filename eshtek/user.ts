@@ -6,13 +6,7 @@ export interface User {
     name: string;
     groups?: UserGroups[];
     image?: string;
-    preferences?: UserPreferences;
     purchases?: UserPurchase[];
-}
-
-export interface UserPreferences {
-    theme: UserPreferenceTheme;
-    temperature: UserPreferenceTemperature;
 }
 
 // must match https://hub.hexos.com/admin/?app=core&module=members&controller=groups
@@ -24,16 +18,6 @@ export enum UserGroups {
     BETA_UNLIMITED = '7',
     CUSTOMERS = '8',
     BETA_CUSTOMERS = '9',
-}
-
-export enum UserPreferenceTheme {
-    LIGHT = 'light',
-    DARK = 'dark',
-}
-
-export enum UserPreferenceTemperature {
-    FARENHEIT = 'farenheit',
-    CELSIUS = 'celsius',
 }
 
 export enum UserPurchaseType {
