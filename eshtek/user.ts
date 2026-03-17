@@ -11,14 +11,15 @@ export interface User {
 
 // must match https://hub.hexos.com/admin/?app=core&module=members&controller=groups
 export enum UserGroups {
-    GUESTS = '2',
-    MEMBERS = '3',
-    ADMINISTRATORS = '4',
-    MODERATORS = '6',
-    BETA_UNLIMITED = '7',
-    CUSTOMERS = '8',
-    BETA_CUSTOMERS = '9',
-}
+		GUESTS = "2",
+		MEMBERS = "3",
+		ADMINISTRATORS = "4",
+		MODERATORS = "6",
+		BETA_UNLIMITED = "7",
+		CUSTOMERS = "8",
+		BETA_CUSTOMERS = "9",
+		USE_LOCAL = "11"
+	}
 
 export enum UserPurchaseType {
     Beta = 'beta',

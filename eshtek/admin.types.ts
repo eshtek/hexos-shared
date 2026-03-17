@@ -2,6 +2,8 @@
  * Admin API Types and Interfaces
  */
 
+import type { ServerRecord } from './server';
+
 /**
  * Admin access groups for role-based permissions
  */
@@ -106,4 +108,63 @@ export interface DrivesResponse {
     totalUtilized: number;
     totalFailed: number;
     totalRemoved: number;
+}
+
+/**
+ * Legacy Migration Types
+ * Used for migrating users from IPS auth to Keycloak.
+ * Remove after migration is complete.
+ */
+
+export interface LegacyMember {
+    member_id: number;
+    name: string;
+    email: string;
+    member_group_id: number;
+    mgroup_others: string;
+    hasUseLocal: boolean;
+    legacyServerCount: number;
+}
+
+export interface LegacyMemberServer {
+    hostid: string;
+    email?: string | null;
+    servername: string | null;
+    lanip: string | null;
+    wanip: string;
+    wizardcompleted: boolean;
+    buildversion: string | null;
+}
+
+export interface LegacyMigrateRequest {
+    memberIds?: number[];
+    emails?: string[];
+    routingDomain: string;
+}
+
+export interface LegacyMigrateResult {
+    memberId: number;
+    email: string;
+    success: boolean;
+    error?: string;
+    keycloakCreated: boolean;
+    serversProcessed: number;
+    serversFailed: number;
+    hostsRegistered: number;
+}
+
+export interface LegacyForceDisconnectRequest {
+    hostIds: string[];
+    legacyApiDomain: string;
+    legacyBearerToken: string;
+}
+
+export interface LegacyForceDisconnectResult {
+    hostId: string;
+    success: boolean;
+    error?: string;
+}
+
+export interface AdminServerRecord extends ServerRecord {
+    routingDomain?: string;
 }
