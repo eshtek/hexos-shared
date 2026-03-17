@@ -27,7 +27,7 @@ import type { ApiKey, CreateApiKeyRequest, UpdateApiKeyRequest } from '../../int
 import type { AppUpgradeSummary, UpgradeSummary } from '../../interfaces/application.interface';
 import type { AuditConfig, AuditEntry, AuditQueryParams } from '../../interfaces/audit/audit.interface';
 import type { AuthSession } from '../../interfaces/auth-session.interface';
-import type { LoginQuery } from '../../interfaces/auth.interface';
+import type { LoginQuery, LoginExQuery, LoginExOtpTokenQuery, LoginExResponse } from '../../interfaces/auth.interface';
 import type { AvailableApp } from '../../interfaces/available-app.interface';
 import type { Bootenv, CreateBootenvParams, SetBootenvAttributeParams, UpdateBootenvParams } from '../../interfaces/bootenv.interface';
 import type {
@@ -278,6 +278,8 @@ export interface ApiCallDirectory {
 
     // Auth
     'auth.generate_token': { params: void; response: string };
+    'auth.login_ex': { params: [LoginExQuery]; response: LoginExResponse };
+    'auth.login_ex_continue': { params: [LoginExOtpTokenQuery]; response: LoginExResponse };
     'auth.login': { params: LoginQuery; response: boolean };
     'auth.login_with_token': { params: [token: string]; response: boolean };
     'auth.login_with_api_key': { params: [api_key: string]; response: boolean };
